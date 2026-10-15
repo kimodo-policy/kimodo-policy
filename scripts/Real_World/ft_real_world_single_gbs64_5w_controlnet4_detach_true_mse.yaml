@@ -1,12 +1,13 @@
 main:
   batch_size: 8
   max_steps: 50000
-  save_steps: 10000
+  save_steps: 5000
   action_chunk: 50
   action_history: 100
   sample_stride: 1
   seed: 42
-  # 4 ranks x batch_size 16 = global batch size 64 (the launcher defaults to 4 GPUs).
+  # 8 ranks x batch_size 8 x accumulation 1 = global batch size 64.
+  # Set KIMODO_GPUS=0,1,2,3,4,5,6,7 explicitly; launcher default is 4 GPUs (GBS 32).
   save_root: "${oc.env:KIMODO_FT_SAVE_ROOT,log/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_${oc.env:REAL_WORLD_DATASET,all}/}"
   dtype: "bf16"
 
@@ -94,9 +95,9 @@ training:
       hand: 1.0
       hand_transition: 0.2
   optimizer:
-    control_backbone_lr: 3.0e-5
-    control_adapter_lr: 1.0e-4
-    hand_lr: 1.0e-4
+    control_backbone_lr: 1.0e-5
+    control_adapter_lr: 3.0e-5
+    hand_lr: 3.0e-5
     weight_decay: 0.01
     betas: [0.9, 0.999]
     eps: 1.0e-8
