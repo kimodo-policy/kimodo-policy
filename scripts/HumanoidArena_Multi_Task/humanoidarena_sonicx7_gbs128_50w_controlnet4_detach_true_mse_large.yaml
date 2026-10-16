@@ -6,7 +6,7 @@ main:
   action_history: 100
   sample_stride: 1
   seed: 42
-  save_root: "${oc.env:KIMODO_MULTI_TASK_SAVE_ROOT,log/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large_hand4/}"
+  save_root: "${oc.env:KIMODO_MULTI_TASK_SAVE_ROOT,log/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large/}"
   dtype: "bf16"
 
   dataset_roots:
@@ -26,7 +26,7 @@ main:
   precompute_text_embeddings: true
   wandb: "offline"
   wandb_project: "Kimodo-Policy"
-  wandb_run_name: "${oc.env:KIMODO_MULTI_TASK_RUN_NAME,humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large_hand4}"
+  wandb_run_name: "${oc.env:KIMODO_MULTI_TASK_RUN_NAME,humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large}"
   gradient:
     grad_clip_norm: 1.0
     hand_grad_clip_norm: 1.0

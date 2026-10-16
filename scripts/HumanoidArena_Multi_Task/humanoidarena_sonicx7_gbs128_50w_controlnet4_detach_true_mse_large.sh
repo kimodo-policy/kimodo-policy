@@ -14,7 +14,7 @@ if [[ -z "${ACCELERATE_BIN}" || ! -x "${ACCELERATE_BIN}" ]]; then
   exit 1
 fi
 
-CONFIG_PATH="${KIMODO_CONFIG:-${SCRIPT_DIR}/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large_hand4.yaml}"
+CONFIG_PATH="${KIMODO_CONFIG:-${SCRIPT_DIR}/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large.yaml}"
 if [[ ! -f "${CONFIG_PATH}" ]]; then
   echo "Training config does not exist: ${CONFIG_PATH}" >&2
   exit 2
@@ -45,4 +45,4 @@ cd "${PROJECT_ROOT}"
 # export KIMODO_ENV="$CONDA_PREFIX"
 # KIMODO_GPUS=0,1,2,3 \
 # HUMANOID_ARENA_ROOT=/path/to/HumanoidArena_dataset_v3_1 \
-# bash scripts/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large_hand4.sh
+# bash scripts/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large.sh
