@@ -16,9 +16,12 @@
 
 Kimodo-Policy is a vision-conditioned policy for whole-body manipulation with the G1 humanoid. This repository contains the policy model, training launchers, dataset adapters, and simulation evaluation tools for HumanoidArena and SIMPLE. Large model checkpoints and datasets are distributed separately.
 
-## Contents
+## Open-Source Roadmap
 
-- [HumanoidArena Training & Evaluation](#humanoidarena-training--evaluation)
+- [x] [HumanoidArena Training & Evaluation](#humanoidarena-training--evaluation)
+- [x] SIMPLE Benchmark: [Training](scripts/Simple_Single_Task/) & [Evaluation](evaluation/simple_eval.md)
+- [ ] Real-World Data Collection, Training & Deployment
+- [ ] More Benchmarks (Coming Soon)
 
 ## HumanoidArena Training & Evaluation
 
