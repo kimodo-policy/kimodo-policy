@@ -24,14 +24,14 @@
 </p>
 
 <p align="center">
-  <sup>1</sup>HKUST(GZ) · <sup>2</sup>JD Explore Academy · <sup>3</sup>BJUT · <sup>4</sup>University of Cambridge<br>
+  <sub><sup>1</sup>HKUST(GZ)&thinsp;·&thinsp;<sup>2</sup>JD Explore Academy&thinsp;·&thinsp;<sup>3</sup>BJUT&thinsp;·&thinsp;<sup>4</sup>Cambridge</sub><br>
   <sub>* Equal contribution · † Co-corresponding authors</sub>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv" alt="arXiv paper">
   <a href="https://kimodo-policy.github.io/"><img src="https://img.shields.io/badge/%F0%9F%9A%80_Project_Page-Kimodo--Policy-blue" alt="Project Page"></a>
-  <a href="https://huggingface.co/datasets/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Dataset-Kimodo--Policy-yellow" alt="Hugging Face datasets"></a>
+  <a href="https://huggingface.co/datasets/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Dataset_%26_Results-Kimodo--Policy-yellow" alt="Hugging Face dataset and results"></a>
   <a href="https://huggingface.co/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Checkpoints-Kimodo--Policy-yellow" alt="Hugging Face checkpoints"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
 </p>
