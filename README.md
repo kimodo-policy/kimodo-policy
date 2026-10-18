@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <sub><sup>1</sup>HKUST(GZ)&thinsp;·&thinsp;<sup>2</sup>JD Explore Academy&thinsp;·&thinsp;<sup>3</sup>BJUT&thinsp;·&thinsp;<sup>4</sup>Cambridge</sub><br>
+  <sup>1</sup>HKUST(GZ)&thinsp;·&thinsp;<sup>2</sup>JD Explore Academy&thinsp;·&thinsp;<sup>3</sup>BJUT&thinsp;·&thinsp;<sup>4</sup>Cambridge<br>
   <sub>* Equal contribution · † Co-corresponding authors</sub>
 </p>
 
