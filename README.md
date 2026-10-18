@@ -24,24 +24,16 @@
 </p>
 
 <p align="center">
-  <sup>1</sup> <a href="https://hkust-gz.edu.cn" title="The Hong Kong University of Science and Technology (Guangzhou)">HKUST(GZ)</a> &nbsp; · &nbsp;
-  <sup>2</sup> <a href="https://jd.com">JD Explore Academy</a> &nbsp; · &nbsp;
-  <sup>3</sup> <a href="https://bjut.edu.cn" title="Beijing University of Technology">BJUT</a> &nbsp; · &nbsp;
-  <sup>4</sup> <a href="https://cam.ac.uk">University of Cambridge</a><br>
-  <sub>* Equal contribution &nbsp; · &nbsp; † Co-corresponding authors</sub>
+  <sup>1</sup>HKUST(GZ) · <sup>2</sup>JD Explore Academy · <sup>3</sup>BJUT · <sup>4</sup>University of Cambridge<br>
+  <sub>* Equal contribution · † Co-corresponding authors</sub>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?style=flat-square&amp;labelColor=b31b1b&amp;logo=arxiv&amp;logoColor=white" alt="arXiv paper">
-  <a href="https://kimodo-policy.github.io/"><img src="https://img.shields.io/badge/Project_Page-Kimodo--Policy-2563eb?style=flat-square&amp;labelColor=2563eb&amp;logo=googlechrome&amp;logoColor=white" alt="Project Page"></a>
-  <a href="https://huggingface.co/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/Hugging_Face-Checkpoints-ffb000?style=flat-square&amp;labelColor=ffb000&amp;logo=huggingface&amp;logoColor=black" alt="Hugging Face checkpoints"></a>
-  <a href="https://huggingface.co/datasets/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/Hugging_Face-Datasets-f97316?style=flat-square&amp;labelColor=f97316&amp;logo=huggingface&amp;logoColor=white" alt="Hugging Face datasets"></a>
-</p>
-
-<p align="center">
-  <strong>678M</strong> total parameters &nbsp; / &nbsp;
-  <strong>92M</strong> trainable &nbsp; / &nbsp;
-  <strong>Root → Body → Hand</strong>
+  <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv" alt="arXiv paper">
+  <a href="https://kimodo-policy.github.io/"><img src="https://img.shields.io/badge/%F0%9F%9A%80_Project_Page-Kimodo--Policy-blue" alt="Project Page"></a>
+  <a href="https://huggingface.co/datasets/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Dataset-Kimodo--Policy-yellow" alt="Hugging Face datasets"></a>
+  <a href="https://huggingface.co/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Checkpoints-Kimodo--Policy-yellow" alt="Hugging Face checkpoints"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
 </p>
 
 **Kimodo-Policy turns pretrained text-to-motion generators into humanoid vision-language-action policies.** Given egocentric vision, language instructions, and motion history, it predicts coordinated **root → body → hand** actions for closed-loop loco-manipulation. Our core idea is to reuse a frozen motion backbone’s learned coordination and temporal structure, while visual ControlNet branches and a dedicated HandNet ground these priors in the current scene. We evaluate this approach on HumanoidArena, SIMPLE, and real-world humanoid tasks.
@@ -254,3 +246,7 @@ bash evaluation/humanoidarena_eval_signal_task_twist2.sh \
 ~~~
 
 Every evaluation run should have its own results directory. The wrappers write summary statistics, per-episode outputs, and optional videos there. A failed preflight usually indicates a missing simulator asset, cache file, environment variable, or incomplete checkpoint; the wrapper prints the missing path before launching the worker.
+
+## License
+
+The code in this repository is released under the [MIT License](LICENSE).
