@@ -42,18 +42,18 @@
   <img src="asset/picture/teaser.png" alt="Kimodo-Policy overview: benchmark results, motion-prior-based architecture, and whole-body robot execution" width="100%">
 </p>
 
-## Open-Source Roadmap
+## 🗺️ Open-Source Roadmap
 
 - [x] [HumanoidArena Training & Evaluation](#humanoidarena-training--evaluation)
 - [x] SIMPLE Benchmark: [Training](scripts/Simple_Single_Task/) & [Evaluation](evaluation/simple_eval.md)
 - [ ] Real-World Data Collection, Training & Deployment
 - [ ] More Benchmarks (Coming Soon)
 
-## HumanoidArena Training & Evaluation
+## 🤖 HumanoidArena Training & Evaluation
 
 This section covers training and evaluation on HumanoidArena. Training runs in the Kimodo Conda environment. Evaluation uses the HumanoidArena simulator in unitree_sim_env and the Kimodo model server in lerobot.
 
-### Environment Setup
+### ⚙️ Environment Setup
 
 For training, activate the Kimodo environment and point the dataset variable to the local HumanoidArena dataset:
 
@@ -82,7 +82,7 @@ export OMNI_KIT_ACCEPT_EULA=YES
 
 Before a full run, verify that the simulator Python, model-server Python, SONIC artifacts, text cache, and Isaac Lab task YAML are available. The evaluation wrappers provide dry-run validation without launching Isaac Sim.
 
-### Data Preparation
+### 📦 Data Preparation
 
 Download the released [HumanoidArena_dataset_v3_1 dataset](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/HumanoidArena_dataset_v3_1) before training. From the repository root, download the dataset subtree and point the Arena YAML files to it through HUMANOID_ARENA_ROOT:
 
@@ -111,7 +111,7 @@ python utils/check_datasets.py \
 
 The checker validates episode metadata, task selection, and action continuity. It does not replace a small GPU run that verifies video decoding and memory usage.
 
-### Kimodo-Policy Checkpoints
+### 🤗 Kimodo-Policy Checkpoints
 
 This release provides the trained Kimodo-Policy weights used for the HumanoidArena experiments. The first table lists policies trained independently on each Arena task, either from the 419h pretraining stage or directly from scratch. The second table lists policies trained jointly on all seven Arena tasks, including scratch variants and 105h/419h fine-tuning. The `Pretrain` column identifies the initialization. Single-task results and the two original multi-task entries are from Tables 1 and 2 of the paper; additional multi-task entries summarize the released evaluation files. Click a result to open its corresponding evaluation folder.
 
@@ -145,7 +145,7 @@ Each row below is one policy jointly trained on the seven HumanoidArena tasks. H
 | multi-task | ✅ 105h | [ft_105h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 48.9 ± 23.4% | 82.5 ± 13.0% | [68.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
 | multi-task | ✅ 419h | [ft_419h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 56.1 ± 24.2% | 84.2 ± 14.1% | [72.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
 
-### Training on Arena
+### 🚀 Training on Arena
 
 All Arena launchers use BF16 and Accelerate. KIMODO_GPUS controls the visible GPUs, and the global batch size changes when the number of GPUs changes. Set a different KIMODO_MASTER_PORT for simultaneous jobs on one host.
 
@@ -203,7 +203,7 @@ KIMODO_GPUS=0,1,2,3 \
 
 Supported task aliases include doubledesk, football, pp_box, boxing, open_door, sit_sofa, and vision_navi. The script maps these aliases to the task names used by the dataset adapter. Outputs are saved under log/HumanoidArena_Single_Task/ with the task and backend included in the run name.
 
-### Evaluation
+### 🧪 Evaluation
 
 Evaluation starts two processes: an Isaac Sim/Isaac Lab worker from unitree_sim_env and a Kimodo inference server from lerobot. Set the environment variables from the Environment Setup subsection first. The checkpoint passed to the wrapper must be a Kimodo training checkpoint; SONIC and TWIST2 simulator assets are separate files.
 
@@ -247,6 +247,6 @@ bash evaluation/humanoidarena_eval_signal_task_twist2.sh \
 
 Every evaluation run should have its own results directory. The wrappers write summary statistics, per-episode outputs, and optional videos there. A failed preflight usually indicates a missing simulator asset, cache file, environment variable, or incomplete checkpoint; the wrapper prints the missing path before launching the worker.
 
-## License
+## 📄 License
 
 The code in this repository is released under the [MIT License](LICENSE).
