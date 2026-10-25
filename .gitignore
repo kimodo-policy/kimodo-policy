@@ -38,3 +38,7 @@ checkpoints/
 
 # Playback-generated media and debug artifacts.
 /tea_debug.log
+
+# Publish TWIST2 runtime resources.
+!/HumanoidArena/TWIST2/assets/
+!/HumanoidArena/TWIST2/assets/**

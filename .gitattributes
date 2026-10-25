@@ -1,0 +1,2 @@
+HumanoidArena/TWIST2/assets/ckpts/*.onnx filter=lfs diff=lfs merge=lfs -text
+HumanoidArena/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release/model_decoder.onnx filter=lfs diff=lfs merge=lfs -text

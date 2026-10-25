@@ -3,8 +3,11 @@
 /isaaclab_twist2_g1/replay_debug_logs/
 /isaaclab_twist2_g1/recording_debug_logs/
 /isaaclab_twist2_g1/img/
-/TWIST2/assets/
-/GR00T-WholeBodyControl/
+/GR00T-WholeBodyControl/**
+!/GR00T-WholeBodyControl/gear_sonic_deploy/
+!/GR00T-WholeBodyControl/gear_sonic_deploy/policy/
+!/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release/
+!/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release/**
 /lerobot/outputs
 /isaaclab_twist2_g1/script/eval_scripts/twist2/eval_results
 /isaaclab_twist2_g1/script/eval_scripts/sonic/eval_results
