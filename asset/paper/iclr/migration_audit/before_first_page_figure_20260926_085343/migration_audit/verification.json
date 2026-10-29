@@ -1,0 +1,27 @@
+{
+  "source_unchanged_files": 64,
+  "byte_identical_copied_files": 36,
+  "figure_count": 13,
+  "table_count": 4,
+  "equation_count": 6,
+  "labels": 43,
+  "citation_groups": 80,
+  "reference_targets": 40,
+  "section_titles": 22,
+  "scientific_figures_preserved": 13,
+  "inactive_project_badges_preserved": 0,
+  "official_template_files_unchanged": true,
+  "compiled_bibliography_entries_preserved": 45,
+  "compile_errors_or_undefined_references": [],
+  "overfull_box_warnings": [],
+  "pdf_sha256": "0de826b69b743fc42396adc004d09ff65eb2cef5c08c5f0a0a5554f57f823b18",
+  "all_content_in_main_body": false,
+  "appendices": {
+    "A": "Preliminaries (Kimodo and ControlNet)",
+    "B": "Experimental Setup"
+  },
+  "resource_badges_removed": true,
+  "pdf_pages": 24,
+  "experimental_results_section": "4",
+  "experimental_setup_section": "B"
+}

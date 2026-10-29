@@ -1,0 +1,35 @@
+{
+  "source_unchanged_files": 64,
+  "edited_tex_files": [
+    "content/Introduction.tex"
+  ],
+  "other_current_project_files_unchanged": true,
+  "intro_changes_limited_to_first_three_paragraphs": true,
+  "intro_citations_and_figure_references_preserved": true,
+  "figure_count": 13,
+  "table_count": 4,
+  "equation_count": 6,
+  "labels": 43,
+  "reference_targets": 40,
+  "figure_1_asset": "image/teasser.png",
+  "user_figure_1_image_unchanged": true,
+  "official_template_unchanged": true,
+  "compile_errors_or_undefined_references": [],
+  "overfull_box_warnings": [],
+  "figure_1_on_first_page": true,
+  "compiled_bibliography_entries": 45,
+  "pdf_pages": 23,
+  "pdf_sha256": "96b06228b404689a68545ad46c7b5f491b6906d8047045d4604f73e05f295701",
+  "caption_rendered_lines": 3,
+  "abstract_rendered_lines": 18,
+  "abstract_end_page": 1,
+  "abstract_last_line_top_pt": 723.107357,
+  "introduction_start_page": 2,
+  "intro_first_three_paragraph_rendered_lines": [
+    10,
+    11,
+    10
+  ],
+  "visual_review": "Rendered the complete PDF and inspected pages 2 and 3. Introduction paragraphs 1-3 occupy 10, 11, and 10 lines, with no clipping or overlap. Figure and section flow remain legible.",
+  "compression_semantics_review": "Original background-to-architectures-to-challenges logic, citation and figure-reference order, core distinctions, and qualification strength preserved. Independent third-paragraph review passed."
+}

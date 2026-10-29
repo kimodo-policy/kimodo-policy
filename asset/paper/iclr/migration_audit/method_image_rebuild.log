@@ -1,0 +1,69 @@
+Built main_text
+Built appendix
+{
+  "mode": "independent LaTeX compilation with separate bibliographies",
+  "parts": {
+    "main_text": {
+      "pages": 12,
+      "cited_keys": [
+        "ACT",
+        "FM_objective",
+        "behnamghader2024llm2veclargelanguagemodels",
+        "chi2023diffusionpolicy",
+        "dinov3",
+        "grootn1",
+        "guan2026limmtmotiontracking",
+        "haf",
+        "humanoidarena",
+        "humanoidexo",
+        "humanoidvla",
+        "kimodo",
+        "mdm",
+        "mld",
+        "momask",
+        "motionwam",
+        "omnicontrol",
+        "openhlm",
+        "openvla",
+        "pi0",
+        "pi05",
+        "psi0",
+        "rt2",
+        "simple",
+        "song2022denoisingdiffusionimplicitmodels",
+        "sonic",
+        "t2mgpt",
+        "temos",
+        "wang2025dreamnavtrajectorybasedimaginativeframework",
+        "wang2026limitsvisionandlanguagenavigation",
+        "wholebodyvla",
+        "wholebodywam_motionpriors",
+        "wholebodywam_wbc",
+        "ze2025twist2scalableportableholistic",
+        "zerowbc"
+      ],
+      "reference_count": 35,
+      "sha256": "1d6b7b74c9d1beca0b51d1bea370ee1634edb2c0186ccc419e71deab184c1b44"
+    },
+    "appendix": {
+      "pages": 8,
+      "cited_keys": [
+        "cadene2026lerobotopensourcelibraryendtoend",
+        "grootn1",
+        "humanoid_everyday",
+        "humanoidarena",
+        "kimodo",
+        "ronneberger2015unetconvolutionalnetworksbiomedical",
+        "rtc",
+        "saito2026somaunifyingparametrichuman",
+        "simple",
+        "sonic",
+        "zhang2023adding"
+      ],
+      "reference_count": 11,
+      "sha256": "e6e7ffc60c6e8272b60fde65c1bffc35a822b0afa016f433f95629f3344d3347"
+    }
+  },
+  "cross_reference_cycles": 1,
+  "verification": "Separate citations match each own bibliography; no undefined references, duplicate labels, missing destinations, or overfull boxes."
+}

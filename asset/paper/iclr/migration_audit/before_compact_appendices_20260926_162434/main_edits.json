@@ -1,0 +1,18 @@
+[
+  [
+    "\\clearpage\n\\input{content/Task_Visualizations}",
+    "\\input{content/Task_Visualizations}"
+  ],
+  [
+    "\\clearpage\n\\input{content/T2M_Transfer_Analysis}",
+    "\\input{content/T2M_Transfer_Analysis}"
+  ],
+  [
+    "\\clearpage\n\\input{content/Ablation_Analysis}",
+    "\\input{content/Ablation_Analysis}"
+  ],
+  [
+    "\\clearpage\n\\input{content/Limitations_Future_Work}",
+    "\\input{content/Limitations_Future_Work}"
+  ]
+]

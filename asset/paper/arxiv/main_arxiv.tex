@@ -1,0 +1,120 @@
+%% Humanoid Computing Lab (HCL), HKUST(GZ) -- preprint template.
+%% Compile: pdflatex main_arxiv; bibtex main_arxiv; pdflatex main_arxiv (twice).
+
+\documentclass[11pt,a4paper]{article}% 确保 xcolor 带 table 选项，使 \rowcolor/\cellcolor 可用
+\PassOptionsToPackage{table}{xcolor}
+
+% Load the HCL style package (sits next to this .tex file).
+% Pass [xetex] if you compile with xelatex/lualatex.
+\usepackage{hcl}
+\setHCLLogo{logo/HCL.png}
+
+% --- Additional packages you may want ---
+\usepackage{amsmath}
+\usepackage{pifont}      % Provides \ding for circled numeric markers.
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{unsrtnat}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\usepackage{wrapfig}
+\usepackage{makecell}     % 表格内换行 \makecell
+\usepackage{xcolor}       % 颜色（lightpurple 等）
+
+\definecolor{lightpurple}{RGB}{230, 220, 235}
+\definecolor{lightgreen}{RGB}{220, 230, 220}
+\definecolor{lightpink}{RGB}{250, 240, 240}\providecommand{\ie}{\textit{i.e.}}
+\providecommand{\eg}{\textit{e.g.}}
+\DeclareRobustCommand{\inlinecolorblock}[2]{%
+  \begingroup
+  \setlength{\fboxsep}{0.25pt}%
+  \setlength{\fboxrule}{0.35pt}%
+  \raisebox{-0.15ex}{\fcolorbox{#1}{#2}{\rule{0pt}{\fontcharht\font`X}\rule{0.45ex}{0pt}}}%
+  \endgroup
+}
+
+\setEyebrow{Kimodo-Policy\,\textbullet\,Preprint 2026}
+\usepackage[table]{xcolor}
+\definecolor{lotuspink}{RGB}{240, 213, 218}
+
+\setReportTag{Humanoid Computing Lab\,\textperiodcentered\,HKUST(GZ)}
+\setHeaderTagline{}
+\setUniversityLogo{logo/HKUST-GZ.pdf}
+
+\papertitle{\centering\fontsize{19pt}{23pt}\selectfont
+  Kimodo-Policy: From Text-to-Motion Generators to\\
+  Humanoid Vision-Language-Action Policies}
+
+\paperauthors{\centering%
+  Yunheng Wang\equalmark\affilmark{1}\quad
+  Jiaxi Zhang\equalmark\affilmark{1}\quad
+  Wei Lu\equalmark\affilmark{1}\quad
+  Yuetong Fang\affilmark{1}\quad
+  Taowen Wang\affilmark{1}\quad
+  Yixiao Feng\affilmark{1}\\[0.3em]
+  Shuning Zhang\affilmark{1}\quad
+  Junzhe Xu\affilmark{1,2}\quad
+  Yichi Wang\affilmark{3}\quad
+  Zizhao Yuan\affilmark{1}\quad
+  Kailun Huang\affilmark{1}\\[0.3em]
+  Lusong Li\affilmark{2}\quad
+  Mingqian Zhou\affilmark{4}\quad
+  Zecui Zeng\correspondmark\affilmark{2}\quad
+  Renjing Xu\correspondmark\affilmark{1}%
+}
+
+\paperaffil{\centering%
+  \affilmark{1}\,\href{https://hkust-gz.edu.cn}{HKUST(GZ)}\quad
+  \affilmark{2}\,\href{https://jd.com}{JD Explore Academy}\quad
+  \affilmark{3}\,\href{https://bjut.edu.cn}{BJUT}\quad
+  \affilmark{4}\,\href{https://cam.ac.uk}{University of Cambridge}
+}
+
+\papernotes{\centering%
+  \equalmark\,Equal contribution (co-first authors).\quad
+  \correspondmark\,Co-corresponding authors.%
+}
+
+\hypersetup{
+  pdftitle={Kimodo-Policy: From Text-to-Motion Generators to Humanoid Vision-Language-Action Policies},
+  pdfauthor={Yunheng Wang, Jiaxi Zhang, Wei Lu, Yuetong Fang, Taowen Wang, Yixiao Feng, Shuning Zhang, Junzhe Xu, Yichi Wang, Zizhao Yuan, Lusong Li, Kailun Huang, Mingqian Zhou, Zecui Zeng, Renjing Xu}
+}
+
+% Project links are intentionally left inactive until the corresponding resources are released.
+\paperbadges{\centering\normalsize
+  \raisebox{-0.35em}{\includegraphics[height=1.3em]{logo/project-page-color.pdf}}\kern0.3em Project Page\quad
+  \raisebox{-0.35em}{\includegraphics[height=1.2em]{logo/github-color.pdf}}\kern0.3em GitHub\quad
+  \raisebox{-0.35em}{\includegraphics[height=1.2em]{logo/huggingface-icon.pdf}}\kern0.3em Hugging Face\par
+}
+
+\begin{document}
+
+\maketitleHCL
+
+\input{content/Abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{content/Introduction}
+
+\input{content/Related_Work}
+
+\input{content/Preliminaries}
+
+\section{Method: Kimodo-Policy}
+\label{sec:method}
+\input{content/Method}
+
+\input{content/Experimental_Setup}
+
+\input{content/Experiments_Results}
+
+\input{content/Conclusion}
+
+% References cited by the Introduction and experiment tables.
+
+\bibliography{ref}
+
+\end{document}

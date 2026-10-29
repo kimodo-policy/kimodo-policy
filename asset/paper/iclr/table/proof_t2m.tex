@@ -1,0 +1,61 @@
+\begin{table}[H]
+  \setlength{\belowcaptionskip}{6pt}
+  \caption{
+    \textbf{\textit{Effect of the T2M backbone on Kimodo-Policy.}} We compare two same-size Kimodo-G1 backbones using the same adaptation protocol. Data scales include the training and test splits; results are mean $\pm$ standard deviation over three seeds.}
+  \label{tab:t2m_dependency}
+  \centering
+  \arrayrulecolor{hclblue}
+  \begin{adjustbox}{max width=\textwidth}
+  \setlength{\tabcolsep}{3.8pt}
+  \renewcommand{\arraystretch}{1.08}
+
+  \begin{tabular}{cccccc|ccccc}
+  \toprule
+  \multirow{2}{*}{\textbf{Base Model}} &
+  \multirow{2}{*}{\textbf{Model Size}} &
+  \multirow{2}{*}{\textbf{Data Scale}} &
+  \multicolumn{3}{c|}{\textbf{Human--Object Interaction}} &
+  \multicolumn{4}{c}{\textbf{Human--Scene Interaction}} &
+  \multirow{2}{*}{\textbf{Overall~($\uparrow$)}} \\
+  \cmidrule(lr){4-6}
+  \cmidrule(lr){7-10}
+
+  & & &
+  \textbf{\textsc{Football}} &
+  \textbf{\textsc{DoubleDesk}} &
+  \textbf{\textsc{P\&Pbox}} &
+  \textbf{\textsc{OpenDoor}} &
+  \textbf{\textsc{SitSofa}} &
+  \textbf{\textsc{Boxing}} &
+  \textbf{\textsc{VisNavi}} \\
+  \midrule
+
+  \texttt{Kimodo-G1-SEED-v1}
+  & 282\,M
+  & 288\,h
+  & \textbf{50.00$\pm$16.33\%}
+  & \underline{33.33$\pm$15.46\%}
+  & \underline{75.00$\pm$10.80\%}
+  & \underline{60.00$\pm$4.08\%}
+  & \underline{90.00$\pm$4.08\%}
+  & \textbf{71.67$\pm$8.50\%}
+  & \textbf{70.00$\pm$18.71\%}
+  & \underline{64.29\%} \\
+
+  \rowcolor{hclbrown!8!white}
+  \texttt{Kimodo-G1-RP-v1}
+  & 282\,M
+  & 700\,h
+  & \underline{35.0$\pm$7.1\%}
+  & \textbf{40.0$\pm$0.0\%}
+  & \textbf{80.0$\pm$4.1\%}
+  & \textbf{93.3$\pm$6.2\%}
+  & \textbf{96.7$\pm$4.7\%}
+  & \underline{66.7$\pm$4.7\%}
+  & \underline{61.7$\pm$6.2\%}
+  & \textbf{67.63\%} \\
+
+  \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+\end{table}

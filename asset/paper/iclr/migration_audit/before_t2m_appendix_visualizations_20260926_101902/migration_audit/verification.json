@@ -1,0 +1,33 @@
+{
+  "source_unchanged_files": 64,
+  "edited_tex_files": [
+    "content/Introduction.tex"
+  ],
+  "other_current_project_files_unchanged": true,
+  "changes_limited_to_figure_2_float_placement": true,
+  "manuscript_wording_and_image_sizes_unchanged": true,
+  "figure_count": 13,
+  "table_count": 4,
+  "equation_count": 6,
+  "labels": 43,
+  "reference_targets": 40,
+  "figure_1_asset": "image/teasser.png",
+  "user_figure_1_image_unchanged": true,
+  "official_template_unchanged": true,
+  "compile_errors_or_undefined_references": [],
+  "overfull_box_warnings": [],
+  "figure_1_on_first_page": true,
+  "compiled_bibliography_entries": 45,
+  "pdf_pages": 22,
+  "pdf_sha256": "197334bbc62b9493f87d73dd7c1dc2b735f8bd7be26ce9aede6db7f60c22674c",
+  "caption_rendered_lines": 3,
+  "abstract_rendered_lines": 18,
+  "abstract_end_page": 1,
+  "abstract_last_line_top_pt": 723.107357,
+  "introduction_start_page": 2,
+  "figure_2_on_second_page": true,
+  "figure_2_caption_lines": 4,
+  "figure_2_caption_bottom_pt": 729.856922,
+  "figure_2_at_page_bottom": true,
+  "visual_review": "Rendered the full 22-page PDF and inspected pages 2 and 3. Figure 2 and its complete four-line caption are at the bottom of page 2, above the page number, without clipping, overlap, or excessive gaps. Introduction continues naturally on page 3. Figure size and all manuscript wording remain unchanged."
+}

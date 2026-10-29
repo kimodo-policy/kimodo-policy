@@ -1,0 +1,10 @@
+[
+  [
+    "\\textbf{Data scaling results.} Overall success rises from 68.10\\% with 105\\,h to 69.05\\% with 210\\,h and 72.14\\% with 419\\,h of VLA pretraining data, a 4.04-point gain (Fig.~\\ref{fig:scaling_analysis}).\n\n\\textbf{Model scaling results.} Increasing active policy parameters from 53.6M to 91.7M and 158.9M raises overall success from 61.43\\% to 67.63\\% and 68.57\\%, respectively, a 7.14-point gain that supports scaling policy capacity.\n",
+    "\\textbf{Scaling results.} Increasing VLA pretraining data from 105\\,h to 210\\,h and 419\\,h raises overall success from 68.10\\% to 69.05\\% and 72.14\\%, respectively (+4.04 points). Scaling active policy parameters from 53.6M to 91.7M and 158.9M raises success from 61.43\\% to 67.63\\% and 68.57\\% (+7.14 points). Both trends support scaling within the evaluated ranges (Fig.~\\ref{fig:scaling_analysis}); Appendix~\\ref{sec:scaling_analysis_appendix} provides further analysis.\n"
+  ],
+  [
+    "Both trends support scaling within the evaluated ranges (Fig.~\\ref{fig:scaling_analysis}); Appendix~\\ref{sec:scaling_analysis_appendix} provides further analysis.",
+    "Both controlled sweeps improve success over the evaluated ranges (Fig.~\\ref{fig:scaling_analysis}); the capacity gain is smaller in the upper interval. Appendix~\\ref{sec:scaling_analysis_appendix} discusses these trends and their interpretation."
+  ]
+]

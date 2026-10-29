@@ -1,0 +1,14 @@
+[
+  [
+    "\\clearpage\n\\subsection{SIMPLE Tasks}",
+    "\\subsection{SIMPLE Tasks}"
+  ],
+  [
+    "\\clearpage\n\\subsection{Real-World Tasks}",
+    "\\subsection{Real-World Tasks}"
+  ],
+  [
+    "Figure~\\ref{fig:real_world} presents temporally ordered snapshots of the eight real-world tasks, with language instructions specifying the intended interactions. Panels (a--d) show tabletop pick-and-place, cushion sitting, banana placement followed by drawer closure, and apple placement followed by drawer closure. Panels (e--h) show approaching and kicking a ball, sequential interaction with two punching bags, carrying a box to a cabinet, and pushing a cart. Within each panel, the sequence progresses from preparation or approach to interaction and subsequent motion. The accompanying changes in body posture illustrate the coordination of locomotion, reaching, and sustained contact required by these tasks. Quantitative success rates are reported in Section~\\ref{sec:exp_real}.\n\n\\begin{figure}[H]\n  \\centering\n  \\includegraphics[width=\\textwidth]{image/real_world.png}\n  \\caption{\\textbf{Examples of Real-World Humanoid Manipulation.} The image shows representative interaction scenarios involving articulated objects, object transport, and coordinated whole-body motion.}\n  \\label{fig:real_world}\n\\end{figure}\n",
+    "\\begin{figure}[H]\n  \\centering\n  \\includegraphics[width=\\textwidth]{image/real_world.png}\n  \\caption{\\textbf{Examples of Real-World Humanoid Manipulation.} The image shows representative interaction scenarios involving articulated objects, object transport, and coordinated whole-body motion.}\n  \\label{fig:real_world}\n\\end{figure}\n\nFigure~\\ref{fig:real_world} presents temporally ordered snapshots of the eight real-world tasks, with language instructions specifying the intended interactions. Panels (a--d) show tabletop pick-and-place, cushion sitting, banana placement followed by drawer closure, and apple placement followed by drawer closure. Panels (e--h) show approaching and kicking a ball, sequential interaction with two punching bags, carrying a box to a cabinet, and pushing a cart. Within each panel, the sequence progresses from preparation or approach to interaction and subsequent motion. The accompanying changes in body posture illustrate the coordination of locomotion, reaching, and sustained contact required by these tasks. Quantitative success rates are reported in Section~\\ref{sec:exp_real}.\n"
+  ]
+]

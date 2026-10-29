@@ -1,0 +1,22 @@
+[
+  [
+    "\\label{sec:vis_humanoidarena}\n",
+    "\\label{sec:vis_humanoidarena}\n\nFigure~\\ref{fig:humanoidarena} visualizes the seven HumanoidArena tasks through overlaid body configurations depicting successive poses. Panels (a--c) show human--object interactions involving a ball, tables, and boxes; panels (d--g) show door opening, sofa sitting, navigation, and boxing, respectively. Changes in root position and limb configuration illustrate how task execution couples locomotion, postural adjustment, and interaction with the environment. These examples contextualize the success-rate and fall-rate evaluations in Section~\\ref{sec:exp_simulation}, which assess task completion and stability across distinct whole-body behaviors.\n"
+  ],
+  [
+    "\\label{sec:vis_simple}\n",
+    "\\label{sec:vis_simple}\n\nFigure~\\ref{fig:simple_tasks} presents the eight evaluated SIMPLE tasks in furnished indoor environments. Handover, Mobile P\\&P, and XMoveBendPick combine object handling with positioning relative to the target. CloseDoor, OpenOven, OpenFaucet, and OpenTrashCan involve operating articulated objects, whereas Push Office Chair requires maintaining contact while moving an object through the scene. The panels illustrate variations in target geometry, interaction location, and required body posture. Section~\\ref{sec:exp_simple} evaluates these tasks under the L0--L2 protocol to quantify robustness to visual, lighting, and target-pose variation.\n"
+  ],
+  [
+    "\\label{sec:vis_real_world}\n",
+    "\\label{sec:vis_real_world}\n\nFigure~\\ref{fig:real_world} presents temporally ordered snapshots of the eight real-world tasks, with language instructions specifying the intended interactions. Panels (a--d) show tabletop pick-and-place, cushion sitting, banana placement followed by drawer closure, and apple placement followed by drawer closure. Panels (e--h) show approaching and kicking a ball, sequential interaction with two punching bags, carrying a box to a cabinet, and pushing a cart. Within each panel, the sequence progresses from preparation or approach to interaction and subsequent motion. The accompanying changes in body posture illustrate the coordination of locomotion, reaching, and sustained contact required by these tasks. Quantitative success rates are reported in Section~\\ref{sec:exp_real_world}.\n"
+  ],
+  [
+    "\\ref{sec:exp_real_world}",
+    "\\ref{sec:exp_real}"
+  ],
+  [
+    "\\subsection{SIMPLE Tasks}",
+    "\\clearpage\n\\subsection{SIMPLE Tasks}"
+  ]
+]

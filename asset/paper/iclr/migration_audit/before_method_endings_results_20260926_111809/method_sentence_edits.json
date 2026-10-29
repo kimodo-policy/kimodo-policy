@@ -1,0 +1,50 @@
+[
+  [
+    "Root and body predictions are converted into whole-body tracking references and executed alongside hand commands.",
+    "Root--body predictions become whole-body tracking references executed alongside hand commands."
+  ],
+  [
+    "The zero initialization preserves the pretrained denoiser's behavior at the start of adaptation, while the two paths jointly support content-selective visual retrieval and temporally aligned conditioning.",
+    "Zero initialization preserves the pretrained denoiser's initial behavior, while the two paths provide content-selective visual retrieval and temporally aligned conditioning."
+  ],
+  [
+    "During training, its body and visual conditioning features are detached, so hand supervision updates HandNet without sending gradients into the motion denoiser or ControlNet.",
+    "During training, detached body and visual features ensure that hand supervision updates only HandNet, without gradients to the motion denoiser or ControlNet."
+  ],
+  [
+    "Motion losses exclude padding, hand losses additionally exclude unavailable labels, and transition terms require both adjacent labels to be valid.",
+    "Motion losses exclude padding; hand losses also exclude unavailable labels, and transition terms require two valid adjacent labels."
+  ],
+  [
+    "The low-level whole-body tracker executes a prefix of the predicted chunk; the policy then incorporates the updated visual observation and proprioceptive state to replan.",
+    "The low-level whole-body tracker executes a chunk prefix; the policy replans from updated visual observations and proprioceptive states."
+  ],
+  [
+    "repeatedly predicting short action chunks for closed-loop execution. Light-brown poses denote observed history; blue poses denote predicted and executed motion.",
+    "repeatedly predicting short chunks for closed-loop execution. Light brown denotes observed history; blue denotes predicted and executed motion."
+  ],
+  [
+    "We train the ControlNet branches and HandNet by supervised denoising of demonstration windows. At sampled diffusion timesteps, we perturb normalized root--body features and hand targets with Gaussian noise, constrain observed history with feature-wise masks, and supervise valid future frames:",
+    "ControlNet branches and HandNet learn by denoising demonstration windows. At sampled diffusion timesteps, Gaussian noise perturbs normalized root--body features and hand targets; feature-wise masks constrain observed history, with supervision on valid future frames:"
+  ],
+  [
+    "These boundaries isolate stage optimization while preserving forward dependencies. Root--body predictions become whole-body tracking references executed alongside hand commands.",
+    "They isolate stage optimization while preserving forward dependencies. Root--body predictions yield whole-body tracking references executed with hand commands."
+  ],
+  [
+    "Zero initialization preserves the pretrained denoiser's initial behavior, while the two paths provide content-selective visual retrieval and temporally aligned conditioning.",
+    "Zero initialization preserves pretrained behavior at adaptation onset; the two paths support content-selective visual retrieval and temporally aligned conditioning."
+  ],
+  [
+    "During training, detached body and visual features ensure that hand supervision updates only HandNet, without gradients to the motion denoiser or ControlNet.",
+    "During training, body and visual features are detached: hand supervision updates HandNet, with no gradients to the motion denoiser or ControlNet."
+  ],
+  [
+    "Motion losses exclude padding; hand losses also exclude unavailable labels, and transition terms require two valid adjacent labels.",
+    "Motion and hand losses mask padding; hand losses also mask unavailable labels, and transition terms require two valid adjacent labels."
+  ],
+  [
+    "They isolate stage optimization while preserving forward dependencies.",
+    "These boundaries isolate stage optimization while preserving forward dependencies."
+  ]
+]

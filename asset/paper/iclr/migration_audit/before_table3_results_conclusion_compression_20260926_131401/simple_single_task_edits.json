@@ -1,0 +1,6 @@
+[
+  [
+    "    ACT~\\cite{ACT}\n    & \\resultentry{4/4/6}{47\\%}\n    & \\secondentry{6/5/7}{60\\%}\n    & \\resultentry{6/8/8}{73\\%}\n    & - & - & - & - & - \\\\\n\n    DreamZero~\\cite{dreamzero}\n    & \\secondentry{7/8/9}{80\\%}\n    & \\resultentry{5/3/3}{37\\%}\n    & \\resultentry{0/0/1}{3\\%}\n    & - & - & - & - & - \\\\\n\n    $\\pi_{0.5}$~\\cite{pi05}\n    & \\resultentry{5/4/5}{47\\%}\n    & \\resultentry{3/3/3}{30\\%}\n    & \\resultentry{0/0/0}{0\\%}\n    & - & - & - & - & - \\\\\n\n    EgoVLA~\\cite{egovla}\n    & \\resultentry{0/4/3}{23\\%}\n    & \\resultentry{0/0/0}{0\\%}\n    & \\resultentry{3/5/4}{40\\%}\n    & - & - & - & - & - \\\\\n\n    GR00T N1.6~\\cite{grootn1}\n    & \\resultentry{1/3/3}{23\\%}\n    & \\resultentry{0/0/0}{0\\%}\n    & \\resultentry{4/4/1}{30\\%}\n    & - & - & - & - & - \\\\\n\n    InternVLA-M1~\\cite{internvla_m1}\n    & \\resultentry{0/0/0}{0\\%}\n    & \\resultentry{0/0/0}{0\\%}\n    & \\resultentry{3/5/7}{50\\%}\n    & - & - & - & - & - \\\\\n\n    DP~\\cite{chi2023diffusionpolicy}\n    & \\resultentry{3/2/4}{30\\%}\n    & \\resultentry{4/0/0}{13\\%}\n    & \\resultentry{0/0/0}{0\\%}\n    & - & - & - & - & - \\\\\n\n    H-RDT~\\cite{hrdt}\n    & \\resultentry{0/1/0}{3\\%}\n    & \\resultentry{0/0/0}{0\\%}\n    & \\resultentry{0/0/0}{0\\%}\n    & - & - & - & - & - \\\\\n\n",
+    ""
+  ]
+]

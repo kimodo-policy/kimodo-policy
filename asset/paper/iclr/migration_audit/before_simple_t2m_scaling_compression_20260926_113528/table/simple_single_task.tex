@@ -1,0 +1,102 @@
+\begin{table}[H]
+  \caption{
+    \textbf{\textit{Single-Task Results on SIMPLE.}} L0, L1, and L2 denote evaluation settings with progressively stronger visual and lighting variation and target-pose randomization, from the least perturbed setting (L0) to the most perturbed setting (L2). Each entry reports the number of successful trials at L0/L1/L2, followed in parentheses by the aggregate success rate across all three levels. Bold and underlined values mark the best and second-best aggregate success rates, respectively.
+  }
+  \label{table:simple_main_results}
+  \centering
+  \arrayrulecolor{hclblue}
+  \setlength{\tabcolsep}{0pt}
+  \renewcommand{\arraystretch}{1.08}
+  \fontsize{6.2}{7}\selectfont
+  \newcommand{\taskheader}[1]{{\fontsize{5.55}{6.2}\selectfont\textbf{\textsc{\hspace{2.2pt}#1\hspace{2.2pt}}}}}
+  \newcommand{\resultentry}[2]{{\fontsize{5.2}{6}\selectfont\hspace{2.2pt}#1\;(#2)\hspace{2.2pt}}}
+  \newcommand{\bestentry}[2]{{\fontsize{5.2}{6}\selectfont\textbf{\hspace{2.2pt}#1\;(#2)\hspace{2.2pt}}}}
+  \newcommand{\secondentry}[2]{{\fontsize{5.2}{6}\selectfont\hspace{2.2pt}\underline{#1\;(#2)}\hspace{2.2pt}}}
+
+  \begin{adjustbox}{width=\textwidth}
+  \begin{tabular}{@{}c*{8}{c}@{}}
+    \toprule
+    {\fontsize{5.55}{6.2}\selectfont\textbf{Method}}
+    & \taskheader{Handover}
+    & \taskheader{Mobile P\&P}
+    & \taskheader{XMoveBendPick}
+    & \taskheader{CloseDoor}
+    & \taskheader{OpenOven}
+    & \taskheader{OpenFaucet}
+    & \taskheader{Push Office Chair}
+    & \taskheader{OpenTrashCan} \\
+    \midrule
+
+    ACT~\cite{ACT}
+    & \resultentry{4/4/6}{47\%}
+    & \secondentry{6/5/7}{60\%}
+    & \resultentry{6/8/8}{73\%}
+    & - & - & - & - & - \\
+
+    DreamZero~\cite{dreamzero}
+    & \secondentry{7/8/9}{80\%}
+    & \resultentry{5/3/3}{37\%}
+    & \resultentry{0/0/1}{3\%}
+    & - & - & - & - & - \\
+
+    $\pi_{0.5}$~\cite{pi05}
+    & \resultentry{5/4/5}{47\%}
+    & \resultentry{3/3/3}{30\%}
+    & \resultentry{0/0/0}{0\%}
+    & - & - & - & - & - \\
+
+    EgoVLA~\cite{egovla}
+    & \resultentry{0/4/3}{23\%}
+    & \resultentry{0/0/0}{0\%}
+    & \resultentry{3/5/4}{40\%}
+    & - & - & - & - & - \\
+
+    GR00T N1.6~\cite{grootn1}
+    & \resultentry{1/3/3}{23\%}
+    & \resultentry{0/0/0}{0\%}
+    & \resultentry{4/4/1}{30\%}
+    & - & - & - & - & - \\
+
+    InternVLA-M1~\cite{internvla_m1}
+    & \resultentry{0/0/0}{0\%}
+    & \resultentry{0/0/0}{0\%}
+    & \resultentry{3/5/7}{50\%}
+    & - & - & - & - & - \\
+
+    DP~\cite{chi2023diffusionpolicy}
+    & \resultentry{3/2/4}{30\%}
+    & \resultentry{4/0/0}{13\%}
+    & \resultentry{0/0/0}{0\%}
+    & - & - & - & - & - \\
+
+    H-RDT~\cite{hrdt}
+    & \resultentry{0/1/0}{3\%}
+    & \resultentry{0/0/0}{0\%}
+    & \resultentry{0/0/0}{0\%}
+    & - & - & - & - & - \\
+
+    $\Psi_0$~\cite{psi0}
+    & \secondentry{7/7/10}{80\%}
+    & \secondentry{7/5/6}{60\%}
+    & \bestentry{10/9/9}{93\%}
+    & \bestentry{10/10/10}{100\%}
+    & \secondentry{7/5/4}{53\%}
+    & \secondentry{3/3/4}{33\%}
+    & \bestentry{10/10/10}{100\%}
+    & \bestentry{7/9/9}{83\%} \\
+
+    \rowcolor{hclbrown!15!white}
+    \texttt{Ours}$^{*}$
+    & \bestentry{9/8/8}{83\%}
+    & \bestentry{9/8/4}{70.0\%}
+    & \secondentry{10/7/7}{80\%}
+    & \bestentry{10/10/10}{100\%}
+    & \bestentry{8/4/5}{57\%}
+    & \bestentry{5/6/5}{53\%}
+    & \bestentry{10/10/10}{100\%}
+    & \secondentry{9/4/6}{63\%} \\
+
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+\end{table}

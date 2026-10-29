@@ -1,0 +1,18 @@
+\section{Related Work}
+\label{sec:related_work}
+
+
+% 
+
+\subsection{Humanoid Vision-Language-Action Models}
+Humanoid VLA models typically use pretrained vision--language models (VLMs) or video generation models (VGMs).
+VLM-based methods transfer visual-semantic knowledge to actions~\cite{grootn1,psi0,humanoidexo,openhlm}: GR00T N1~\cite{grootn1} couples a VLM with a diffusion action model, while $\Psi_0$~\cite{psi0} transfers representations from human egocentric demonstrations to a humanoid action expert.
+VGM-based methods exploit visual dynamics priors~\cite{motionwam,wholebodywam_wbc}: MotionWAM~\cite{motionwam} generates whole-body motion from intermediate video features; WholeBodyWAM~\cite{wholebodywam_wbc} grounds world--action priors in whole-body controllers.
+Unified generators~\cite{openhlm,motionwam} share prediction across motion components; hybrids~\cite{humanoidexo,wholebodyvla} combine upper-body targets with locomotion commands.
+HAF~\cite{haf} stages generation with a shared action expert, expanding the active action set and refining earlier predictions.
+Kimodo-Policy instead transfers a T2M backbone with pretrained inter-joint and temporal priors, reducing the need to learn motion regularities from humanoid demonstrations. Dedicated root, body, and hand generators meet distinct control requirements, while cross-stage conditioning supports coordinated, visually grounded whole-body behavior.
+
+% 
+
+\subsection{Text-to-Motion (T2M)}
+T2M generation evolved from TEMOS's variational language--motion modeling~\cite{temos} to diffusion and quantized tokens. MDM~\cite{mdm} and MLD~\cite{mld} model pose and latent distributions, respectively; T2M-GPT~\cite{t2mgpt} and MoMask~\cite{momask} use autoregressive and masked token modeling, respectively. OmniControl~\cite{omnicontrol} supports spatial constraints; Kimodo~\cite{kimodo} scales controllable hierarchical root--body diffusion through large-scale training for human and humanoid skeletons. Humanoid-VLA~\cite{humanoidvla} and ZeroWBC~\cite{zerowbc} learn autoregressive motion priors within pretrained language and vision--language models, respectively, before visual integration or task-specific adaptation. MotionWAM~\cite{motionwam} adapts a pretrained video world model through staged video--motion training; WholeBodyWAM~\cite{wholebodywam_motionpriors} pretrains a motion expert and integrates it with video and action experts. Kimodo-Policy directly repurposes a diffusion-based T2M generator pretrained on large-scale motion data in robot kinematic space as its backbone. Its root--body--hand generators use vision and motion history for closed-loop loco-manipulation, transferring inter-joint and temporal priors to scene-dependent actions, reducing relearning from robot demonstrations, and accommodating component-specific control requirements.

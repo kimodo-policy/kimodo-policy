@@ -1,2 +1,13 @@
 HumanoidArena/TWIST2/assets/ckpts/*.onnx filter=lfs diff=lfs merge=lfs -text
 HumanoidArena/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release/model_decoder.onnx filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/migration_audit/method_image_delivery.zip filter=lfs diff=lfs merge=lfs -text
+asset/paper/arxiv/kimodo-policy.zip filter=lfs diff=lfs merge=lfs -text
+asset/paper/arxiv/main_arxiv.pdf filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/appendix.pdf filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/migration_audit/before_independent_tex_20260926_171031/appendix.pdf filter=lfs diff=lfs merge=lfs -text
+asset/paper/arxiv/main_arxiv_rebuild.pdf filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/main.pdf filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/migration_audit/ai_statement_delivery.zip filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/migration_audit/before_ai_statement_20260926_173318/appendix.pdf filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/migration_audit/before_ai_statement_20260926_173318/main.pdf filter=lfs diff=lfs merge=lfs -text
+asset/paper/iclr/migration_audit/independent_compiled_bundle.zip filter=lfs diff=lfs merge=lfs -text

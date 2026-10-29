@@ -1,0 +1,8 @@
+\section{Extended Motion-Prior Transfer Analysis}
+\label{sec:t2m_analysis_appendix}
+
+Table~\ref{tab:t2m_dependency} compares Kimodo-G1-SEED-v1 and RP-v1 under the same policy architecture, adaptation procedure, and HumanoidArena evaluation protocol. Both backbones contain 282M parameters, but use different motion corpora: 288\,h of BONES-SEED and 700\,h of Rigplay, respectively, each with a 90\%/10\% train/test split. Corpus composition and duration therefore change together; this comparison evaluates the choice of pretrained motion prior rather than isolating the effect of data volume.
+
+RP-v1 raises overall success from 64.29\% to 67.63\%, a 3.34-percentage-point gain. Improvements occur on DoubleDesk ($33.33\%\to40.0\%$), P\&Pbox ($75.0\%\to80.0\%$), OpenDoor ($60.0\%\to93.3\%$), and SitSofa ($90.0\%\to96.7\%$). Performance decreases on Football ($50.0\%\to35.0\%$), Boxing ($71.67\%\to66.7\%$), and VisNavi ($70.0\%\to61.7\%$). The largest improvement is on OpenDoor, whereas the remaining changes show that transfer is task-dependent. Thus, a motion prior that improves aggregate performance need not improve every skill.
+
+Table~\ref{tab:t2m_dependency} reports task-level means and standard deviations over three seeds. These descriptive comparisons do not establish statistical significance, particularly for smaller differences relative to the reported variability. The results support the importance of motion-prior selection for downstream control, while leaving the separate contributions of corpus scale, composition, and task coverage unresolved.

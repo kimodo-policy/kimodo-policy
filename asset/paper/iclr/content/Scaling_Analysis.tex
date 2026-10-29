@@ -1,0 +1,8 @@
+\section{Extended Scaling Analysis}
+\label{sec:scaling_analysis_appendix}
+
+Figure~\ref{fig:scaling_analysis} examines VLA pretraining data and active policy capacity in separate controlled sweeps. The data sweep holds the architecture, SonicX7 adaptation, and evaluation fixed; the model sweep holds the pretrained T2M backbone, downstream data, optimization, and evaluation fixed. RTC is disabled in both sweeps.
+
+\textbf{Data scaling.} Overall success increases from 68.10\% at 105\,h to 69.05\% at 210\,h and 72.14\% at 419\,h. These approximately twofold increases in data yield successive gains of 0.95 and 3.09 percentage points, totaling 4.04 points. The larger gain in the second interval indicates that additional pretraining data remains beneficial over the tested range. Three operating points, however, do not establish a general scaling law or predict gains beyond 419\,h.
+
+\textbf{Model scaling.} Increasing active policy parameters from 53.6M to 91.7M improves overall success from 61.43\% to 67.63\% (+6.20 points); increasing to 158.9M yields 68.57\% (+0.94 points). The total gain is 7.14 points, with a smaller marginal improvement over the second interval despite a larger parameter increase. This pattern supports increasing policy capacity within the tested range, while suggesting diminishing returns over the sampled sizes. It does not establish a saturation point. Because the two sweeps vary different factors, their gains should be interpreted separately; they do not establish the benefit of jointly scaling data and capacity.

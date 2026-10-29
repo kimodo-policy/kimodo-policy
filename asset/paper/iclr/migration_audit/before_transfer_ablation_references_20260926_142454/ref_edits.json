@@ -1,0 +1,34 @@
+[
+  [
+    "title={TEMOS:",
+    "title={{TEMOS}:"
+  ],
+  [
+    "title={T2M-GPT:",
+    "title={{T2M-GPT}:"
+  ],
+  [
+    "title={MoMask: Generative Masked Modeling of 3D Human Motions}",
+    "title={{MoMask}: Generative Masked Modeling of {3D} Human Motions}"
+  ],
+  [
+    "title={OmniControl:",
+    "title={{OmniControl}:"
+  ],
+  [
+    "Adapting Generalist VLAs to",
+    "Adapting Generalist {VLAs} to"
+  ],
+  [
+    "and Spectral Latent RL}",
+    "and Spectral Latent {RL}}"
+  ],
+  [
+    "International Conference on Learning Representations (ICLR)",
+    "International Conference on Learning Representations"
+  ],
+  [
+    "@article{song2022denoisingdiffusionimplicitmodels,\n  title={Denoising Diffusion Implicit Models},\n  author={Song, Jiaming and Meng, Chenlin and Ermon, Stefano},\n  journal={arXiv preprint arXiv:2010.02502},\n  year={2022},\n  url={https://arxiv.org/abs/2010.02502}\n}",
+    "@inproceedings{song2022denoisingdiffusionimplicitmodels,\n  title={Denoising Diffusion Implicit Models},\n  author={Song, Jiaming and Meng, Chenlin and Ermon, Stefano},\n  booktitle={International Conference on Learning Representations},\n  year={2021},\n  url={https://openreview.net/forum?id=St1giarCHLP}\n}"
+  ]
+]

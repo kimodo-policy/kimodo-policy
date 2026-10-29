@@ -1,0 +1,108 @@
+\begin{table}[H]
+  \caption{
+    \textbf{\textit{Additional single-task results on SIMPLE.}} Entries show successful trials at L0/L1/L2 and the corresponding average success rates. $^{*}$ denotes VLA-pretrained initialization; red entries are provisional.}
+  \label{table:simple_additional_results}
+  \centering
+  \arrayrulecolor{hclblue}
+
+  \setlength{\tabcolsep}{2.6pt}
+  \renewcommand{\arraystretch}{1.08}
+  \scriptsize
+
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{
+    @{}
+    >{\centering\arraybackslash}p{2.7cm}
+    *{24}{c}
+    *{4}{c}
+    @{}
+  }
+  \toprule
+
+  & \multicolumn{4}{c}{\textbf{CloseDoor}}
+  & \multicolumn{4}{c}{\textbf{OpenOven}}
+  & \multicolumn{4}{c}{\textbf{OpenFaucet}}
+  & \multicolumn{4}{c}{\textbf{P\&P\&HugContainer}}
+  & \multicolumn{4}{c}{\textbf{PushOfficeChair}}
+  & \multicolumn{4}{c}{\textbf{OpenTrashCan}}
+  & \multicolumn{4}{c}{\textbf{Overall}~($\uparrow$)} \\
+
+  \cmidrule(lr){2-5}
+  \cmidrule(lr){6-9}
+  \cmidrule(lr){10-13}
+  \cmidrule(lr){14-17}
+  \cmidrule(lr){18-21}
+  \cmidrule(lr){22-25}
+  \cmidrule(lr){26-29}
+
+  \multirow{-2}{*}{\textbf{Method}}
+  & \textbf{L0} & \textbf{L1} & \textbf{L2} & \textbf{Avg.}
+  & \textbf{L0} & \textbf{L1} & \textbf{L2} & \textbf{Avg.}
+  & \textbf{L0} & \textbf{L1} & \textbf{L2} & \textbf{Avg.}
+  & \textbf{L0} & \textbf{L1} & \textbf{L2} & \textbf{Avg.}
+  & \textbf{L0} & \textbf{L1} & \textbf{L2} & \textbf{Avg.}
+  & \textbf{L0} & \textbf{L1} & \textbf{L2} & \textbf{Avg.}
+  & \textbf{L0} & \textbf{L1} & \textbf{L2}
+  & \textbf{Avg.} \\
+  \midrule
+
+  $\Psi_0$~\cite{psi0}
+  & 10 & 10 & 10
+  & 100\%
+  & 7 & 5 & 4
+  & 53\%
+  & 3 & 3 & 4
+  & 33\%
+  & 7 & 6 & 3
+  & 53\%
+  & 10 & 10 & 10
+  & 100\%
+  & 7 & 9 & 9
+  & 83\%
+  & 44
+  & 43
+  & 40
+  & 71\% \\
+
+  \rowcolor{hclbrown!8!white}
+  \texttt{Ours}
+  & \textcolor{red}{10} & \textcolor{red}{10} & \textcolor{red}{10}
+  & \textcolor{red}{100\%}
+  & \textcolor{red}{6} & \textcolor{red}{6} & \textcolor{red}{5}
+  & \textcolor{red}{57\%}
+  & \textcolor{red}{4} & \textcolor{red}{4} & \textcolor{red}{4}
+  & \textcolor{red}{40\%}
+  & \textcolor{red}{6} & \textcolor{red}{6} & \textcolor{red}{5}
+  & \textcolor{red}{57\%}
+  & \textcolor{red}{10} & \textcolor{red}{10} & \textcolor{red}{9}
+  & \textcolor{red}{97\%}
+  & \textcolor{red}{9} & \textcolor{red}{8} & \textcolor{red}{9}
+  & \textcolor{red}{87\%}
+  & \textcolor{red}{45}
+  & \textcolor{red}{44}
+  & \textcolor{red}{42}
+  & \textcolor{red}{73\%} \\
+
+  \rowcolor{hclbrown!15!white}
+  \texttt{Ours}$^{*}$
+  & \textcolor{red}{10} & \textcolor{red}{10} & \textcolor{red}{10}
+  & \textcolor{red}{100\%}
+  & \textcolor{red}{7} & \textcolor{red}{6} & \textcolor{red}{5}
+  & \textcolor{red}{60\%}
+  & \textcolor{red}{5} & \textcolor{red}{5} & \textcolor{red}{4}
+  & \textcolor{red}{47\%}
+  & \textcolor{red}{6} & \textcolor{red}{6} & \textcolor{red}{6}
+  & \textcolor{red}{60\%}
+  & \textcolor{red}{10} & \textcolor{red}{10} & \textcolor{red}{9}
+  & \textcolor{red}{97\%}
+  & \textcolor{red}{9} & \textcolor{red}{8} & \textcolor{red}{9}
+  & \textcolor{red}{87\%}
+  & \textcolor{red}{47}
+  & \textcolor{red}{45}
+  & \textcolor{red}{43}
+  & \textcolor{red}{75\%} \\
+
+  \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+\end{table}

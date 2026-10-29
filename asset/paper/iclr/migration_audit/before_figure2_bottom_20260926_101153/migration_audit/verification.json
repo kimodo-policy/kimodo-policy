@@ -1,0 +1,55 @@
+{
+  "source_unchanged_files": 64,
+  "edited_tex_files": [
+    "content/Introduction.tex",
+    "content/Related_Work.tex"
+  ],
+  "other_current_project_files_unchanged": true,
+  "changes_limited_to_related_work_and_contribution_text": true,
+  "related_work_citations_preserved_in_order": true,
+  "figure_count": 13,
+  "table_count": 4,
+  "equation_count": 6,
+  "labels": 43,
+  "reference_targets": 40,
+  "figure_1_asset": "image/teasser.png",
+  "user_figure_1_image_unchanged": true,
+  "official_template_unchanged": true,
+  "compile_errors_or_undefined_references": [],
+  "overfull_box_warnings": [],
+  "figure_1_on_first_page": true,
+  "compiled_bibliography_entries": 45,
+  "pdf_pages": 22,
+  "pdf_sha256": "5bfb7cb1ce4502adfd757656f5bf85b1aefc1d619e81249010722e3caaade923",
+  "caption_rendered_lines": 3,
+  "abstract_rendered_lines": 18,
+  "abstract_end_page": 1,
+  "abstract_last_line_top_pt": 723.107357,
+  "introduction_start_page": 2,
+  "intro_first_three_paragraph_rendered_lines": [
+    10,
+    11,
+    10
+  ],
+  "intro_fourth_paragraph_rendered_lines": 14,
+  "related_work_paragraph_rendered_lines": [
+    15,
+    15
+  ],
+  "contribution_layout": [
+    {
+      "lines": 3,
+      "last_line_fill_percent": 94.6
+    },
+    {
+      "lines": 3,
+      "last_line_fill_percent": 97.0
+    },
+    {
+      "lines": 3,
+      "last_line_fill_percent": 90.7
+    }
+  ],
+  "visual_review": "Rendered all 22 pages and inspected pages 2 and 3. Introduction and all three contribution items fit on page 2; both 15-line Related Work paragraphs fit on page 3. Each contribution is exactly 3 lines, with 94.6%, 97.0%, and 90.7% final-line fill. No clipping or overlap.",
+  "compression_semantics_review": "Independent review found no substantive claim strengthening or omitted mechanisms. Related Work comparison logic, model distinctions, all citation keys/order, policy conditioning, component dependencies, evaluation settings, parameter counts, and scaling claims are preserved."
+}

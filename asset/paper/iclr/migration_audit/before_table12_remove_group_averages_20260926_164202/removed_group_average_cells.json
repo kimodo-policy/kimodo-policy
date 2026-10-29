@@ -1,0 +1,66 @@
+{
+  "table/arena_single_task.tex": [
+    [
+      "ACT~\\cite{ACT}",
+      "30.56$\\pm$19.36\\%",
+      "60.42$\\pm$18.98\\%"
+    ],
+    [
+      "DP~\\cite{chi2023diffusionpolicy}",
+      "\\textbf{52.22$\\pm$17.97\\%}",
+      "65.83$\\pm$26.52\\%"
+    ],
+    [
+      "FM~\\cite{FM_objective}",
+      "41.67$\\pm$25.06\\%",
+      "48.33$\\pm$26.94\\%"
+    ],
+    [
+      "$\\pi_{0.5}$~\\cite{pi05}",
+      "41.67$\\pm$26.46\\%",
+      "58.33$\\pm$20.85\\%"
+    ],
+    [
+      "\\rowcolor{hclbrown!8!white}\n  \\texttt{Ours}",
+      "\\underline{49.44$\\pm$22.54\\%}",
+      "\\textbf{84.58$\\pm$14.06\\%}"
+    ],
+    [
+      "\\rowcolor{hclbrown!15!white}\n  \\texttt{Ours}$^{*}$",
+      "44.44$\\pm$24.66\\%",
+      "\\underline{84.17$\\pm$15.25\\%}"
+    ]
+  ],
+  "table/arena_multi_task.tex": [
+    [
+      "ACT~\\cite{ACT}",
+      "36.7$\\pm$18.7\\%",
+      "41.7$\\pm$17.8\\%"
+    ],
+    [
+      "DP~\\cite{chi2023diffusionpolicy}",
+      "29.4$\\pm$23.3\\%",
+      "59.6$\\pm$31.1\\%"
+    ],
+    [
+      "FM~\\cite{FM_objective}",
+      "13.9$\\pm$11.7\\%",
+      "45.4$\\pm$25.1\\%"
+    ],
+    [
+      "$\\pi_{0.5}$~\\cite{pi05}",
+      "38.3$\\pm$27.9\\%",
+      "65.4$\\pm$21.1\\%"
+    ],
+    [
+      "\\rowcolor{hclbrown!8!white}\n  \\texttt{Ours}",
+      "\\underline{51.7$\\pm$20.7\\%}",
+      "\\underline{79.6$\\pm$16.5\\%}"
+    ],
+    [
+      "\\rowcolor{hclbrown!15!white}\n  \\texttt{Ours}$^{*}$",
+      "\\textbf{56.1$\\pm$24.2\\%}",
+      "\\textbf{84.2$\\pm$14.1\\%}"
+    ]
+  ]
+}

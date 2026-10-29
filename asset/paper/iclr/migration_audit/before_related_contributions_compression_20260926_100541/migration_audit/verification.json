@@ -1,0 +1,36 @@
+{
+  "source_unchanged_files": 64,
+  "edited_tex_files": [
+    "content/Introduction.tex"
+  ],
+  "other_current_project_files_unchanged": true,
+  "intro_changes_limited_to_fourth_paragraph": true,
+  "intro_citations_and_figure_references_preserved": true,
+  "figure_count": 13,
+  "table_count": 4,
+  "equation_count": 6,
+  "labels": 43,
+  "reference_targets": 40,
+  "figure_1_asset": "image/teasser.png",
+  "user_figure_1_image_unchanged": true,
+  "official_template_unchanged": true,
+  "compile_errors_or_undefined_references": [],
+  "overfull_box_warnings": [],
+  "figure_1_on_first_page": true,
+  "compiled_bibliography_entries": 45,
+  "pdf_pages": 23,
+  "pdf_sha256": "b39ad5b5012f013f9131b59f4f2abd8704ace2ed3b909f9862523405ec0a6f1f",
+  "caption_rendered_lines": 3,
+  "abstract_rendered_lines": 18,
+  "abstract_end_page": 1,
+  "abstract_last_line_top_pt": 723.107357,
+  "introduction_start_page": 2,
+  "intro_first_three_paragraph_rendered_lines": [
+    10,
+    11,
+    10
+  ],
+  "intro_fourth_paragraph_rendered_lines": 14,
+  "visual_review": "Rendered the complete PDF and inspected pages 2 and 3. The fourth Introduction paragraph is 14 lines with no overlap or clipping. First three paragraphs and contribution text are preserved.",
+  "compression_semantics_review": "Original T2M background, two method strengths, directional root-body-hand conditioning, pretraining inputs, 678M/92M parameters, and scaling claims preserved. Independent review passed; easing motion learning retains original scope."
+}

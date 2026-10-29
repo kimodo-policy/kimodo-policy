@@ -1,0 +1,45 @@
+% Standalone appendix, with its own bibliography. Build: latexmk -pdf appendix.tex
+% ICLR 2027 migration of the final arXiv manuscript.
+% Preliminaries and Experimental Setup are in Appendices A and B, respectively.
+% Build both documents with: python3 build_papers.py
+\documentclass{article}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{iclr2027_conference,times}
+\usepackage{xr-hyper}
+\input{preamble}
+\hypersetup{filecolor=blue}
+\externaldocument[][nocite]{crossrefs/main_text_labels}[main_text.pdf]
+\title{Kimodo-Policy: From Text-to-Motion Generators to Humanoid Vision-Language-Action Policies}
+\input{author_metadata}
+
+% Keep the official anonymous review mode for this working draft.
+%\iclrfinalcopy
+\hypersetup{pdftitle={Kimodo-Policy: Supplementary Material}}
+\begin{document}
+% The official style normally sets this header inside maketitle.
+\ificlrfinal
+  \lhead{Published as a conference paper at ICLR 2027}
+\else
+  \lhead{Under review as a conference paper at ICLR 2027}
+\fi
+\appendix
+\input{crossrefs/appendix_counters}
+\input{content/Preliminaries}
+
+\input{content/Experimental_Setup}
+
+\input{content/Task_Visualizations}
+
+\input{content/T2M_Transfer_Analysis}
+
+\input{content/Scaling_Analysis}
+
+\input{content/Ablation_Analysis}
+
+\input{content/Limitations_Future_Work}
+
+
+\clearpage
+\bibliographystyle{iclr2027_conference}
+\bibliography{ref}
+\end{document}

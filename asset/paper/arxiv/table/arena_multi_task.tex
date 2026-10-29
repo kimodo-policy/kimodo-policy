@@ -1,0 +1,114 @@
+\begin{table}[H]
+  \caption{
+    \textbf{\textit{Multi-task training results on HumanoidArena.}} One policy is jointly trained on the seven benchmark tasks. Values are mean $\pm$ standard deviation; $^{*}$ denotes VLA-pretrained initialization. Bold and underlined entries indicate the best and second-best results, respectively.
+  }
+  \label{tab:arena_multi_task}
+  \centering
+  \arrayrulecolor{hclblue}
+  \begin{adjustbox}{max width=\textwidth}
+  \setlength{\tabcolsep}{4.2pt}
+  \renewcommand{\arraystretch}{1.08}
+
+  \begin{tabular}{cccccc|cccccc}
+  \toprule
+  & &
+  \multicolumn{4}{c|}{\textbf{Human--Object Interaction}} &
+  \multicolumn{5}{c}{\textbf{Human--Scene Interaction}} & \\
+  \cmidrule(lr){3-6}
+  \cmidrule(lr){7-11}
+
+  \multirow{-2}{*}{\textbf{Method}} &
+  \multirow{-2}{*}{\textbf{AFR~($\downarrow$)}} &
+  \textbf{\textsc{Football}} &
+  \textbf{\textsc{DoubleDesk}} &
+  \textbf{\textsc{P\&Pbox}} &
+  \textbf{\textsc{Avg~($\uparrow$)}} &
+  \textbf{\textsc{OpenDoor}} &
+  \textbf{\textsc{SitSofa}} &
+  \textbf{\textsc{Boxing}} &
+  \textbf{\textsc{VisNavi}} &
+  \textbf{\textsc{Avg~($\uparrow$)}} &
+  \multirow{-2}{*}{\textbf{\textsc{Overall~($\uparrow$)}}} \\
+  \midrule
+
+  ACT~\cite{ACT}
+  & 7.4\%
+  & 20.0$\pm$4.1\%
+  & 30.0$\pm$4.1\%
+  & 60.0$\pm$12.2\%
+  & 36.7$\pm$18.7\%
+  & 58.3$\pm$2.4\%
+  & 21.7$\pm$2.4\%
+  & 58.3$\pm$10.3\%
+  & 28.3$\pm$4.7\%
+  & 41.7$\pm$17.8\%   & 39.5\% \\
+
+  DP~\cite{chi2023diffusionpolicy}
+  & 7.1\%
+  & \textbf{53.3$\pm$6.2\%}
+  & 35.0$\pm$10.8\%
+  & 0.0$\pm$0.0\%
+  & 29.4$\pm$23.3\%
+  & 83.3$\pm$6.2\%
+  & \underline{83.3$\pm$4.7\%}
+  & 21.7$\pm$30.6\%
+  & 50.0$\pm$14.7\%
+  & 59.6$\pm$31.1\%   & 46.7\% \\
+
+  FM~\cite{FM_objective}
+  & 7.1\%
+  & 21.7$\pm$8.5\%
+  & 20.0$\pm$7.1\%
+  & 0.0$\pm$0.0\%
+  & 13.9$\pm$11.7\%
+  & 76.7$\pm$2.4\%
+  & 48.3$\pm$6.2\%
+  & 18.3$\pm$25.9\%
+  & 38.3$\pm$6.2\%
+  & 45.4$\pm$25.1\%   & 31.9\% \\
+
+  $\pi_{0.5}$~\cite{pi05}
+  & 6.4\%
+  & 10.0$\pm$7.1\%
+  & 30.0$\pm$7.1\%
+  & 75.0$\pm$4.1\%
+  & 38.3$\pm$27.9\%
+  & 85.0$\pm$4.1\%
+  & 70.0$\pm$14.7\%
+  & \textbf{71.7$\pm$12.5\%}
+  & 35.0$\pm$4.1\%
+  & 65.4$\pm$21.1\%   & 53.8\% \\
+
+  \rowcolor{hclbrown!8!white}
+  \texttt{Ours}
+  & \underline{5.0\%}
+  & 35.0$\pm$7.1\%
+  & \textbf{40.0$\pm$0.0\%}
+  & \underline{80.0$\pm$4.1\%}
+  & \underline{51.7$\pm$20.7\%}
+  & \underline{93.3$\pm$6.2\%}
+  & \textbf{96.7$\pm$4.7\%}
+  & 66.7$\pm$4.7\%
+  & \underline{61.7$\pm$6.2\%}
+  & \underline{79.6$\pm$16.5\%}   & \underline{67.6\%} \\
+
+
+  \rowcolor{hclbrown!15!white}
+  \texttt{Ours}$^{*}$
+  & \textbf{4.3\%}
+  & \underline{40.0$\pm$4.1\%}
+  & \underline{38.3$\pm$2.4\%}
+  & \textbf{90.0$\pm$4.1\%}
+  & \textbf{56.1$\pm$24.2\%}
+  & \textbf{95.0$\pm$4.1\%}
+  & \textbf{96.7$\pm$4.7\%}
+  & \underline{68.3$\pm$10.3\%}
+  & \textbf{76.7$\pm$8.5\%}
+  & \textbf{84.2$\pm$14.1\%}   & \textbf{72.1\%} \\
+
+
+
+  \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+\end{table}

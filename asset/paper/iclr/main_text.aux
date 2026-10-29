@@ -1,0 +1,158 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {Overview of Kimodo-Policy.} Top: diverse VLA pretraining adapts T2M priors through three-stage root--body--hand generation for visually grounded control. Bottom: skeletal history conditions action-chunk prediction; real-world examples illustrate coordinated whole-body execution.}}{1}{figure.1}\protected@file@percent }
+\newlabel{fig:overview}{{1}{1}{\textbf {Overview of Kimodo-Policy.} Top: diverse VLA pretraining adapts T2M priors through three-stage root--body--hand generation for visually grounded control. Bottom: skeletal history conditions action-chunk prediction; real-world examples illustrate coordinated whole-body execution}{figure.1}{}}
+\citation{rt2,openvla,pi0,wang2026limitsvisionandlanguagenavigation,wang2025dreamnavtrajectorybasedimaginativeframework}
+\citation{grootn1,psi0,openhlm}
+\citation{grootn1,psi0,openhlm}
+\citation{motionwam,wholebodywam_wbc}
+\citation{openhlm,motionwam}
+\citation{humanoidexo,wholebodyvla}
+\citation{grootn1,psi0,motionwam,wholebodywam_wbc}
+\citation{openhlm,motionwam}
+\citation{humanoidexo,wholebodyvla}
+\citation{temos,mdm,mld,t2mgpt,momask,omnicontrol}
+\citation{kimodo}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{2}{Introduction}{section.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {Comparison of Humanoid Policy Architectures.} Panels (a)--(c) contrast VLM-based, VGM-based, and our T2M-based policy backbones. Panels (d)--(f) illustrate unified whole-body generation, hybrid generation of upper-body joint targets and lower-body locomotion commands, and our hierarchical root--body--hand generation, respectively.}}{2}{figure.2}\protected@file@percent }
+\newlabel{fig:policy_routes}{{2}{2}{\textbf {Comparison of Humanoid Policy Architectures.} Panels (a)--(c) contrast VLM-based, VGM-based, and our T2M-based policy backbones. Panels (d)--(f) illustrate unified whole-body generation, hybrid generation of upper-body joint targets and lower-body locomotion commands, and our hierarchical root--body--hand generation, respectively}{figure.2}{}}
+\citation{grootn1,psi0,humanoidexo,openhlm}
+\citation{grootn1}
+\citation{psi0}
+\citation{motionwam,wholebodywam_wbc}
+\citation{motionwam}
+\citation{wholebodywam_wbc}
+\citation{openhlm,motionwam}
+\citation{humanoidexo,wholebodyvla}
+\citation{haf}
+\citation{temos}
+\citation{mdm}
+\citation{mld}
+\citation{t2mgpt}
+\citation{momask}
+\citation{omnicontrol}
+\citation{kimodo}
+\citation{humanoidvla}
+\citation{zerowbc}
+\citation{motionwam}
+\citation{wholebodywam_motionpriors}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Humanoid Vision-Language-Action Models}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Text-to-Motion (T2M)}{3}{subsection.2.2}\protected@file@percent }
+\citation{dinov3}
+\citation{dinov3}
+\citation{ze2025twist2scalableportableholistic,guan2026limmtmotiontracking}
+\citation{kimodo}
+\citation{behnamghader2024llm2veclargelanguagemodels}
+\citation{dinov3}
+\citation{dinov3}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Kimodo-Policy}{4}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Method: Kimodo-Policy}{section.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {Kimodo-Policy architecture.} Colored blocks: \inlinecolorblock  {green!55!black}{green!15} Kimodo denoisers, \inlinecolorblock  {blue!55!black}{blue!10} DINOv3-conditioned~\citep  {dinov3} ControlNet, and \inlinecolorblock  {gray!65}{gray!15} HandNet. Dashed boxes show Dual-Path Fusion: motion-query cross-attention and spatial-to-temporal MLPs. Root predictions condition body generation; future body features guide bilateral hand control. The Motion Projector maps root--body outputs to tracker references. Snowflakes/flames mark frozen/trainable modules.}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:method_architecture}{{3}{4}{\textbf {Kimodo-Policy architecture.} Colored blocks: \inlinecolorblock {green!55!black}{green!15} Kimodo denoisers, \inlinecolorblock {blue!55!black}{blue!10} DINOv3-conditioned~\cite {dinov3} ControlNet, and \inlinecolorblock {gray!65}{gray!15} HandNet. Dashed boxes show Dual-Path Fusion: motion-query cross-attention and spatial-to-temporal MLPs. Root predictions condition body generation; future body features guide bilateral hand control. The Motion Projector maps root--body outputs to tracker references. Snowflakes/flames mark frozen/trainable modules}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Model Architecture}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:method_architecture}{{3.1}{4}{Model Architecture}{subsection.3.1}{}}
+\newlabel{eq:policy_formulation}{{1}{4}{Model Architecture}{equation.1}{}}
+\citation{kimodo}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Adapting Motion Priors for Closed-Loop Control}{5}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:t2m_transfer}{{3.2}{5}{Adapting Motion Priors for Closed-Loop Control}{subsection.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {Motion-Prior Transfer.} Top: frozen Kimodo generates a complete ``Sit on the sofa'' sequence from text. Bottom: Kimodo-Policy predicts short chunks from vision and motion history for closed-loop control. Light brown: observed history; blue: predicted and executed motion.}}{5}{figure.4}\protected@file@percent }
+\newlabel{fig:t2m_transfer}{{4}{5}{\textbf {Motion-Prior Transfer.} Top: frozen Kimodo generates a complete ``Sit on the sofa'' sequence from text. Bottom: Kimodo-Policy predicts short chunks from vision and motion history for closed-loop control. Light brown: observed history; blue: predicted and executed motion}{figure.4}{}}
+\citation{dinov3}
+\citation{song2022denoisingdiffusionimplicitmodels}
+\citation{humanoidarena}
+\citation{chi2023diffusionpolicy}
+\citation{ACT}
+\citation{chi2023diffusionpolicy}
+\citation{FM_objective}
+\citation{pi05}
+\citation{humanoidarena,sonic}
+\citation{pi05}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Training and Inference}{6}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:training_inference}{{3.3}{6}{Training and Inference}{subsection.3.3}{}}
+\newlabel{eq:policy_training_objective}{{2}{6}{Training and Inference}{equation.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Results}{6}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{6}{Experimental Results}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Evaluation on the HumanoidArena Benchmark}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp_simulation}{{4.1}{6}{Evaluation on the HumanoidArena Benchmark}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {\textit  {Single-task HumanoidArena results.}} A separate policy is fine-tuned per task. For Tables~\ref {tab:arena_single_task}--\ref {tab:arena_multi_task}, values are mean $\pm $ standard deviation; $^{*}$ marks VLA-pretrained initialization, and bold/underlined entries mark best/second-best results.}}{6}{table.1}\protected@file@percent }
+\newlabel{tab:arena_single_task}{{1}{6}{\textbf {\textit {Single-task HumanoidArena results.}} A separate policy is fine-tuned per task. For Tables~\ref {tab:arena_single_task}--\ref {tab:arena_multi_task}, values are mean $\pm $ standard deviation; $^{*}$ marks VLA-pretrained initialization, and bold/underlined entries mark best/second-best results}{table.1}{}}
+\citation{ACT}
+\citation{chi2023diffusionpolicy}
+\citation{FM_objective}
+\citation{pi05}
+\citation{simple}
+\citation{simple}
+\citation{psi0}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {\textit  {Multi-task HumanoidArena results.}} One policy is jointly trained on all seven tasks.}}{7}{table.2}\protected@file@percent }
+\newlabel{tab:arena_multi_task}{{2}{7}{\textbf {\textit {Multi-task HumanoidArena results.}} One policy is jointly trained on all seven tasks}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {Task-Conditioned Visual Attention.} Columns show seven HumanoidArena tasks; rows (top to bottom) show $\pi _{0.5}$, Diffusion Policy, and Kimodo-Policy. Kimodo-Policy shifts attention toward task-relevant objects and interaction regions.}}{7}{figure.5}\protected@file@percent }
+\newlabel{fig:attention}{{5}{7}{\textbf {Task-Conditioned Visual Attention.} Columns show seven HumanoidArena tasks; rows (top to bottom) show $\pi _{0.5}$, Diffusion Policy, and Kimodo-Policy. Kimodo-Policy shifts attention toward task-relevant objects and interaction regions}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Evaluation on the Simple Benchmark}{7}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp_simple}{{4.2}{7}{Evaluation on the Simple Benchmark}{subsection.4.2}{}}
+\citation{grootn1}
+\citation{psi0}
+\citation{kimodo}
+\citation{kimodo}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \textbf  {\textit  {Single-Task Results on SIMPLE.}} L0--L2 progressively increase visual and lighting variation and target-pose randomization. Entries report L0/L1/L2 success counts and aggregate success rates (parentheses); bold/underlined values mark the best/second-best aggregate rates.}}{8}{table.3}\protected@file@percent }
+\newlabel{table:simple_main_results}{{3}{8}{\textbf {\textit {Single-Task Results on SIMPLE.}} L0--L2 progressively increase visual and lighting variation and target-pose randomization. Entries report L0/L1/L2 success counts and aggregate success rates (parentheses); bold/underlined values mark the best/second-best aggregate rates}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation on the Real-World Humanoid Robot}{8}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp_real}{{4.3}{8}{Evaluation on the Real-World Humanoid Robot}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {Real-World Success Rates.} GR00T N1.6, $\Psi _0$, and Kimodo-Policy with/without VLA pretraining are compared on eight tasks; the rightmost group reports mean success.}}{8}{figure.6}\protected@file@percent }
+\newlabel{fig:real_world_success_rates}{{6}{8}{\textbf {Real-World Success Rates.} GR00T N1.6, $\Psi _0$, and Kimodo-Policy with/without VLA pretraining are compared on eight tasks; the rightmost group reports mean success}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Does Better T2M Improve VLA Performance?}{8}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp_t2m}{{4.4}{8}{Does Better T2M Improve VLA Performance?}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces  \textbf  {\textit  {Effect of the T2M backbone on Kimodo-Policy.}} We compare two same-size Kimodo-G1 backbones using the same adaptation protocol. Data scales include the training and test splits; results are mean $\pm $ standard deviation over three seeds.}}{8}{table.4}\protected@file@percent }
+\newlabel{tab:t2m_dependency}{{4}{8}{\textbf {\textit {Effect of the T2M backbone on Kimodo-Policy.}} We compare two same-size Kimodo-G1 backbones using the same adaptation protocol. Data scales include the training and test splits; results are mean $\pm $ standard deviation over three seeds}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Does Performance Scale with Data and Model Size?}{8}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp_scaling}{{4.5}{8}{Does Performance Scale with Data and Model Size?}{subsection.4.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Scaling behavior of Kimodo-Policy. Left: overall success rate as a function of VLA policy-pretraining data duration. Right: overall success rate as a function of active policy parameters.}}{9}{figure.7}\protected@file@percent }
+\newlabel{fig:scaling_analysis}{{7}{9}{Scaling behavior of Kimodo-Policy. Left: overall success rate as a function of VLA policy-pretraining data duration. Right: overall success rate as a function of active policy parameters}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation Study}{9}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:exp_ablation}{{4.6}{9}{Ablation Study}{subsection.4.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \textbf  {Training Dynamics and Ablations.} Left: training loss with/without VLA pretraining. Right: mean success on DoubleDesk, Football, and P\&Pbox. Gray: component and training-design ablations; light/dark blue: without/with VLA pretraining.}}{9}{figure.8}\protected@file@percent }
+\newlabel{fig:training_loss_comparison}{{8}{9}{\textbf {Training Dynamics and Ablations.} Left: training loss with/without VLA pretraining. Right: mean success on DoubleDesk, Football, and P\&Pbox. Gray: component and training-design ablations; light/dark blue: without/with VLA pretraining}{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{9}{Conclusion}{section.5}{}}
+\bibstyle{iclr2027_conference}
+\bibdata{ref}
+\bibcite{behnamghader2024llm2veclargelanguagemodels}{{1}{2024}{{BehnamGhader et~al.}}{{BehnamGhader, Adlakha, Mosbach, Bahdanau, Chapados, and Reddy}}}
+\bibcite{grootn1}{{2}{2025}{{Bjorck et~al.}}{{Bjorck, Casta{\~n}eda, Cherniadev, Da, Ding, Fan, Fang, Fox, Hu, Huang, et~al.}}}
+\bibcite{pi05}{{3}{2025{a}}{{Black et~al.}}{{Black, Brown, Darpinian, Dhabalia, Driess, Esmail, Equi, Finn, Fusai, Galliker, et~al.}}}
+\bibcite{pi0}{{4}{2025{b}}{{Black et~al.}}{{Black, Brown, Driess, Esmail, Equi, Finn, Fusai, Groom, Hausman, Ichter, Jakubczak, Jones, Ke, Levine, Li-Bell, Mothukuri, Nair, Pertsch, Shi, Tanner, Vuong, Walling, Wang, and Zhilinsky}}}
+\bibcite{rt2}{{5}{2023}{{Brohan et~al.}}{{Brohan, Brown, Carbajal, Chebotar, Chen, Choromanski, Ding, Driess, Dubey, Finn, et~al.}}}
+\bibcite{mld}{{6}{2023}{{Chen et~al.}}{{Chen, Jiang, Liu, Huang, Fu, Chen, Yu, and Yu}}}
+\bibcite{chi2023diffusionpolicy}{{7}{2023}{{Chi et~al.}}{{Chi, Feng, Du, Xu, Cousineau, Burchfiel, and Song}}}
+\bibcite{humanoidvla}{{8}{2025}{{Ding et~al.}}{{Ding, Ma, Tong, Zou, Luo, Fan, Wang, Lu, Mo, Liu, et~al.}}}
+\bibcite{haf}{{9}{2026}{{Gu et~al.}}{{Gu, Hou, Li, Wang, Liu, Lv, Zhang, Bai, Li, He, et~al.}}}
+\bibcite{guan2026limmtmotiontracking}{{10}{2026}{{Guan et~al.}}{{Guan, Qi, Lin, Chen, Liu, Zhang, Wang, Yu, Wang, and Yi}}}
+\bibcite{momask}{{11}{2024}{{Guo et~al.}}{{Guo, Mu, Javed, Wang, and Cheng}}}
+\bibcite{openhlm}{{12}{2026}{{Hu et~al.}}{{Hu, Zhu, Zheng, Hu, Zhang, Chen, Zhao, Nai, and Gao}}}
+\bibcite{wholebodyvla}{{13}{2025}{{Jiang et~al.}}{{Jiang, Chen, Bu, Chen, Shi, Zhang, Li, Suo, Wang, Peng, et~al.}}}
+\bibcite{openvla}{{14}{2024}{{Kim et~al.}}{{Kim, Pertsch, Karamcheti, Xiao, Balakrishna, Nair, Rafailov, Foster, Lam, Sanketi, et~al.}}}
+\bibcite{wholebodywam_wbc}{{15}{2026}{{Li et~al.}}{{Li, Yao, Tan, Jing, Dong, and Chen}}}
+\bibcite{FM_objective}{{16}{2023}{{Lipman et~al.}}{{Lipman, Chen, Ben-Hamu, Nickel, and Le}}}
+\bibcite{sonic}{{17}{2026}{{Luo et~al.}}{{Luo, Yuan, Wang, Li, Casta{\~n}eda, Chen, Cao, Li, Minor, Ben, Park, Sami, Wang, Da, Ding, Hogg, Song, Lim, Jeong, He, Xue, Xiao, Yuen, Kautz, Chang, Iqbal, Fan, and Zhu}}}
+\bibcite{temos}{{18}{2022}{{Petrovich et~al.}}{{Petrovich, Black, and Varol}}}
+\bibcite{kimodo}{{19}{2026}{{Rempe et~al.}}{{Rempe, Petrovich, Yuan, Zhang, Peng, Jiang, Wang, Iqbal, Minor, de~Ruyter, et~al.}}}
+\bibcite{dinov3}{{20}{2025}{{Sim{\'e}oni et~al.}}{{Sim{\'e}oni, Vo, Seitzer, Baldassarre, Oquab, Jose, Khalidov, Szafraniec, Yi, Ramamonjisoa, et~al.}}}
+\bibcite{song2022denoisingdiffusionimplicitmodels}{{21}{2021}{{Song et~al.}}{{Song, Meng, and Ermon}}}
+\bibcite{mdm}{{22}{2023}{{Tevet et~al.}}{{Tevet, Raab, Gordon, Shafir, Cohen-Or, and Bermano}}}
+\bibcite{humanoidarena}{{23}{2026{a}}{{Wang et~al.}}{{Wang, Xie, Yang, Wang, Yuan, Fang, Feng, Wang, Chen, Chen, et~al.}}}
+\bibcite{wang2025dreamnavtrajectorybasedimaginativeframework}{{24}{2025}{{Wang et~al.}}{{Wang, Fang, Wang, Feng, Tan, Zhang, Liu, Ji, and Xu}}}
+\bibcite{wang2026limitsvisionandlanguagenavigation}{{25}{2026{b}}{{Wang et~al.}}{{Wang, Fang, Wang, Li, Liu, Xu, Yuan, Feng, Zhang, Lu, Zeng, and Xu}}}
+\bibcite{psi0}{{26}{2026{a}}{{Wei et~al.}}{{Wei, Jing, Li, Zhao, Mao, Ni, He, Liu, Liu, Kang, et~al.}}}
+\bibcite{simple}{{27}{2026{b}}{{Wei et~al.}}{{Wei, Ni, Liu, Zhao, Ye, Jing, Xia, Liu, Leong, Heng, et~al.}}}
+\bibcite{omnicontrol}{{28}{2024}{{Xie et~al.}}{{Xie, Jampani, Zhong, Sun, and Jiang}}}
+\bibcite{zerowbc}{{29}{2026}{{Yang et~al.}}{{Yang, Bao, Xin, Song, Tian, Zhao, Wang, and Li}}}
+\bibcite{ze2025twist2scalableportableholistic}{{30}{2025}{{Ze et~al.}}{{Ze, Zhao, Wang, Kanazawa, Duan, Abbeel, Shi, Wu, and Liu}}}
+\bibcite{wholebodywam_motionpriors}{{31}{2026}{{Zhang et~al.}}{{Zhang, Zhang, Bai, Wang, Li, Wang, Zhang, Tang, Zhou, Sun, et~al.}}}
+\bibcite{t2mgpt}{{32}{2023}{{Zhang et~al.}}{{Zhang, Zhang, Cun, Huang, Zhang, Zhao, Lu, and Shen}}}
+\bibcite{ACT}{{33}{2023}{{Zhao et~al.}}{{Zhao, Kumar, Levine, and Finn}}}
+\bibcite{motionwam}{{34}{2026}{{Zheng et~al.}}{{Zheng, Ma, Fan, Wang, Yang, and Liang}}}
+\bibcite{humanoidexo}{{35}{2025}{{Zhong et~al.}}{{Zhong, Sun, Wen, Li, Cheng, Dai, Zeng, Lu, Zhu, and Xu}}}
+\gdef \@abspage@last{12}

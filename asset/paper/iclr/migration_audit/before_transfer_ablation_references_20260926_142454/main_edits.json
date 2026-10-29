@@ -1,0 +1,6 @@
+[
+  [
+    "\\input{content/Scaling_Analysis}",
+    "\\input{content/Scaling_Analysis}\n\n\\input{content/T2M_Transfer_Analysis}\n\n\\clearpage\n\\input{content/Ablation_Analysis}"
+  ]
+]

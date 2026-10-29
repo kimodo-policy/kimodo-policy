@@ -1,0 +1,25 @@
+% ICLR 2027 migration of the final arXiv manuscript.
+% Preliminaries and Experimental Setup are in Appendices A and B, respectively.
+% Build from this directory: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+\documentclass{article}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{iclr2027_conference,times}
+\input{preamble}
+\title{Kimodo-Policy: From Text-to-Motion Generators to Humanoid Vision-Language-Action Policies}
+\input{author_metadata}
+
+% Keep the official anonymous review mode for this working draft.
+%\iclrfinalcopy
+
+\begin{document}
+Recent text-to-motion (T2M) methods learn structured motion distributions conditioned on text or spatial constraints~\cite{temos,mdm,mld,t2mgpt,momask,omnicontrol}.
+
+Building on these advances, \textbf{Kimodo-Policy} combines a pretrained T2M backbone with three-stage root--body--hand generation for humanoid VLA control.
+\textbf{\ding{182} Strong Whole-Body Motion Priors.}
+We transfer Kimodo's pretrained inter-joint and temporal priors to high-dimensional, visually grounded control (Fig.~\ref{fig:policy_routes}(c))~\cite{kimodo}, easing adaptation from limited task-specific humanoid demonstrations.
+\textbf{\ding{183} Strong Component-Specific Motion Modeling.}
+Dedicated generators (Fig.~\ref{fig:policy_routes}(f)) predict root translation and heading, root-conditioned body motion, and hand controls conditioned on future body features and visual observations. Their dependencies support component specialization and whole-body coordination.
+We pretrain on diverse humanoid demonstrations to generate actions conditioned on visual observations, language instructions, and motion history.
+With 678M total and only 92M trainable parameters, Kimodo-Policy shows consistent gains from more VLA pretraining data, larger models, and stronger T2M priors. Our main contributions are:
+
+\end{document}

@@ -1,0 +1,95 @@
+\section{Experimental Results}
+\label{sec:experiments}
+
+We evaluate Kimodo-Policy through single- and multi-task HumanoidArena control (Sec.~\ref{sec:exp_simulation}), SIMPLE manipulation (Sec.~\ref{sec:exp_simple}), and real-world deployment (Sec.~\ref{sec:exp_real}). Analyses cover T2M backbone quality (Sec.~\ref{sec:exp_t2m}), data and model scaling (Sec.~\ref{sec:exp_scaling}), and design ablations (Sec.~\ref{sec:exp_ablation}). Appendix~\ref{sec:experimental_setup} details the datasets, training protocols, and evaluation environments.
+
+\subsection{Evaluation on the HumanoidArena Benchmark}
+\label{sec:exp_simulation}
+
+HumanoidArena~\cite{humanoidarena} covers seven language-conditioned tasks spanning human--object interaction (HOI) and human--scene interaction (HSI). We evaluate independent per-task fine-tuning and joint training across SONIC tasks. Appendix~\ref{sec:vis_humanoidarena} (Fig.~\ref{fig:humanoidarena}) visualizes the tasks.
+
+\begingroup
+\setlength{\intextsep}{6pt plus 1pt minus 1pt}
+\textbf{Single-task results.} We fine-tune one policy per task with RTC disabled to match baselines. Kimodo-Policy uses direct task fine-tuning; Kimodo-Policy$^{*}$ initializes ControlNet and the hand head from our 419-hour VLA pretraining. Kimodo-Policy achieves the highest overall success rate (SR; 69.51\%), exceeding the strongest baseline, DP~\cite{chi2023diffusionpolicy} (60.0\%), by 9.51 percentage points. It also leads in average HSI SR (84.58\%) and ties Kimodo-Policy$^{*}$ for lowest average fall rate (AFR; 4.29\%). Kimodo-Policy$^{*}$ achieves 67.14\% overall and 84.17\% average HSI SR, leading OpenDoor (93.3\%) and VisNavi (76.7\%). VLA pretraining improves selected tasks, while direct fine-tuning yields higher overall SR.
+
+\input{table/arena_single_task}
+
+\textbf{Multi-task results.} We jointly train one policy on all seven HumanoidArena tasks and evaluate under SONIC~\cite{humanoidarena,sonic}, with RTC disabled to match baselines. Table~\ref{tab:arena_multi_task} shows Kimodo-Policy$^{*}$ reaching 72.14\% overall SR, exceeding the strongest baseline, $\pi_{0.5}$~\cite{pi05} (53.8\%), by 18.33 percentage points, with lowest AFR (4.29\%). It leads HOI (56.11\%) and HSI (84.17\%) averages, P\&Pbox (90.0\%), OpenDoor (95.0\%), SitSofa (96.7\%, tied), and VisNavi (76.7\%). Without VLA pretraining, Kimodo-Policy reaches 67.63\% overall and 51.67\% HOI SR; overall SR falls only 1.88 percentage points from single-task training. Thus, a shared policy can retain much of its single-task performance with high success and low fall rates.
+
+\input{table/arena_multi_task}
+
+\textbf{Attention map analysis.} Figure~\ref{fig:attention} shows Kimodo-Policy focusing on the ball in Football, box in P\&P Box, and punching bag in Boxing, alongside relevant scene elements for door opening, sitting, and navigation. $\pi_{0.5}$ responds less locally, while Diffusion Policy activates broader scene regions. This task-dependent focus suggests alignment with instruction semantics and use of task-relevant cues for shared multi-task action selection.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{image/attention.pdf}
+  \caption{\textbf{Task-Conditioned Visual Attention.} Columns show seven HumanoidArena tasks; rows (top to bottom) show $\pi_{0.5}$, Diffusion Policy, and Kimodo-Policy. Kimodo-Policy shifts attention toward task-relevant objects and interaction regions.}
+  \label{fig:attention}
+\end{figure}
+\endgroup
+
+\begingroup
+\setlength{\intextsep}{6pt plus 1pt minus 1pt}
+\subsection{Evaluation on the Simple Benchmark}
+\label{sec:exp_simple}
+We further evaluate Kimodo-Policy on the SIMPLE benchmark~\cite{simple}, using the L0--L2 protocol with progressively stronger visual, lighting, and target-pose randomization~\cite{simple}. We fine-tune an independent policy for each of the eight benchmark tasks and report the results in Table~\ref{table:simple_main_results}. This protocol isolates skill acquisition while testing robustness under increasing distribution shifts. See Appendix~\ref{sec:vis_simple} (Fig.~\ref{fig:simple_tasks}) for task visualizations.
+
+
+
+\textbf{Single-task results.} Table~\ref{table:simple_main_results} evaluates VLA-pretrained Kimodo-Policy (\texttt{Ours}$^{*}$) on eight SIMPLE tasks, aggregating L0--L2 success rates with RTC disabled to match the baselines. It achieves best or joint-best results on six tasks: Handover (83\% vs. 80\% for the strongest baseline), Mobile P\&P (70\% vs. 60\%), OpenOven (57\% vs. 53\%), OpenFaucet (53\% vs. 33\%), CloseDoor and Push Office Chair (both 100\%, tied with $\Psi_0$). It ranks second on XMoveBendPick (80\% vs. 93\% for $\Psi_0$) and OpenTrashCan (63\% vs. 83\%). These results show that the motion-prior-based, visually grounded root--body--hand policy supports handover, mobile manipulation, articulated-object interaction, and pushing under visual, lighting, and target-pose variation.
+
+\input{table/simple_single_task}
+
+\subsection{Evaluation on the Real-World Humanoid Robot}
+\label{sec:exp_real}
+We test a physical humanoid on eight language-conditioned loco-manipulation tasks under unconstrained sensing and execution, covering locomotion, balance, single- and dual-arm coordination, and contact-rich manipulation. Each task has ten trials scored by successful completions; Appendix~\ref{sec:vis_real_world} (Fig.~\ref{fig:real_world}) provides visualizations.
+
+\textbf{Real-world results.} Scratch-trained Kimodo-Policy averages 45\% success, above GR00T N1.6~\cite{grootn1} (31\%) and $\Psi_0$~\cite{psi0} (35\%; Fig.~\ref{fig:real_world_success_rates}). VLA pretraining raises this to 60\% (+15 points), improving seven tasks and matching Cart Pushing (60\%). Its strongest results are Punching Bag (90\%), Cushion Sitting (80\%), and Dual-Arm PNP (70\%).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{image/real_world_success_rates.png}
+  \caption{\textbf{Real-World Success Rates.} GR00T N1.6, $\Psi_0$, and Kimodo-Policy with/without VLA pretraining are compared on eight tasks; the rightmost group reports mean success.}
+  \label{fig:real_world_success_rates}
+\end{figure}
+
+\subsection{Does Better T2M Improve VLA Performance?}
+\label{sec:exp_t2m}
+To test motion-prior quality, we compare Kimodo-G1-SEED-v1 and RP-v1 T2M backbones~\cite{kimodo} under identical policy architectures, adaptation procedures, and HumanoidArena protocols. Both have 282M parameters and 90\%/10\% train/test splits; SEED-v1 uses 288\,h of BONES-SEED data and RP-v1 uses 700\,h of Rigplay~\cite{kimodo}.
+\input{table/proof_t2m}
+\textbf{T2M transfer results.} RP-v1 improves overall SR over SEED-v1 from 64.29\% to 67.63\% (+3.34 points; Table~\ref{tab:t2m_dependency}), with gains on DoubleDesk ($33.33\%\to40.0\%$), P\&Pbox ($75.0\%\to80.0\%$), OpenDoor ($60.0\%\to93.3\%$), and SitSofa ($90.0\%\to96.7\%$), but declines on Football ($50.0\%\to35.0\%$), Boxing ($71.67\%\to66.7\%$), and VisNavi ($70.0\%\to61.7\%$). Gains concentrate in human--scene interaction, with task-dependent trade-offs.
+
+\subsection{Does Performance Scale with Data and Model Size?}
+\label{sec:exp_scaling}
+We vary VLA policy-pretraining data duration with the architecture, SonicX7 adaptation, and evaluation fixed, then vary active policy parameters with the pretrained T2M backbone, downstream data, optimization, and evaluation fixed. RTC is disabled throughout to match the benchmark protocol.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{image/scaling_analysis.png}
+  \caption{Scaling behavior of Kimodo-Policy. Left: overall success rate as a function of VLA policy-pretraining data duration. Right: overall success rate as a function of active policy parameters.}
+  \label{fig:scaling_analysis}
+\end{figure}
+
+\textbf{Data scaling results.} Overall success rises from 68.10\% with 105\,h to 69.05\% with 210\,h and 72.14\% with 419\,h of VLA pretraining data, a 4.04-point gain (Fig.~\ref{fig:scaling_analysis}).
+
+\textbf{Model scaling results.} Increasing active policy parameters from 53.6M to 91.7M and 158.9M raises overall success from 61.43\% to 67.63\% and 68.57\%, respectively, a 7.14-point gain that supports scaling policy capacity.
+
+\begingroup
+% Use the official ICLR subsection formatting.
+\subsection{Ablation Study}
+\label{sec:exp_ablation}
+\color{black}
+All ablations train on mixed HumanoidArena tasks in SONIC X7 and evaluate on DoubleDesk, Football, and P\&Pbox. Figure~\ref{fig:training_loss_comparison} reports training loss and mean success across these tasks.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{image/training_loss_comparison.png}
+  \caption{\textbf{Training Dynamics and Ablations.} Left: training loss with/without VLA pretraining. Right: mean success on DoubleDesk, Football, and P\&Pbox. Gray: component and training-design ablations; light/dark blue: without/with VLA pretraining.}
+  \label{fig:training_loss_comparison}
+\end{figure}
+
+
+
+\textbf{Results Analysis.} Without VLA pretraining, Kimodo-Policy achieves 51.67\% mean success; removing the T2M backbone, unfreezing it, replacing MSE with Kimodo's original motion objective, or removing root--body gradient detachment yields 18.33\%, 31.67\%, 35.00\%, or 45.00\%, respectively. These results support a frozen motion prior, MSE supervision, and gradient separation. VLA pretraining raises success from 51.67\% to 56.11\%, with generally lower and less variable training loss. Both variants retain the T2M backbone, indicating complementary benefits.
+
+\endgroup
+\endgroup

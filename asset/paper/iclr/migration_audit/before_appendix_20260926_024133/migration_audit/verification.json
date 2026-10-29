@@ -1,0 +1,21 @@
+{
+  "source_unchanged_files": 64,
+  "byte_identical_copied_files": 37,
+  "figure_count": 13,
+  "table_count": 4,
+  "equation_count": 6,
+  "labels": 43,
+  "citation_groups": 80,
+  "reference_targets": 38,
+  "section_titles": 22,
+  "scientific_figures_preserved": 13,
+  "inactive_project_badges_preserved": 3,
+  "official_template_files_unchanged": true,
+  "compiled_bibliography_entries_preserved": 45,
+  "compile_errors_or_undefined_references": [],
+  "overfull_box_warnings": [],
+  "pdf_sha256": "25f9cb6362deb8be73f4e07ceafdcb3e60b026618af986dca29fa44404c938d4",
+  "all_content_in_main_body": true,
+  "pdf_pages": 23,
+  "visual_review": "Passed: final 23-page render checked for clipping, overlaps, missing figures/tables/equations, and citation formatting."
+}

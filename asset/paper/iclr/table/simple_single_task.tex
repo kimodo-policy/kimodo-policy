@@ -1,0 +1,53 @@
+\begin{table}[H]
+  \setlength{\belowcaptionskip}{6pt}
+  \caption{\textbf{\textit{Single-Task Results on SIMPLE.}} L0--L2 progressively increase visual and lighting variation and target-pose randomization. Entries report L0/L1/L2 success counts and aggregate success rates (parentheses); bold/underlined values mark the best/second-best aggregate rates.}
+  \label{table:simple_main_results}
+  \centering
+  \arrayrulecolor{hclblue}
+  \setlength{\tabcolsep}{0pt}
+  \renewcommand{\arraystretch}{1.08}
+  \fontsize{6.2}{7}\selectfont
+  \newcommand{\taskheader}[1]{{\fontsize{5.55}{6.2}\selectfont\textbf{\textsc{\hspace{2.2pt}#1\hspace{2.2pt}}}}}
+  \newcommand{\resultentry}[2]{{\fontsize{5.2}{6}\selectfont\hspace{2.2pt}#1\;(#2)\hspace{2.2pt}}}
+  \newcommand{\bestentry}[2]{{\fontsize{5.2}{6}\selectfont\textbf{\hspace{2.2pt}#1\;(#2)\hspace{2.2pt}}}}
+  \newcommand{\secondentry}[2]{{\fontsize{5.2}{6}\selectfont\hspace{2.2pt}\underline{#1\;(#2)}\hspace{2.2pt}}}
+
+  \begin{adjustbox}{width=\textwidth}
+  \begin{tabular}{@{}c*{8}{c}@{}}
+    \toprule
+    {\fontsize{5.55}{6.2}\selectfont\textbf{Method}}
+    & \taskheader{Handover}
+    & \taskheader{Mobile P\&P}
+    & \taskheader{XMoveBendPick}
+    & \taskheader{CloseDoor}
+    & \taskheader{OpenOven}
+    & \taskheader{OpenFaucet}
+    & \taskheader{Push Office Chair}
+    & \taskheader{OpenTrashCan} \\
+    \midrule
+
+    $\Psi_0$~\cite{psi0}
+    & \secondentry{7/7/10}{80\%}
+    & \secondentry{7/5/6}{60\%}
+    & \bestentry{10/9/9}{93\%}
+    & \bestentry{10/10/10}{100\%}
+    & \secondentry{7/5/4}{53\%}
+    & \secondentry{3/3/4}{33\%}
+    & \bestentry{10/10/10}{100\%}
+    & \bestentry{7/9/9}{83\%} \\
+
+    \rowcolor{hclbrown!15!white}
+    \texttt{Ours}$^{*}$
+    & \bestentry{9/8/8}{83\%}
+    & \bestentry{9/8/4}{70.0\%}
+    & \secondentry{10/7/7}{80\%}
+    & \bestentry{10/10/10}{100\%}
+    & \bestentry{8/4/5}{57\%}
+    & \bestentry{5/6/5}{53\%}
+    & \bestentry{10/10/10}{100\%}
+    & \secondentry{9/4/6}{63\%} \\
+
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+\end{table}

@@ -1,0 +1,10 @@
+[
+  [
+    "Gains concentrate in human--scene interaction, with task-dependent trade-offs.",
+    "Gains favor human--scene interaction, with task-dependent trade-offs (Appendix~\\ref{sec:t2m_analysis_appendix})."
+  ],
+  [
+    "Both variants retain the T2M backbone, indicating complementary benefits.",
+    "Both retain the T2M backbone, indicating complementary benefits (Appendix~\\ref{sec:ablation_analysis_appendix})."
+  ]
+]

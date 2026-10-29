@@ -1,0 +1,35 @@
+{
+  "scope": "Reference formatting against the ICLR 2027 official template; targeted correction of identified metadata issues, not an exhaustive bibliographic authenticity review.",
+  "sources": [
+    "https://iclr.cc/Conferences/2027/AuthorGuidelines",
+    "https://raw.githubusercontent.com/ICLR/Master-Template/master/iclr2027/iclr2027_conference.tex",
+    "https://raw.githubusercontent.com/ICLR/Master-Template/master/iclr2027/iclr2027_conference.sty",
+    "https://raw.githubusercontent.com/ICLR/Master-Template/master/iclr2027/iclr2027_conference.bst"
+  ],
+  "official_requirements": [
+    "Natbib author-year citations, et al. for more than two authors.",
+    "Alphabetically ordered References section.",
+    "Consistent reference-entry formatting; APA is not mandated.",
+    "Use the current official style and bibliography files."
+  ],
+  "configuration_findings": [
+    "Official iclr2027_conference.bst already selected.",
+    "Official style supplies natbib author-year round-parenthesis formatting.",
+    "Existing cite alias to citep preserves parenthetical citations.",
+    "No custom bibliography spacing or font override found."
+  ],
+  "corrections": [
+    "Protected capitalization of TEMOS, T2M-GPT, MoMask, 3D, OmniControl, VLAs and RL.",
+    "Standardized ICLR conference name.",
+    "Corrected DDIM from a 2022 arXiv entry to its ICLR 2021 publication, retaining its citation key."
+  ],
+  "ddim_evidence": [
+    "https://openreview.net/pdf?id=St1giarCHLP",
+    "https://iclr.cc/virtual/2021/papers.html"
+  ],
+  "not_required": [
+    "APA-specific conversion",
+    "Manual truncation or expansion of all author lists",
+    "Changes to official BST files"
+  ]
+}

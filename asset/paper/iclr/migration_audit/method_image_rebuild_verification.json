@@ -1,0 +1,10 @@
+{
+  "image": "image/method.png",
+  "image_sha256": "fd56d70c5c787a03003a82d97ecd065c31ef3e6af259077b04998b271e103f11",
+  "main_text_pdf_sha256": "1d6b7b74c9d1beca0b51d1bea370ee1634edb2c0186ccc419e71deab184c1b44",
+  "main_pdf_sha256": "88d632dad07d984410824a01b889bc39d236fdf988e802cfbdee3440e80eeaea",
+  "appendix_pdf_sha256": "e6e7ffc60c6e8272b60fde65c1bffc35a822b0afa016f433f95629f3344d3347",
+  "build": "passed; new image present in both build dependency lists; no undefined references or overfull boxes",
+  "embedded_method_image": "Verified pixel-identical to replacement PNG in both main_text.pdf and main.pdf.",
+  "visual_review": "Figure 3 remains on page 4 above Section 3.1; no clipping or overlap."
+}

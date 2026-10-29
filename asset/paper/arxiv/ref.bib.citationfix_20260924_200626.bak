@@ -1,0 +1,3265 @@
+@String(PAMI = {IEEE Trans. Pattern Anal. Mach. Intell.})
+@String(IJCV = {Int. J. Comput. Vis.})
+@String(CVPR= {IEEE Conf. Comput. Vis. Pattern Recog.})
+@String(ICCV= {Int. Conf. Comput. Vis.})
+@String(ECCV= {Eur. Conf. Comput. Vis.})
+@String(NIPS= {Adv. Neural Inform. Process. Syst.})
+@String(ICPR = {Int. Conf. Pattern Recog.})
+@String(BMVC= {Brit. Mach. Vis. Conf.})
+@String(TOG= {ACM Trans. Graph.})
+@String(TIP  = {IEEE Trans. Image Process.})
+@String(TVCG  = {IEEE Trans. Vis. Comput. Graph.})
+@String(TMM  = {IEEE Trans. Multimedia})
+@String(ACMMM= {ACM Int. Conf. Multimedia})
+@String(ICME = {Int. Conf. Multimedia and Expo})
+@String(ICASSP=	{ICASSP})
+@String(ICIP = {IEEE Int. Conf. Image Process.})
+@String(ACCV  = {ACCV})
+@String(ICLR = {Int. Conf. Learn. Represent.})
+@String(IJCAI = {IJCAI})
+@String(PR   = {Pattern Recognition})
+@String(AAAI = {AAAI})
+@String(CVPRW= {IEEE Conf. Comput. Vis. Pattern Recog. Worksh.})
+@String(CSVT = {IEEE Trans. Circuit Syst. Video Technol.})
+
+@String(SPL	= {IEEE Sign. Process. Letters})
+@String(VR   = {Vis. Res.})
+@String(JOV	 = {J. Vis.})
+@String(TVC  = {The Vis. Comput.})
+@String(JCST  = {J. Comput. Sci. Tech.})
+@String(CGF  = {Comput. Graph. Forum})
+@String(CVM = {Computational Visual Media})
+
+
+@String(PAMI  = {IEEE TPAMI})
+@String(IJCV  = {IJCV})
+@String(CVPR  = {CVPR})
+@String(ICCV  = {ICCV})
+@String(ECCV  = {ECCV})
+@String(NIPS  = {NeurIPS})
+@String(ICPR  = {ICPR})
+@String(BMVC  =	{BMVC})
+@String(TOG   = {ACM TOG})
+@String(TIP   = {IEEE TIP})
+@String(TVCG  = {IEEE TVCG})
+@String(TCSVT = {IEEE TCSVT})
+@String(TMM   =	{IEEE TMM})
+@String(ACMMM = {ACM MM})
+@String(ICME  =	{ICME})
+@String(ICASSP=	{ICASSP})
+@String(ICIP  = {ICIP})
+@String(ACCV  = {ACCV})
+@String(ICLR  = {ICLR})
+@String(IJCAI = {IJCAI})
+@String(PR = {PR})
+@String(AAAI = {AAAI})
+@String(CVPRW= {CVPRW})
+@String(CSVT = {IEEE TCSVT})
+
+
+
+@inproceedings{chen2022femasr,
+  title={Real-world blind super-resolution via feature matching with implicit high-resolution priors},
+  author={Chen, Chaofeng and Shi, Xinyu and Qin, Yipeng and Li, Xiaoming and Han, Xiaoguang and Yang, Tao and Guo, Shihui},
+  booktitle={Proceedings of the 30th ACM International Conference on Multimedia},
+  pages={1329--1338},
+  year={2022}
+}
+@article{zhao2024image,
+  title={Image and video tokenization with binary spherical quantization},
+  author={Zhao, Yue and Xiong, Yuanjun and Kr{\"a}henb{\"u}hl, Philipp},
+  journal={arXiv preprint arXiv:2406.07548},
+  year={2024}
+}
+@article{yue2023resshift,
+  title={Resshift: Efficient diffusion model for image super-resolution by residual shifting},
+  author={Yue, Zongsheng and Wang, Jianyi and Loy, Chen Change},
+  journal={arXiv preprint arXiv:2307.12348},
+  year={2023}
+}
+
+@article{chen2022real,
+  title={Real-world single image super-resolution: A brief review},
+  author={Chen, Honggang and He, Xiaohai and Qing, Linbo and Wu, Yuanyuan and Ren, Chao and Sheriff, Ray E and Zhu, Ce},
+  journal={Information Fusion},
+  volume={79},
+  pages={124--145},
+  year={2022},
+  publisher={Elsevier}
+}
+
+@article{liu2022blind,
+  title={Blind image super-resolution: A survey and beyond},
+  author={Liu, Anran and Liu, Yihao and Gu, Jinjin and Qiao, Yu and Dong, Chao},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={45},
+  number={5},
+  pages={5461--5480},
+  year={2022},
+  publisher={IEEE}
+}
+
+@article{UIRsurvey,
+  title={A survey on all-in-one image restoration: Taxonomy, evaluation and future trends},
+  author={Jiang, Junjun and Zuo, Zengyuan and Wu, Gang and Jiang, Kui and Liu, Xianming},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2025},
+  publisher={IEEE}
+}
+
+@article{kong2024preliminary,
+  title={A preliminary exploration towards general image restoration},
+  author={Kong, Xiangtao and Gu, Jinjin and Liu, Yihao and Zhang, Wenlong and Chen, Xiangyu and Qiao, Yu and Dong, Chao},
+  journal={arXiv preprint arXiv:2408.15143},
+  year={2024}
+}
+
+@inproceedings{dong2014learning,
+  title={Learning a deep convolutional network for image super-resolution},
+  author={Dong, Chao and Loy, Chen Change and He, Kaiming and Tang, Xiaoou},
+  booktitle={Computer Vision--ECCV 2014: 13th European Conference, Zurich, Switzerland, September 6-12, 2014, Proceedings, Part IV 13},
+  pages={184--199},
+  year={2014},
+  organization={Springer}
+}
+
+@article{zhang2017beyond,
+  title={Beyond a gaussian denoiser: Residual learning of deep cnn for image denoising},
+  author={Zhang, Kai and Zuo, Wangmeng and Chen, Yunjin and Meng, Deyu and Zhang, Lei},
+  journal={IEEE transactions on image processing},
+  volume={26},
+  number={7},
+  pages={3142--3155},
+  year={2017},
+  publisher={IEEE}
+}
+
+@inproceedings{liang2021swinir,
+  title={Swinir: Image restoration using swin transformer},
+  author={Liang, Jingyun and Cao, Jiezhang and Sun, Guolei and Zhang, Kai and Van Gool, Luc and Timofte, Radu},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={1833--1844},
+  year={2021}
+}
+
+@inproceedings{chen2021pre,
+  title={Pre-trained image processing transformer},
+  author={Chen, Hanting and Wang, Yunhe and Guo, Tianyu and Xu, Chang and Deng, Yiping and Liu, Zhenhua and Ma, Siwei and Xu, Chunjing and Xu, Chao and Gao, Wen},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={12299--12310},
+  year={2021}
+}
+
+@inproceedings{chen2023activating,
+  title={Activating more pixels in image super-resolution transformer},
+  author={Chen, Xiangyu and Wang, Xintao and Zhou, Jiantao and Qiao, Yu and Dong, Chao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={22367--22377},
+  year={2023}
+}
+
+@inproceedings{zhang2022efficient,
+  title={Efficient long-range attention network for image super-resolution},
+  author={Zhang, Xindong and Zeng, Hui and Guo, Shi and Zhang, Lei},
+  booktitle={European Conference on Computer Vision},
+  pages={649--667},
+  year={2022},
+  organization={Springer}
+}
+
+
+
+@inproceedings{zamir2022restormer,
+  title={Restormer: Efficient transformer for high-resolution image restoration},
+  author={Zamir, Syed Waqas and Arora, Aditya and Khan, Salman and Hayat, Munawar and Khan, Fahad Shahbaz and Yang, Ming-Hsuan},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={5728--5739},
+  year={2022}
+}
+@article{RealRain-1K,
+  title={Toward real-world single image deraining: A new benchmark and beyond},
+  author={Li, Wei and Zhang, Qiming and Zhang, Jing and Huang, Zhen and Tian, Xinmei and Tao, Dacheng},
+  journal={arXiv preprint arXiv:2206.05514},
+  year={2022}
+}
+@article{goodfellow2020generative,
+  title={Generative adversarial networks},
+  author={Goodfellow, Ian and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+  journal={Communications of the ACM},
+  volume={63},
+  number={11},
+  pages={139--144},
+  year={2020},
+  publisher={ACM New York, NY, USA}
+}
+@inproceedings{flick2k,
+  title={Ntire 2017 challenge on single image super-resolution: Dataset and study},
+  author={Agustsson, Eirikur and Timofte, Radu},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition workshops},
+  pages={126--135},
+  year={2017}
+}
+@inproceedings{wang2018esrgan,
+  title={Esrgan: Enhanced super-resolution generative adversarial networks},
+  author={Wang, Xintao and Yu, Ke and Wu, Shixiang and Gu, Jinjin and Liu, Yihao and Dong, Chao and Qiao, Yu and Change Loy, Chen},
+  booktitle={Proceedings of the European conference on computer vision (ECCV) workshops},
+  pages={0--0},
+  year={2018}
+}
+@misc{darkface2019,
+  title        = {DARK FACE: Face Detection in Low Light Condition},
+  author       = {Yang, Yuanhao and Luo, Zheng and Chen, Yuhui and others},
+  year         = {2019},
+  howpublished = {CVPR 2019 Workshop on UG2+ Challenge},
+  url          = {https://flyywh.github.io/CVPRW2019LowLight/},
+}
+@article{kong2026ggt,
+  title={GGT-100K: Generative Ground Truth for Generalizable Real-World Image Restoration},
+  author={Kong, Xiangtao and Zhao, Jixin and Sun, Lingchen and Wu, Rongyuan and Zhang, Lei},
+  journal={arXiv preprint arXiv:2605.31039},
+  year={2026}
+}
+
+@inproceedings{liu2024ntire,
+  title={NTIRE 2024 challenge on low light image enhancement: Methods and results},
+  author={Liu, Xiaoning and Wu, Zongwei and Li, Ao and Vasluianu, Florin-Alexandru and Zhang, Yulun and Gu, Shuhang and Zhang, Le and Zhu, Ce and Timofte, Radu and Jin, Zhi and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={6571--6594},
+  year={2024}
+}
+@inproceedings{zhang2021designing,
+  title={Designing a practical degradation model for deep blind image super-resolution},
+  author={Zhang, Kai and Liang, Jingyun and Van Gool, Luc and Timofte, Radu},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={4791--4800},
+  year={2021}
+}
+@article{kong2024towards,
+  title={Towards effective multiple-in-one image restoration: A sequential and prompt learning strategy},
+  author={Kong, Xiangtao and Dong, Chao and Zhang, Lei},
+  journal={arXiv preprint arXiv:2401.03379},
+  year={2024}
+}
+@inproceedings{wang2021real,
+  title={Real-esrgan: Training real-world blind super-resolution with pure synthetic data},
+  author={Wang, Xintao and Xie, Liangbin and Dong, Chao and Shan, Ying},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={1905--1914},
+  year={2021}
+}
+
+@inproceedings{diffuir,
+  title={Selective hourglass mapping for universal image restoration based on diffusion model},
+  author={Zheng, Dian and Wu, Xiao-Ming and Yang, Shuzhou and Zhang, Jian and Hu, Jian-Fang and Zheng, Wei-Shi},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={25445--25455},
+  year={2024}
+}
+
+@inproceedings{liang2022details,
+  title={Details or artifacts: A locally discriminative learning approach to realistic image super-resolution},
+  author={Liang, Jie and Zeng, Hui and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={5657--5666},
+  year={2022}
+}
+
+@inproceedings{liang2022efficient,
+  title={Efficient and degradation-adaptive network for real-world image super-resolution},
+  author={Liang, Jie and Zeng, Hui and Zhang, Lei},
+  booktitle={European Conference on Computer Vision},
+  pages={574--591},
+  year={2022},
+  organization={Springer}
+}
+
+@article{xie2023desra,
+  title={Desra: detect and delete the artifacts of gan-based real-world super-resolution models},
+  author={Xie, Liangbin and Wang, Xintao and Chen, Xiangyu and Li, Gen and Shan, Ying and Zhou, Jiantao and Dong, Chao},
+  journal={arXiv preprint arXiv:2307.02457},
+  year={2023}
+}
+
+@inproceedings{2023GDP,
+  title={Generative Diffusion Prior for Unified Image Restoration and Enhancement},
+  author={Fei, Ben and Lyu, Zhaoyang and Pan, Liang and Zhang, Junzhe and Yang, Weidong and Luo, Tianyue and Zhang, Bo and Dai, Bo},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={9935--9946},
+  year={2023}
+}
+
+@article{an2015variational,
+  title={Variational autoencoder based anomaly detection using reconstruction probability},
+  author={An, Jinwon and Cho, Sungzoon},
+  journal={Special lecture on IE},
+  volume={2},
+  number={1},
+  pages={1--18},
+  year={2015}
+}
+
+@article{liu2023learning,
+  title={Learning Image-Adaptive Codebooks for Class-Agnostic Image Restoration},
+  author={Liu, Kechun and Jiang, Yitong and Choi, Inchang and Gu, Jinwei},
+  journal={arXiv preprint arXiv:2306.06513},
+  year={2023}
+}
+
+@article{ho2020denoising,
+  title={Denoising diffusion probabilistic models},
+  author={Ho, Jonathan and Jain, Ajay and Abbeel, Pieter},
+  journal={Advances in neural information processing systems},
+  volume={33},
+  pages={6840--6851},
+  year={2020}
+}
+
+@article{saharia2022photorealistic,
+  title={Photorealistic text-to-image diffusion models with deep language understanding},
+  author={Saharia, Chitwan and Chan, William and Saxena, Saurabh and Li, Lala and Whang, Jay and Denton, Emily L and Ghasemipour, Kamyar and Gontijo Lopes, Raphael and Karagol Ayan, Burcu and Salimans, Tim and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={36479--36494},
+  year={2022}
+}
+
+@inproceedings{sd2.1,
+  title={High-resolution image synthesis with latent diffusion models},
+  author={Rombach, Robin and Blattmann, Andreas and Lorenz, Dominik and Esser, Patrick and Ommer, Bj{\"o}rn},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={10684--10695},
+  year={2022}
+}
+
+@article{kawar2022denoising,
+  title={Denoising diffusion restoration models},
+  author={Kawar, Bahjat and Elad, Michael and Ermon, Stefano and Song, Jiaming},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={23593--23606},
+  year={2022}
+}
+
+@article{wang2022zero,
+  title={Zero-shot image restoration using denoising diffusion null-space model},
+  author={Wang, Yinhuai and Yu, Jiwen and Zhang, Jian},
+  journal={arXiv preprint arXiv:2212.00490},
+  year={2022}
+}
+
+
+@article{lin2023diffbir,
+  title={DiffBIR: Towards Blind Image Restoration with Generative Diffusion Prior},
+  author={Lin, Xinqi and He, Jingwen and Chen, Ziyan and Lyu, Zhaoyang and Fei, Ben and Dai, Bo and Ouyang, Wanli and Qiao, Yu and Dong, Chao},
+  journal={arXiv preprint arXiv:2308.15070},
+  year={2023}
+}
+
+
+@inproceedings{he2016deep,
+  title={Deep residual learning for image recognition},
+  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={770--778},
+  year={2016}
+}
+
+@inproceedings{redmon2016you,
+  title={You only look once: Unified, real-time object detection},
+  author={Redmon, Joseph and Divvala, Santosh and Girshick, Ross and Farhadi, Ali},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={779--788},
+  year={2016}
+}
+
+@inproceedings{li2022blip,
+  title={Blip: Bootstrapping language-image pre-training for unified vision-language understanding and generation},
+  author={Li, Junnan and Li, Dongxu and Xiong, Caiming and Hoi, Steven},
+  booktitle={International Conference on Machine Learning},
+  pages={12888--12900},
+  year={2022},
+  organization={PMLR}
+}
+
+
+@article{prompt2prompt,
+  title={Prompt-to-prompt image editing with cross attention control},
+  author={Hertz, Amir and Mokady, Ron and Tenenbaum, Jay and Aberman, Kfir and Pritch, Yael and Cohen-Or, Daniel},
+  journal={arXiv preprint arXiv:2208.01626},
+  year={2022}
+}
+
+@article{zhang2023tale,
+  title={A Tale of Two Features: Stable Diffusion Complements DINO for Zero-Shot Semantic Correspondence},
+  author={Zhang, Junyi and Herrmann, Charles and Hur, Junhwa and Cabrera, Luisa Polania and Jampani, Varun and Sun, Deqing and Yang, Ming-Hsuan},
+  journal={arXiv preprint arXiv:2305.15347},
+  year={2023}
+}
+
+@article{jarzynski1997equilibrium,
+  title={Equilibrium free-energy differences from nonequilibrium measurements: A master-equation approach},
+  author={Jarzynski, Christopher},
+  journal={Physical Review E},
+  volume={56},
+  number={5},
+  pages={5018},
+  year={1997},
+  publisher={APS}
+}
+
+@article{neal2001annealed,
+  title={Annealed importance sampling},
+  author={Neal, Radford M},
+  journal={Statistics and computing},
+  volume={11},
+  pages={125--139},
+  year={2001},
+  publisher={Springer}
+}
+
+@inproceedings{sohl2015deep,
+  title={Deep unsupervised learning using nonequilibrium thermodynamics},
+  author={Sohl-Dickstein, Jascha and Weiss, Eric and Maheswaranathan, Niru and Ganguli, Surya},
+  booktitle={International conference on machine learning},
+  pages={2256--2265},
+  year={2015},
+  organization={PMLR}
+}
+
+@article{2023ram,
+  title={Recognize Anything: A Strong Image Tagging Model},
+  author={Zhang, Youcai and Huang, Xinyu and Ma, Jinyu and Li, Zhaoyang and Luo, Zhaochuan and Xie, Yanchun and Qin, Yuzhuo and Luo, Tong and Li, Yaqian and Liu, Shilong and others},
+  journal={arXiv preprint arXiv:2306.03514},
+  year={2023}
+}
+
+
+@inproceedings{ffhq,
+  title={A style-based generator architecture for generative adversarial networks},
+  author={Karras, Tero and Laine, Samuli and Aila, Timo},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={4401--4410},
+  year={2019}
+}
+
+@inproceedings{div2k,
+  title={Ntire 2017 challenge on single image super-resolution: Dataset and study},
+  author={Agustsson, Eirikur and Timofte, Radu},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition workshops},
+  pages={126--135},
+  year={2017}
+}
+
+@inproceedings{div8k,
+  title={Div8k: Diverse 8k resolution image dataset},
+  author={Gu, Shuhang and Lugmayr, Andreas and Danelljan, Martin and Fritsche, Manuel and Lamour, Julien and Timofte, Radu},
+  booktitle={2019 IEEE/CVF International Conference on Computer Vision Workshop (ICCVW)},
+  pages={3512--3516},
+  year={2019},
+  organization={IEEE}
+}
+
+@inproceedings{ost,
+  title={Recovering realistic texture in image super-resolution by deep spatial feature transform},
+  author={Wang, Xintao and Yu, Ke and Dong, Chao and Loy, Chen Change},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={606--615},
+  year={2018}
+}
+
+
+@inproceedings{chan2022investigating,
+  title={Investigating tradeoffs in real-world video super-resolution},
+  author={Chan, Kelvin CK and Zhou, Shangchen and Xu, Xiangyu and Loy, Chen Change},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={5962--5971},
+  year={2022}
+}
+
+@inproceedings{lpips,
+  title={The unreasonable effectiveness of deep features as a perceptual metric},
+  author={Zhang, Richard and Isola, Phillip and Efros, Alexei A and Shechtman, Eli and Wang, Oliver},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={586--595},
+  year={2018}
+}
+
+@article{dists,
+  title={Image quality assessment: Unifying structure and texture similarity},
+  author={Ding, Keyan and Ma, Kede and Wang, Shiqi and Simoncelli, Eero P},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={44},
+  number={5},
+  pages={2567--2581},
+  year={2020},
+  publisher={IEEE}
+}
+
+@article{fid,
+  title={Gans trained by a two time-scale update rule converge to a local nash equilibrium},
+  author={Heusel, Martin and Ramsauer, Hubert and Unterthiner, Thomas and Nessler, Bernhard and Hochreiter, Sepp},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+
+@inproceedings{clipiqa,
+  title={Exploring clip for assessing the look and feel of images},
+  author={Wang, Jianyi and Chan, Kelvin CK and Loy, Chen Change},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={37},
+  number={2},
+  pages={2555--2563},
+  year={2023}
+}
+
+@inproceedings{musiq,
+  title={Musiq: Multi-scale image quality transformer},
+  author={Ke, Junjie and Wang, Qifei and Wang, Yilin and Milanfar, Peyman and Yang, Feng},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={5148--5157},
+  year={2021}
+}
+
+@inproceedings{maniqa,
+  title={Maniqa: Multi-dimension attention network for no-reference image quality assessment},
+  author={Yang, Sidi and Wu, Tianhe and Shi, Shuwei and Lao, Shanshan and Gong, Yuan and Cao, Mingdeng and Wang, Jiahao and Yang, Yujiu},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={1191--1200},
+  year={2022}
+}
+
+@article{real-Desnownet,
+  title={Desnownet: Context-aware deep network for snow removal},
+  author={Liu, Yun-Fu and Jaw, Da-Wei and Huang, Shih-Chia and Hwang, Jenq-Neng},
+  journal={IEEE Transactions on Image Processing},
+  volume={27},
+  number={6},
+  pages={3064--3073},
+  year={2018},
+  publisher={IEEE}
+}
+
+@article{sun2025improving,
+  title={Improving the Stability and Efficiency of Diffusion Models for Content Consistent Super-Resolution},
+  author={Sun, Lingchen and Wu, Rongyuan and Liang, Jie and Zhang, Zhengqiang and Yong, Hongwei and Zhang, Lei},
+  journal={IEEE Transactions on Image Processing},
+  volume={34},
+  pages={8421--8434},
+  year={2025},
+  publisher={IEEE}
+}
+
+@article{jit,
+  title={Back to basics: Let denoising generative models denoise},
+  year={2025},
+  author={Li, Tianhong and He, Kaiming},
+  journal={URL https://arxiv. org/abs/2511.13720},
+  volume={7}
+}
+
+@article{yu2025pixeldit,
+  title={Pixeldit: Pixel diffusion transformers for image generation},
+  author={Yu, Yongsheng and Xiong, Wei and Nie, Weili and Sheng, Yichen and Liu, Shiqiu and Luo, Jiebo},
+  journal={arXiv preprint arXiv:2511.20645},
+  year={2025}
+}
+
+@article{real-nturain_real,
+  title={Single image deraining using bilateral recurrent network},
+  author={Ren, Dongwei and Shang, Wei and Zhu, Pengfei and Hu, Qinghua and Meng, Deyu and Zuo, Wangmeng},
+  journal={IEEE Transactions on Image Processing},
+  volume={29},
+  pages={6852--6863},
+  year={2020},
+  publisher={IEEE}
+}
+
+@article{ssim,
+  title={Image quality assessment: from error visibility to structural similarity},
+  author={Wang, Zhou and Bovik, Alan C and Sheikh, Hamid R and Simoncelli, Eero P},
+  journal={IEEE transactions on image processing},
+  volume={13},
+  number={4},
+  pages={600--612},
+  year={2004},
+  publisher={IEEE}
+}
+
+@article{niqe,
+  title={A feature-enriched completely blind image quality evaluator},
+  author={Zhang, Lin and Zhang, Lei and Bovik, Alan C},
+  journal={IEEE Transactions on Image Processing},
+  volume={24},
+  number={8},
+  pages={2579--2591},
+  year={2015},
+  publisher={IEEE}
+}
+
+@article{lora,
+  title={Lora: Low-rank adaptation of large language models},
+  author={Hu, Edward J and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  journal={arXiv preprint arXiv:2106.09685},
+  year={2021}
+}
+
+@article{adam,
+  title={Adam: A method for stochastic optimization},
+  author={Kingma, Diederik P and Ba, Jimmy},
+  journal={arXiv preprint arXiv:1412.6980},
+  year={2014}
+}
+
+@inproceedings{nichol2021improved,
+  title={Improved denoising diffusion probabilistic models},
+  author={Nichol, Alexander Quinn and Dhariwal, Prafulla},
+  booktitle={International Conference on Machine Learning},
+  pages={8162--8171},
+  year={2021},
+  organization={PMLR}
+}
+
+@article{hendrycks2019augmix,
+  title={Augmix: A simple data processing method to improve robustness and uncertainty},
+  author={Hendrycks, Dan and Mu, Norman and Cubuk, Ekin D and Zoph, Barret and Gilmer, Justin and Lakshminarayanan, Balaji},
+  journal={arXiv preprint arXiv:1912.02781},
+  year={2019}
+}
+
+@article{adacode,
+  title={Learning Image-Adaptive Codebooks for Class-Agnostic Image Restoration},
+  author={Liu, Kechun and Jiang, Yitong and Choi, Inchang and Gu, Jinwei},
+  journal={arXiv preprint arXiv:2306.06513},
+  year={2023}
+}
+
+@article{song2020score,
+  title={Score-based generative modeling through stochastic differential equations},
+  author={Song, Yang and Sohl-Dickstein, Jascha and Kingma, Diederik P and Kumar, Abhishek and Ermon, Stefano and Poole, Ben},
+  journal={arXiv preprint arXiv:2011.13456},
+  year={2020}
+}
+
+@article{dhariwal2021diffusion,
+  title={Diffusion models beat gans on image synthesis},
+  author={Dhariwal, Prafulla and Nichol, Alexander},
+  journal={Advances in neural information processing systems},
+  volume={34},
+  pages={8780--8794},
+  year={2021}
+}
+
+
+@article{imagen,
+  title={Photorealistic text-to-image diffusion models with deep language understanding},
+  author={Saharia, Chitwan and Chan, William and Saxena, Saurabh and Li, Lala and Whang, Jay and Denton, Emily L and Ghasemipour, Kamyar and Gontijo Lopes, Raphael and Karagol Ayan, Burcu and Salimans, Tim and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={36479--36494},
+  year={2022}
+}
+
+@article{liu2024lumina,
+  title={Lumina-mgpt: Illuminate flexible photorealistic text-to-image generation with multimodal generative pretraining},
+  author={Liu, Dongyang and Zhao, Shitian and Zhuo, Le and Lin, Weifeng and Xin, Yi and Li, Xinyue and Qin, Qi and Qiao, Yu and Li, Hongsheng and Gao, Peng},
+  journal={arXiv preprint arXiv:2408.02657},
+  year={2024}
+}
+@article{qu2025visual,
+  title={Visual Autoregressive Modeling for Image Super-Resolution},
+  author={Qu, Yunpeng and Yuan, Kun and Hao, Jinhua and Zhao, Kai and Xie, Qizhi and Sun, Ming and Zhou, Chao},
+  journal={arXiv preprint arXiv:2501.18993},
+  year={2025}
+}
+@inproceedings{zhang2019ranksrgan,
+  title={Ranksrgan: Generative adversarial networks with ranker for image super-resolution},
+  author={Zhang, Wenlong and Liu, Yihao and Dong, Chao and Qiao, Yu},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={3096--3105},
+  year={2019}
+}
+@inproceedings{chang2022maskgit,
+  title={Maskgit: Masked generative image transformer},
+  author={Chang, Huiwen and Zhang, Han and Jiang, Lu and Liu, Ce and Freeman, William T},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={11315--11325},
+  year={2022}
+}
+
+@inproceedings{lin2023magic3d,
+  title={Magic3d: High-resolution text-to-3d content creation},
+  author={Lin, Chen-Hsuan and Gao, Jun and Tang, Luming and Takikawa, Towaki and Zeng, Xiaohui and Huang, Xun and Kreis, Karsten and Fidler, Sanja and Liu, Ming-Yu and Lin, Tsung-Yi},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={300--309},
+  year={2023}
+}
+
+@article{poole2022dreamfusion,
+  title={Dreamfusion: Text-to-3d using 2d diffusion},
+  author={Poole, Ben and Jain, Ajay and Barron, Jonathan T and Mildenhall, Ben},
+  journal={arXiv preprint arXiv:2209.14988},
+  year={2022}
+}
+
+@article{wang2023prolificdreamer,
+  title={ProlificDreamer: High-Fidelity and Diverse Text-to-3D Generation with Variational Score Distillation},
+  author={Wang, Zhengyi and Lu, Cheng and Wang, Yikai and Bao, Fan and Li, Chongxuan and Su, Hang and Zhu, Jun},
+  journal={arXiv preprint arXiv:2305.16213},
+  year={2023}
+}
+
+@inproceedings{zhang2023adding,
+  title={Adding conditional control to text-to-image diffusion models},
+  author={Zhang, Lvmin and Rao, Anyi and Agrawala, Maneesh},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={3836--3847},
+  year={2023}
+}
+
+@article{mou2023t2i,
+  title={T2i-adapter: Learning adapters to dig out more controllable ability for text-to-image diffusion models},
+  author={Mou, Chong and Wang, Xintao and Xie, Liangbin and Zhang, Jian and Qi, Zhongang and Shan, Ying and Qie, Xiaohu},
+  journal={arXiv preprint arXiv:2302.08453},
+  year={2023}
+}
+
+@article{singer2022make,
+  title={Make-a-video: Text-to-video generation without text-video data},
+  author={Singer, Uriel and Polyak, Adam and Hayes, Thomas and Yin, Xi and An, Jie and Zhang, Songyang and Hu, Qiyuan and Yang, Harry and Ashual, Oron and Gafni, Oran and others},
+  journal={arXiv preprint arXiv:2209.14792},
+  year={2022}
+}
+
+@inproceedings{wu2023tune,
+  title={Tune-a-video: One-shot tuning of image diffusion models for text-to-video generation},
+  author={Wu, Jay Zhangjie and Ge, Yixiao and Wang, Xintao and Lei, Stan Weixian and Gu, Yuchao and Shi, Yufei and Hsu, Wynne and Shan, Ying and Qie, Xiaohu and Shou, Mike Zheng},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={7623--7633},
+  year={2023}
+}
+
+@inproceedings{realsr,
+  title={Toward real-world single image super-resolution: A new benchmark and a new model},
+  author={Cai, Jianrui and Zeng, Hui and Yong, Hongwei and Cao, Zisheng and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={3086--3095},
+  year={2019}
+}
+
+@inproceedings{drealsr,
+  title={Component divide-and-conquer for real-world image super-resolution},
+  author={Wei, Pengxu and Xie, Ziwei and Lu, Hannan and Zhan, Zongyuan and Ye, Qixiang and Zuo, Wangmeng and Lin, Liang},
+  booktitle={Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part VIII 16},
+  pages={101--117},
+  year={2020},
+  organization={Springer}
+}
+
+@inproceedings{chen2023human,
+  title={Human guided ground-truth generation for realistic image super-resolution},
+  author={Chen, Du and Liang, Jie and Zhang, Xindong and Liu, Ming and Zeng, Hui and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={14082--14091},
+  year={2023}
+}
+
+@inproceedings{edsr,
+  title={Enhanced deep residual networks for single image super-resolution},
+  author={Lim, Bee and Son, Sanghyun and Kim, Heewon and Nah, Seungjun and Mu Lee, Kyoung},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition workshops},
+  pages={136--144},
+  year={2017}
+}
+
+@inproceedings{rcan,
+  title={Image super-resolution using very deep residual channel attention networks},
+  author={Zhang, Yulun and Li, Kunpeng and Li, Kai and Wang, Lichen and Zhong, Bineng and Fu, Yun},
+  booktitle={Proceedings of the European conference on computer vision (ECCV)},
+  pages={286--301},
+  year={2018}
+}
+
+@inproceedings{rdn,
+  title={Residual dense network for image super-resolution},
+  author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={2472--2481},
+  year={2018}
+}
+
+@inproceedings{san,
+  title={Second-order attention network for single image super-resolution},
+  author={Dai, Tao and Cai, Jianrui and Zhang, Yongbing and Xia, Shu-Tao and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={11065--11074},
+  year={2019}
+}
+
+@inproceedings{dat,
+  title={Dual Aggregation Transformer for Image Super-Resolution},
+  author={Chen, Zheng and Zhang, Yulun and Gu, Jinjin and Kong, Linghe and Yang, Xiaokang and Yu, Fisher},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={12312--12321},
+  year={2023}
+}
+
+@article{sr3,
+  title={Image super-resolution via iterative refinement},
+  author={Saharia, Chitwan and Ho, Jonathan and Chan, William and Salimans, Tim and Fleet, David J and Norouzi, Mohammad},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={45},
+  number={4},
+  pages={4713--4726},
+  year={2022},
+  publisher={IEEE}
+}
+
+@article{hinton2015distilling,
+  title={Distilling the knowledge in a neural network},
+  author={Hinton, Geoffrey and Vinyals, Oriol and Dean, Jeff},
+  journal={arXiv preprint arXiv:1503.02531},
+  year={2015}
+}
+
+@article{lin2023common,
+  title={Common Diffusion Noise Schedules and Sample Steps are Flawed},
+  author={Lin, Shanchuan and Liu, Bingchen and Li, Jiashi and Yang, Xiao},
+  journal={arXiv preprint arXiv:2305.08891},
+  year={2023}
+}
+@inproceedings{openseed,
+  title={A Simple Framework for Open-Vocabulary Segmentation and Detection},
+  author={Zhang, Hao and Li, Feng and Zou, Xueyan and Liu, Shilong and Li, Chunyuan and Gao, Jianfeng and Yang, Jianwei and Zhang, Lei},
+  booktitle = CVPR,
+  year={2023}
+}
+@inproceedings{coco,
+  title={Microsoft coco: Common objects in context},
+  author={Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence},
+  booktitle=ECCV,
+  pages={740--755},
+  year={2014},
+  organization={Springer}
+}
+
+
+@article{ddim,
+  title={Denoising diffusion implicit models},
+  author={Song, Jiaming and Meng, Chenlin and Ermon, Stefano},
+  journal={arXiv preprint arXiv:2010.02502},
+  year={2020}
+}
+
+@article{lu2022dpm,
+  title={Dpm-solver: A fast ode solver for diffusion probabilistic model sampling in around 10 steps},
+  author={Lu, Cheng and Zhou, Yuhao and Bao, Fan and Chen, Jianfei and Li, Chongxuan and Zhu, Jun},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={5775--5787},
+  year={2022}
+}
+
+@inproceedings{zheng2023fast,
+  title={Fast sampling of diffusion models via operator learning},
+  author={Zheng, Hongkai and Nie, Weili and Vahdat, Arash and Azizzadenesheli, Kamyar and Anandkumar, Anima},
+  booktitle={International Conference on Machine Learning},
+  pages={42390--42402},
+  year={2023},
+  organization={PMLR}
+}
+
+@inproceedings{li2023q,
+  title={Q-diffusion: Quantizing diffusion models},
+  author={Li, Xiuyu and Liu, Yijiang and Lian, Long and Yang, Huanrui and Dong, Zhen and Kang, Daniel and Zhang, Shanghang and Keutzer, Kurt},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={17535--17545},
+  year={2023}
+}
+
+@inproceedings{meng2023distillation,
+  title={On distillation of guided diffusion models},
+  author={Meng, Chenlin and Rombach, Robin and Gao, Ruiqi and Kingma, Diederik and Ermon, Stefano and Ho, Jonathan and Salimans, Tim},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={14297--14306},
+  year={2023}
+}
+
+@article{salimans2022progressive,
+  title={Progressive distillation for fast sampling of diffusion models},
+  author={Salimans, Tim and Ho, Jonathan},
+  journal={arXiv preprint arXiv:2202.00512},
+  year={2022}
+}
+
+@article{zhang2023tmp,
+  title={TMP: Temporal Motion Propagation for Online Video Super-Resolution},
+  author={Zhang, Zhengqiang and Li, Ruihuang and Guo, Shi and Cao, Yang and Zhang, Lei},
+  journal={arXiv preprint arXiv:2312.09909},
+  year={2023}
+}
+
+@article{ma2023text,
+  title={Text prior guided scene text image super-resolution},
+  author={Ma, Jianqi and Guo, Shi and Zhang, Lei},
+  journal={IEEE Transactions on Image Processing},
+  volume={32},
+  pages={1341--1353},
+  year={2023},
+  publisher={IEEE}
+}
+
+@article{sun2023perception,
+  title={Perception-Distortion Balanced Super-Resolution: A Multi-Objective Optimization Perspective},
+  author={Sun, Lingchen and Liang, Jie and Liu, Shuaizheng and Yong, Hongwei and Zhang, Lei},
+  journal={arXiv preprint arXiv:2312.15408},
+  year={2023}
+}
+
+@inproceedings{he2017mask,
+  title={Mask r-cnn},
+  author={He, Kaiming and Gkioxari, Georgia and Doll{\'a}r, Piotr and Girshick, Ross},
+  booktitle={Proceedings of the IEEE international conference on computer vision},
+  pages={2961--2969},
+  year={2017}
+}
+
+@inproceedings{li2024univs,
+  title={UniVS: Unified and Universal Video Segmentation with Prompts as Queries},
+  author={Li, Minghan and Li, Shuai and Zhang, Xindong and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  year={2024}
+}
+
+@inproceedings{li2023mdqe,
+  title={MDQE: Mining Discriminative Query Embeddings to Segment Occluded Instances on Challenging Videos},
+  author={Li, Minghan and Li, Shuai and Xiang, Wangmeng and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={10524--10533},
+  year={2023}
+}
+
+@inproceedings{li2023one,
+  title={One-to-few label assignment for end-to-end dense detection},
+  author={Li, Shuai and Li, Minghan and Li, Ruihuang and He, Chenhang and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={7350--7359},
+  year={2023}
+}
+
+@inproceedings{zhang2024dual,
+  title={Dual Memory Networks: A Versatile Adaptation Approach for Vision-Language Models},
+  author={Zhang, Yabin and Zhu, Wenjie and Tang, Hui and Ma, Zhiyuan and Zhou, Kaiyang and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  year={2024}
+}
+
+@article{sun2023improving,
+  title={Improving the Stability of Diffusion Models for Content Consistent Super-Resolution},
+  author={Sun, Lingchen and Wu, Rongyuan and Zhang, Zhengqiang and Yong, Hongwei and Zhang, Lei},
+  journal={arXiv preprint arXiv:2401.00877},
+  year={2023}
+}
+
+@inproceedings{li2023lsdir,
+  title={Lsdir: A large scale dataset for image restoration},
+  author={Li, Yawei and Zhang, Kai and Liang, Jingyun and Cao, Jiezhang and Liu, Ce and Gong, Rui and Zhang, Yulun and Tang, Hao and Liu, Yun and Demandolx, Denis and others},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={1775--1787},
+  year={2023}
+}
+
+@article{dettmers2024qlora,
+  title={Qlora: Efficient finetuning of quantized llms},
+  author={Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
+}
+
+
+
+
+@inproceedings{okawa20191,
+  title={A 1/2inch 48M all PDAF CMOS image sensor using 0.8 $\mu$m Quad Bayer coding 2$\times$ 2OCL with 1.0 lux minimum AF illuminance level},
+  author={Okawa, Tetuya and Ooki, S and Yamajo, H and Kawada, M and Tachi, M and Goi, K and Yamasaki, T and Iwashita, H and Nakamizo, M and Ogasahara, T and others},
+  booktitle={2019 IEEE International Electron Devices Meeting (IEDM)},
+  pages={16--3},
+  year={2019},
+  organization={IEEE}
+}
+% quad jdd
+
+@article{kim2019deep,
+  title={Deep image demosaicing for submicron image sensors},
+  author={Kim, Irina and Song, Seongwook and Chang, Soonkeun and Lim, Sukhwan and Guo, Kai},
+  journal={Journal of Imaging Science and Technology},
+  volume={63},
+  number={6},
+  pages={60410--1},
+  year={2019},
+  publisher={Society for Imaging Science and Technology}
+}
+
+
+@inproceedings{a2021beyond,
+  title={Beyond joint demosaicking and denoising: An image processing pipeline for a pixel-bin image sensor},
+  author={A Sharif, SM and Naqvi, Rizwan Ali and Biswas, Mithun},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={233--242},
+  year={2021}
+}
+
+@article{sharif2021sagan,
+  title={SAGAN: Adversarial spatial-asymmetric attention for noisy NONA-bayer reconstruction},
+  author={Sharif, SMA and Naqvi, Rizwan Ali and Biswas, Mithun},
+  journal={arXiv preprint arXiv:2110.08619},
+  year={2021}
+}
+
+
+@inproceedings{woo2018cbam,
+  title={Cbam: Convolutional block attention module},
+  author={Woo, Sanghyun and Park, Jongchan and Lee, Joon-Young and Kweon, In So},
+  booktitle={Proceedings of the European conference on computer vision (ECCV)},
+  pages={3--19},
+  year={2018}
+}
+
+% unprocess
+
+@inproceedings{brooks2019unprocessing,
+  title={Unprocessing images for learned raw denoising},
+  author={Brooks, Tim and Mildenhall, Ben and Xue, Tianfan and Chen, Jiawen and Sharlet, Dillon and Barron, Jonathan T},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={11036--11045},
+  year={2019}
+}
+
+% old restoration
+@inproceedings{timofte2013anchored,
+  title={Anchored neighborhood regression for fast example-based super-resolution},
+  author={Timofte, Radu and De Smet, Vincent and Van Gool, Luc},
+  booktitle={Proceedings of the IEEE international conference on computer vision},
+  pages={1920--1927},
+  year={2013}
+}
+
+@article{he2010single,
+  title={Single image haze removal using dark channel prior},
+  author={He, Kaiming and Sun, Jian and Tang, Xiaoou},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={33},
+  number={12},
+  pages={2341--2353},
+  year={2010},
+  publisher={IEEE}
+}
+
+@article{dong2015image,
+  title={Image super-resolution using deep convolutional networks},
+  author={Dong, Chao and Loy, Chen Change and He, Kaiming and Tang, Xiaoou},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={38},
+  number={2},
+  pages={295--307},
+  year={2015},
+  publisher={IEEE}
+}
+
+
+
+@inproceedings{huang2017densely,
+  title={Densely connected convolutional networks},
+  author={Huang, Gao and Liu, Zhuang and Van Der Maaten, Laurens and Weinberger, Kilian Q},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={4700--4708},
+  year={2017}
+}
+
+@inproceedings{ronneberger2015u,
+  title={U-net: Convolutional networks for biomedical image segmentation},
+  author={Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  booktitle={Medical Image Computing and Computer-Assisted Intervention--MICCAI 2015: 18th International Conference, Munich, Germany, October 5-9, 2015, Proceedings, Part III 18},
+  pages={234--241},
+  year={2015},
+  organization={Springer}
+}
+
+@inproceedings{dai2019second,
+  title={Second-order attention network for single image super-resolution},
+  author={Dai, Tao and Cai, Jianrui and Zhang, Yongbing and Xia, Shu-Tao and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={11065--11074},
+  year={2019}
+}
+@inproceedings{niu2020single,
+  title={Single image super-resolution via a holistic attention network},
+  author={Niu, Ben and Wen, Weilei and Ren, Wenqi and Zhang, Xiangde and Yang, Lianping and Wang, Shuzhen and Zhang, Kaihao and Cao, Xiaochun and Shen, Haifeng},
+  booktitle={Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XII 16},
+  pages={191--207},
+  year={2020},
+  organization={Springer}
+}
+
+% cnn restoration
+@inproceedings{zhang2017learning,
+  title={Learning deep CNN denoiser prior for image restoration},
+  author={Zhang, Kai and Zuo, Wangmeng and Gu, Shuhang and Zhang, Lei},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={3929--3938},
+  year={2017}
+}
+
+@inproceedings{zamir2020learning,
+  title={Learning enriched features for real image restoration and enhancement},
+  author={Zamir, Syed Waqas and Arora, Aditya and Khan, Salman and Hayat, Munawar and Khan, Fahad Shahbaz and Yang, Ming-Hsuan and Shao, Ling},
+  booktitle={Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XXV 16},
+  pages={492--511},
+  year={2020},
+  organization={Springer}
+}
+
+@inproceedings{chen2022simple,
+  title={Simple baselines for image restoration},
+  author={Chen, Liangyu and Chu, Xiaojie and Zhang, Xiangyu and Sun, Jian},
+  booktitle={Computer Vision--ECCV 2022: 17th European Conference, Tel Aviv, Israel, October 23--27, 2022, Proceedings, Part VII},
+  pages={17--33},
+  year={2022},
+  organization={Springer}
+}
+
+@inproceedings{zamir2021multi,
+  title={Multi-stage progressive image restoration},
+  author={Zamir, Syed Waqas and Arora, Aditya and Khan, Salman and Hayat, Munawar and Khan, Fahad Shahbaz and Yang, Ming-Hsuan and Shao, Ling},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={14821--14831},
+  year={2021}
+}
+
+@article{zamir2022learning,
+  title={Learning enriched features for fast image restoration and enhancement},
+  author={Zamir, Syed Waqas and Arora, Aditya and Khan, Salman and Hayat, Munawar and Khan, Fahad Shahbaz and Yang, Ming-Hsuan and Shao, Ling},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={45},
+  number={2},
+  pages={1934--1948},
+  year={2022},
+  publisher={IEEE}
+}
+
+
+
+
+
+@inproceedings{liu2021swin,
+  title={Swin transformer: Hierarchical vision transformer using shifted windows},
+  author={Liu, Ze and Lin, Yutong and Cao, Yue and Hu, Han and Wei, Yixuan and Zhang, Zheng and Lin, Stephen and Guo, Baining},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={10012--10022},
+  year={2021}
+}
+
+% bayer jdd method
+@article{gharbi2016deep,
+  title={Deep joint demosaicking and denoising},
+  author={Gharbi, Micha{\"e}l and Chaurasia, Gaurav and Paris, Sylvain and Durand, Fr{\'e}do},
+  journal={ACM Transactions on Graphics (ToG)},
+  volume={35},
+  number={6},
+  pages={1--12},
+  year={2016},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{liu2020joint,
+  title={Joint demosaicing and denoising with self guidance},
+  author={Liu, Lin and Jia, Xu and Liu, Jianzhuang and Tian, Qi},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={2240--2249},
+  year={2020}
+}
+
+@article{guo2021joint,
+  title={Joint denoising and demosaicking with green channel prior for real-world burst images},
+  author={Guo, Shi and Liang, Zhetong and Zhang, Lei},
+  journal={IEEE Transactions on Image Processing},
+  volume={30},
+  pages={6930--6942},
+  year={2021},
+  publisher={IEEE}
+}
+
+% dataset
+@inproceedings{martin2001database,
+  title={A database of human segmented natural images and its application to evaluating segmentation algorithms and measuring ecological statistics},
+  author={Martin, David and Fowlkes, Charless and Tal, Doron and Malik, Jitendra},
+  booktitle={Proceedings Eighth IEEE International Conference on Computer Vision. ICCV 2001},
+  volume={2},
+  pages={416--423},
+  year={2001},
+  organization={IEEE}
+}
+
+@article{zhang2011color,
+  title={Color demosaicking by local directional interpolation and nonlocal adaptive thresholding},
+  author={Zhang, Lei and Wu, Xiaolin and Buades, Antoni and Li, Xin},
+  journal={Journal of Electronic imaging},
+  volume={20},
+  number={2},
+  pages={023016--023016},
+  year={2011},
+  publisher={Society of Photo-Optical Instrumentation Engineers}
+}
+
+@inproceedings{huang2015single,
+  title={Single image super-resolution from transformed self-exemplars},
+  author={Huang, Jia-Bin and Singh, Abhishek and Ahuja, Narendra},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={5197--5206},
+  year={2015}
+}
+
+@inproceedings{loui2007kodak,
+  title={Kodak's consumer video benchmark data set: concept definition and annotation},
+  author={Loui, Alexander and Luo, Jiebo and Chang, Shih-Fu and Ellis, Dan and Jiang, Wei and Kennedy, Lyndon and Lee, Keansub and Yanagawa, Akira},
+  booktitle={Proceedings of the international workshop on Workshop on multimedia information retrieval},
+  pages={245--254},
+  year={2007}
+}
+
+@inproceedings{agustsson2017ntire,
+  title={Ntire 2017 challenge on single image super-resolution: Dataset and study},
+  author={Agustsson, Eirikur and Timofte, Radu},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition workshops},
+  pages={126--135},
+  year={2017}
+}
+
+@article{wang2004image,
+  title={Image quality assessment: from error visibility to structural similarity},
+  author={Wang, Zhou and Bovik, Alan C and Sheikh, Hamid R and Simoncelli, Eero P},
+  journal={IEEE transactions on image processing},
+  volume={13},
+  number={4},
+  pages={600--612},
+  year={2004},
+  publisher={IEEE}
+}
+
+
+@inproceedings{shi2016real,
+  title={Real-time single image and video super-resolution using an efficient sub-pixel convolutional neural network},
+  author={Shi, Wenzhe and Caballero, Jose and Husz{\'a}r, Ferenc and Totz, Johannes and Aitken, Andrew P and Bishop, Rob and Rueckert, Daniel and Wang, Zehan},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={1874--1883},
+  year={2016}
+}
+
+
+@article{paszke2019pytorch,
+  title={Pytorch: An imperative style, high-performance deep learning library},
+  author={Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and others},
+  journal={Advances in neural information processing systems},
+  volume={32},
+  year={2019}
+}
+
+@article{kingma2014adam,
+  title={Adam: A method for stochastic optimization},
+  author={Kingma, Diederik P and Ba, Jimmy},
+  journal={arXiv preprint arXiv:1412.6980},
+  year={2014}
+}
+
+@inproceedings{plotz2017benchmarking,
+  title={Benchmarking denoising algorithms with real photographs},
+  author={Plotz, Tobias and Roth, Stefan},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={1586--1595},
+  year={2017}
+}
+
+
+
+@inproceedings{charbonnier1994two,
+  title={Two deterministic half-quadratic regularization algorithms for computed imaging},
+  author={Charbonnier, Pierre and Blanc-Feraud, Laure and Aubert, Gilles and Barlaud, Michel},
+  booktitle={Proceedings of 1st international conference on image processing},
+  volume={2},
+  pages={168--172},
+  year={1994},
+  organization={IEEE}
+}
+
+@article{hendrycks2016gaussian,
+  title={Gaussian error linear units (gelus)},
+  author={Hendrycks, Dan and Gimpel, Kevin},
+  journal={arXiv preprint arXiv:1606.08415},
+  year={2016}
+}
+
+@article{liang2022vrt,
+  title={Vrt: A video restoration transformer},
+  author={Liang, Jingyun and Cao, Jiezhang and Fan, Yuchen and Zhang, Kai and Ranjan, Rakesh and Li, Yawei and Timofte, Radu and Van Gool, Luc},
+  journal={arXiv preprint arXiv:2201.12288},
+  year={2022}
+}
+
+
+@inproceedings{ruan2022learning,
+  title={Learning to deblur using light field generated and real defocus images},
+  author={Ruan, Lingyan and Chen, Bin and Li, Jizhou and Lam, Miuling},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={16304--16313},
+  year={2022}
+}
+
+@inproceedings{chen2023learning,
+  title={Learning a sparse transformer network for effective image deraining},
+  author={Chen, Xiang and Li, Hao and Li, Mingqiang and Pan, Jinshan},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={5896--5905},
+  year={2023}
+}
+
+@inproceedings{huang2021memory,
+  title={Memory oriented transfer learning for semi-supervised image deraining},
+  author={Huang, Huaibo and Yu, Aijing and He, Ran},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={7732--7741},
+  year={2021}
+}
+
+@article{qwenvl,
+  title={Qwen2-vl: Enhancing vision-language model's perception of the world at any resolution},
+  author={Wang, Peng and Bai, Shuai and Tan, Sinan and Wang, Shijie and Fan, Zhihao and Bai, Jinze and Chen, Keqin and Liu, Xuejing and Wang, Jialin and Ge, Wenbin and others},
+  journal={arXiv preprint arXiv:2409.12191},
+  year={2024}
+}
+
+@inproceedings{siglip,
+  title={Sigmoid loss for language image pre-training},
+  author={Zhai, Xiaohua and Mustafa, Basil and Kolesnikov, Alexander and Beyer, Lucas},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={11975--11986},
+  year={2023}
+}
+
+@article{ma2026pixelgen,
+  title={PixelGen: Pixel Diffusion Beats Latent Diffusion with Perceptual Loss},
+  author={Ma, Zehong and Xu, Ruihan and Zhang, Shiliang},
+  journal={arXiv preprint arXiv:2602.02493},
+  year={2026}
+}
+
+@article{drdd,
+  title={Decoupled Residual Denoising Diffusion Models for Unified and Data Efficient Image-to-Image Translation},
+  author={Lin, Ziyue and Hou, Jiahe and Xia, Hongyu and Xie, Xinrui and Wang, Feifei and Zhou, Yuyin and Wang, Wei and Liu, Jiawei and Qu, Liangqiong},
+  journal={arXiv preprint arXiv:2606.01048},
+  year={2026}
+}
+
+@inproceedings{ramsr,
+  title={Restore anything with masks: Leveraging mask image modeling for blind all-in-one image restoration},
+  author={Qin, Chu-Jie and Wu, Rui-Qi and Liu, Zikun and Lin, Xin and Guo, Chun-Le and Park, Hyun Hee and Li, Chongyi},
+  booktitle={European Conference on Computer Vision},
+  pages={364--380},
+  year={2024},
+  organization={Springer}
+}
+
+@inproceedings{mperceiver,
+  title={Multimodal prompt perceiver: Empower adaptiveness generalizability and fidelity for all-in-one image restoration},
+  author={Ai, Yuang and Huang, Huaibo and Zhou, Xiaoqiang and Wang, Jiexiang and He, Ran},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={25432--25444},
+  year={2024}
+}
+
+@inproceedings{guo2020zero,
+  title={Zero-reference deep curve estimation for low-light image enhancement},
+  author={Guo, Chunle and Li, Chongyi and Guo, Jichang and Loy, Chen Change and Hou, Junhui and Kwong, Sam and Cong, Runmin},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={1780--1789},
+  year={2020}
+}
+
+@article{wang2022ultra,
+  title={Ultra-High-Definition Low-Light Image Enhancement: A Benchmark and Transformer-Based Method},
+  author={Wang, Tao and Zhang, Kaihao and Shen, Tianrun and Luo, Wenhan and Stenger, Bjorn and Lu, Tong},
+  journal={arXiv preprint arXiv:2212.11548},
+  year={2022}
+}
+
+@article{bayer1976color,
+  title={Color imaging array},
+  author={Bayer, Bryce},
+  journal={United States Patent, no. 3971065},
+  year={1976}
+}
+
+@inproceedings{malvar2004high,
+  title={High-quality linear interpolation for demosaicing of Bayer-patterned color images},
+  author={Malvar, Henrique S and He, Li-wei and Cutler, Ross},
+  booktitle={2004 IEEE International Conference on Acoustics, Speech, and Signal Processing},
+  volume={3},
+  pages={iii--485},
+  year={2004},
+  organization={IEEE}
+}
+
+@article{RESIDE,
+title={Benchmarking Single-Image Dehazing and Beyond},
+author={Li, Boyi and Ren, Wenqi and Fu, Dengpan and Tao, Dacheng and Feng, Dan and Zeng, Wenjun and Wang, Zhangyang},
+journal={IEEE Transactions on Image Processing},
+volume={28},
+number={1},
+pages={492--505},
+year={2019},
+publisher={IEEE}
+}
+@article{liu2022evaluating,
+  title={Evaluating the Generalization Ability of Super-Resolution Networks},
+  author={Liu, Yihao and Zhao, Hengyuan and Gu, Jinjin and Qiao, Yu and Dong, Chao},
+  journal={arXiv preprint arXiv:2205.07019},
+  year={2022}
+}
+@inproceedings{HINet,
+  title={HINet: Half instance normalization network for image restoration},
+  author={Chen, Liangyu and Lu, Xin and Zhang, Jie and Chu, Xiaojie and Chen, Chengpeng},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={182--192},
+  year={2021}
+}
+@inproceedings{Rain100,
+  title={Deep joint rain detection and removal from a single image},
+  author={Yang, Wenhan and Tan, Robby T and Feng, Jiashi and Liu, Jiaying and Guo, Zongming and Yan, Shuicheng},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={1357--1366},
+  year={2017}
+}
+
+@inproceedings{Test1200,
+  title={Density-aware single image de-raining using a multi-stream dense network},
+  author={Zhang, He and Patel, Vishal M},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={695--704},
+  year={2018}
+}
+
+@inproceedings{Test2800,
+  title={Removing rain from single images via a deep detail network},
+  author={Fu, Xueyang and Huang, Jiabin and Zeng, Delu and Huang, Yue and Ding, Xinghao and Paisley, John},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={3855--3863},
+  year={2017}
+}
+@misc{Diffjpeg,
+  author = {Michael R Lomnitz},
+  title = {Diffjpeg.},
+  howpublished = {\url{https://github.com/mlomnitz/DiffJPEG}},
+  year = {2021}
+}
+
+@inproceedings{GridDehazeNet,
+  title={Griddehazenet: Attention-based multi-scale network for image dehazing},
+  author={Liu, Xiaohong and Ma, Yongrui and Shi, Zhihao and Chen, Jun},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={7314--7323},
+  year={2019}
+}
+
+@inproceedings{PFDN,
+  title={Physics-based feature dehazing networks},
+  author={Dong, Jiangxin and Pan, Jinshan},
+  booktitle={European Conference on Computer Vision},
+  pages={188--204},
+  year={2020},
+  organization={Springer}
+}
+@article{DehazeFormer,
+  title={Vision Transformers for Single Image Dehazing},
+  author={Song, Yuda and He, Zhuqing and Qian, Hui and Du, Xin},
+  journal={arXiv preprint arXiv:2204.03883},
+  year={2022}
+}
+
+@article{Transformer,
+  title={Attention is all you need},
+  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+
+@inproceedings{BERT,
+  title={BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding},
+  author={Kenton, Jacob Devlin Ming-Wei Chang and Toutanova, Lee Kristina},
+  booktitle={Proceedings of NAACL-HLT},
+  pages={4171--4186},
+  year={2019}
+}
+
+@article{GPT,
+  title={Improving language understanding by generative pre-training},
+  author={Radford, Alec and Narasimhan, Karthik and Salimans, Tim and Sutskever, Ilya and others},
+  year={2018},
+  publisher={OpenAI}
+}
+
+@article{GPT2,
+  title={Language models are unsupervised multitask learners},
+  author={Radford, Alec and Wu, Jeffrey and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya and others},
+  journal={OpenAI blog},
+  volume={1},
+  number={8},
+  pages={9},
+  year={2019}
+}
+
+@article{GPT3,
+  title={Language models are few-shot learners},
+  author={Brown, Tom and Mann, Benjamin and Ryder, Nick and Subbiah, Melanie and Kaplan, Jared D and Dhariwal, Prafulla and Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and Askell, Amanda and others},
+  journal={Advances in neural information processing systems},
+  volume={33},
+  pages={1877--1901},
+  year={2020}
+}
+
+@inproceedings{MOCO,
+  title={Momentum contrast for unsupervised visual representation learning},
+  author={He, Kaiming and Fan, Haoqi and Wu, Yuxin and Xie, Saining and Girshick, Ross},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={9729--9738},
+  year={2020}
+}
+@inproceedings{MAE,
+  title={Masked autoencoders are scalable vision learners},
+  author={He, Kaiming and Chen, Xinlei and Xie, Saining and Li, Yanghao and Doll{\'a}r, Piotr and Girshick, Ross},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={16000--16009},
+  year={2022}
+}
+
+@inproceedings{SimMIM,
+  title={Simmim: A simple framework for masked image modeling},
+  author={Xie, Zhenda and Zhang, Zheng and Cao, Yue and Lin, Yutong and Bao, Jianmin and Yao, Zhuliang and Dai, Qi and Hu, Han},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={9653--9663},
+  year={2022}
+}
+@article{ViT,
+  title={An image is worth 16x16 words: Transformers for image recognition at scale},
+  author={Dosovitskiy, Alexey and Beyer, Lucas and Kolesnikov, Alexander and Weissenborn, Dirk and Zhai, Xiaohua and Unterthiner, Thomas and Dehghani, Mostafa and Minderer, Matthias and Heigold, Georg and Gelly, Sylvain and others},
+  journal={arXiv preprint arXiv:2010.11929},
+  year={2020}
+}
+
+@inproceedings{Swin,
+  title={Swin transformer: Hierarchical vision transformer using shifted windows},
+  author={Liu, Ze and Lin, Yutong and Cao, Yue and Hu, Han and Wei, Yixuan and Zhang, Zheng and Lin, Stephen and Guo, Baining},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={10012--10022},
+  year={2021}
+}
+@inproceedings{NLSA,
+  title={Image super-resolution with non-local sparse attention},
+  author={Mei, Yiqun and Fan, Yuchen and Zhou, Yuqian},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={3517--3526},
+  year={2021}
+}
+
+@article{FFDNet,
+  title={FFDNet: Toward a fast and flexible solution for CNN-based image denoising},
+  author={Zhang, Kai and Zuo, Wangmeng and Zhang, Lei},
+  journal={IEEE Transactions on Image Processing},
+  volume={27},
+  number={9},
+  pages={4608--4622},
+  year={2018},
+  publisher={IEEE}
+}
+@article{ng2001spectral,
+  title={On spectral clustering: Analysis and an algorithm},
+  author={Ng, Andrew and Jordan, Michael and Weiss, Yair},
+  journal={Advances in neural information processing systems},
+  volume={14},
+  year={2001}
+}
+@article{von2007tutorial,
+  title={A tutorial on spectral clustering},
+  author={Von Luxburg, Ulrike},
+  journal={Statistics and computing},
+  volume={17},
+  number={4},
+  pages={395--416},
+  year={2007},
+  publisher={Springer}
+}
+@inproceedings{he2019modulating,
+  title={Modulating image restoration with continual levels via adaptive feature modification layers},
+  author={He, Jingwen and Dong, Chao and Qiao, Yu},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={11056--11064},
+  year={2019}
+}
+@article{he2021interactive,
+  title={Interactive Multi-Dimension Modulation for Image Restoration},
+  author={He, Jingwen and Dong, Chao and Yihao, Liu and Qiao, Yu},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2021},
+  publisher={IEEE}
+}
+
+@ARTICLE{R-L1,
+       author = {{Richardson}, William Hadley},
+        title = "{Bayesian-Based Iterative Method of Image Restoration}",
+      journal = {Journal of the Optical Society of America (1917-1983)},
+         year = 1972,
+        month = jan,
+       volume = {62},
+       number = {1},
+        pages = {55},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/1972JOSA...62...55R},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{R-L2,
+       author = {{Lucy}, L.~B.},
+        title = "{An iterative technique for the rectification of observed distributions}",
+      journal = {\aj},
+         year = 1974,
+        month = jun,
+       volume = {79},
+        pages = {745},
+          doi = {10.1086/111605},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/1974AJ.....79..745L},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@InProceedings{ViT-G,
+    author    = {Zhai, Xiaohua and Kolesnikov, Alexander and Houlsby, Neil and Beyer, Lucas},
+    title     = {Scaling Vision Transformers},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2022},
+    pages     = {12104-12113}
+}
+
+@ARTICLE{SEER,
+       author = {{Goyal}, Priya and {Duval}, Quentin and {Seessel}, Isaac and {Caron}, Mathilde and {Misra}, Ishan and {Sagun}, Levent and {Joulin}, Armand and {Bojanowski}, Piotr},
+        title = "{Vision Models Are More Robust And Fair When Pretrained On Uncurated Images Without Supervision}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Artificial Intelligence, Computer Science - Computers and Society},
+         year = 2022,
+        month = feb,
+          eid = {arXiv:2202.08360},
+        pages = {arXiv:2202.08360},
+archivePrefix = {arXiv},
+       eprint = {2202.08360},
+ primaryClass = {cs.CV},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2022arXiv220208360G},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{CLIP,
+       author = {{Radford}, Alec and {Kim}, Jong Wook and {Hallacy}, Chris and {Ramesh}, Aditya and {Goh}, Gabriel and {Agarwal}, Sandhini and {Sastry}, Girish and {Askell}, Amanda and {Mishkin}, Pamela and {Clark}, Jack and {Krueger}, Gretchen and {Sutskever}, Ilya},
+        title = "{Learning Transferable Visual Models From Natural Language Supervision}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+         year = 2021,
+        month = feb,
+          eid = {arXiv:2103.00020},
+        pages = {arXiv:2103.00020},
+archivePrefix = {arXiv},
+       eprint = {2103.00020},
+ primaryClass = {cs.CV},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210300020R},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+@ARTICLE{7346484,
+  author={Liu, Fayao and Shen, Chunhua and Lin, Guosheng and Reid, Ian},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Learning Depth from Single Monocular Images Using Deep Convolutional Neural Fields}, 
+  year={2016},
+  volume={38},
+  number={10},
+  pages={2024-2039},
+  doi={10.1109/TPAMI.2015.2505283}}
+
+@inproceedings{rain1200,		
+  title={Density-aware Single Image De-raining using a Multi-stream Dense Network},
+  author={Zhang, He and Patel, Vishal M},
+  booktitle={CVPR},
+  year={2018}
+} 
+
+@inproceedings{AirNet,
+author = {Li, Boyun and Liu, Xiao and Hu, Peng and Wu, Zhongqin and Lv, Jiancheng and Peng, Xi},
+title = {{All-In-One Image Restoration for Unknown Corruption}},
+booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
+year = {2022},
+address = {New Orleans, LA},
+month = jun
+}
+
+@inproceedings{IDR,
+  title={Ingredient-Oriented Multi-Degradation Learning for Image Restoration},
+  author={Zhang, Jinghao and Huang, Jie and Yao, Mingde and Yang, Zizheng and Yu, Hu and Zhou, Man and Zhao, Feng},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={5825--5835},
+  year={2023}
+}
+
+@inproceedings{liu2022tape,
+  title={Tape: Task-agnostic prior embedding for image restoration},
+  author={Liu, Lin and Xie, Lingxi and Zhang, Xiaopeng and Yuan, Shanxin and Chen, Xiangyu and Zhou, Wengang and Li, Houqiang and Tian, Qi},
+  booktitle={European Conference on Computer Vision},
+  pages={447--464},
+  year={2022},
+  organization={Springer}
+}
+@article{zhang2025uniser,
+  title={UniSER: A Foundation Model for Unified Soft Effects Removal},
+  author={Zhang, Jingdong and Zhang, Lingzhi and Liu, Qing and Chiu, Mang Tik and Barnes, Connelly and Wang, Yizhou and You, Haoran and Liu, Xiaoyang and Zhou, Yuqian and Lin, Zhe and others},
+  journal={arXiv preprint arXiv:2511.14183},
+  year={2025}
+}
+@inproceedings{jin2024raindropclarity,
+  title={Raindrop clarity: A dual-focused dataset for day and night raindrop removal},
+  author={Jin, Yeying and Li, Xin and Wang, Jiadong and Zhang, Yan and Zhang, Malu},
+  booktitle={European Conference on Computer Vision},
+  pages={1--17},
+  year={2024},
+  organization={Springer}
+}
+@inproceedings{yao2020blendedmvs,
+  title={Blendedmvs: A large-scale dataset for generalized multi-view stereo networks},
+  author={Yao, Yao and Luo, Zixin and Li, Shiwei and Zhang, Jingyang and Ren, Yufan and Zhou, Lei and Fang, Tian and Quan, Long},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={1790--1799},
+  year={2020}
+}
+@inproceedings{li2018megadepth,
+  title={Megadepth: Learning single-view depth prediction from internet photos},
+  author={Li, Zhengqi and Snavely, Noah},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={2041--2050},
+  year={2018}
+}
+@article{urbansyn,
+  title={All for one, and one for all: Urbansyn dataset, the third musketeer of synthetic driving scenes},
+  author={G{\'o}mez, Jose L and Silva, Manuel and Seoane, Antonio and Borr{\'a}s, Agn{\`e}s and Noriega, Mario and Ros, Germ{\'a}n and Iglesias-Guitian, Jose A and L{\'o}pez, Antonio M},
+  journal={Neurocomputing},
+  volume={637},
+  pages={130038},
+  year={2025},
+  publisher={Elsevier}
+}
+@article{lin2024unirestorer,
+  title={UniRestorer: Universal image restoration via adaptively estimating image degradation at proper granularity},
+  author={Lin, Jingbo and Zhang, Zhilu and Li, Wenbo and Pei, Renjing and Xu, Hang and Zhang, Hongzhi and Zuo, Wangmeng},
+  journal={arXiv preprint arXiv:2412.20157},
+  year={2024}
+}
+
+@misc{unsplash,
+  author       = {Unsplash},
+  title        = {Website},
+  howpublished = {\url{https://unsplash.com}}
+}
+
+@misc{pexels,
+  author       = {Pexels},
+  title        = {Website},
+  howpublished = {\url{https://www.pexels.com}}
+}
+
+@misc{pixabay,
+  author       = {Pixabay},
+  title        = {Website},
+  howpublished = {\url{https://pixabay.com}}
+}
+
+@misc{flickr,
+  author       = {Flickr},
+  title        = {Website},
+  howpublished = {\url{https://www.flickr.com}}
+}
+
+@inproceedings{DegAE,
+  title={DegAE: A New Pretraining Paradigm for Low-Level Vision},
+  author={Liu, Yihao and He, Jingwen and Gu, Jinjin and Kong, Xiangtao and Qiao, Yu and Dong, Chao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={23292--23303},
+  year={2023}
+}
+
+@article{gu2023networks,
+  title={Networks are Slacking Off: Understanding Generalization Problem in Image Deraining},
+  author={Gu, Jinjin and Ma, Xianzheng and Kong, Xiangtao and Qiao, Yu and Dong, Chao},
+  journal={arXiv preprint arXiv:2305.15134},
+  year={2023}
+}
+@inproceedings{Adain,
+  title={Arbitrary style transfer in real-time with adaptive instance normalization},
+  author={Huang, Xun and Belongie, Serge},
+  booktitle={Proceedings of the IEEE international conference on computer vision},
+  pages={1501--1510},
+  year={2017}
+}
+@article{PromptIR,
+title={PromptIR: Prompting for All-in-One Blind Image Restoration},
+author={Potlapalli, Vaishnav and Zamir, Syed Waqas and Khan, Salman and Khan, Fahad Shahbaz},
+journal={Advances in Neural Information Processing Systems (NeurIPS)},
+year={2023}
+}
+
+@article{ProRes,
+  title={ProRes: Exploring Degradation-aware Visual Prompt for Universal Image Restoration},
+  author={Ma, Jiaqi and Cheng, Tianheng and Wang, Guoli and Zhang, Qian and Wang, Xinggang and Zhang, Lefei},
+  journal={arXiv preprint arXiv:2306.13653},
+  year={2023}
+}
+
+@article{PromptGIP,
+  title={Unifying Image Processing as Visual Prompting Question Answering},
+  author={Liu, Yihao and Chen, Xiangyu and Ma, Xianzheng and Wang, Xintao and Zhou, Jiantao and Qiao, Yu and Dong, Chao},
+  journal={arXiv preprint arXiv:2310.10513},
+  year={2023}
+}
+@inproceedings{zhang2022closer,
+  title={A closer look at blind super-resolution: Degradation models, baselines, and performance upper bounds},
+  author={Zhang, Wenlong and Shi, Guangyuan and Liu, Yihao and Dong, Chao and Wu, Xiao-Ming},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={527--536},
+  year={2022}
+}
+@inproceedings{liu2022tape_pretrain,
+  title={Tape: Task-agnostic prior embedding for image restoration},
+  author={Liu, Lin and Xie, Lingxi and Zhang, Xiaopeng and Yuan, Shanxin and Chen, Xiangyu and Zhou, Wengang and Li, Houqiang and Tian, Qi},
+  booktitle={European Conference on Computer Vision},
+  pages={447--464},
+  year={2022},
+  organization={Springer}
+}
+
+@inproceedings{uhdblurhaze,
+  title={Correlation matching transformation transformers for uhd image restoration},
+  author={Wang, Cong and Pan, Jinshan and Wang, Wei and Fu, Gang and Liang, Siyuan and Wang, Mengzhu and Wu, Xiao-Ming and Liu, Jun},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={38},
+  number={6},
+  pages={5336--5344},
+  year={2024}
+}
+
+@inproceedings{gopro,
+  title={Rethinking coarse-to-fine approach in single image deblurring},
+  author={Cho, Sung-Jin and Ji, Seo-Won and Hong, Jun-Pyo and Jung, Seung-Won and Ko, Sung-Jea},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={4641--4650},
+  year={2021}
+}
+@article{RetinexNet2018deep,
+  title={Deep retinex decomposition for low-light enhancement},
+  author={Wei, Chen and Wang, Wenjing and Yang, Wenhan and Liu, Jiaying},
+  journal={arXiv preprint arXiv:1808.04560},
+  year={2018}
+}
+@article{chen2023hat,
+  title={HAT: Hybrid Attention Transformer for Image Restoration},
+  author={Chen, Xiangyu and Wang, Xintao and Zhang, Wenlong and Kong, Xiangtao and Qiao, Yu and Zhou, Jiantao and Dong, Chao},
+  journal={arXiv preprint arXiv:2309.05239},
+  year={2023}
+}
+@article{de2021continual,
+  title={A continual learning survey: Defying forgetting in classification tasks},
+  author={De Lange, Matthias and Aljundi, Rahaf and Masana, Marc and Parisot, Sarah and Jia, Xu and Leonardis, Ale{\v{s}} and Slabaugh, Gregory and Tuytelaars, Tinne},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={44},
+  number={7},
+  pages={3366--3385},
+  year={2021},
+  publisher={IEEE}
+}
+@book{chen2018lifelong,
+  title={Lifelong machine learning},
+  author={Chen, Zhiyuan and Liu, Bing},
+  volume={1},
+  year={2018},
+  publisher={Springer}
+}
+@article{shin2017continual,
+  title={Continual learning with deep generative replay},
+  author={Shin, Hanul and Lee, Jung Kwon and Kim, Jaehong and Kim, Jiwon},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+@inproceedings{zhou2021image,
+  title={Image de-raining via continual learning},
+  author={Zhou, Man and Xiao, Jie and Chang, Yifan and Fu, Xueyang and Liu, Aiping and Pan, Jinshan and Zha, Zheng-Jun},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={4907--4916},
+  year={2021}
+}
+@inproceedings{liu2020lira,
+  title={Lira: Lifelong image restoration from unknown blended distortions},
+  author={Liu, Jianzhao and Lin, Jianxin and Li, Xin and Zhou, Wei and Liu, Sen and Chen, Zhibo},
+  booktitle={European Conference on Computer Vision},
+  pages={616--632},
+  year={2020},
+  organization={Springer}
+}
+@inproceedings{wang2023images,
+  title={Images speak in images: A generalist painter for in-context visual learning},
+  author={Wang, Xinlong and Wang, Wen and Cao, Yue and Shen, Chunhua and Huang, Tiejun},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={6830--6839},
+  year={2023}
+}
+@article{bar2022visual,
+  title={Visual prompting via image inpainting},
+  author={Bar, Amir and Gandelsman, Yossi and Darrell, Trevor and Globerson, Amir and Efros, Alexei},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={25005--25017},
+  year={2022}
+}
+@inproceedings{li2020all,
+  title={All in one bad weather removal using architectural search},
+  author={Li, Ruoteng and Tan, Robby T and Cheong, Loong-Fah},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={3175--3185},
+  year={2020}
+}
+@inproceedings{lugmayr2020ntire,
+  title={Ntire 2020 challenge on real-world image super-resolution: Methods and results},
+  author={Lugmayr, Andreas and Danelljan, Martin and Timofte, Radu},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+  pages={494--495},
+  year={2020}
+}
+@inproceedings{OLED,
+  title={Image restoration for under-display camera},
+  author={Zhou, Yuqian and Ren, David and Emerton, Neil and Lim, Sehoon and Large, Timothy},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={9179--9188},
+  year={2021}
+}
+@InProceedings{Timofte_2018_CVPR_Workshops,
+author = {Timofte, Radu and Gu, Shuhang and Wu, Jiqing and Van Gool, Luc and Zhang, Lei and
+Yang, Ming-Hsuan and Haris, Muhammad and others},
+title = {NTIRE 2018 Challenge on Single Image Super-Resolution: Methods and Results},
+booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+month = {June},
+year = {2018}
+}
+@article{liu2023evaluating,
+  title={Evaluating the generalization ability of super-resolution networks},
+  author={Liu, Yihao and Zhao, Hengyuan and Gu, Jinjin and Qiao, Yu and Dong, Chao},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2023},
+  publisher={IEEE}
+}
+@inproceedings{levinson2011towards,
+  title={Towards fully autonomous driving: Systems and algorithms},
+  author={Levinson, Jesse and Askeland, Jake and Becker, Jan and Dolson, Jennifer and Held, David and Kammel, Soeren and Kolter, J Zico and Langer, Dirk and Pink, Oliver and Pratt, Vaughan and others},
+  booktitle={2011 IEEE intelligent vehicles symposium (IV)},
+  pages={163--168},
+  year={2011},
+  organization={IEEE}
+}
+@article{collins2000system,
+  title={A system for video surveillance and monitoring},
+  author={Collins, Robert T and Lipton, Alan J and Kanade, Takeo and Fujiyoshi, Hironobu and Duggins, David and Tsin, Yanghai and Tolliver, David and Enomoto, Nobuyoshi and Hasegawa, Osamu and Burt, Peter and others},
+  journal={VSAM final report},
+  volume={2000},
+  number={1-68},
+  pages={1},
+  year={2000},
+  publisher={Citeseer}
+}
+@inproceedings{
+zhang2023realworld,
+title={Real-World Image Super-Resolution as Multi-Task Learning},
+author={Wenlong Zhang and Xiaohui Li and Guangyuan SHI and Xiangyu Chen and Yu Qiao and Xiaoyun Zhang and Xiao-Ming Wu and Chao Dong},
+booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
+year={2023},
+url={https://openreview.net/forum?id=8SCz56sUGP}
+}
+
+@article{adamw,
+  title={Decoupled weight decay regularization},
+  author={Loshchilov, Ilya and Hutter, Frank},
+  journal={arXiv preprint arXiv:1711.05101},
+  year={2017}
+}
+@article{GAN,
+  title={Generative adversarial nets},
+  author={Goodfellow, Ian and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+  journal={Advances in neural information processing systems},
+  volume={27},
+  year={2014}
+}
+@article{cGAN,
+  title={Conditional generative adversarial nets},
+  author={Mirza, Mehdi and Osindero, Simon},
+  journal={arXiv preprint arXiv:1411.1784},
+  year={2014}
+}
+@inproceedings{CSRNet,
+  title={Conditional sequential modulation for efficient global image retouching},
+  author={He, Jingwen and Liu, Yihao and Qiao, Yu and Dong, Chao},
+  booktitle={Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XIII 16},
+  pages={679--695},
+  year={2020},
+  organization={Springer}
+}
+@article{liu2022very,
+  title={Very lightweight photo retouching network with conditional sequential modulation},
+  author={Liu, Yihao and He, Jingwen and Chen, Xiangyu and Zhang, Zhengwen and Zhao, Hengyuan and Dong, Chao and Qiao, Yu},
+  journal={IEEE Transactions on Multimedia},
+  year={2022},
+  publisher={IEEE}
+}
+@inproceedings{SRResNet,
+  title={Photo-realistic single image super-resolution using a generative adversarial network},
+  author={Ledig, Christian and Theis, Lucas and Husz{\'a}r, Ferenc and Caballero, Jose and Cunningham, Andrew and Acosta, Alejandro and Aitken, Andrew and Tejani, Alykhan and Totz, Johannes and Wang, Zehan and others},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={4681--4690},
+  year={2017}
+  }
+@inproceedings{wang2022uformer,
+  title={Uformer: A general u-shaped transformer for image restoration},
+  author={Wang, Zhendong and Cun, Xiaodong and Bao, Jianmin and Zhou, Wengang and Liu, Jianzhuang and Li, Houqiang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={17683--17693},
+  year={2022}
+}
+@inproceedings{timofte2017ntire,
+  title={Ntire 2017 challenge on single image super-resolution: Methods and results},
+  author={Timofte, Radu and Agustsson, Eirikur and Van Gool, Luc and Yang, Ming-Hsuan and Zhang, Lei},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition workshops},
+  pages={114--125},
+  year={2017}
+}
+
+@article{DALLE3,
+  title={Improving image generation with better captions},
+  author={Betker, James and Goh, Gabriel and Jing, Li and Brooks, Tim and Wang, Jianfeng and Li, Linjie and Ouyang, Long and Zhuang, Juntang and Lee, Joyce and Guo, Yufei and others},
+  journal={Computer Science. https://cdn. openai. com/papers/dall-e-3. pdf},
+  volume={2},
+  number={3},
+  pages={8},
+  year={2023}
+}
+
+@misc{FLUX,
+  author       = {Black Forest Labs},
+  title        = {FLUX},
+  howpublished = {\url{https://blackforestlabs.ai/announcing-black-forest-labs/}},
+  year         = {2024},
+}
+
+@article{VAR,
+  title={Visual autoregressive modeling: Scalable image generation via next-scale prediction},
+  author={Tian, Keyu and Jiang, Yi and Yuan, Zehuan and Peng, Bingyue and Wang, Liwei},
+  journal={arXiv preprint arXiv:2404.02905},
+  year={2024}
+}
+
+@article{BSQ,
+  title={Image and Video Tokenization with Binary Spherical Quantization},
+  author={Zhao, Yue and Xiong, Yuanjun and Kr{\"a}henb{\"u}hl, Philipp},
+  journal={arXiv preprint arXiv:2406.07548},
+  year={2024}
+}
+
+@article{LFQ,
+  title={Language Model Beats Diffusion--Tokenizer is Key to Visual Generation},
+  author={Yu, Lijun and Lezama, Jos{\'e} and Gundavarapu, Nitesh B and Versari, Luca and Sohn, Kihyuk and Minnen, David and Cheng, Yong and Birodkar, Vighnesh and Gupta, Agrim and Gu, Xiuye and others},
+  journal={arXiv preprint arXiv:2310.05737},
+  year={2023}
+}
+
+@article{ghosh2024geneval,
+  title={Geneval: An object-focused framework for evaluating text-to-image alignment},
+  author={Ghosh, Dhruba and Hajishirzi, Hannaneh and Schmidt, Ludwig},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
+}
+
+@article{hu2024equip,
+  title={Equip diffusion models with llm for enhanced semantic alignment},
+  author={Hu, Xiwei and Wang, Rui and Fang, Yixiao and Fu, Bin and Cheng, Pei and Ella, Gang Yu},
+  journal={arXiv preprint arXiv:2403.05135},
+  year={2024}
+}
+
+@article{yang2024gyro,
+  title={Gyro-based neural single image deblurring},
+  author={Yang, Heemin and Rim, Jaesung and Lee, Seungyong and Baek, Seung-Hwan and Cho, Sunghyun},
+  journal={arXiv preprint arXiv:2404.00916},
+  year={2024}
+}
+
+@inproceedings{lin2025jarvisir,
+  title={Jarvisir: Elevating autonomous driving perception with intelligent image restoration},
+  author={Lin, Yunlong and Lin, Zixu and Chen, Haoyu and Pan, Panwang and Li, Chenxin and Chen, Sixiang and Wen, Kairun and Jin, Yeying and Li, Wenbo and Ding, Xinghao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={22369--22380},
+  year={2025}
+}
+
+@article{vosr,
+  title={VOSR: A Vision-Only Generative Model for Image Super-Resolution},
+  author={Wu, Rongyuan and Sun, Lingchen and Zhang, Zhengqiang and Kong, Xiangtao and Zhao, Jixin and Wang, Shihao and Zhang, Lei},
+  journal={arXiv preprint arXiv:2604.03225},
+  year={2026}
+}
+
+# autoregressive model
+@inproceedings{dalle1,
+  title={Zero-shot text-to-image generation},
+  author={Ramesh, Aditya and Pavlov, Mikhail and Goh, Gabriel and Gray, Scott and Voss, Chelsea and Radford, Alec and Chen, Mark and Sutskever, Ilya},
+  booktitle={International Conference on Machine Learning},
+  pages={8821--8831},
+  year={2021},
+  organization={PMLR}
+}
+@article{parti,
+  title={Scaling autoregressive models for content-rich text-to-image generation},
+  author={Yu, Jiahui and Xu, Yuanzhong and Koh, Jing Yu and Luong, Thang and Baid, Gunjan and Wang, Zirui and Vasudevan, Vijay and Ku, Alexander and Yang, Yinfei and Ayan, Burcu Karagol and others},
+  journal={arXiv preprint arXiv:2206.10789},
+  volume={2},
+  number={3},
+  pages={5},
+  year={2022},
+  publisher={Jun}
+}
+@article{vit-vqgan,
+  title={Vector-quantized image modeling with improved vqgan},
+  author={Yu, Jiahui and Li, Xin and Koh, Jing Yu and Zhang, Han and Pang, Ruoming and Qin, James and Ku, Alexander and Xu, Yuanzhong and Baldridge, Jason and Wu, Yonghui},
+  journal={arXiv preprint arXiv:2110.04627},
+  year={2021}
+}
+@inproceedings{rq,
+  title={Autoregressive image generation using residual quantization},
+  author={Lee, Doyup and Kim, Chiheon and Kim, Saehoon and Cho, Minsu and Han, Wook-Shin},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={11523--11532},
+  year={2022}
+}
+
+@article{vqvae,
+  title={Neural discrete representation learning},
+  author={Van Den Oord, Aaron and Vinyals, Oriol and others},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+
+
+# language models
+@article{bert,
+  title={Bert: Pre-training of deep bidirectional transformers for language understanding},
+  author={Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  journal={arXiv preprint arXiv:1810.04805},
+  year={2018}
+}
+@article{t5,
+  title={Exploring the limits of transfer learning with a unified text-to-text transformer},
+  author={Raffel, Colin and Shazeer, Noam and Roberts, Adam and Lee, Katherine and Narang, Sharan and Matena, Michael and Zhou, Yanqi and Li, Wei and Liu, Peter J},
+  journal={The Journal of Machine Learning Research},
+  volume={21},
+  number={1},
+  pages={5485--5551},
+  year={2020},
+  publisher={JMLRORG}
+}
+
+@article{gpt3.5,
+  title={Training language models to follow instructions with human feedback},
+  author={Ouyang, Long and Wu, Jeffrey and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={27730--27744},
+  year={2022}
+}
+@article{gpt4,
+  title={Gpt-4 technical report},
+  author={Achiam, Josh and Adler, Steven and Agarwal, Sandhini and Ahmad, Lama and Akkaya, Ilge and Aleman, Florencia Leoni and Almeida, Diogo and Altenschmidt, Janko and Altman, Sam and Anadkat, Shyamal and others},
+  journal={arXiv preprint arXiv:2303.08774},
+  year={2023}
+}
+@inproceedings{igpt,
+  title={Generative pretraining from pixels},
+  author={Chen, Mark and Radford, Alec and Child, Rewon and Wu, Jeffrey and Jun, Heewoo and Luan, David and Sutskever, Ilya},
+  booktitle={International conference on machine learning},
+  pages={1691--1703},
+  year={2020},
+  organization={PMLR}
+}
+
+
+@article{llama1,
+  title={Llama: Open and efficient foundation language models},
+  author={Touvron, Hugo and Lavril, Thibaut and Izacard, Gautier and Martinet, Xavier and Lachaux, Marie-Anne and Lacroix, Timoth{\'e}e and Rozi{\`e}re, Baptiste and Goyal, Naman and Hambro, Eric and Azhar, Faisal and others},
+  journal={arXiv preprint arXiv:2302.13971},
+  year={2023}
+}
+@article{llama2,
+  title={Llama 2: Open foundation and fine-tuned chat models},
+  author={Touvron, Hugo and Martin, Louis and Stone, Kevin and Albert, Peter and Almahairi, Amjad and Babaei, Yasmine and Bashlykov, Nikolay and Batra, Soumya and Bhargava, Prajjwal and Bhosale, Shruti and others},
+  journal={arXiv preprint arXiv:2307.09288},
+  year={2023}
+}
+@article{chinchilla,
+  title={Training compute-optimal large language models},
+  author={Hoffmann, Jordan and Borgeaud, Sebastian and Mensch, Arthur and Buchatskaya, Elena and Cai, Trevor and Rutherford, Eliza and Casas, Diego de Las and Hendricks, Lisa Anne and Welbl, Johannes and Clark, Aidan and others},
+  journal={arXiv preprint arXiv:2203.15556},
+  year={2022}
+}
+@article{palm,
+  title={Palm: Scaling language modeling with pathways},
+  author={Chowdhery, Aakanksha and Narang, Sharan and Devlin, Jacob and Bosma, Maarten and Mishra, Gaurav and Roberts, Adam and Barham, Paul and Chung, Hyung Won and Sutton, Charles and Gehrmann, Sebastian and others},
+  journal={Journal of Machine Learning Research},
+  volume={24},
+  number={240},
+  pages={1--113},
+  year={2023}
+}
+@inproceedings{wu2024seesr,
+  title={Seesr: Towards semantics-aware real-world image super-resolution},
+  author={Wu, Rongyuan and Yang, Tao and Sun, Lingchen and Zhang, Zhengqiang and Li, Shuai and Zhang, Lei},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={25456--25467},
+  year={2024}
+}
+
+@article{wu2024one,
+  title={One-step effective diffusion network for real-world image super-resolution},
+  author={Wu, Rongyuan and Sun, Lingchen and Ma, Zhiyuan and Zhang, Lei},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={92529--92553},
+  year={2024}
+}
+@article{palm2,
+  title={Palm 2 technical report},
+  author={Anil, Rohan and Dai, Andrew M and Firat, Orhan and Johnson, Melvin and Lepikhin, Dmitry and Passos, Alexandre and Shakeri, Siamak and Taropa, Emanuel and Bailey, Paige and Chen, Zhifeng and others},
+  journal={arXiv preprint arXiv:2305.10403},
+  year={2023}
+}
+@article{bloom,
+  title={Bloom: A 176b-parameter open-access multilingual language model},
+  author={Workshop, BigScience and Scao, Teven Le and Fan, Angela and Akiki, Christopher and Pavlick, Ellie and Ili{\'c}, Suzana and Hesslow, Daniel and Castagn{\'e}, Roman and Luccioni, Alexandra Sasha and Yvon, Fran{\c{c}}ois and others},
+  journal={arXiv preprint arXiv:2211.05100},
+  year={2022}
+}
+@article{opt,
+  title={Opt: Open pre-trained transformer language models},
+  author={Zhang, Susan and Roller, Stephen and Goyal, Naman and Artetxe, Mikel and Chen, Moya and Chen, Shuohui and Dewan, Christopher and Diab, Mona and Li, Xian and Lin, Xi Victoria and others},
+  journal={arXiv preprint arXiv:2205.01068},
+  year={2022}
+}
+
+@article{scalinglaw,
+  title={Scaling laws for neural language models},
+  author={Kaplan, Jared and McCandlish, Sam and Henighan, Tom and Brown, Tom B and Chess, Benjamin and Child, Rewon and Gray, Scott and Radford, Alec and Wu, Jeffrey and Amodei, Dario},
+  journal={arXiv preprint arXiv:2001.08361},
+  year={2020}
+}
+@article{scalingar,
+  title={Scaling laws for autoregressive generative modeling},
+  author={Henighan, Tom and Kaplan, Jared and Katz, Mor and Chen, Mark and Hesse, Christopher and Jackson, Jacob and Jun, Heewoo and Brown, Tom B and Dhariwal, Prafulla and Gray, Scott and others},
+  journal={arXiv preprint arXiv:2010.14701},
+  year={2020}
+}
+@article{deepscale,
+  title={Deep learning scaling is predictable, empirically},
+  author={Hestness, Joel and Narang, Sharan and Ardalani, Newsha and Diamos, Gregory and Jun, Heewoo and Kianinejad, Hassan and Patwary, Md Mostofa Ali and Yang, Yang and Zhou, Yanqi},
+  journal={arXiv preprint arXiv:1712.00409},
+  year={2017}
+}
+@article{emergent,
+  title={Emergent abilities of large language models},
+  author={Wei, Jason and Tay, Yi and Bommasani, Rishi and Raffel, Colin and Zoph, Barret and Borgeaud, Sebastian and Yogatama, Dani and Bosma, Maarten and Zhou, Denny and Metzler, Donald and others},
+  journal={arXiv preprint arXiv:2206.07682},
+  year={2022}
+}
+
+@inproceedings{vqgan,
+  title={Taming transformers for high-resolution image synthesis},
+  author={Esser, Patrick and Rombach, Robin and Ommer, Bjorn},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={12873--12883},
+  year={2021}
+}
+
+@article{wang2024xploiting,
+  title={Exploiting diffusion prior for real-world image super-resolution},
+  author={Wang, Jianyi and Yue, Zongsheng and Zhou, Shangchen and Chan, Kelvin CK and Loy, Chen Change},
+  journal={International Journal of Computer Vision},
+  volume={132},
+  number={12},
+  pages={5929--5949},
+  year={2024},
+  publisher={Springer}
+}
+
+@article{wang2024emu3,
+  title={Emu3: Next-Token Prediction is All You Need},
+  author={Wang, Xinlong and Zhang, Xiaosong and Luo, Zhengxiong and Sun, Quan and Cui, Yufeng and Wang, Jinsheng and Zhang, Fan and Wang, Yueze and Li, Zhen and Yu, Qiying and others},
+  journal={arXiv preprint arXiv:2409.18869},
+  year={2024}
+}
+
+@misc{Fluid,
+      title={Fluid: Scaling Autoregressive Text-to-image Generative Models with Continuous Tokens}, 
+      author={Lijie Fan and Tianhong Li and Siyang Qin and Yuanzhen Li and Chen Sun and Michael Rubinstein and Deqing Sun and Kaiming He and Yonglong Tian},
+      year={2024},
+      eprint={2410.13863},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2410.13863}, 
+}
+@misc{lumina-mgpt,
+      title={Lumina-mGPT: Illuminate Flexible Photorealistic Text-to-Image Generation with Multimodal Generative Pretraining},
+      author={Dongyang Liu and Shitian Zhao and Le Zhuo and Weifeng Lin and Yu Qiao and Hongsheng Li and Peng Gao},
+      year={2024},
+      eprint={2408.02657},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2408.02657},
+}
+@misc{videopoet,
+      title={VideoPoet: A Large Language Model for Zero-Shot Video Generation}, 
+      author={Dan Kondratyuk and Lijun Yu and Xiuye Gu and José Lezama and Jonathan Huang and Grant Schindler and Rachel Hornung and Vighnesh Birodkar and Jimmy Yan and Ming-Chang Chiu and Krishna Somandepalli and Hassan Akbari and Yair Alon and Yong Cheng and Josh Dillon and Agrim Gupta and Meera Hahn and Anja Hauth and David Hendon and Alonso Martinez and David Minnen and Mikhail Sirotenko and Kihyuk Sohn and Xuan Yang and Hartwig Adam and Ming-Hsuan Yang and Irfan Essa and Huisheng Wang and David A. Ross and Bryan Seybold and Lu Jiang},
+      year={2024},
+      eprint={2312.14125},
+}
+
+@inproceedings{entropy-penalty,
+  title={Coincidence, categorization, and consolidation: Learning to recognize sounds with minimal supervision},
+  author={Jansen, Aren and Ellis, Daniel PW and Hershey, Shawn and Moore, R Channing and Plakal, Manoj and Popat, Ashok C and Saurous, Rif A},
+  booktitle={ICASSP 2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={121--125},
+  year={2020},
+  organization={IEEE}
+}
+
+@article{Flan-T5,
+  title={Scaling instruction-finetuned language models},
+  author={Chung, Hyung Won and Hou, Le and Longpre, Shayne and Zoph, Barret and Tay, Yi and Fedus, William and Li, Yunxuan and Wang, Xuezhi and Dehghani, Mostafa and Brahma, Siddhartha and others},
+  journal={Journal of Machine Learning Research},
+  volume={25},
+  number={70},
+  pages={1--53},
+  year={2024}
+}
+@inproceedings{sidd,
+  title={A High-Quality Denoising Dataset for Smartphone Cameras},
+  author={Abdelhamed, Abdelrahman and Lin, Stephen and Brown, Michael S},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={1692--1700},
+  year={2018}
+}
+  @article{snow100k,
+    title={Deep Dense Multi-scale Network for Snow Removal Using Semantic and Geometric Priors},
+    author={Zhang, Kaihao and Li, Rongqing and Yu, Yanjiang and Luo, Wenhan and Li, Changsheng},
+    journal={IEEE Transactions on Image Processing},
+    year={2021}
+  }
+
+@article{chen2026lovif,
+  title={LoViF 2026 challenge on real-world all-in-one image restoration: Methods and results},
+  author={Chen, Xiang and Li, Hao and Dong, Jiangxin and Pan, Jinshan and Li, Xin and He, Xin and Chen, Naiwei and Li, Shengyuan and Liu, Fengning and Lv, Haoyi and others},
+  journal={arXiv preprint arXiv:2604.19445},
+  year={2026}
+}
+
+@inproceedings{guan2025weatherbench,
+  title={Weatherbench: A real-world benchmark dataset for all-in-one adverse weather image restoration},
+  author={Guan, Qiyuan and Yang, Qianfeng and Chen, Xiang and Song, Tianyu and Jin, Guiyue and Jin, Jiyu},
+  booktitle={Proceedings of the 33rd ACM international conference on multimedia},
+  pages={12607--12613},
+  year={2025}
+}
+@inproceedings{rainds,
+  title={Removing raindrops and rain streaks in one go},
+  author={Quan, Ruijie and Yu, Xin and Liang, Yuanzhi and Yang, Yi},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={9147--9156},
+  year={2021}
+}
+
+@article{realrain,
+  title={Toward Real-world Single Image Deraining: A New Benchmark and Beyond},
+  author={Li, Wei and Zhang, Qiming and Zhang, Jing and Huang, Zhen and Tian, Xinmei and Tao, Dacheng},
+  journal={arXiv preprint arXiv:2206.05514},
+  year={2022}
+}
+
+@inproceedings{uav-rain1k,
+  title={Uav-rain1k: A benchmark for raindrop removal from uav aerial imagery},
+  author={Chang, Wenhui and Chen, Hongming and He, Xin and Chen, Xiang and Shen, Liangduo},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={15--22},
+  year={2024}
+}
+
+@article{uhdll,
+  title={Embedding fourier for ultra-high-definition low-light image enhancement},
+  author={Li, Chongyi and Guo, Chun-Le and Zhou, Man and Liang, Zhexin and Zhou, Shangchen and Feng, Ruicheng and Loy, Chen Change},
+  journal={arXiv preprint arXiv:2302.11831},
+  year={2023}
+}
+
+@inproceedings{rim2020realblur,
+  title={Real-world blur dataset for learning and benchmarking deblurring algorithms},
+  author={Rim, Jaesung and Lee, Haeyun and Won, Jucheol and Cho, Sunghyun},
+  booktitle={European conference on computer vision},
+  pages={184--201},
+  year={2020},
+  organization={Springer}
+}
+@article{polyunoise,
+  title={Real-world noisy image denoising: A new benchmark},
+  author={Xu, J and Li, H and Liang, Z and Zhang, D and Zhang, L},
+  year={2018},
+  journal={arXiv preprint arXiv:1804.02603}
+}
+
+@article{foundirv2,
+  title={FoundIR-v2: Optimizing Pre-Training Data Mixtures for Image Restoration Foundation Model},
+  author={Chen, Xiang and Pan, Jinshan and Dong, Jiangxin and Yang, Jian and Tang, Jinhui},
+  journal={arXiv preprint arXiv:2512.09282},
+  year={2025}
+}
+@inproceedings{ROPE2d,
+  title={Rotary position embedding for vision transformer},
+  author={Heo, Byeongho and Park, Song and Han, Dongyoon and Yun, Sangdoo},
+  booktitle={European Conference on Computer Vision},
+  pages={289--305},
+  year={2025},
+  organization={Springer}
+}
+
+@article{STAR,
+  title={STAR: Scale-wise Text-to-image generation via Auto-Regressive representations},
+  author={Ma, Xiaoxiao and Zhou, Mohan and Liang, Tao and Bai, Yalong and Zhao, Tiejun and Chen, Huaian and Jin, Yi},
+  journal={arXiv preprint arXiv:2406.10797},
+  year={2024}
+}
+
+@article{ROPE,
+  title={Roformer: Enhanced transformer with rotary position embedding},
+  author={Su, Jianlin and Ahmed, Murtadha and Lu, Yu and Pan, Shengfeng and Bo, Wen and Liu, Yunfeng},
+  journal={Neurocomputing},
+  volume={568},
+  pages={127063},
+  year={2024},
+  publisher={Elsevier}
+}
+
+@article{llamagen,
+  title={Autoregressive Model Beats Diffusion: Llama for Scalable Image Generation},
+  author={Sun, Peize and Jiang, Yi and Chen, Shoufa and Zhang, Shilong and Peng, Bingyue and Luo, Ping and Yuan, Zehuan},
+  journal={arXiv preprint arXiv:2406.06525},
+  year={2024}
+}
+
+@article{Pixart-alpha,
+  title={Pixart-alpha: Fast training of diffusion transformer for photorealistic text-to-image synthesis},
+  author={Chen, Junsong and Yu, Jincheng and Ge, Chongjian and Yao, Lewei and Xie, Enze and Wu, Yue and Wang, Zhongdao and Kwok, James and Luo, Ping and Lu, Huchuan and others},
+  journal={arXiv preprint arXiv:2310.00426},
+  year={2023}
+}
+
+@inproceedings{stable-diffusion3,
+  title={Scaling rectified flow transformers for high-resolution image synthesis},
+  author={Esser, Patrick and Kulal, Sumith and Blattmann, Andreas and Entezari, Rahim and M{\"u}ller, Jonas and Saini, Harry and Levi, Yam and Lorenz, Dominik and Sauer, Axel and Boesel, Frederic and others},
+  booktitle={Forty-first International Conference on Machine Learning},
+  year={2024}
+}
+
+@article{sdxl,
+  title={SDXL: Improving latent diffusion models for high-resolution image synthesis},
+  author={Podell, Dustin and English, Zion and Lacey, Kyle and Blattmann, Andreas and Dockhorn, Tim and M{\"u}ller, Jonas and Penna, Joe and Rombach, Robin},
+  journal={arXiv preprint arXiv:2307.01952},
+  year={2023}
+}
+
+@article{chameleon-meta,
+  title={Chameleon: Mixed-modal early-fusion foundation models},
+  author={Team, Chameleon},
+  journal={arXiv preprint arXiv:2405.09818},
+  year={2024}
+}
+
+@article{Playground-2.5,
+  title={Playground v2.5: Three insights towards enhancing aesthetic quality in text-to-image generation},
+  author={Li, Daiqing and Kamko, Aleks and Akhgari, Ehsan and Sabet, Ali and Xu, Linmiao and Doshi, Suhail},
+  journal={arXiv preprint arXiv:2402.17245},
+  year={2024}
+}
+
+@article{lumina-next,
+  title={Lumina-next: Making lumina-t2x stronger and faster with next-dit},
+  author={Zhuo, Le and Du, Ruoyi and Xiao, Han and Li, Yangguang and Liu, Dongyang and Huang, Rongjie and Liu, Wenze and Zhao, Lirui and Wang, Fu-Yun and Ma, Zhanyu and others},
+  journal={arXiv preprint arXiv:2406.18583},
+  year={2024}
+}
+
+@article{hunyuan-dit,
+  title={Hunyuan-DiT: A Powerful Multi-Resolution Diffusion Transformer with Fine-Grained Chinese Understanding},
+  author={Li, Zhimin and Zhang, Jianwei and Lin, Qin and Xiong, Jiangfeng and Long, Yanxin and Deng, Xinchi and Zhang, Yingfang and Liu, Xingchao and Huang, Minbin and Xiao, Zedong and others},
+  journal={arXiv preprint arXiv:2405.08748},
+  year={2024}
+}
+
+@inproceedings{dit,
+  title={Scalable diffusion models with transformers},
+  author={Peebles, William and Xie, Saining},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={4195--4205},
+  year={2023}
+}
+
+@article{
+dinov2,
+title={{DINO}v2: Learning Robust Visual Features without Supervision},
+author={Maxime Oquab and Timoth{\'e}e Darcet and Th{\'e}o Moutakanni and Huy V. Vo and Marc Szafraniec and Vasil Khalidov and Pierre Fernandez and Daniel HAZIZA and Francisco Massa and Alaaeldin El-Nouby and Mido Assran and Nicolas Ballas and Wojciech Galuba and Russell Howes and Po-Yao Huang and Shang-Wen Li and Ishan Misra and Michael Rabbat and Vasu Sharma and Gabriel Synnaeve and Hu Xu and Herve Jegou and Julien Mairal and Patrick Labatut and Armand Joulin and Piotr Bojanowski},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2024},
+url={https://openreview.net/forum?id=a68SUt6zFt},
+note={Featured Certification}
+}
+
+@article{dinov3,
+  title={{DINOv3}},
+  author={Sim{\'e}oni, Oriane and Vo, Huy V. and Seitzer, Maximilian and Baldassarre, Federico and Oquab, Maxime and Jose, Cijo and Khalidov, Vasil and Szafraniec, Marc and Yi, Seungeun and Ramamonjisoa, Micha{\"e}l and Massa, Francisco and Haziza, Daniel and Wehrstedt, Luca and Wang, Jianyuan and Darcet, Timoth{\'e}e and Moutakanni, Th{\'e}o and Sentana, Leonel and Roberts, Claire and Vedaldi, Andrea and Tolan, Jamie and Brandt, John and Couprie, Camille and Mairal, Julien and J{\'e}gou, Herv{\'e} and Labatut, Patrick and Bojanowski, Piotr},
+  journal={arXiv preprint arXiv:2508.10104},
+  year={2025},
+  url={https://arxiv.org/abs/2508.10104}
+}
+
+@inproceedings{vavae,
+  title={Reconstruction vs. generation: Taming optimization dilemma in latent diffusion models},
+  author={Yao, Jingfeng and Yang, Bin and Wang, Xinggang},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={15703--15712},
+  year={2025}
+}
+
+@inproceedings{unirestore,
+  title={Unirestore: Unified perceptual and task-oriented image restoration model using diffusion prior},
+  author={Chen, I and Chen, Wei-Ting and Liu, Yu-Wei and Chiang, Yuan-Chun and Kuo, Sy-Yen and Yang, Ming-Hsuan and others},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={17969--17979},
+  year={2025}
+}
+
+@article{fluxir,
+  title={Learning efficient and effective trajectories for differential equation-based image restoration},
+  author={Zhu, Zhiyu and Hou, Jinhui and Liu, Hui and Zeng, Huanqiang and Hou, Junhui},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2025},
+  publisher={IEEE}
+}
+
+@article{fapeir,
+  title={FAPE-IR: Frequency-Aware Planning and Execution Framework for All-in-One Image Restoration},
+  author={Liu, Jingren and Xu, Shuning and Yang, Qirui and Wang, Yun and Chen, Xiangyu and Ji, Zhong},
+  journal={arXiv preprint arXiv:2511.14099},
+  year={2025}
+}
+
+@article{DPG-bench,
+  title={Ella: Equip diffusion models with llm for enhanced semantic alignment},
+  author={Hu, Xiwei and Wang, Rui and Fang, Yixiao and Fu, Bin and Cheng, Pei and Yu, Gang},
+  journal={arXiv preprint arXiv:2403.05135},
+  year={2024}
+}
+
+@article{titok,
+  title={An Image is Worth 32 Tokens for Reconstruction and Generation},
+  author={Yu, Qihang and Weber, Mark and Deng, Xueqing and Shen, Xiaohui and Cremers, Daniel and Chen, Liang-Chieh},
+  journal={arXiv preprint arXiv:2406.07550},
+  year={2024}
+}
+
+@article{imagefolder,
+  title={ImageFolder: Autoregressive Image Generation with Folded Tokens},
+  author={Li, Xiang and Chen, Hao and Qiu, Kai and Kuen, Jason and Gu, Jiuxiang and Raj, Bhiksha and Lin, Zhe},
+  journal={arXiv preprint arXiv:2410.01756},
+  year={2024}
+}
+
+@article{show-o,
+  title={Show-o: One single transformer to unify multimodal understanding and generation},
+  author={Xie, Jinheng and Mao, Weijia and Bai, Zechen and Zhang, David Junhao and Wang, Weihao and Lin, Kevin Qinghong and Gu, Yuchao and Chen, Zhijie and Yang, Zhenheng and Shou, Mike Zheng},
+  journal={arXiv preprint arXiv:2408.12528},
+  year={2024}
+}
+
+@article{loong,
+  title={Loong: Generating minute-level long videos with autoregressive language models},
+  author={Wang, Yuqing and Xiong, Tianwei and Zhou, Daquan and Lin, Zhijie and Zhao, Yang and Kang, Bingyi and Feng, Jiashi and Liu, Xihui},
+  journal={arXiv preprint arXiv:2410.02757},
+  year={2024}
+}
+
+@article{vqvae2,
+  title={Generating diverse high-fidelity images with vq-vae-2},
+  author={Razavi, Ali and Van den Oord, Aaron and Vinyals, Oriol},
+  journal={Advances in neural information processing systems},
+  volume={32},
+  year={2019}
+}
+@article{tang2024hart,
+  title={HART: Efficient visual generation with hybrid autoregressive transformer},
+  author={Tang, Haotian and Wu, Yecheng and Yang, Shang and Xie, Enze and Chen, Junsong and Chen, Junyu and Zhang, Zhuoyang and Cai, Han and Lu, Yao and Han, Song},
+  journal={arXiv preprint arXiv:2410.10812},
+  year={2024}
+}
+
+@article{wei2025perceive,
+  title={Perceive, Understand and Restore: Real-World Image Super-Resolution with Autoregressive Multimodal Generative Models},
+  author={Wei, Hongyang and Liu, Shuaizheng and Yuan, Chun and Zhang, Lei},
+  journal={arXiv preprint arXiv:2503.11073},
+  year={2025}
+}
+@article{han2024infinity,
+  title={Infinity: Scaling bitwise autoregressive modeling for high-resolution image synthesis},
+  author={Han, Jian and Liu, Jinlai and Jiang, Yi and Yan, Bin and Zhang, Yuqi and Yuan, Zehuan and Peng, Bingyue and Liu, Xiaobing},
+  journal={arXiv preprint arXiv:2412.04431},
+  year={2024}
+}
+@inproceedings{yu2024scaling,
+  title={Scaling up to excellence: Practicing model scaling for photo-realistic image restoration in the wild},
+  author={Yu, Fanghua and Gu, Jinjin and Li, Zheyuan and Hu, Jinfan and Kong, Xiangtao and Wang, Xintao and He, Jingwen and Qiao, Yu and Dong, Chao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={25669--25680},
+  year={2024}
+}
+@inproceedings{sun2025pixel,
+  title={Pixel-level and semantic-level adjustable super-resolution: A dual-lora approach},
+  author={Sun, Lingchen and Wu, Rongyuan and Ma, Zhiyuan and Liu, Shuaizheng and Yi, Qiaosi and Zhang, Lei},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={2333--2343},
+  year={2025}
+}
+@article{chen2024topiq,
+  title={Topiq: A top-down approach from semantics to distortions for image quality assessment},
+  author={Chen, Chaofeng and Mo, Jiadi and Hou, Jingwen and Wu, Haoning and Liao, Liang and Sun, Wenxiu and Yan, Qiong and Lin, Weisi},
+  journal={IEEE Transactions on Image Processing},
+  volume={33},
+  pages={2404--2418},
+  year={2024},
+  publisher={IEEE}
+}
+@inproceedings{LLaVA,
+  title={Improved baselines with visual instruction tuning},
+  author={Liu, Haotian and Li, Chunyuan and Li, Yuheng and Lee, Yong Jae},
+  booktitle={Proceedings of the IEEE/CVF conference on computer vision and pattern recognition},
+  pages={26296--26306},
+  year={2024}
+}
+@inproceedings{yang2024pixel,
+  title={Pixel-aware stable diffusion for realistic image super-resolution and personalized stylization},
+  author={Yang, Tao and Wu, Rongyuan and Ren, Peiran and Xie, Xuansong and Zhang, Lei},
+  booktitle={European conference on computer vision},
+  pages={74--91},
+  year={2024},
+  organization={Springer}
+}
+@inproceedings{li2025foundir,
+  title={Foundir: Unleashing million-scale training data to advance foundation models for image restoration},
+  author={Li, Hao and Chen, Xiang and Dong, Jiangxin and Tang, Jinhui and Pan, Jinshan},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={12626--12636},
+  year={2025}
+}
+@article{sun2026can,
+  title={Can Nano Banana 2 Replace Traditional Image Restoration Models? An Evaluation of Its Performance on Image Restoration Tasks},
+  author={Sun, Weixiong and Yin, Xiang and Dong, Chao},
+  journal={arXiv preprint arXiv:2604.03061},
+  year={2026}
+}
+@article{zuo2025nano,
+  title={Is Nano Banana Pro a Low-Level Vision All-Rounder? A Comprehensive Evaluation on 14 Tasks and 40 Datasets},
+  author={Zuo, Jialong and Deng, Haoyou and Zhou, Hanyu and Zhu, Jiaxin and Zhang, Yicheng and Zhang, Yiwei and Yan, Yongxin and Huang, Kaixing and Chen, Weisen and Deng, Yongtai and others},
+  journal={arXiv preprint arXiv:2512.15110},
+  year={2025}
+}
+@article{yang2026realrestorer,
+  title={RealRestorer: Towards Generalizable Real-World Image Restoration with Large-Scale Image Editing Models},
+  author={Yang, Yufeng and Zeng, Xianfang and Jiang, Zhangqi and Yin, Fukun and Liu, Jianzhuang and Cheng, Wei and Liu, Shiyu and Peng, Yuqi and YU, Gang and Chen, Shifeng and others},
+  journal={arXiv preprint arXiv:2603.25502},
+  year={2026}
+}
+@article{team2023gemini,
+  title={Gemini: a family of highly capable multimodal models},
+  author={Team, Gemini and Anil, Rohan and Borgeaud, Sebastian and Alayrac, Jean-Baptiste and Yu, Jiahui and Soricut, Radu and Schalkwyk, Johan and Dai, Andrew M and Hauth, Anja and Millican, Katie and others},
+  journal={arXiv preprint arXiv:2312.11805},
+  year={2023}
+}
+@misc{openai2025gptimage15,
+    title        = {GPT-image-1.5 Model Documentation},
+    author       = {{OpenAI}},
+    year         = {2025},
+    howpublished = {\url{https://platform.openai.com/docs/models/gpt-image-1.5}},
+}
+@misc{openai2025gptimage2,
+    title        = {GPT-image-2 Model Documentation},
+    author       = {{OpenAI}},
+    year         = {2025},
+    howpublished = {\url{https://platform.openai.com/docs/models/gpt-image-2}},
+}
+@misc{Seedream5,
+    title        = {Seedream 4.0-5.0 tutorial},
+    author       = {ByteDance},
+    year         = {2025},
+    howpublished = {\url{https://docs.byteplus.com/zh-CN/docs/ModelArk/1824121}},
+}
+@article{seedream4,
+  title={Seedream 4.0: Toward next-generation multimodal image generation},
+  author={Seedream, Team and Chen, Yunpeng and Gao, Yu and Gong, Lixue and Guo, Meng and Guo, Qiushan and Guo, Zhiyao and Hou, Xiaoxia and Huang, Weilin and Huang, Yixuan and others},
+  journal={arXiv preprint arXiv:2509.20427},
+  year={2025}
+}
+@misc{Kling-Image-O1,
+  title={Kling-Image-O1: Technical Report on High-Fidelity Video Generation},
+  author={Kling Team and MiraclePlus},
+  year={2025},
+  howpublished={\url{https://klingai.com}} 
+}
+@misc{Qwen-Image-Edit,
+      title={Qwen-Image Technical Report}, 
+      author={Chenfei Wu and Jiahao Li and Jingren Zhou and Junyang Lin and Kaiyuan Gao and Kun Yan and Sheng-ming Yin and Shuai Bai and Xiao Xu and Yilei Chen and Yuxiang Chen and Zecheng Tang and Zekai Zhang and Zhengyi Wang and An Yang and Bowen Yu and Chen Cheng and Dayiheng Liu and Deqing Li and Hang Zhang and Hao Meng and Hu Wei and Jingyuan Ni and Kai Chen and Kuan Cao and Liang Peng and Lin Qu and Minggang Wu and Peng Wang and Shuting Yu and Tingkun Wen and Wensen Feng and Xiaoxiao Xu and Yi Wang and Yichang Zhang and Yongqiang Zhu and Yujia Wu and Yuxuan Cai and Zenan Liu},
+      year={2025},
+      eprint={2508.02324},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2508.02324}, 
+}
+@article{lsddblur,
+  title={Real-world defocus deblurring via score-based diffusion models},
+  author={Li, Yuhao and Fang, Haoran and Lei, Xiang and Wang, Qi and Hu, Gang and Dong, Jiaqing and Li, Zilong and Lin, Jiabin and Liu, Qiegen and Song, Xianlin},
+  journal={Scientific Reports},
+  volume={15},
+  number={1},
+  pages={22942},
+  year={2025},
+  publisher={Nature Publishing Group UK London}
+}
+@misc{flux-2-2025,
+    author={Black Forest Labs},
+    title={{FLUX.2: Frontier Visual Intelligence}},
+    year={2025},
+    howpublished={\url{https://bfl.ai/blog/flux-2}},
+}
+@article{LoL,
+  title={Deep retinex decomposition for low-light enhancement},
+  author={Wei, Chen and Wang, Wenjing and Yang, Wenhan and Liu, Jiaying},
+  journal={arXiv preprint arXiv:1808.04560},
+  year={2018}
+}
+
+@misc{gpt5.4,
+    author={OpenAI},
+    title={{ChatGPT GPT-5.4 Release Notes}},
+    year={2026},
+    howpublished={\url{https://help.openai.com/en/articles/6825453-chatgpt-release-notes}},
+}
+
+@misc{gemini3-1pro,
+    author={Google DeepMind},
+    title={{Gemini 3.1 Pro}},
+    year={2026},
+    howpublished={\url{https://deepmind.google/models/model-cards/gemini-3-1-pro/}},
+}
+https://deepmind.google/models/model-cards/gemini-3-1-pro/
+
+@article{team2026firered,
+  title={FireRed-Image-Edit-1.0 Technical Report},
+  author={Team, Super Intelligence and Qiao, Changhao and Hui, Chao and Li, Chen and Wang, Cunzheng and Song, Dejia and Zhang, Jiale and Li, Jing and Xiang, Qiang and Wang, Runqi and others},
+  journal={arXiv preprint arXiv:2602.13344},
+  year={2026}
+}
+@inproceedings{X-Restormer,
+  title={A comparative study of image restoration networks for general backbone network design},
+  author={Chen, Xiangyu and Li, Zheyuan and Pu, Yuandong and Liu, Yihao and Zhou, Jiantao and Qiao, Yu and Dong, Chao},
+  booktitle={European Conference on Computer Vision},
+  pages={74--91},
+  year={2024},
+  organization={Springer}
+}
+@misc{MoCE-IR,
+      title={Complexity Experts are Task-Discriminative Learners for Any Image Restoration}, 
+      author={Eduard Zamfir and Zongwei Wu and Nancy Mehta and Yuedong Tan and Danda Pani Paudel and Yulun Zhang and Radu Timofte},
+      year={2024},
+      eprint={2411.18466},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+}
+@article{DA-CLIP,
+  title={Photo-Realistic Image Restoration in the Wild with Controlled Vision-Language Models},
+  author={Luo, Ziwei and Gustafsson, Fredrik K and Zhao, Zheng and Sj{\"o}lund, Jens and Sch{\"o}n, Thomas B},
+  journal={arXiv preprint arXiv:2404.09732},
+  year={2024}
+}
+
+@inproceedings{afine,
+  title={Toward generalized image quality assessment: Relaxing the perfect reference quality assumption},
+  author={Chen, Du and Wu, Tianhe and Ma, Kede and Zhang, Lei},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={12742--12752},
+  year={2025}
+}
+
+@inproceedings{jarvisir2025,
+  title={JarvisIR: Elevating Autonomous Driving Perception with Intelligent Image Restoration},
+  author={Lin, Yunlong and Lin, Zixu and Chen, Haoyu and Pan, Panwang and Li, Chenxin and Chen, Sixiang and Kairun, Wen and Jin, Yeying and Li, Wenbo and Ding, Xinghao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year={2025}
+}
+
+@inproceedings{deng2009imagenet,
+  author    = {Deng, Jia and Dong, Wei and Socher, Richard and Li, Li-Jia and Li, Kai and Fei-Fei, Li},
+  title     = {ImageNet: A Large-Scale Hierarchical Image Database},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
+  pages     = {248--255},
+  year      = {2009}
+}
+
+@article{Exdark,
+  title = {Getting to Know Low-light Images with The Exclusively Dark Dataset},
+  author = {Loh, Yuen Peng and Chan, Chee Seng},
+  journal = {Computer Vision and Image Understanding},
+  volume = {178},
+  pages = {30-42},
+  year = {2019},
+  doi = {https://doi.org/10.1016/j.cviu.2018.10.010}
+}
+
+@InProceedings{SDV21,
+  author = {Sakaridis, Christos and Dai, Dengxin and Van Gool, Luc},
+  title = {{ACDC}: The Adverse Conditions Dataset with Correspondences for Semantic Driving Scene Understanding},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  month = {October},
+  year = 2021
+}
+
+@inproceedings{chen2024faithdiff,
+title={{FaithDiff}: Unleashing Diffusion Priors for Faithful Image Super-resolution},
+author={Chen, Junyang and Pan, Jinshan and Dong, Jiangxin},
+booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
+year={2025}
+}
+
+@article{yang2020advancing,
+  title={Advancing image understanding in poor visibility environments: A collective benchmark study},
+  author={Yang, Wenhan and Yuan, Ye and Ren, Wenqi and Liu, Jiaying and Scheirer, Walter J and Wang, Zhangyang and Zhang, Taiheng and Zhong, Qiaoyong and Xie, Di and Pu, Shiliang and others},
+  journal={IEEE Transactions on Image Processing},
+  volume={29},
+  pages={5737--5752},
+  year={2020},
+  publisher={IEEE}
+}
+
+@inproceedings{chen2018robust,
+  title={Robust Video Content Alignment and Compensation for Rain Removal in a CNN Framework},
+  author={Jie Chen and Cheen-Hau Tan and Junhui Hou and Lap-Pui Chau and He Li},
+  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={6341--6349},
+  year={2018},
+  doi={10.1109/CVPR.2018.00658}
+}
+
+@inproceedings{ACT,
+  title={Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware},
+  author={Zhao, Tony Z. and Kumar, Vikash and Levine, Sergey and Finn, Chelsea},
+  booktitle={Robotics: Science and Systems},
+  year={2023},
+  url={https://roboticsconference.org/2023/program/papers/016/}
+}
+
+
+@inproceedings{FM_objective,
+  title={Flow Matching for Generative Modeling},
+  author={Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt},
+  booktitle={International Conference on Learning Representations},
+  year={2023},
+  url={https://arxiv.org/abs/2210.02747}
+}
+
+
+@inproceedings{chi2023diffusionpolicy,
+  title={Diffusion Policy: Visuomotor Policy Learning via Action Diffusion},
+  author={Chi, Cheng and Feng, Siyuan and Du, Yilun and Xu, Zhenjia and Cousineau, Eric and Burchfiel, Benjamin and Song, Shuran},
+  booktitle={Robotics: Science and Systems},
+  year={2023},
+  url={https://roboticsconference.org/2023/program/papers/026/}
+}
+
+
+@article{pi05,
+  title={$\pi_{0.5}$: A Vision-Language-Action Model with Open-World Generalization},
+  author={{Physical Intelligence}},
+  journal={arXiv preprint arXiv:2504.16054},
+  year={2025},
+  url={https://arxiv.org/abs/2504.16054}
+}
+
+@misc{gr00t,
+  title={GR00T N1: An Open Foundation Model for Generalist Humanoid Robots},
+  author={{NVIDIA}},
+  year={2025},
+  eprint={2503.14734},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO}
+}
+
+@misc{hex,
+  title={HEX: Humanoid-Aligned Experts for Cross-Embodiment Whole-Body Manipulation},
+  author={Bai, Shuanghao and Li, Meng and Lv, Xinyuan and Wang, Jiawei and Wang, Xinhua and Liao, Fei and Hou, Chengkai and Gu, Langzhe and Zhou, Wanqi and Wu, Kun and others},
+  year={2026},
+  eprint={2604.07993},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO}
+}
+
+@misc{wholebodyvla,
+  title={WholeBodyVLA: Towards Unified Latent VLA for Whole-Body Loco-Manipulation Control},
+  author={Jiang, Haoran and Chen, Jin and Bu, Qingwen and Chen, Li and Shi, Modi and Zhang, Yanjie and Li, Delong and Suo, Chuanzhe and Wang, Chuang and Peng, Zhihui and others},
+  year={2025},
+  eprint={2512.11047},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO}
+}
+
+@misc{motionwam,
+  title={MotionWAM: Towards Foundation World Action Models for Real-Time Humanoid Loco-Manipulation},
+  author={Zheng, Jia and Ma, Teli and Fan, Yudong and Wang, Zifan and Yang, Shuo and Liang, Junwei},
+  year={2026},
+  eprint={2606.09215},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO}
+}
+
+@misc{psi0,
+  title={{$\Psi_0$}: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation},
+  author={Wei, Songlin and Jing, Hongyi and Li, Boqian and Zhao, Zhenyu and Mao, Jiageng and Ni, Zhenhao and He, Sicheng and Liu, Jie and Liu, Xiawei and Kang, Kaidi and Zang, Sheng and Yuan, Weiduo and Pavone, Marco and Huang, Di and Wang, Yue},
+  year={2026},
+  eprint={2603.12263},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2603.12263}
+}
+
+@misc{omega0,
+  title={Omega-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation},
+  author={Li, Zhe and Zhang, Zhenzhe and Wei, Yangyang and Zhang, Wenjie and Yuan, Xichen and others},
+  year={2026},
+  eprint={2608.06375},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO}
+}
+
+@article{humanoidarena,
+  title={{HumanoidArena}: Benchmarking Egocentric Hierarchical Whole-body Learning},
+  author={Wang, Taowen and Xie, Zikang and Yang, Bin and Wang, Yunheng and Yuan, Zizhao and Fang, Yuetong and Feng, Yixiao and Wang, Yichi and Chen, Xingyu and Chen, Haodong and Wu, Qiwei and Xu, Weisheng and Chen, Lihan and Li, Lusong and Zeng, Zecui and Xu, Renjing},
+  journal={arXiv preprint arXiv:2606.17833},
+  year={2026},
+  url={https://arxiv.org/abs/2606.17833}
+}
+
+@article{simple,
+  title={{SIMPLE}: Simulation-Based Policy Learning and Evaluation for Humanoid Loco-manipulation},
+  author={Wei, Songlin and Ni, Zhenhao and Liu, Jie and Zhao, Zhenyu and Ye, Junjie and Jing, Hongyi and Xia, Junkai and Liu, Xiawei and Leong, Michael and Heng, Liang and Huang, Di and Wang, Yue},
+  journal={arXiv preprint arXiv:2606.08278},
+  year={2026},
+  url={https://arxiv.org/abs/2606.08278}
+}
+
+@misc{simple_repository,
+  title={{SIMPLE}: Official Repository and Simulation Benchmarking Results},
+  author={{Physical Superintelligence Lab}},
+  year={2026},
+  howpublished={GitHub repository},
+  url={https://github.com/physical-superintelligence-lab/SIMPLE},
+  note={README revision 6d10628794d9, accessed September 24, 2026}
+}
+
+@article{sonic,
+  title={{SONIC}: Supersizing Motion Tracking for Natural Humanoid Whole-Body Control},
+  author={Luo, Zhengyi and Yuan, Ye and Wang, Tingwu and Li, Chenran and Casta{\~n}eda, Fernando and Chen, Sirui and Cao, Zi-Ang and Li, Jiefeng and Minor, David and Ben, Qingwei and Park, Jinhyung and Sami, David and Wang, Zi and Da, Xingye and Ding, Runyu and Hogg, Cyrus and Song, Lina and Lim, Edy and Jeong, Eugene and He, Tairan and Xue, Haoru and Xiao, Wenli and Yuen, Simon and Kautz, Jan and Chang, Yan and Iqbal, Umar and Fan, Linxi and Zhu, Yuke},
+  journal={Science Robotics},
+  volume={11},
+  number={117},
+  pages={eaed4592},
+  year={2026},
+  doi={10.1126/scirobotics.aed4592},
+  url={https://doi.org/10.1126/scirobotics.aed4592}
+}
+
+@article{kimodo,
+  title={{Kimodo}: Scaling Controllable Human Motion Generation},
+  author={Rempe, Davis and Petrovich, Mathis and Yuan, Ye and Zhang, Haotian and Peng, Xue Bin and Jiang, Yifeng and Wang, Tingwu and Iqbal, Umar and Minor, David and de Ruyter, Michael and Li, Jiefeng and Tessler, Chen and Lim, Edy and Jeong, Eugene and Wu, Sam and Hassani, Ehsan and Huang, Michael and Yu, Jin-Bey and Chung, Chaeyeon and Song, Lina and Dionne, Olivier and Kautz, Jan and Yuen, Simon and Fidler, Sanja},
+  journal={arXiv preprint arXiv:2603.15546},
+  year={2026},
+  url={https://arxiv.org/abs/2603.15546}
+}
+
+@misc{kimodo_g1_seed,
+  title={{Kimodo-G1-SEED-v1} Model Card},
+  author={{NVIDIA}},
+  year={2026},
+  howpublished={Hugging Face},
+  url={https://huggingface.co/nvidia/Kimodo-G1-SEED-v1},
+  note={Accessed September 16, 2026}
+}
+
+@misc{kimodo_g1_rp,
+  title={{Kimodo-G1-RP-v1} Model Card},
+  author={{NVIDIA}},
+  year={2026},
+  howpublished={Hugging Face},
+  url={https://huggingface.co/nvidia/Kimodo-G1-RP-v1},
+  note={Accessed September 16, 2026}
+}
+
+@misc{gr00t_n16,
+  title={{GR00T N1.6}: An Improved Open Foundation Model for Generalist Humanoid Robots},
+  author={{NVIDIA}},
+  year={2025},
+  month=dec,
+  howpublished={NVIDIA Research},
+  url={https://research.nvidia.com/labs/gear/gr00t-n1_6/}
+}
+
+@misc{gr00t_data,
+  title={{Isaac GR00T}: Data Preparation},
+  author={{NVIDIA}},
+  year={2025},
+  howpublished={GitHub repository},
+  url={https://github.com/NVIDIA/Isaac-GR00T/blob/main/getting_started/data_preparation.md},
+  note={Accessed September 24, 2026}
+}
+
+@misc{hiw500,
+  title={{HIW-500}: Humanoids In-the-Wild Dataset for Robot Learning},
+  author={{BitRobot} and {Unitree} and {Hugging Face}},
+  year={2026},
+  howpublished={Hugging Face dataset},
+  url={https://huggingface.co/datasets/BitRobot/HIW-500}
+}
+
+@misc{unifolm_wbt,
+  title={{UniFoLM-WBT}: Whole-Body Teleoperation Datasets for Unitree G1},
+  author={{Unitree Robotics}},
+  year={2026},
+  howpublished={Hugging Face dataset collection},
+  url={https://huggingface.co/collections/unitreerobotics/unifolm-wbt-dataset}
+}
+
+@article{humanoid_everyday,
+  title={{Humanoid Everyday}: A Comprehensive Robotic Dataset for Open-World Humanoid Manipulation},
+  author={Zhao, Zhenyu and Jing, Hongyi and Liu, Xiawei and Mao, Jiageng and Jha, Abha and Yang, Hanwen and Xue, Rong and Zakharov, Sergey and Guizilini, Vitor and Wang, Yue},
+  journal={arXiv preprint arXiv:2510.08807},
+  year={2025},
+  url={https://arxiv.org/abs/2510.08807}
+}
+
+@article{hrdt,
+  title={{H-RDT}: Human Manipulation Enhanced Bimanual Robotic Manipulation},
+  author={Bi, Hongzhe and Wu, Lingxuan and Lin, Tianwei and Tan, Hengkai and Su, Zhizhong and Su, Hang and Zhu, Jun},
+  journal={arXiv preprint arXiv:2507.23523},
+  year={2025},
+  url={https://arxiv.org/abs/2507.23523}
+}
+
+@article{internvla_m1,
+  title={{InternVLA-M1}: A Spatially Guided Vision-Language-Action Framework for Generalist Robot Policy},
+  author={Chen, Xinyi and Chen, Yilun and Fu, Yanwei and Gao, Ning and Jia, Jiaya and Jin, Weiyang and Li, Hao and Mu, Yao and Pang, Jiangmiao and Qiao, Yu and Tian, Yang and Wang, Bin and Wang, Bolun and Wang, Fangjing and Wang, Hanqing and Wang, Tai and Wang, Ziqin and Wei, Xueyuan and Wu, Chao and Yang, Shuai and Ye, Jinhui and Yu, Junqiu and Zeng, Jia and Zhang, Jingjing and Zhang, Jinyu and Zhang, Shi and Zheng, Feng and Zhou, Bowen and Zhu, Yangkun},
+  journal={arXiv preprint arXiv:2510.13778},
+  year={2025},
+  url={https://arxiv.org/abs/2510.13778}
+}
+
+@article{egovla,
+  title={{EgoVLA}: Learning Vision-Language-Action Models from Egocentric Human Videos},
+  author={Yang, Ruihan and Yu, Qinxi and Wu, Yecheng and Yan, Rui and Li, Borui and Cheng, An-Chieh and Zou, Xueyan and Fang, Yunhao and Cheng, Xuxin and Qiu, Ri-Zhao and Yin, Hongxu and Liu, Sifei and Han, Song and Lu, Yao and Wang, Xiaolong},
+  journal={arXiv preprint arXiv:2507.12440},
+  year={2025},
+  url={https://arxiv.org/abs/2507.12440}
+}
+
+@article{dreamzero,
+  title={World Action Models are Zero-shot Policies},
+  author={Ye, Seonghyeon and Ge, Yunhao and Zheng, Kaiyuan and Gao, Shenyuan and Yu, Sihyun and Kurian, George and Indupuru, Suneel and Tan, You Liang and Zhu, Chuning and Xiang, Jiannan and Malik, Ayaan and Lee, Kyungmin and Liang, William and Ranawaka, Nadun and Gu, Jiasheng and Xu, Yinzhen and Wang, Guanzhi and Hu, Fengyuan and Narayan, Avnish and Bjorck, Johan and Wang, Jing and Kim, Gwanghyun and Niu, Dantong and Zheng, Ruijie and Xie, Yuqi and Wu, Jimmy and Wang, Qi and Julian, Ryan and Xu, Danfei and Du, Yilun and Chebotar, Yevgen and Reed, Scott and Kautz, Jan and Zhu, Yuke and Fan, Linxi and Jang, Joel},
+  journal={arXiv preprint arXiv:2602.15922},
+  year={2026},
+  url={https://arxiv.org/abs/2602.15922}
+}
+
+@inproceedings{temos,
+  title={TEMOS: Generating Diverse Human Motions from Textual Descriptions},
+  author={Petrovich, Mathis and Black, Michael J. and Varol, G{"u}l},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  pages={480--497},
+  year={2022},
+  doi={10.1007/978-3-031-20047-2_28},
+  url={https://doi.org/10.1007/978-3-031-20047-2_28}
+}
+
+@inproceedings{mdm,
+  title={Human Motion Diffusion Model},
+  author={Tevet, Guy and Raab, Sigal and Gordon, Brian and Shafir, Yoni and Cohen-Or, Daniel and Bermano, Amit H.},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2023},
+  eprint={2209.14916},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2209.14916}
+}
+
+@inproceedings{mld,
+  title={Executing Your Commands via Motion Diffusion in Latent Space},
+  author={Chen, Xin and Jiang, Biao and Liu, Wen and Huang, Zilong and Fu, Bin and Chen, Tao and Yu, Gang},
+  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={18000--18010},
+  year={2023},
+  doi={10.1109/CVPR52729.2023.01726},
+  url={https://doi.org/10.1109/CVPR52729.2023.01726}
+}
+
+@inproceedings{t2mgpt,
+  title={T2M-GPT: Generating Human Motion from Textual Descriptions with Discrete Representations},
+  author={Zhang, Jianrong and Zhang, Yangsong and Cun, Xiaodong and Zhang, Yong and Zhao, Hongwei and Lu, Hongtao and Shen, Xi and Ying, Shan},
+  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={14730--14740},
+  year={2023},
+  doi={10.1109/CVPR52729.2023.01415},
+  url={https://doi.org/10.1109/CVPR52729.2023.01415}
+}
+
+@inproceedings{momask,
+  title={MoMask: Generative Masked Modeling of 3D Human Motions},
+  author={Guo, Chuan and Mu, Yuxuan and Javed, Muhammad Gohar and Wang, Sen and Cheng, Li},
+  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={1900--1910},
+  year={2024},
+  doi={10.1109/CVPR52733.2024.00186},
+  url={https://doi.org/10.1109/CVPR52733.2024.00186}
+}
+
+@inproceedings{omnicontrol,
+  title={OmniControl: Control Any Joint at Any Time for Human Motion Generation},
+  author={Xie, Zhenyu and others},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2024}
+}
+
+@misc{humanoidvla,
+  title={Humanoid-VLA: Towards Universal Humanoid Control with Visual Integration},
+  author={Ding and others},
+  year={2025}
+}
+
+@misc{zerowbc,
+  title={ZeroWBC: Learning Natural Whole-Body Humanoid Interaction from Human Egocentric Data},
+  author={Yang and others},
+  year={2026}
+}
+
+@misc{wholebodywam_motionpriors,
+  title={WholeBodyWAM: Learning Whole-Body World Action Models with Scalable Motion Priors},
+  author={Zhang and others},
+  year={2026}
+}
+
+@misc{grootn1,
+  title={GR00T N1: An Open Foundation Model for Generalist Humanoid Robots},
+  author={{NVIDIA}},
+  year={2025},
+  eprint={2503.14734},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2503.14734}
+}
+
+@misc{humanoidexo,
+  title={HumanoidExo: Scalable Whole-Body Humanoid Manipulation via Wearable Exoskeleton},
+  author={Zhong, Rui and Sun, Yizhe and Wen, Junjie and Li, Jinming and Cheng, Chuang and Dai, Wei and Zeng, Zhiwen and Lu, Huimin and Zhu, Yichen and Xu, Yi},
+  year={2025},
+  eprint={2510.03022},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2510.03022}
+}
+
+@misc{openhlm,
+  title={OpenHLM: An Empirical Recipe for Whole-Body Humanoid Loco-Manipulation},
+  author={Hu, Yingdong and others},
+  year={2026},
+  eprint={2606.22174},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2606.22174}
+}
+
+@misc{wholebodywam_wbc,
+  title={WholeBodyWAM: Generalizing Pre-trained World--Action Priors to Humanoid Loco-Manipulation via WBC-Grounded Coordination},
+  author={Li, Zhuo and others},
+  year={2026},
+  eprint={2609.16644},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2609.16644}
+}
+
+@misc{haf,
+  title={HAF: Adapting Generalist VLAs to Humanoid Whole-Body Loco-manipulation via Hierarchical Action Flow and Spectral Latent RL},
+  author={Gu, Langzhe and others},
+  year={2026},
+  eprint={2608.16837},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2608.16837}
+}
+
+@article{rt2,
+  title={{RT-2}: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control},
+  author={Brohan, Anthony and others},
+  journal={arXiv preprint arXiv:2307.15818},
+  year={2023},
+  url={https://arxiv.org/abs/2307.15818}
+}
+
+@article{openvla,
+  title={{OpenVLA}: An Open-Source Vision-Language-Action Model},
+  author={Kim, Moo Jin and Pertsch, Karl and Karamcheti, Siddharth and Xiao, Ted and Balakrishna, Ashwin and Nair, Suraj and Rafailov, Rafael and Foster, Ethan and Lam, Grace and Sanketi, Pannag and Vuong, Quan and Kollar, Thomas and Burchfiel, Benjamin and Tedrake, Russ and Sadigh, Dorsa and Levine, Sergey and Liang, Percy and Finn, Chelsea},
+  journal={arXiv preprint arXiv:2406.09246},
+  year={2024},
+  url={https://arxiv.org/abs/2406.09246}
+}
+
+@inproceedings{pi0,
+  title={{${\pi}_0$}: A Vision-Language-Action Flow Model for General Robot Control},
+  author={Black, Kevin and Brown, Noah and Driess, Danny and Esmail, Adnan and Equi, Michael and Finn, Chelsea and Fusai, Niccolo and Groom, Lachy and Hausman, Karol and Ichter, Brian and Jakubczak, Szymon and Jones, Tim and Ke, Liyiming and Levine, Sergey and Li-Bell, Adrian and Mothukuri, Mohith and Nair, Suraj and Pertsch, Karl and Shi, Lucy Xiaoyang and Tanner, James and Vuong, Quan and Walling, Anna and Wang, Haohuan and Zhilinsky, Ury},
+  booktitle={Robotics: Science and Systems},
+  year={2025},
+  eprint={2410.24164},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2410.24164}
+}

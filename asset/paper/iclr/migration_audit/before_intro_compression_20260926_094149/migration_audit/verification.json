@@ -1,0 +1,30 @@
+{
+  "source_unchanged_files": 64,
+  "edited_tex_files": [
+    "main.tex",
+    "content/Teaser.tex",
+    "content/Abstract.tex"
+  ],
+  "other_current_project_files_unchanged": true,
+  "figure_count": 13,
+  "table_count": 4,
+  "equation_count": 6,
+  "labels": 43,
+  "reference_targets": 40,
+  "figure_1_asset": "image/teasser.png",
+  "user_figure_1_image_unchanged": true,
+  "official_template_unchanged": true,
+  "compile_errors_or_undefined_references": [],
+  "overfull_box_warnings": [],
+  "figure_1_on_first_page": true,
+  "compiled_bibliography_entries": 45,
+  "pdf_pages": 23,
+  "pdf_sha256": "8319792f4d5b1c8b0ec476fb050ad4cecfc3802ac2e3d72d970190ce7a9d932c",
+  "caption_rendered_lines": 3,
+  "abstract_rendered_lines": 18,
+  "abstract_end_page": 1,
+  "abstract_last_line_top_pt": 723.107357,
+  "introduction_start_page": 2,
+  "visual_review": "Rendered full PDF and inspected pages 1 and 2: caption is 3 lines, abstract is 18 lines ending at the first-page text bottom, no overlap or clipping, and Introduction starts on page 2.",
+  "compression_semantics_review": "Independent review confirmed original argument order, two limitations, motion priors, root-body-hand dependencies, conditioning inputs, parameter counts, evaluation settings, and scaling claims preserved."
+}

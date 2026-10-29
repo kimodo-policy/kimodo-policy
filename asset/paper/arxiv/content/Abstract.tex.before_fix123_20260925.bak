@@ -1,0 +1,15 @@
+\begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{image/teaser.png}
+  \caption{\textbf{Overview of Kimodo-Policy.} Top: benchmark performance, with red, blue, and green indicating ours, the best baseline, and the second-best baseline, respectively. Center: diverse VLA pretraining adapts a pretrained text-to-motion prior within a three-stage root--body--hand framework for visually grounded control. Bottom: skeletal history constrains future action-chunk prediction, with real-world examples illustrating coordinated whole-body task execution.}  \label{fig:overview}
+\end{figure*}
+
+\begin{hclAbstract}
+\noindent\textbf{Abstract.}\quad
+  Humanoid vision--language--action (VLA) models offer a path toward general-purpose robots that translate multimodal task understanding into coordinated whole-body behavior.
+  Existing approaches typically extend pretrained vision--language or video generation models with action experts for humanoid control.
+  Although these backbones provide semantic and visual dynamics knowledge, their pretraining does not directly establish whole-body motion priors. Existing unified or upper--lower-body action designs also lack dedicated modeling for root, body, and hand motion, despite their distinct control requirements.
+  Together, these limitations increase the burden of learning precise and coordinated actions from limited humanoid demonstrations.
+  To address these challenges, we introduce Kimodo-Policy, a humanoid VLA model built on a pretrained text-to-motion (T2M) backbone. By transferring pretrained priors over inter-joint coordination and temporal structure, the model reduces the burden of learning visually grounded control from limited humanoid demonstrations. Building on these motion priors, we organize action generation into a three-stage root–body–hand framework that accommodates distinct control requirements through dedicated generators. Root trajectories condition body generation, while future body features and visual observations guide hand control, enabling component specialization and whole-body coordination.
+  We pretrain the policy on diverse humanoid demonstrations to generate actions conditioned on visual observations, language instructions, and motion history. With 678M total and only 92M trainable parameters, Kimodo-Policy achieves strong performance on HumanoidArena, SIMPLE, and real-world loco-manipulation tasks. Further experiments show that policy performance improves with larger VLA pretraining datasets, greater model capacity, and stronger pretrained T2M priors.
+\end{hclAbstract}
