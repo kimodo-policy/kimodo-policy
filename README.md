@@ -46,7 +46,7 @@
 
 - [x] SIMPLE Benchmark: [Training](scripts/Simple_Single_Task/) & [Evaluation](evaluation/simple_eval.md)
 
-- [x] [Real-World Data Collection, Training & Deployment](real-world/README.md) — source and guides; runtime assets and checkpoints are obtained separately.
+[Real-World Data Collection, Training & Deployment](real-world/README.md)
 
 - [ ] More Benchmarks (Coming Soon)
 
@@ -382,13 +382,88 @@ Use a separate `--results-dir` for each evaluation run. Summary statistics, per-
 
 ![Note: HumanoidArena is built on Isaac Sim. Small differences in visual rendering may lead to slight variations in evaluation results.](asset/readme/arena-reproducibility-note.svg)
 
-## 🦾 Real-World G1 Workflow
+## 🦾 Real-World Data Collection, Training & Deployment
 
-The [real-world guide](real-world/README.md) covers PICO teleoperation, synchronized recording, dataset validation and transfer, fine-tuning, and remote policy deployment to a Unitree G1 with Dex3 hands.
+Collect demonstrations with PICO teleoperation, fine-tune Kimodo-Policy on your recordings, and deploy the resulting policy on a **Unitree G1 with two Dex3 hands**. The workflow uses a **robot-side workstation** for teleoperation, recording, and SONIC control, plus a **GPU server** for training and policy inference. Isaac Sim and Isaac Lab are not required.
 
-The policy runs on a model-server GPU; the workstation runs the bridge and SONIC controller. This workflow does not require Isaac Sim or Isaac Lab. Start with the [observed versions and required assets](real-world/docs/00-versions-assets.md), then follow the [installation guide](real-world/docs/01-install.md) and [terminal-by-terminal deployment commands](real-world/deploy/start.md).
+**Workflow:** prepare environments and assets → collect and validate demonstrations → transfer data and fine-tune → serve the policy → execute on the robot. If you already have a compatible task checkpoint, start with environment preparation and proceed to deployment.
 
-The old `real-world/GR00T-WholeBodyControl` submodule is replaced by a pinned runtime bundle installed under `real-world/external/`. Use a fresh checkout when migrating. The runtime archive and task checkpoints are not bundled in Git, and their public download locations still need to be supplied. Offline validation does not replace clean Linux and on-site hardware acceptance; see the [validation record](real-world/docs/verification.md).
+### • 1. Prepare Environments & Assets
+
+Clone this repository on both machines and follow the [real-world installation guide](real-world/docs/01-install.md). On the GPU server, use the `kimodo-policy` environment; `bash setup.sh --only training` installs the shared training dependencies. The workstation requires separate teleoperation and collection/bridge environments and the matching SONIC runtime; the root setup script does not install these. See [environment versions and required assets](real-world/docs/00-versions-assets.md).
+
+Create `real-world/local.env` and `real-world/deploy/deploy_config.json` from their examples. Set each machine's interpreter paths, the robot/camera interfaces, and the workstation's SSH connection to the GPU server. Install the base models under `checkpoints/` and the workstation runtime under `real-world/external/` and `real-world/runtime/`, following the installation guide.
+
+The matching `workstation-runtime.tar.gz` and real-world task checkpoints are distributed separately from Git; public download links are not yet provided. Obtain the runtime archive before proceeding, and use a compatible task checkpoint or train your own below.
+
+For collection and deployment, start each terminal in `real-world/` and load its machine-specific configuration:
+
+```bash
+cd /path/to/kimodo-policy/real-world
+source env.sh
+```
+
+### • 2. Collect & Validate Demonstrations
+
+On the workstation, first complete [network, PICO, and camera setup](real-world/docs/02-network-camera.md). Then follow the [collection guide](real-world/docs/03-collection-training.md) to launch the following in **separate terminals**, each initialized as above:
+
+| Terminal | Command | Purpose |
+| --- | --- | --- |
+| A | `bash collection/bin/xrt-service` | Connect the PICO headset. |
+| B | `bash collection/bin/pico-manager 1.75` | Retarget the operator's motion; replace `1.75` with their height in metres. |
+| C | `bash collection/bin/sonic-control` | Start robot control; wait for `Init Done` and follow the controller-mode instructions. |
+| D | `bash collection/bin/collect 'Your English task instruction'` | Record synchronized images, robot states, and actions. |
+
+Use **left grip + A** to start recording or stop and save an episode, and **left grip + B** to discard it. Keep the task instruction consistent between demonstrations, training, and deployment. For the original tasks, use the exact instructions in the [task catalog](real-world/manifests/task-catalog.json).
+
+Each recorder session writes to `$WBC_ROOT/outputs/teleop-TIMESTAMP/`. After saving and stopping the recorder, validate the dataset:
+
+```bash
+export DATASET="$WBC_ROOT/outputs/teleop-your_timestamp"
+"$COLLECTION_PYTHON" "$WBC_ROOT/gear_sonic/scripts/validate_g1_vla_dataset.py" "$DATASET"
+```
+
+Keep `meta/`, `data/`, and `videos/` together. Follow the [transfer instructions](real-world/docs/03-collection-training.md#36-transfer-data-from-the-workstation) to copy a validated dataset to the GPU server, for example `real-world/data/teleop-banana/`. Independently recorded sessions need episode/metadata merging; copying them into one directory can overwrite episodes.
+
+### • 3. Fine-Tune on Your Data
+
+Run the following from the **repository root on the GPU server**. Replace the checkpoint path with a compatible [pretrained Kimodo-Policy checkpoint](https://huggingface.co/YunhengWang/kimodo-policy/tree/main), and `teleop-banana` with your dataset directory name under `$REAL_WORLD_ROOT/data/`.
+
+```bash
+conda activate kimodo-policy
+export KIMODO_ENV="$CONDA_PREFIX"
+export REAL_WORLD_ROOT="$PWD/real-world"
+export KIMODO_GPUS=0,1,2,3,4,5,6,7
+unset KIMODO_RESUME
+bash scripts/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse.sh \
+  /path/to/pretrained/checkpoint_STEP teleop-banana
+```
+
+This example uses **8 GPUs**, batch size 8 per GPU, and no gradient accumulation, giving **global batch size 64** for 50,000 steps. The launcher's default is 4 GPUs, which gives global batch size 32 with the same configuration. Checkpoints are saved under `log/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/` unless `KIMODO_FT_SAVE_ROOT` is overridden.
+
+See the [fine-tuning and resume guide](real-world/docs/03-collection-training.md#37-model-host-eight-gpu-fine-tuning) for resuming a run and preparing text embeddings. New instructions require the Llama/LLM2Vec assets listed in the [asset guide](real-world/docs/00-versions-assets.md). For deployment of newly trained instructions, set the server's `KIMODO_TEXT_CACHE` in `local.env` to the training-generated `data/cache/RealWorld/` directory.
+
+### • 4. Deploy the Trained Policy
+
+Set `tasks.<task>.checkpoint` in `deploy/deploy_config.json` to your **absolute checkpoint directory**, and check that its dataset, instruction cache, and initial pose match the task. The supplied configurations cover `banana`, `boxing`, `pushing`, `transportation`, `sitting`, `football`, `pnp`, and `long` (`teleop-long-v2`). A new task also needs its own matching configuration and calibrated initial pose.
+
+Follow the [terminal-by-terminal deployment guide](real-world/deploy/start.md). In each terminal, enter `real-world/`, source `env.sh`, and set the same task, for example `export TASK=banana`.
+
+| Order | Machine / terminal | Command |
+| --- | --- | --- |
+| 1 | GPU server | `"$KIMODO_SERVER_PYTHON" tools/preflight_server.py "$TASK"` |
+| 2 | GPU server | `bash deploy/deploy.sh server "$TASK" --gpu 0` |
+| 3 | Workstation, new terminal | `bash deploy/tunnel.sh` |
+| 4 | Workstation, new terminal | `curl --fail http://127.0.0.1:18080/health` |
+| 5 | Workstation, controller terminal | `bash deploy/sonic.sh` |
+| 6 | Workstation, bridge terminal | `bash deploy/deploy.sh check "$TASK" --max-steps 150` |
+| 7 | Workstation, bridge terminal | `bash deploy/deploy.sh run "$TASK"` |
+
+Use your configured HTTP port if it differs from `18080`. Confirm the health response reports the expected task before starting robot control. Stop the PICO manager and any previous bridge first; an on-site operator must support the robot and have an emergency stop available before starting SONIC. Wait for `Init Done`, then use `check` to verify live camera/state and inference without publishing actions. Start `run` only after these checks and on-site confirmation.
+
+The GPU server predicts actions; the workstation bridge streams references to SONIC, which controls the robot. Follow the [shutdown and task-switching procedure](real-world/deploy/start.md#46-stop-hold-and-switch-tasks): Ctrl+C in `run` enters a streaming HOLD, so keep the bridge and SONIC active until the operator secures the robot. HOLD is not power-loss protection.
+
+For configuration, troubleshooting, and validation scope, see the [real-world guide](real-world/README.md), [deployment settings](real-world/deploy/start.md#45-inference-configuration), and [validation record](real-world/docs/verification.md).
 
 ## 📄 License
 
