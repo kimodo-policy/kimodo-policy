@@ -1,6 +1,10 @@
 \begin{table}[H]
   \caption{
-    \textbf{\textit{Multi-task training results on HumanoidArena.}} One policy is jointly trained on the seven benchmark tasks. Values are mean $\pm$ standard deviation; $^{*}$ denotes VLA-pretrained initialization. Bold and underlined entries indicate the best and second-best results, respectively.
+    \textbf{\textit{Multi-task results on HumanoidArena.}}
+    Each policy is trained jointly on the seven benchmark tasks.
+    HuGe results are from Table~4 of \citet{liu2026huge}. Entries marked $^{\dagger}$ are from Table~1 of \citet{li2026languageforcing}, with HOI and HSI means computed from the reported task scores.
+    $^{*}$ indicates additional policy pretraining. We show mean $\pm$ standard deviation where available and use a dash for unreported values. Bold and underlined entries indicate the best and second-best results, respectively.
+   Baselines include ACT~\citep{ACT}, DP~\citep{chi2023diffusionpolicy}, FM~\citep{FM_objective}, $\pi_{0.5}$~\citep{pi05}, HuGe variants~\citep{liu2026huge}, Fast-WAM~\citep{yuan2026fastwam}, LingBot-VA~\citep{li2026lingbotva}, GR00T N1.7~\citep{grootn1}, GigaWorld-Policy~\citep{gigaworld2026policy05}.
   }
   \label{tab:arena_multi_task}
   \centering
@@ -31,7 +35,7 @@
   \multirow{-2}{*}{\textbf{\textsc{Overall~($\uparrow$)}}} \\
   \midrule
 
-  ACT~\cite{ACT}
+  ACT
   & 7.4\%
   & 20.0$\pm$4.1\%
   & 30.0$\pm$4.1\%
@@ -41,11 +45,12 @@
   & 21.7$\pm$2.4\%
   & 58.3$\pm$10.3\%
   & 28.3$\pm$4.7\%
-  & 41.7$\pm$17.8\%   & 39.5\% \\
+  & 41.7$\pm$17.8\%
+  & 39.5\% \\
 
-  DP~\cite{chi2023diffusionpolicy}
+  DP
   & 7.1\%
-  & \textbf{53.3$\pm$6.2\%}
+  & 53.3$\pm$6.2\%
   & 35.0$\pm$10.8\%
   & 0.0$\pm$0.0\%
   & 29.4$\pm$23.3\%
@@ -53,9 +58,10 @@
   & \underline{83.3$\pm$4.7\%}
   & 21.7$\pm$30.6\%
   & 50.0$\pm$14.7\%
-  & 59.6$\pm$31.1\%   & 46.7\% \\
+  & 59.6$\pm$31.1\%
+  & 46.7\% \\
 
-  FM~\cite{FM_objective}
+  FM
   & 7.1\%
   & 21.7$\pm$8.5\%
   & 20.0$\pm$7.1\%
@@ -65,9 +71,10 @@
   & 48.3$\pm$6.2\%
   & 18.3$\pm$25.9\%
   & 38.3$\pm$6.2\%
-  & 45.4$\pm$25.1\%   & 31.9\% \\
+  & 45.4$\pm$25.1\%
+  & 31.9\% \\
 
-  $\pi_{0.5}$~\cite{pi05}
+  $\pi_{0.5}$
   & 6.4\%
   & 10.0$\pm$7.1\%
   & 30.0$\pm$7.1\%
@@ -75,38 +82,129 @@
   & 38.3$\pm$27.9\%
   & 85.0$\pm$4.1\%
   & 70.0$\pm$14.7\%
-  & \textbf{71.7$\pm$12.5\%}
+  & 71.7$\pm$12.5\%
   & 35.0$\pm$4.1\%
-  & 65.4$\pm$21.1\%   & 53.8\% \\
+  & 65.4$\pm$21.1\%
+  & 53.8\% \\
+
+  HuGe-OFT$^{*}$
+  & ---
+  & 48.33\%
+  & 0.00\%
+  & 53.33\%
+  & 33.89\%
+  & 75.00\%
+  & 55.00\%
+  & \underline{73.33\%}
+  & \underline{73.33\%}
+  & 69.17\%
+  & 54.05\% \\
+
+  HuGe-GR00T$^{*}$
+  & ---
+  & \textbf{71.67\%}
+  & 15.00\%
+  & \underline{81.67\%}
+  & 56.11\%
+  & \textbf{95.00\%}
+  & 78.33\%
+  & 68.33\%
+  & 56.67\%
+  & 74.58\%
+  & 66.67\% \\
+
+  HuGe-Pi$^{*}$
+  & ---
+  & 63.33\%
+  & 11.67\%
+  & 76.67\%
+  & 50.56\%
+  & 88.33\%
+  & \underline{83.33\%}
+  & 68.33\%
+  & 63.33\%
+  & 75.83\%
+  & 65.00\% \\
+
+  Fast-WAM$^{\dagger}$
+  & ---
+  & 46.25\%
+  & 45.00\%
+  & 73.75\%
+  & 55.00\%
+  & 85.42\%
+  & 74.58\%
+  & 67.92\%
+  & 35.00\%
+  & 65.73\%
+  & 61.13\% \\
+
+  LingBot-VA$^{\dagger}$
+  & ---
+  & 51.67\%
+  & 41.25\%
+  & 77.92\%
+  & 56.95\%
+  & 84.58\%
+  & 77.08\%
+  & 72.92\%
+  & 52.08\%
+  & 71.67\%
+  & 65.36\% \\
+
+  GR00T N1.7$^{\dagger}$
+  & ---
+  & \underline{63.75\%}
+  & \underline{49.58\%}
+  & 73.33\%
+  & \textbf{62.22\%}
+  & 82.08\%
+  & 76.67\%
+  & \textbf{76.67\%}
+  & 65.83\%
+  & 75.31\%
+  & \underline{69.70\%} \\
+
+  GigaWorld-Policy$^{\dagger}$
+  & ---
+  & 62.08\%
+  & \textbf{52.50\%}
+  & 65.83\%
+  & \underline{60.14\%}
+  & 90.83\%
+  & 74.17\%
+  & \underline{73.33\%}
+  & 60.00\%
+  & 74.58\%
+  & 68.39\% \\
 
   \rowcolor{hclbrown!8!white}
   \texttt{Ours}
   & \underline{5.0\%}
   & 35.0$\pm$7.1\%
-  & \textbf{40.0$\pm$0.0\%}
-  & \underline{80.0$\pm$4.1\%}
-  & \underline{51.7$\pm$20.7\%}
+  & 40.0$\pm$0.0\%
+  & 80.0$\pm$4.1\%
+  & 51.7$\pm$20.7\%
   & \underline{93.3$\pm$6.2\%}
   & \textbf{96.7$\pm$4.7\%}
   & 66.7$\pm$4.7\%
-  & \underline{61.7$\pm$6.2\%}
-  & \underline{79.6$\pm$16.5\%}   & \underline{67.6\%} \\
-
+  & 61.7$\pm$6.2\%
+  & \underline{79.6$\pm$16.5\%}
+  & 67.6\% \\
 
   \rowcolor{hclbrown!15!white}
   \texttt{Ours}$^{*}$
   & \textbf{4.3\%}
-  & \underline{40.0$\pm$4.1\%}
-  & \underline{38.3$\pm$2.4\%}
+  & 40.0$\pm$4.1\%
+  & 38.3$\pm$2.4\%
   & \textbf{90.0$\pm$4.1\%}
-  & \textbf{56.1$\pm$24.2\%}
+  & 56.1$\pm$24.2\%
   & \textbf{95.0$\pm$4.1\%}
   & \textbf{96.7$\pm$4.7\%}
-  & \underline{68.3$\pm$10.3\%}
+  & 68.3$\pm$10.3\%
   & \textbf{76.7$\pm$8.5\%}
-  & \textbf{84.2$\pm$14.1\%}   & \textbf{72.1\%} \\
-
-
+  & \textbf{84.2$\pm$14.1\%}
+  & \textbf{72.1\%} \\
 
   \bottomrule
   \end{tabular}

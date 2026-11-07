@@ -38,27 +38,102 @@
 
 **Kimodo-Policy turns pretrained text-to-motion generators into humanoid vision-language-action policies.** Given egocentric vision, language instructions, and motion history, it predicts coordinated **root → body → hand** actions for closed-loop loco-manipulation. Our core idea is to reuse a frozen motion backbone’s learned coordination and temporal structure, while visual ControlNet branches and a dedicated HandNet ground these priors in the current scene. We evaluate this approach on HumanoidArena, SIMPLE, and real-world humanoid tasks.
 
-<p align="center">
-  <img src="asset/picture/teaser.png" alt="Kimodo-Policy overview: benchmark results, motion-prior-based architecture, and whole-body robot execution" width="100%">
-</p>
+![Kimodo-Policy overview](asset/picture/teaser.png)
 
 ## 🗺️ Open-Source Roadmap
 
 - [x] [HumanoidArena Training & Evaluation](#humanoidarena-training--evaluation)
+
 - [x] SIMPLE Benchmark: [Training](scripts/Simple_Single_Task/) & [Evaluation](evaluation/simple_eval.md)
+
 - [x] [Real-World Data Collection, Training & Deployment](real-world/README.md) — source and guides; runtime assets and checkpoints are obtained separately.
+
 - [ ] More Benchmarks (Coming Soon)
+
+## ⚙️ Installation & Environment Setup
+
+Use Ubuntu 22.04 or newer on x86_64, with Conda and a compatible NVIDIA GPU driver installed. SIMPLE also requires a CUDA 12.x toolkit with `nvcc` (12.8 recommended). The setup script installs all three environments and checks their imports:
+
+| Environment | Python | Purpose |
+| --- | --- | --- |
+| `kimodo-policy` | 3.10 | Training and Arena policy serving |
+| `unitree_sim_env` | 3.11 | HumanoidArena: Isaac Sim 5.0.0 + Isaac Lab 2.2.0 |
+| `SIMPLE/.venv` | 3.10 | SIMPLE: MuJoCo 3.3.6 + Isaac Sim 4.5.0 |
+
+### Quick Installation
+
+Clone the project and run the setup script. The `--system-deps` option installs Ubuntu system packages and may request your sudo password. Use `--accept-isaac-eula` after reviewing and accepting the [Isaac Sim license](https://docs.omniverse.nvidia.com/isaacsim/latest/common/NVIDIA_Omniverse_License_Agreement.html).
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/Yunheng-Wang/kimodo-policy.git
+cd kimodo-policy
+bash scripts/setup.sh --system-deps --accept-isaac-eula
+source .setup/env.sh
+```
+
+If you already cloned the repository, run the last two commands from its root. The script installs Git LFS files, Python dependencies, Isaac Lab, and cuRobo. It uses the included Arena and SIMPLE integrations and keeps their simulator environments separate, following the [Arena](https://github.com/William-wAng618/HumanoidArena/blob/main/docs/04_environment_setup.md) and [SIMPLE](https://github.com/physical-superintelligence-lab/SIMPLE) setup workflows.
+
+Existing named environments are reused; missing ones are created. Rerunning reinstalls the selected dependency versions and retries the setup without deleting environments. Logs are saved under `.setup/`; the runtime path file is published only after all selected installation and import checks pass.
+
+### Optional Setup Commands
+
+```bash
+# Preview the installation plan without making changes.
+bash scripts/setup.sh --dry-run
+
+# Install only training dependencies.
+bash scripts/setup.sh --only training
+
+# Install one benchmark and the shared Kimodo model environment.
+bash scripts/setup.sh --only arena --accept-isaac-eula
+bash scripts/setup.sh --only simple --accept-isaac-eula
+
+# Also download SONIC controller files and SIMPLE base scene/robot resources.
+bash scripts/setup.sh --accept-isaac-eula --download-resources
+
+# Check existing environments without reinstalling packages.
+bash scripts/setup.sh --check --accept-isaac-eula
+```
+
+Use `--conda /path/to/bin/conda` if Conda is not detected. For SIMPLE, the script prefers `/usr/local/cuda-12.8` when available; set `CUDA_HOME` to select another CUDA 12.x toolkit. The script does not install GPU drivers or CUDA toolkits.
+
+### Use the Installed Environments
+
+In each new terminal, enter the repository and load its environment paths:
+
+```bash
+source .setup/env.sh
+conda activate kimodo-policy
+```
+
+The generated file configures the Python executables, model dependency path, and default simulator/resource paths used by our wrappers. It does not activate a simulator environment; the evaluation wrappers select the correct runtime.
+
+### Prepare Runtime Assets
+
+Environment installation does not include model weights or benchmark datasets. Before evaluation, prepare:
+
+- **Kimodo weights and text caches:** download the required [released checkpoints](https://huggingface.co/YunhengWang/kimodo-policy), prepare the backbone/encoder files required by the configuration under `checkpoints/`, and place task embeddings under `data/cache/HumanoidArena/` or `data/cache/Simple/`. Training generates missing task embeddings when the LLM2Vec weights are available.
+
+- **Arena scenes and SONIC:** follow **Evaluation Assets** under **Data Preparation** below for the official downloads, our backup asset link, and the required directory layout.
+
+- **SIMPLE evaluation episodes:** download the target task archives from the [official evaluation dataset](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple-eval) and extract them under `SIMPLE/data/simple-eval/`, following the [evaluation guide](https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md).
+
+- **Training data:** follow **Data Preparation** below.
+
+Add `--dry-run` to either evaluation wrapper to check its configuration and required paths before launching simulation. Installation/import checks do not replace a small end-to-end evaluation.
 
 ## 🤖 HumanoidArena Training & Evaluation
 
-This section covers training and evaluation on HumanoidArena. Training runs in the Kimodo Conda environment. Evaluation uses the HumanoidArena simulator in unitree_sim_env and the Kimodo model server in lerobot.
+This section covers training and evaluation on HumanoidArena. Complete **Installation & Environment Setup** above first. Training and policy serving use `kimodo-policy`; the Arena simulator runs separately in `unitree_sim_env`.
 
-### ⚙️ Environment Setup
+![HumanoidArena — seven task demonstrations](asset/readme/humanoidarena-gallery.gif)
 
-For training, activate the Kimodo environment and point the dataset variable to the local HumanoidArena dataset:
+### ⚙️ Runtime Paths
+
+For training, activate the `kimodo-policy` environment and point the dataset variable to the local HumanoidArena dataset:
 
 ~~~bash
-conda activate kimodo
+conda activate kimodo-policy
 export KIMODO_ENV="$CONDA_PREFIX"
 PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 export HUMANOID_ARENA_ROOT="$PROJECT_ROOT/data/HumanoidArena_dataset_v3_1"
@@ -70,153 +145,226 @@ test -d "$HUMANOID_ARENA_ROOT" || {
 
 For evaluation, keep the simulator and model server in separate environments:
 
-~~~bash
-export CONDA_BASE="$(conda info --base)"
-export HUMANOIDARENA_ROOT="$PROJECT_ROOT/HumanoidArena"
-export KIMODO_SIM_ENV="$CONDA_BASE/envs/unitree_sim_env"
-export KIMODO_SERVER_PYTHON="$CONDA_BASE/envs/lerobot/bin/python"
-export SONIC_POLICY_ROOT="$HUMANOIDARENA_ROOT/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release"
-export TEXT_EMBEDDING_CACHE="$PROJECT_ROOT/data/cache/HumanoidArena"
-export OMNI_KIT_ACCEPT_EULA=YES
-~~~
+```bash
+source .setup/env.sh
+```
 
 Before a full run, verify that the simulator Python, model-server Python, SONIC artifacts, text cache, and Isaac Lab task YAML are available. The evaluation wrappers provide dry-run validation without launching Isaac Sim.
 
 ### 📦 Data Preparation
 
-Download the released [HumanoidArena_dataset_v3_1 dataset](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/HumanoidArena_dataset_v3_1) before training. From the repository root, download the dataset subtree and point the Arena YAML files to it through HUMANOID_ARENA_ROOT:
+#### • Training Data
 
-~~~bash
+Before training, download the dataset from the [official HumanoidArena website](https://humanoidarena.github.io/). If the official release is updated or changed, you can use our [archived dataset snapshot on Hugging Face](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/HumanoidArena_dataset_v3_1) to reproduce the experiments with the same data version.
+
+Activate the `kimodo-policy` environment with the project dependencies installed, then run the following commands from the repository root to download our archived snapshot:
+
+```bash
+conda activate kimodo-policy
 PROJECT_ROOT="$(git rev-parse --show-toplevel)"
-python -m pip install --upgrade huggingface_hub
+python -m pip install huggingface_hub
 hf download YunhengWang/kimodo-policy \
   --repo-type dataset \
   --include "data/HumanoidArena_dataset_v3_1/**" \
   --local-dir "$PROJECT_ROOT"
 export HUMANOID_ARENA_ROOT="$PROJECT_ROOT/data/HumanoidArena_dataset_v3_1"
-~~~
+```
 
 If the dataset is gated or requires authentication, run hf auth login first.
 
-Audit the dataset before training:
+Check dataset completeness and audit the first five selected episodes before training:
 
-~~~bash
+```bash
 PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+export HUMANOID_ARENA_ROOT="${HUMANOID_ARENA_ROOT:-$PROJECT_ROOT/data/HumanoidArena_dataset_v3_1}"
 python utils/check_datasets.py \
   --config scripts/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.yaml \
   --workers 1 \
   --limit 5 \
+  --fail-on-errors \
   --output "$PROJECT_ROOT/log/humanoidarena_dataset_audit.json"
-~~~
+```
 
-The checker validates episode metadata, task selection, and action continuity. It does not replace a small GPU run that verifies video decoding and memory usage.
+The checker verifies selected dataset files, episode metadata, state/action shapes, finite values, frame indices, timestamps, root rotations, and hand-command ranges. It also reports motion-continuity flags in the JSON report; these flags do not remove episodes or change training data. `--fail-on-errors` returns a nonzero exit status for data-reading or schema errors. Add `--fail-on-invalid` to also fail on motion-quality flags. Remove `--limit 5` to audit every selected episode. Video decoding is not checked.
 
-### 🤗 Kimodo-Policy Checkpoints
+#### • Evaluation Assets
 
-This release provides the trained Kimodo-Policy weights used for the HumanoidArena experiments. The first table lists policies trained independently on each Arena task, either from the 419h pretraining stage or directly from scratch. The second table lists policies trained jointly on all seven Arena tasks, including scratch variants and 105h/419h fine-tuning. The `Pretrain` column identifies the initialization. Single-task results and the two original multi-task entries are from Tables 1 and 2 of the paper; additional multi-task entries summarize the released evaluation files. Click a result to open its corresponding evaluation folder.
+Evaluation requires simulation assets and SONIC controller files in addition to the Kimodo checkpoint and task text cache. The training dataset alone is not sufficient.
+
+**Simulation assets.** Download the [official HumanoidArena asset package](https://drive.google.com/file/d/1TCa_aVRmFrZs_l4wlxkqanNebvDtChNk/view) first, following the [official setup guide](https://github.com/William-wAng618/HumanoidArena/blob/main/docs/04_environment_setup.md). If the official download is unavailable or the assets change, use our [archived HumanoidArena assets on Hugging Face](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/humanoidarena_assets).
+
+To download our backup, run from the repository root:
+
+```bash
+conda activate kimodo-policy
+export PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+hf download YunhengWang/kimodo-policy \
+  --repo-type dataset \
+  --include "assets/humanoidarena_assets/**" \
+  --local-dir "$PROJECT_ROOT/.setup/arena-assets"
+```
+
+The backup is downloaded under `.setup/arena-assets/assets/humanoidarena_assets/`. Extract any archives before placing the files in the simulator directory. For the official ZIP, replace the archive path below with your downloaded file:
+
+```bash
+export PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+export ARENA_ASSET_DIR="$PROJECT_ROOT/HumanoidArena/isaaclab_twist2_g1/assets"
+mkdir -p "$ARENA_ASSET_DIR"
+unzip /path/to/humanoidarena_assets.zip -d "$ARENA_ASSET_DIR"
+```
+
+This extraction command assumes the archive contains `objects/` and `robots/` at its root. If it already contains an `assets/` directory, extract it into `HumanoidArena/isaaclab_twist2_g1/` instead. For an unpacked backup, copy its `objects/` and `robots/` directories into `$ARENA_ASSET_DIR/`. Both download sources must produce this layout, without an extra nested `assets/` folder:
+
+```text
+HumanoidArena/isaaclab_twist2_g1/assets/
+├── objects/
+└── robots/
+```
+
+**SONIC controller.** Download the three controller files from the [official NVIDIA GEAR-SONIC release](https://huggingface.co/nvidia/GEAR-SONIC). Skip this download if setup was already run with `--download-resources`.
+
+```bash
+conda activate kimodo-policy
+export PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+export SONIC_POLICY_ROOT="$PROJECT_ROOT/HumanoidArena/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release"
+hf download nvidia/GEAR-SONIC \
+  model_encoder.onnx model_decoder.onnx observation_config.yaml \
+  --local-dir "$SONIC_POLICY_ROOT"
+```
+
+Check the installed resource paths before evaluation:
+
+```bash
+(
+  set -eu
+  PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+  ARENA_ASSET_DIR="$PROJECT_ROOT/HumanoidArena/isaaclab_twist2_g1/assets"
+  SONIC_POLICY_ROOT="$PROJECT_ROOT/HumanoidArena/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release"
+  for directory in objects robots; do
+    test -d "$ARENA_ASSET_DIR/$directory" || {
+      echo "Missing simulation assets: $ARENA_ASSET_DIR/$directory" >&2
+      exit 1
+    }
+  done
+  for file in model_encoder.onnx model_decoder.onnx observation_config.yaml; do
+    test -s "$SONIC_POLICY_ROOT/$file" || {
+      echo "Missing SONIC file: $SONIC_POLICY_ROOT/$file" >&2
+      exit 1
+    }
+  done
+  echo "Arena asset directories and SONIC files found."
+)
+```
+
+These are presence checks, not a full asset-integrity or rendering test. `check_datasets.py` audits training episodes; it does not validate simulator assets. Before a full evaluation, also prepare the task checkpoint and `data/cache/HumanoidArena/`, run the evaluation wrapper with `--dry-run`, and verify a small simulation run.
+
+### 🚀 Kimodo-Policy Single-Task Training on HumanoidArena
+
+To help you quickly reproduce our HumanoidArena results, we provide downloadable checkpoints corresponding to the paper, along with evaluation results and visualizations. For each task, the table below includes both a model fine-tuned from 419h pretraining and a model trained from scratch. Click a checkpoint to download the weights, or a result to explore the evaluations and visualizations.
 
 | Task | Pretrain | Kimodo-Policy checkpoint | Results&nbsp;(SR) |
 | --- | --- | --- | --- |
 | doubledesk | ❌ | [humanoidarena_single_gbs64_20w_HOI_double_desk](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_double_desk_sonic) | [40.0 ± 0.0%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_double_desk_sonic) |
-| doubledesk | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HOI_double_desk](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_double_desk_sonic) | [28.3 ± 2.4%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_double_desk_sonic) |
 | football | ❌ | [humanoidarena_single_gbs64_20w_HOI_football](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_football_sonic) | [28.3 ± 6.2%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_football_sonic) |
-| football | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HOI_football](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_football_sonic) | [26.7 ± 4.7%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_football_sonic) |
 | pp_box | ❌ | [humanoidarena_single_gbs64_20w_HOI_pp_box](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_pp_box_sonic) | [80.0 ± 4.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_pp_box_sonic) |
-| pp_box | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HOI_pp_box](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_pp_box_sonic) | [78.3 ± 8.5%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_pp_box_sonic) |
 | boxing | ❌ | [humanoidarena_single_gbs64_20w_HSI_boxing](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_boxing_sonic) | [73.3 ± 13.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_boxing_sonic) |
-| boxing | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_boxing](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_boxing_sonic) | [70.0 ± 8.2%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_boxing_sonic) |
 | open_door | ❌ | [humanoidarena_single_gbs64_20w_HSI_open_door](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_open_door_sonic) | [90.0 ± 4.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_open_door_sonic) |
-| open_door | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_open_door](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_open_door_sonic) | [93.3 ± 2.4%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_open_door_sonic) |
 | sit_sofa | ❌ | [humanoidarena_single_gbs64_20w_HSI_sit_sofa](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) | [100.0 ± 0.0%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) |
-| sit_sofa | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_sit_sofa](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) | [96.7 ± 2.4%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) |
 | vision_navi | ❌ | [humanoidarena_single_gbs64_20w_HSI_vision_navi](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_vision_navi_sonic) | [75.0 ± 10.8%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_vision_navi_sonic) |
+| doubledesk | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HOI_double_desk](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_double_desk_sonic) | [28.3 ± 2.4%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_double_desk_sonic) |
+| football | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HOI_football](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_football_sonic) | [26.7 ± 4.7%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_football_sonic) |
+| pp_box | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HOI_pp_box](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_pp_box_sonic) | [78.3 ± 8.5%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_pp_box_sonic) |
+| boxing | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_boxing](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_boxing_sonic) | [70.0 ± 8.2%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_boxing_sonic) |
+| open_door | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_open_door](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_open_door_sonic) | [93.3 ± 2.4%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_open_door_sonic) |
+| sit_sofa | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_sit_sofa](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) | [96.7 ± 2.4%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) |
 | vision_navi | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_vision_navi](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_vision_navi_sonic) | [76.7 ± 18.9%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_vision_navi_sonic) |
 
-#### HumanoidArena Multi-Task Checkpoints
+You can also train each task from scratch or fine-tune from a pretrained checkpoint available in our [Hugging Face model repository](https://huggingface.co/YunhengWang/kimodo-policy/tree/main). The default configuration uses **4 GPUs** (`KIMODO_GPUS=0,1,2,3`). Run the following commands from the repository root, replacing the dataset and checkpoint paths with your local paths and `doubledesk` with your target task.
 
-Each row below is one policy jointly trained on the seven HumanoidArena tasks. HOI averages cover doubledesk, football, and pp_box; HSI averages cover boxing, open_door, sit_sofa, and vision_navi. The averages and population standard deviations are computed across task/seed success rates within each group. Overall SR pools all seven tasks. Results link to the released evaluation folders; an unavailable result is marked as not published.
+**Train from scratch:**
+
+```bash
+conda activate kimodo-policy
+export KIMODO_ENV="$CONDA_PREFIX"
+KIMODO_GPUS=0,1,2,3 \
+HUMANOID_ARENA_ROOT=/path/to/HumanoidArena_dataset_v3_1 \
+bash scripts/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse.sh \
+  doubledesk sonic
+```
+
+**Fine-tune from a pretrained checkpoint:**
+
+```bash
+conda activate kimodo-policy
+export KIMODO_ENV="$CONDA_PREFIX"
+KIMODO_GPUS=0,1,2,3 \
+HUMANOID_ARENA_ROOT=/path/to/HumanoidArena_dataset_v3_1 \
+bash scripts/HumanoidArena_Single_Task/ft_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse.sh \
+  doubledesk sonic /path/to/pretrain/checkpoint_STEP
+```
+
+### 🚀 Kimodo-Policy Multi-Task Training on HumanoidArena
+
+To help you reproduce our multi-task HumanoidArena experiments, we provide downloadable checkpoints, evaluation results, and visualizations for policies jointly trained on all seven tasks. The table lists the following variants in order:
+
+- **Standard:** Kimodo-G1-RP-v1 motion backbone with the default policy architecture, trained without VLA policy pretraining.
+
+- **SEED:** The same policy architecture with the Kimodo-G1-SEED-v1 motion backbone, isolating the effect of the motion prior.
+
+- **Large:** The RP-v1 backbone with increased ControlNet capacity, raising active policy parameters from 91.7M to 158.9M, without VLA policy pretraining.
+
+- **105h:** The standard model fine-tuned from 105 hours of VLA policy pretraining.
+
+- **419h:** The standard model fine-tuned from 419 hours of VLA policy pretraining, achieving the best overall success rate among these variants.
+
+`Pretrain` refers to VLA policy pretraining; all variants retain a pretrained, frozen motion backbone. HOI and HSI report mean success rates for human–object and human–scene interaction tasks, respectively. Click a checkpoint to download the weights, or an overall result to explore the evaluations and visualizations.
 
 | Task | Pretrain | Kimodo-Policy checkpoint | HOI Avg. | HSI Avg. | Overall Results |
 | --- | --- | --- | --- | --- | --- |
-| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 51.7 ± 20.7% | 79.6 ± 16.5% | [67.6%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
-| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_SEED](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) | 52.8 ± 22.4% | 72.9 ± 15.2% | [64.3%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) |
-| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_large](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) | 45.6 ± 19.4% | 85.8 ± 15.3% | [68.6%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) |
-| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_large_hand8](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large_hand8) | — | — | Not published |
-| multi-task | ✅ 105h | [ft_105h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 48.9 ± 23.4% | 82.5 ± 13.0% | [68.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
-| multi-task | ✅ 419h | [ft_419h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 56.1 ± 24.2% | 84.2 ± 14.1% | [72.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
+| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 51.7% | 79.6% | [67.6%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
+| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_SEED](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) | 52.8% | 72.9% | [64.3%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) |
+| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_large](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) | 45.6% | 85.8% | [68.6%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) |
+| multi-task | ✅ 105h | [ft_105h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 48.9% | 82.5% | [68.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
+| multi-task | ✅ 419h | [ft_419h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 56.1% | 84.2% | [72.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
 
-### 🚀 Training on Arena
+You can also train a single policy jointly on all seven HumanoidArena tasks from scratch or fine-tune from a pretrained checkpoint available in our [Hugging Face model repository](https://huggingface.co/YunhengWang/kimodo-policy/tree/main). The default configuration uses **4 GPUs** (`KIMODO_GPUS=0,1,2,3`). Run the following commands from the repository root, replacing the dataset and checkpoint paths with your local paths.
 
-All Arena launchers use BF16 and Accelerate. KIMODO_GPUS controls the visible GPUs, and the global batch size changes when the number of GPUs changes. Set a different KIMODO_MASTER_PORT for simultaneous jobs on one host.
+**Train from scratch:**
 
-#### Multi-task SONIC training from scratch
-
-This configuration trains one policy on the seven-task Sonic RefPose mixture for 500,000 steps and saves to log/HumanoidArena_Multi_Task/ by default:
-
-~~~bash
-conda activate kimodo
+```bash
+conda activate kimodo-policy
 export KIMODO_ENV="$CONDA_PREFIX"
-PROJECT_ROOT="$(git rev-parse --show-toplevel)"
-export HUMANOID_ARENA_ROOT="$PROJECT_ROOT/data/HumanoidArena_dataset_v3_1"
-
 KIMODO_GPUS=0,1,2,3 \
-  bash scripts/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.sh
-~~~
+HUMANOID_ARENA_ROOT=/path/to/HumanoidArena_dataset_v3_1 \
+bash scripts/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.sh
+```
 
-Use the SEED, large, or large_hand8 launcher in the same directory for the corresponding model variant.
+**Fine-tune from a pretrained checkpoint:**
 
-#### Multi-task fine-tuning from a Kimodo checkpoint
-
-Pass a complete pretraining checkpoint as the only positional argument:
-
-~~~bash
-INIT_CKPT=/path/to/checkpoint_1000000
-KIMODO_GPUS=0,1,2,3 \
-  bash scripts/HumanoidArena_Multi_Task/ft_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.sh \
-  "$INIT_CKPT"
-~~~
-
-The 105h and 419h released fine-tuning families use the same launcher interface; select the matching YAML through KIMODO_CONFIG when reproducing a particular published run.
-
-#### Single-task training
-
-Train one task from scratch:
-
-~~~bash
-conda activate kimodo
+```bash
+conda activate kimodo-policy
 export KIMODO_ENV="$CONDA_PREFIX"
-PROJECT_ROOT="$(git rev-parse --show-toplevel)"
-export HUMANOID_ARENA_ROOT="$PROJECT_ROOT/data/HumanoidArena_dataset_v3_1"
-
 KIMODO_GPUS=0,1,2,3 \
-  bash scripts/HumanoidArena_Single_Task/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse.sh \
-  doubledesk sonic
-~~~
-
-Fine-tune the same task from a pretrained checkpoint:
-
-~~~bash
-KIMODO_GPUS=0,1,2,3 \
-  bash scripts/HumanoidArena_Single_Task/ft_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse.sh \
-  doubledesk sonic /path/to/checkpoint_1000000
-~~~
-
-Supported task aliases include doubledesk, football, pp_box, boxing, open_door, sit_sofa, and vision_navi. The script maps these aliases to the task names used by the dataset adapter. Outputs are saved under log/HumanoidArena_Single_Task/ with the task and backend included in the run name.
+HUMANOID_ARENA_ROOT=/path/to/HumanoidArena_dataset_v3_1 \
+bash scripts/HumanoidArena_Multi_Task/ft_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.sh \
+  /path/to/pretrain/checkpoint_STEP
+```
 
 ### 🧪 Evaluation
 
-Evaluation starts two processes: an Isaac Sim/Isaac Lab worker from unitree_sim_env and a Kimodo inference server from lerobot. Set the environment variables from the Environment Setup subsection first. The checkpoint passed to the wrapper must be a Kimodo training checkpoint; SONIC and TWIST2 simulator assets are separate files.
+We evaluate Kimodo-Policy on HumanoidArena with SONIC. The default evaluation setup uses **3 GPUs** (`--gpus 0,1,2`). The Isaac Sim/Isaac Lab simulator runs in `unitree_sim_env`, while the Kimodo inference server runs in `kimodo-policy`. Install both environments as described in **Installation & Environment Setup**, then configure **Runtime Paths** above.
 
-#### SONIC evaluation
+#### • SONIC evaluation
 
-The following command evaluates one task with three GPUs, deterministic simulator startup, and no persistent simulator reuse:
+Run the command below from the repository root to evaluate `doubledesk`. Replace the task name and checkpoint path with your own, and adjust `--gpus` if you use different GPU IDs. The example uses seeds `0,1,2`, disables RTC and persistent simulator reuse, and enables deterministic simulator startup.
 
-~~~bash
+```bash
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 bash evaluation/humanoidarena_eval_signal_task_sonic.sh \
   --project "$PROJECT_ROOT" \
   --task doubledesk \
-  --checkpoint /path/to/checkpoint_200000 \
-  --gpus 5,6,7 \
+  --checkpoint /path/to/checkpoint_STEP \
+  --gpus 0,1,2 \
   --seeds 0,1,2 \
   --repeats 20 \
   --dtype fp32 \
@@ -226,26 +374,15 @@ bash evaluation/humanoidarena_eval_signal_task_sonic.sh \
   --persistent-sim 0 \
   --deterministic-eval 1 \
   --results-dir "$PROJECT_ROOT/eval_results/arena_doubledesk"
-~~~
+```
 
-For continuous multi-task evaluation, use evaluation/humanoidarena_eval_multi_task_sonic.sh and pass the task list in the order required by the benchmark. See [HumanoidArena Evaluation](evaluation/humanoidarena_eval.md) for video recording, RTC, seeds, and result aggregation.
+To evaluate multiple tasks, use `evaluation/humanoidarena_eval_multi_task_sonic.sh`. See [HumanoidArena Evaluation](evaluation/humanoidarena_eval.md) for task selection, video recording, and result aggregation.
 
-#### TWIST2 evaluation
+Use a separate `--results-dir` for each evaluation run. Summary statistics, per-episode results, and optional videos are saved there. The checkpoint must be a Kimodo-Policy training checkpoint; SONIC simulator assets are configured separately.
 
-TWIST2 uses the same Kimodo server environment but requires the TWIST2 ONNX asset and the task-specific Isaac Lab YAML:
-
-~~~bash
-bash evaluation/humanoidarena_eval_signal_task_twist2.sh \
-  --project "$PROJECT_ROOT" \
-  --task football \
-  --checkpoint /path/to/checkpoint_200000 \
-  --gpus 5,6,7 \
-  --seeds 0,1,2 \
-  --repeats 20 \
-  --results-dir "$PROJECT_ROOT/eval_results/twist2_football"
-~~~
-
-Every evaluation run should have its own results directory. The wrappers write summary statistics, per-episode outputs, and optional videos there. A failed preflight usually indicates a missing simulator asset, cache file, environment variable, or incomplete checkpoint; the wrapper prints the missing path before launching the worker.
+> [!NOTE]
+>
+> HumanoidArena is built on Isaac Sim. Small differences in visual rendering may lead to slight variations in evaluation results.
 
 ## 🦾 Real-World G1 Workflow
 

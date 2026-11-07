@@ -12,8 +12,8 @@
 % --- Additional packages you may want ---
 \usepackage{amsmath}
 \usepackage{pifont}      % Provides \ding for circled numeric markers.
-\usepackage[numbers,sort&compress]{natbib}
-\bibliographystyle{unsrtnat}
+\usepackage[authoryear,round,semicolon,sort]{natbib}
+\bibliographystyle{plainnat}
 \usepackage{booktabs}
 \usepackage{adjustbox}
 \usepackage{float}
@@ -44,8 +44,8 @@
 \setUniversityLogo{logo/HKUST-GZ.pdf}
 
 \papertitle{\centering\fontsize{19pt}{23pt}\selectfont
-  Kimodo-Policy: From Text-to-Motion Generators to\\
-  Humanoid Vision-Language-Action Policies}
+  Kimodo-Policy: Towards Kinematic Action Models for\\
+  Humanoid Loco-Manipulation}
 
 \paperauthors{\centering%
   Yunheng Wang\equalmark\affilmark{1}\quad
@@ -69,7 +69,7 @@
   \affilmark{1}\,\href{https://hkust-gz.edu.cn}{HKUST(GZ)}\quad
   \affilmark{2}\,\href{https://jd.com}{JD Explore Academy}\quad
   \affilmark{3}\,\href{https://bjut.edu.cn}{BJUT}\quad
-  \affilmark{4}\,\href{https://cam.ac.uk}{University of Cambridge}
+  \affilmark{4}\,\href{https://cam.ac.uk}{Cambridge}
 }
 
 \papernotes{\centering%
@@ -78,15 +78,14 @@
 }
 
 \hypersetup{
-  pdftitle={Kimodo-Policy: From Text-to-Motion Generators to Humanoid Vision-Language-Action Policies},
+  pdftitle={Kimodo-Policy: Towards Kinematic Action Models for Humanoid Loco-Manipulation},
   pdfauthor={Yunheng Wang, Jiaxi Zhang, Wei Lu, Yuetong Fang, Taowen Wang, Yixiao Feng, Shuning Zhang, Junzhe Xu, Yichi Wang, Zizhao Yuan, Lusong Li, Kailun Huang, Mingqian Zhou, Zecui Zeng, Renjing Xu}
 }
 
-% Project links are intentionally left inactive until the corresponding resources are released.
 \paperbadges{\centering\normalsize
-  \raisebox{-0.35em}{\includegraphics[height=1.3em]{logo/project-page-color.pdf}}\kern0.3em Project Page\quad
-  \raisebox{-0.35em}{\includegraphics[height=1.2em]{logo/github-color.pdf}}\kern0.3em GitHub\quad
-  \raisebox{-0.35em}{\includegraphics[height=1.2em]{logo/huggingface-icon.pdf}}\kern0.3em Hugging Face\par
+  \href{https://kimodo-policy.github.io/}{\raisebox{-0.35em}{\includegraphics[height=1.3em]{logo/project-page-color.pdf}}\kern0.3em Project Page}\quad
+  \href{https://github.com/kimodo-policy/kimodo-policy}{\raisebox{-0.35em}{\includegraphics[height=1.2em]{logo/github-color.pdf}}\kern0.3em GitHub}\quad
+  \href{https://huggingface.co/YunhengWang/kimodo-policy/tree/main}{\raisebox{-0.35em}{\includegraphics[height=1.2em]{logo/huggingface-icon.pdf}}\kern0.3em Hugging Face}\par
 }
 
 \begin{document}
@@ -101,8 +100,6 @@
 
 \input{content/Related_Work}
 
-\input{content/Preliminaries}
-
 \section{Method: Kimodo-Policy}
 \label{sec:method}
 \input{content/Method}
@@ -116,5 +113,9 @@
 % References cited by the Introduction and experiment tables.
 
 \bibliography{ref}
+
+\clearpage
+\appendix
+\input{content/Preliminaries}
 
 \end{document}

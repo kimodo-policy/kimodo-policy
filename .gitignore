@@ -42,3 +42,6 @@ checkpoints/
 # Publish TWIST2 runtime resources.
 !/HumanoidArena/TWIST2/assets/
 !/HumanoidArena/TWIST2/assets/**
+
+# Local environment setup logs, paths, and Isaac Lab checkout
+/.setup/

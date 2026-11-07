@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Audit motion-quality filtering for a multisource training config.
+"""Audit data integrity and motion quality for a multisource training config.
 
 This script intentionally reuses the discontinuity detectors used by
 ``data.datasetloader``.  It scans parquet motion/state columns only; it
 does not initialize the model, decode training images, or modify the dataset.
+Arena additionally validates file completeness, schema, timestamps, frame indices,
+root rotations, and hand commands. Arena continuity flags are audit diagnostics;
+they do not change which episodes the training loader selects.
 """
 
 from __future__ import annotations
@@ -41,6 +44,7 @@ from data.datasetloader import (
     ParquetEpisodeReader,
     SOURCE_HIW500,
     SOURCE_HUMANOID_EVERYDAY,
+    SOURCE_HUMANOID_ARENA,
     SOURCE_UNIFOLM,
     _as_matrix,
     _hiw_joint_discontinuity,
@@ -288,10 +292,72 @@ def _audit_hiw(episode: EpisodeRecord) -> dict[str, Any]:
     return {"source": SOURCE_HIW500, "status": "valid"}
 
 
+def _audit_arena(episode: EpisodeRecord) -> dict[str, Any]:
+    """Validate Arena's action/state contract without loading a model or video."""
+    from motion.g1_reference import HumanoidArenaActionDecoder, rot6d_row_to_matrix
+    import torch
+
+    assert _WORKER_READER is not None
+    columns = ["observation.state", "action", "timestamp", "frame_index", "episode_index"]
+    table = _WORKER_READER.read(episode, columns)
+    state = _as_matrix(table["observation.state"], 64, "HumanoidArena observation state")
+    actions = _as_matrix(table["action"], 40, "HumanoidArena action")
+    n = episode.source_length
+    if state.shape[0] != n or actions.shape[0] != n:
+        raise ValueError("HumanoidArena state/action length does not match episode metadata")
+    if n < 2 or episode.target_length < _WORKER_ACTION_CHUNK:
+        raise ValueError("HumanoidArena episode is too short for the configured action chunk")
+    if not np.isfinite(episode.source_fps) or episode.source_fps <= 0:
+        raise ValueError("HumanoidArena FPS must be finite and positive")
+    timestamp = np.asarray(table["timestamp"], dtype=np.float64)
+    frames = np.asarray(table["frame_index"])
+    episode_ids = np.asarray(table["episode_index"])
+    for name, values in [("timestamp", timestamp), ("frame_index", frames), ("episode_index", episode_ids)]:
+        if values.shape != (n,) or not np.isfinite(values).all():
+            raise ValueError(f"HumanoidArena {name} must contain {n} finite scalar values")
+    if not np.array_equal(frames, np.arange(n)):
+        raise ValueError("HumanoidArena frame_index must be contiguous and start at zero")
+    expected_id = int(episode.episode_id.rsplit(":", 1)[-1])
+    if not np.all(episode_ids == expected_id):
+        raise ValueError("HumanoidArena parquet slice contains incorrect episode_index values")
+    if not np.allclose(np.diff(timestamp), 1.0 / episode.source_fps, rtol=1e-3, atol=1e-5):
+        raise ValueError("HumanoidArena timestamps are not contiguous at the declared FPS")
+    if np.any((actions[:, 38:40] < 0) | (actions[:, 38:40] > 1)):
+        raise ValueError("HumanoidArena hand commands must be in [0, 1]")
+    rotations = []
+    for name, rot6d in [("state", state[:, :6]), ("action", actions[:, 3:9])]:
+        if np.any(np.linalg.norm(rot6d[:, (0, 2, 4)], axis=1) < 1e-6) or np.any(
+            np.linalg.norm(np.cross(rot6d[:, (0, 2, 4)], rot6d[:, (1, 3, 5)]), axis=1) < 1e-6
+        ):
+            raise ValueError(f"HumanoidArena {name} contains a degenerate 6D root rotation")
+        rotations.append(rot6d_row_to_matrix(torch.from_numpy(rot6d)))
+    positions = HumanoidArenaActionDecoder._integrate_root(torch.from_numpy(actions), rotations[1]).numpy()
+    if not np.isfinite(positions).all():
+        raise ValueError("HumanoidArena decoded root positions contain NaN or Inf")
+    rotation_jumps = []
+    for rotation in rotations:
+        r = rotation.numpy()
+        cosine = np.clip((np.einsum("tij,tij->t", r[1:], r[:-1]) - 1) / 2, -1, 1)
+        rotation_jumps.append(float(np.rad2deg(np.arccos(cosine)).max()))
+    metrics = {
+        "root_jump": float(np.linalg.norm(np.diff(positions, axis=0), axis=1).max()),
+        "joint_jump": float(max(np.abs(np.diff(state[:, 6:35], axis=0)).max(), np.abs(np.diff(actions[:, 9:38], axis=0)).max())),
+        "root_rotation_jump_degrees": max(rotation_jumps),
+    }
+    violations = _motion_violations(metrics, _selection(SOURCE_HUMANOID_ARENA))
+    if violations:
+        return {"source": SOURCE_HUMANOID_ARENA, "status": "invalid", "reason_type": "motion_discontinuity",
+                "reason": "HumanoidArena motion exceeds audit thresholds: " + ", ".join(violations),
+                "violations": violations, "metrics": metrics}
+    return {"source": SOURCE_HUMANOID_ARENA, "status": "valid"}
+
+
 def _audit_episode(item: tuple[str, EpisodeRecord]) -> dict[str, Any]:
     """Audit one episode, keeping data errors separate from quality rejects."""
     source, episode = item
     try:
+        if source == SOURCE_HUMANOID_ARENA:
+            return _audit_arena(episode)
         if source in {SOURCE_UNIFOLM, SOURCE_HUMANOID_EVERYDAY}:
             return _audit_unifolm_like(source, episode)
         if source == SOURCE_HIW500:
@@ -315,7 +381,7 @@ def _build_dataset(config) -> MultiSourceG1Dataset:
     sampling = config.main.get("sampling", None)
     if sampling is not None:
         sampling = OmegaConf.to_container(sampling, resolve=True)
-    return MultiSourceG1Dataset(
+    dataset = MultiSourceG1Dataset(
         dataset_root=config.main.get("data_root", None),
         dataset_roots=dataset_roots,
         action_history=config.main.action_history,
@@ -330,6 +396,42 @@ def _build_dataset(config) -> MultiSourceG1Dataset:
         target_fps=config.model.fps,
         sampling_seed=int(config.main.seed),
     )
+    try:
+        _check_arena_inventory(dataset)
+    except Exception:
+        dataset.close()
+        raise
+    return dataset
+
+
+def _check_arena_inventory(dataset) -> None:
+    """Do not let the training loader's missing-file skips hide partial downloads."""
+    import pyarrow.parquet as pq
+    from data.common import ARENA_TASK_KEY_BY_TASK_ID, _instruction
+
+    adapter = dataset.adapters.get(SOURCE_HUMANOID_ARENA)
+    if adapter is None:
+        return
+    selected = adapter._parse_selection(adapter.selection)
+    merged = selected["mode"] == "merged"
+    root = (adapter.root / "HumanoidArena_merged_datasets_v3_1" / selected["merged"]
+            if merged else adapter.root / selected["task"] / f"{selected['backend']}_refpose_v3_1")
+    expected = set()
+    for path in sorted((root / "meta/episodes").rglob("*.parquet")):
+        metadata = pq.read_table(path, columns=["episode_index", "tasks"]).to_pydict()
+        for index, task in zip(metadata["episode_index"], metadata["tasks"]):
+            task_name = ARENA_TASK_KEY_BY_TASK_ID[_instruction(task)]
+            if merged and adapter._skip_merged_training_task(task_name):
+                continue
+            expected.add(f"{root.name}:{int(index)}")
+    actual = {episode.episode_id for episode in adapter.episodes}
+    missing = expected - actual
+    if missing:
+        raise ValueError(
+            f"Incomplete HumanoidArena dataset: {len(missing)} selected episodes were skipped "
+            "because data/video files are missing or episodes are too short. "
+            f"Check the loader warnings and download paths. Examples: {sorted(missing)[:5]}"
+        )
 
 
 def _post_trim_windows(episode: EpisodeRecord, trim_frames: int) -> int:
@@ -527,6 +629,8 @@ def _parse_args() -> argparse.Namespace:
         action="store_true",
         help="Return a nonzero exit status if parquet/schema read errors occur.",
     )
+    parser.add_argument("--fail-on-invalid", action="store_true",
+                        help="Return a nonzero exit status if motion-quality checks reject episodes.")
     return parser.parse_args()
 
 
@@ -576,6 +680,8 @@ def main() -> int:
     print(f"Selected/discovered episodes: {len(items):,}")
     print(f"Audit workers: {workers}")
     print("Video decoding is not audited; no dataset files will be modified.")
+    if SOURCE_HUMANOID_ARENA in selection_by_source:
+        print("Arena motion-quality flags are diagnostics, not training-time filtering.")
 
     started = time.time()
     overall = _new_summary()
@@ -622,7 +728,7 @@ def main() -> int:
         "config": str(config_path),
         "scope": (
             "Task/camera-selected episodes discovered by MultiSourceG1Dataset; "
-            "motion discontinuity filtering only; video frames not decoded."
+            "source-specific schema and motion continuity checks; video frames not decoded."
         ),
         "elapsed_seconds": round(time.time() - started, 3),
         "workers": workers,
@@ -667,6 +773,8 @@ def main() -> int:
     )
     print(f"Full JSON report: {output_path}")
 
+    if args.fail_on_invalid and overall_report["episodes"].get("invalid", 0):
+        return 2
     if args.fail_on_errors and overall_report["episodes"].get("error", 0):
         return 2
     return 0

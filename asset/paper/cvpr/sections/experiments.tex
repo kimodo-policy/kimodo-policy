@@ -1,0 +1,50 @@
+\section{Experiments}
+\label{sec:experiments}
+\subsection{Setup and Scope}
+\paragraph{Data and adaptation.}
+The 419-hour policy-pretraining corpus combines HIW-500, 14 G1 task subsets from UniFoLM-WBT, and Humanoid Everyday~\cite{humanoid_everyday}. We use only the dataset snapshot available when the corpus was assembled. Policy pretraining runs for one million steps with batch size 1024 on 16 H200 GPUs. Target-task training uses the same frozen motion backbone for both initialization variants. The policy has 678M total and approximately 92M trainable parameters; supplementary material reports the optimization settings.
+
+\paragraph{Evaluation.}
+HumanoidArena~\cite{humanoidarena} contains seven tasks, with 100 demonstrations per task. We test separate single-task policies and one jointly trained policy, reporting success rate (SR) and average fall rate (AFR). SIMPLE~\cite{simple} is evaluated on eight released tasks under L0--L2 visual, lighting, and target-pose variation. Each table entry aggregates 30 trials, ten per level. Physical experiments use a G1 with a D435i camera and Dex3-1 hands, 25--30 demonstrations per task, and ten trials on each of eight tasks.
+
+We distinguish results in our original benchmark comparison from literature-reported rows added to the comparison tables. HuGe results come from its Table~4~\cite{liu2026huge}; additional HumanoidArena baselines come from Table~1 of Language-Forcing~\cite{li2026languageforcing}. Several SIMPLE task results come from Memory before Goal~\cite{chen2026memorybeforegoal}. These rows broaden context but are not controlled re-runs with a common pretraining corpus and evaluation implementation. Missing results are not treated as zero. We report descriptive comparisons and do not infer statistical significance from small aggregate differences.
+
+\subsection{Simulation Results}
+\paragraph{Multi-task HumanoidArena.}
+Table~\ref{tab:arena_summary} summarizes all comparison rows; per-task values and available deviations are in the supplement. \ours$^{*}$ achieves 72.14\% overall SR, 2.44 percentage points above the highest listed baseline aggregate (GR00T N1.7, 69.70\%). Against the original $\pi_{0.5}$ comparison (53.8\%), the difference is about 18.3 points. The policy has the highest HSI mean (84.17\%) and lowest reported AFR (4.29\%), while its HOI mean (56.11\%) is lower than GR00T N1.7 (62.22\%). Thus its aggregate advantage does not imply uniformly stronger object interaction.
+
+Additional policy pretraining improves our multi-task mean from 67.63\% to 72.14\%. It improves P\&Pbox, OpenDoor, Boxing, and VisNavi, matches SitSofa, and changes Football and DoubleDesk in opposite directions. The strongest task results include P\&Pbox (90.0\%), OpenDoor (95.0\%), SitSofa (96.7\%), and VisNavi (76.7\%). RTC is disabled for both variants.
+
+\input{tables/arena_summary}
+
+\paragraph{Single-task HumanoidArena.}
+With a separate policy for each task, direct target-task adaptation reaches 69.51\% overall SR, versus 60.0\% for DP~\cite{chi2023diffusionpolicy}, and 4.29\% AFR. Additional policy pretraining reaches 67.14\%, despite improving OpenDoor and VisNavi. The 2.37-point lower average shows that robot policy pretraining is not uniformly beneficial under the single-task adaptation schedule. Direct adaptation changes from 69.51\% in the single-task setting to 67.63\% in the joint setting, a 1.88-point reduction. Full single-task results are retained in the supplementary material.
+
+\paragraph{SIMPLE.}
+Table~\ref{tab:simple_summary} reports aggregate per-task SRs; the supplement preserves the L0/L1/L2 trial counts and all baselines. \ours$^{*}$ reaches 75.83\% over 240 task-level trials, versus 75.42\% for $\Psi_0$, a difference of one successful trial. We therefore describe these policies as competitive overall. Our policy leads on Handover, Mobile P\&P, and OpenFaucet, and ties the best result on CloseDoor and Push Office Chair. It is below $\Psi_0$ on XMoveBendPick and OpenTrashCan, and below InternVLA-M1 on OpenOven (56.7\% versus 73.3\%). These task-dependent outcomes temper claims of broad superiority under perturbation.
+
+\input{tables/simple_summary}
+
+\subsection{Physical-Robot Evaluation}
+Figure~\ref{fig:real} shows representative executions. Table~\ref{tab:real} gives per-task successful trial counts. Direct adaptation achieves 36/80 successes (45\%), compared with 25/80 for GR00T N1.6 and 28/80 for $\Psi_0$. Policy-pretrained initialization reaches 48/80 (60\%), improving seven tasks and matching Cart Pushing. The largest absolute success rates are Punching Bag (90\%), Cushion Sitting (80\%), and Dual-Arm PNP (70\%). These are small-sample deployment results on the evaluated tasks, not estimates of unrestricted real-world generalization. RTC is used for our real-world execution; its contribution is not isolated by these comparisons.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.82\textwidth]{image/real_world.png}
+\caption{\textbf{Physical execution across diverse interactions.} Representative sequences from the eight-task evaluation include object transfer, kicking, sitting, pushing, and carrying. Evaluation uses ten trials per task; quantitative results are in Table~\ref{tab:real}.}
+\label{fig:real}
+\end{figure*}
+\input{tables/real}
+
+\subsection{What Transfers from the Motion Backbone?}
+\paragraph{Motion-prior and adaptation ablations.}
+Table~\ref{tab:ablation} reports mean success on DoubleDesk, Football, and P\&Pbox after training on the joint seven-task suite. Without additional policy pretraining, the reference model reaches 51.67\%. Removing the pretrained T2M backbone reduces success to 18.33\%; unfreezing it yields 31.67\%. Replacing MSE with the original Kimodo motion objective yields 35.00\%, and removing root--body gradient detachment yields 45.00\%. These comparisons support retaining the pretrained generator and using direct target supervision with controlled cross-stage gradient flow. They do not separately establish the contribution of each visual-fusion path or of the hand architecture, for which we have no isolated ablation.
+
+Additional policy pretraining increases the three-task mean to 56.11\%. This complements the motion prior rather than replacing it: both compared models retain the same pretrained backbone. The largest change in this analysis is associated with removing motion pretraining, while the gain from additional robot supervision is smaller.
+\input{tables/ablation}
+
+\paragraph{Matched-capacity backbone comparison.}
+With the policy architecture and adaptation protocol fixed, Kimodo-G1-SEED-v1 and RP-v1 (both 282M parameters) yield 64.29\% and 67.63\% overall HumanoidArena success. Their motion corpora contain 288 and 700 hours, including the train/test splits. RP-v1 improves DoubleDesk, P\&Pbox, OpenDoor, and SitSofa, but reduces Football, Boxing, and VisNavi. The 3.34-point aggregate gain is therefore task dependent. Since corpus identity and size change together, this comparison demonstrates sensitivity to the pretrained backbone, rather than isolating data quantity or proving that every measure of text-to-motion quality predicts control performance.
+
+\paragraph{Data and capacity trends.}
+Across three policy-pretraining data scales (105/210/419 hours), multi-task success is 68.10/69.05/72.14\%. In a separate capacity sweep (53.6/91.7/158.9M active parameters), success is 61.43/67.63/68.57\%. These monotonic observations support further scaling studies within the evaluated setup, but three points do not establish a scaling law. The data and capacity sweeps are separate experiments and their endpoints should not be conflated. Full backbone results and the scaling curves are provided in the supplement.
