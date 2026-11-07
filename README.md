@@ -65,7 +65,7 @@ Use Ubuntu 22.04 or newer on x86_64, with Conda and a compatible NVIDIA GPU driv
 Clone the project and run the setup script. The `--system-deps` option installs Ubuntu system packages and may request your sudo password. Use `--accept-isaac-eula` after reviewing and accepting the [Isaac Sim license](https://docs.omniverse.nvidia.com/isaacsim/latest/common/NVIDIA_Omniverse_License_Agreement.html).
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/Yunheng-Wang/kimodo-policy.git
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/kimodo-policy/kimodo-policy.git
 cd kimodo-policy
 bash scripts/setup.sh --system-deps --accept-isaac-eula
 source .setup/env.sh
