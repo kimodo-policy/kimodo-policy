@@ -380,9 +380,7 @@ To evaluate multiple tasks, use `evaluation/humanoidarena_eval_multi_task_sonic.
 
 Use a separate `--results-dir` for each evaluation run. Summary statistics, per-episode results, and optional videos are saved there. The checkpoint must be a Kimodo-Policy training checkpoint; SONIC simulator assets are configured separately.
 
-> [!NOTE]
->
-> HumanoidArena is built on Isaac Sim. Small differences in visual rendering may lead to slight variations in evaluation results.
+![Note: HumanoidArena is built on Isaac Sim. Small differences in visual rendering may lead to slight variations in evaluation results.](asset/readme/arena-reproducibility-note.svg)
 
 ## 🦾 Real-World G1 Workflow
 

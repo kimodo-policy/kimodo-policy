@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="132" viewBox="0 0 1000 132" role="img" aria-labelledby="title desc">
+<title id="title">Note</title><desc id="desc">HumanoidArena is built on Isaac Sim. Small differences in visual rendering may lead to slight variations in evaluation results.</desc>
+<rect x="1" y="1" width="998" height="130" rx="12" fill="#eff7ff" stroke="#cddff5"/>
+<rect x="1" y="17" width="4" height="98" rx="2" fill="#4c9aef"/>
+<circle cx="36" cy="34" r="11" fill="none" stroke="#397dcc" stroke-width="2"/>
+<text x="36" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#397dcc">i</text>
+<text x="60" y="41" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#245fa8">Note</text>
+<text x="28" y="76" font-family="Arial,sans-serif" font-size="20" fill="#35516e">HumanoidArena is built on Isaac Sim. Small differences in visual rendering</text>
+<text x="28" y="103" font-family="Arial,sans-serif" font-size="20" fill="#35516e">may lead to slight variations in evaluation results.</text>
+</svg>
