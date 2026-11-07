@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+exec "${COLLECTION_PYTHON:?Set COLLECTION_PYTHON in local.env}" gear_sonic/scripts/validate_g1_vla_dataset.py "$@"

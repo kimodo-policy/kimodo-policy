@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+if [ "$#" -lt 1 ]; then echo "Usage: $0 OPERATOR_HEIGHT_METERS [extra manager args]" >&2; exit 2; fi
+height="$1"; shift
+log_dir="$COLLECTION_ROOT/setup/logs"
+mkdir -p "$log_dir"
+log_file="$log_dir/pico-manager-$(date +%Y%m%d-%H%M%S).log"
+ln -sfn "$log_file" "$log_dir/pico-manager-latest.log"
+printf '[pico-manager] log: %s\n' "$log_file"
+PYTHONUNBUFFERED=1 "${TELEOP_PYTHON:?Set TELEOP_PYTHON in local.env}" gear_sonic/scripts/pico_manager_thread_server.py --input-source xrt --manager --gmr-root "$GMR_ROOT" --actual-human-height "$height" "$@" 2>&1 | tee "$log_file"

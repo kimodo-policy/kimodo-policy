@@ -735,26 +735,26 @@ class TrainingResumeTest(unittest.TestCase):
         project_root = Path(__file__).resolve().parents[1]
         script_root = project_root / "scripts"
         pretrain = OmegaConf.load(
-            script_root / "pt_UnifoLM_HumanoidEveryday_HIW_gbs1024_20w.yaml"
+            script_root / "Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.yaml"
         )
         arena_only = OmegaConf.load(
-            script_root / "only_HumanoidArena_sonic_8_refpose_v3_1.yaml"
+            script_root / "HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.yaml"
         )
         arena_ft = OmegaConf.load(
-            script_root / "ft_HumanoidArena_sonic_8_refpose_v3_1.yaml"
+            script_root / "HumanoidArena_Multi_Task/ft_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.yaml"
         )
 
-        self.assertEqual(pretrain.main.sampling.windows_per_episode, 4)
+        self.assertEqual(pretrain.main.sampling.windows_per_episode, 8)
         self.assertEqual(arena_only.main.sampling.get("windows_per_episode", 1), 1)
         self.assertEqual(arena_ft.main.sampling.get("windows_per_episode", 1), 1)
-        self.assertEqual(pretrain.main.batch_size % 4, 0)
+        self.assertEqual(pretrain.main.batch_size % pretrain.main.sampling.windows_per_episode, 0)
 
     def test_training_launchers_do_not_hardcode_a_local_conda_environment(self):
         project_root = Path(__file__).resolve().parents[1]
         for name in (
-            "pt_UnifoLM_HumanoidEveryday_HIW_gbs1024_20w.sh",
-            "only_HumanoidArena_sonic_8_refpose_v3_1.sh",
-            "ft_HumanoidArena_sonic_8_refpose_v3_1.sh",
+            "Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.sh",
+            "HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.sh",
+            "HumanoidArena_Multi_Task/ft_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse.sh",
         ):
             script = (project_root / "scripts" / name).read_text(encoding="utf-8")
             self.assertNotIn("/home/CONNECT/", script)
@@ -763,7 +763,7 @@ class TrainingResumeTest(unittest.TestCase):
             self.assertIn("KIMODO_ENV", script)
         pretrain_script = (
             project_root
-            / "scripts/pt_UnifoLM_HumanoidEveryday_HIW_gbs1024_20w.sh"
+            / "scripts/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.sh"
         ).read_text(encoding="utf-8")
         self.assertIn('NUM_PROCESSES="${#GPU_IDS[@]}"', pretrain_script)
         self.assertIn('--num_processes "${NUM_PROCESSES}"', pretrain_script)

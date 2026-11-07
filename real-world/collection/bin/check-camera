@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+: "${CAMERA_HOST:?Set CAMERA_HOST in local.env}"
+exec "${COLLECTION_PYTHON:?Set COLLECTION_PYTHON in local.env}" gear_sonic/scripts/check_camera_stream.py --camera-host "$CAMERA_HOST" --camera-port 5555 "$@"

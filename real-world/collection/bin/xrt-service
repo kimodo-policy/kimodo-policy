@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+XRT="$SONIC_NATIVE_ROOT/xrt/opt/apps/roboticsservice"
+LIBC="$SONIC_NATIVE_ROOT/xrt-runtime/lib/x86_64-linux-gnu"
+export XDG_DATA_HOME="$COLLECTION_ROOT/.state/xrt/share"
+export XDG_CONFIG_HOME="$COLLECTION_ROOT/.state/xrt/config"
+export XDG_CACHE_HOME="$COLLECTION_ROOT/.state/xrt/cache"
+mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+export QT_QPA_PLATFORM=offscreen
+export QT_PLUGIN_PATH="$XRT/plugins"
+export QT_QML_PATH="$XRT/qml"
+cd "$XRT"
+exec "$LIBC/ld-linux-x86-64.so.2" --library-path "$LIBC:$XRT:$XRT/lib:$XRT/SDK/x64" "$XRT/RoboticsServiceProcess"

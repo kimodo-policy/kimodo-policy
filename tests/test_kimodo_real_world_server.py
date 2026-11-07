@@ -29,11 +29,15 @@ class _FakeRuntime:
     def __init__(self):
         self.reset_calls = []
         self.infer_calls = 0
+        self.session_ids = []
 
-    def reset(self, seed=None):
+    def reset(self, seed=None, session_id=None):
         self.reset_calls.append(seed)
+        self.session_ids.append(session_id)
 
     def infer(self, payload):
+        # Validation now belongs to the runtime, including non-HTTP callers.
+        MODULE._validate_infer_payload(payload)
         self.infer_calls += 1
         action = np.zeros((3, 40), dtype=np.float32)
         action[:, 2] = 0.85
@@ -89,10 +93,11 @@ class RealWorldServerTest(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(health["mode"], "real_world")
         self.assertEqual(health["control_fps"], 50.0)
-        status, result = _request(self.connection, "POST", "/reset", {"seed": 7})
+        status, result = _request(self.connection, "POST", "/reset", {"seed": 7, "session_id": "test-session"})
         self.assertEqual(status, 200)
         self.assertEqual(result["status"], "ok")
         self.assertEqual(self.runtime.reset_calls, [7])
+        self.assertEqual(self.runtime.session_ids, ["test-session"])
         status, result = _request(self.connection, "POST", "/infer", self._payload())
         self.assertEqual(status, 200)
         self.assertEqual(np.asarray(result["action_chunk"]).shape, (3, 40))
@@ -102,6 +107,7 @@ class RealWorldServerTest(unittest.TestCase):
         status, result = _request(self.connection, "POST", "/infer", {"task": "x"})
         self.assertEqual(status, 400)
         self.assertIn("observation", result["error"])
+        self.assertEqual(self.runtime.infer_calls, 0)
 
 
 if __name__ == "__main__":

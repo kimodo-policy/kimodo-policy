@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+source "$REAL_WORLD_ROOT/collection/setup/native_env.sh"
+cmake -S "$WBC_ROOT/gear_sonic_deploy" -B "$COLLECTION_ROOT/.build/sonic" -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_CXX_FLAGS="-I$SONIC_NATIVE_ROOT/usr/include" -DMSGPACK_INCLUDE_DIR="$SONIC_NATIVE_ROOT/usr/include"
+cmake --build "$COLLECTION_ROOT/.build/sonic" --target g1_deploy_onnx_ref -j4

@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-07",
+  "scope": "CPU metadata/assets/text preflight on original model server; no model or GPU loaded",
+  "tasks": [
+    {
+      "task": "banana",
+      "instruction": "Pick up the banana from the white table in front of you and place it on the white table behind you.",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 20000,
+      "dataset": "teleop-banana",
+      "training_state_bytes": 1100902183
+    },
+    {
+      "task": "boxing",
+      "instruction": "Strike the target in front of you, first with your right hand, then with your left hand.",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 25000,
+      "dataset": "teleop-boxing",
+      "training_state_bytes": 1100902183
+    },
+    {
+      "task": "pushing",
+      "instruction": "Push the cart in front forward for a certain distance.",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 25000,
+      "dataset": "teleop-pushing",
+      "training_state_bytes": 1100902183
+    },
+    {
+      "task": "transportation",
+      "instruction": "Move the gray box from the right-hand table to the white table.",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 30000,
+      "dataset": "teleop-transportation",
+      "training_state_bytes": 1100902183
+    },
+    {
+      "task": "sitting",
+      "instruction": "Walk over to the large orange steps and sit down on them.",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 20000,
+      "dataset": "teleop-sitting",
+      "training_state_bytes": 1100902183
+    },
+    {
+      "task": "football",
+      "instruction": "Kick the football into the goal",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 30000,
+      "dataset": "teleop-football",
+      "training_state_bytes": 1100902183
+    },
+    {
+      "task": "pnp",
+      "instruction": "Use your left hand to place the orange fruit on the left into the plate, then use your right hand to place the purple fruit on the right into the plate.",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 25000,
+      "dataset": "teleop-pnp",
+      "training_state_bytes": 1100902183
+    },
+    {
+      "task": "long",
+      "instruction": "Put the green apple from the plate into the drawer and close the drawer.",
+      "embedding_shape": [
+        1,
+        4096
+      ],
+      "status": "PASS metadata/assets/text; GPU/model not loaded",
+      "checkpoint_step": 30000,
+      "dataset": "teleop-long-v2",
+      "training_state_bytes": 1100902183
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+: "${CAMERA_HOST:?Set CAMERA_HOST in local.env}"
+if [ "$#" -lt 1 ]; then echo "Usage: $0 'English task prompt' [extra exporter args]" >&2; exit 2; fi
+prompt="$1"; shift
+exec "${COLLECTION_PYTHON:?Set COLLECTION_PYTHON in local.env}" gear_sonic/scripts/run_data_exporter.py --task-prompt "$prompt" --data-collection-frequency 30 --camera-host "$CAMERA_HOST" --camera-port 5555 --dataset-name "teleop-$(date +%Y%m%d-%H%M%S)" --no-convert-to-humanoid-arena --no-text-to-speech "$@"

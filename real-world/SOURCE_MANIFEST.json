@@ -1,0 +1,298 @@
+{
+  "deploy/kimodo_rtc.py": {
+    "source": "h20/real-world/deploy/kimodo_rtc.py",
+    "source_sha256": "2303203fd10206e394506b760eea71266f3ee54d7efd001b33d3a2f170197792"
+  },
+  "deploy/replay_session.py": {
+    "source": "h20/real-world/deploy/replay_session.py",
+    "source_sha256": "c9f3f7a157b0f34f453ba3af9a6dfbe7a99e515b4d76fdd03179cb1bce12562a"
+  },
+  "deploy/generate_initial_poses.py": {
+    "source": "h20/real-world/deploy/generate_initial_poses.py",
+    "source_sha256": "09279c05a0160c9aac8a2345b8ac2fc6fcf99d6deb507686ea7491b6a5ca50aa"
+  },
+  "deploy/real_world_server.py": {
+    "source": "h20/real-world/deploy/real_world_server.py",
+    "source_sha256": "082476c871267aacb4de2f32aaea6e0798439237f7220502a88cfc2dd3ea6a9e"
+  },
+  "deploy/test_deployment_regressions.py": {
+    "source": "h20/real-world/deploy/test_deployment_regressions.py",
+    "source_sha256": "ca1a554ee36018cef37a4f8dd45a9552fa4dfb3e8f8dca7be09c2079f22aa2e2"
+  },
+  "deploy/diagnostics.py": {
+    "source": "h20/real-world/deploy/diagnostics.py",
+    "source_sha256": "8dd95db05964d574f335313c93e1ac37f92dd075c0c54a567a8f3b2ceda5c498"
+  },
+  "deploy/test_hand_stability.py": {
+    "source": "h20/real-world/deploy/test_hand_stability.py",
+    "source_sha256": "edd5e8a39ee1e3ee8e2b50062839659107b3833d87577663273525704032e722"
+  },
+  "deploy/test_deployment_lifecycle.py": {
+    "source": "h20/real-world/deploy/test_deployment_lifecycle.py",
+    "source_sha256": "76cd7a3aabc2b43551322fe38b56f0cb92d5d2c585f436a08cdaae8c7e6c5c7b"
+  },
+  "deploy/summarize_diagnostics.py": {
+    "source": "h20/real-world/deploy/summarize_diagnostics.py",
+    "source_sha256": "342cfe46a34b3c4825c81cf5fd41fc92de5d05bf87ff485fbfb11a584a542a97"
+  },
+  "deploy/image_wire.py": {
+    "source": "h20/real-world/deploy/image_wire.py",
+    "source_sha256": "7d5eda7b9833bc52986cfcb774e8aa79786137245a50a452236b79840515346f"
+  },
+  "deploy/__init__.py": {
+    "source": "h20/real-world/deploy/__init__.py",
+    "source_sha256": "9864b19afa2855350d0f83cd5f1295cb1bcbe3489598041c8796cfdcf67d8f72"
+  },
+  "deploy/run_kimodo_sonic.py": {
+    "source": "h20/real-world/deploy/run_kimodo_sonic.py",
+    "source_sha256": "165e55377e4b8062d0aacc134a56b1d8a8f73ce02c3aa08b801ffbcd43ca98a2"
+  },
+  "deploy/hand_stability.py": {
+    "source": "h20/real-world/deploy/hand_stability.py",
+    "source_sha256": "6ec8d68907c3fcf60a8a9c147f8e535906e8889d5e65c4368c97f368ce408a74"
+  },
+  "deploy/replay_probe.py": {
+    "source": "h20/real-world/deploy/replay_probe.py",
+    "source_sha256": "a39ac4ac7d56eafe7b622cc69e3378098b4c534640229c49e0d1589e84d0b6e5"
+  },
+  "deploy/test_image_wire.py": {
+    "source": "h20/real-world/deploy/test_image_wire.py",
+    "source_sha256": "ba55c60855fb9bf0b0158ceee3aec514b03e503c1a5728a0801882efcd3b8529"
+  },
+  "deploy/test_preprocessing_equivalence.py": {
+    "source": "h20/real-world/deploy/test_preprocessing_equivalence.py",
+    "source_sha256": "d7c7c4dbb21930de4dca182b2bdcc6b24b123d45b02a3a3ff8a5c6dc0cc42478"
+  },
+  "deploy/deploy_cli.py": {
+    "source": "h20/real-world/deploy/deploy_cli.py",
+    "source_sha256": "f7abbe001bb31825a8be92d915c76fbf53523ea81a7e53050ed7113d7a61e601"
+  },
+  "deploy/kimodo_sonic_bridge.py": {
+    "source": "h20/real-world/deploy/kimodo_sonic_bridge.py",
+    "source_sha256": "13faabd0a305449c628d7b0106e6ad084605b2781c0509a790b52bedc565ec39"
+  },
+  "deploy/deployment_lifecycle.py": {
+    "source": "h20/real-world/deploy/deployment_lifecycle.py",
+    "source_sha256": "d8c598a9d7a9617b03859ee2be3f25bd77b8348c189912fc0f1588e19219316f"
+  },
+  "deploy/test_sonic_lookahead.py": {
+    "source": "h20/real-world/deploy/test_sonic_lookahead.py",
+    "source_sha256": "216ef8f4b86503c38f828e5bc97413e55088905e1d30023cb775c64d63211d0a"
+  },
+  "deploy/deploy.sh": {
+    "source": "h20/real-world/deploy/deploy.sh",
+    "source_sha256": "fd6be82341ec9668cb509cf9ece3457ae952cbc6967c0f335268e5c19be8c9c0"
+  },
+  "deploy/transportation_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/transportation_initial_pose.json",
+    "source_sha256": "1208b30a5801fe39497db35ab64e59f54e4f7e1920597d71d458a2809281346d"
+  },
+  "deploy/football_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/football_initial_pose.json",
+    "source_sha256": "9ea372e63539ffe09eecf3b5cd011afba37e7c9abeb7ddd99068a259eaef32f8"
+  },
+  "deploy/sitting_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/sitting_initial_pose.json",
+    "source_sha256": "5074c5fdd2973d86654538fe9cabfe8eef47f963fbdd194d531fd773c5ff510a"
+  },
+  "deploy/long_v2_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/long_v2_initial_pose.json",
+    "source_sha256": "18668722398ef8c64b267e867f33b232db5512412099ff19507518fde37d24f8"
+  },
+  "deploy/banana_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/banana_initial_pose.json",
+    "source_sha256": "d65d14c43ce582bad2bdaf2523e4792dd939ae7750c19e79fc7b56c0c3686d15"
+  },
+  "deploy/boxing_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/boxing_initial_pose.json",
+    "source_sha256": "9ae305b0bf18e5519062a6139e1d3d3b7b337deca5d7acdb016e13eee9f678ed"
+  },
+  "deploy/pushing_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/pushing_initial_pose.json",
+    "source_sha256": "db9f66fc8563317b4c94f445827681bcf8d1cc525f6d7e697b218c67539dcbf4"
+  },
+  "deploy/pnp_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/pnp_initial_pose.json",
+    "source_sha256": "6fea18177400506e74cb1a00365debc03450a309ecbb31aa61b5444244cbd103"
+  },
+  "deploy/long_initial_pose.json": {
+    "source": "rtx/controlnet_v1.2/real-world/deploy/long_initial_pose.json",
+    "source_sha256": "6e672f8f77d3d53ffa9141a2140fe1a9ff59eb09f36a990aae1ec43b5dc265af"
+  },
+  "deploy/deploy_config.example.json": {
+    "source": "h20/real-world/deploy/deploy_config.json",
+    "source_sha256": "e7bd13bd020ae5ff2bb76fe776ac4fbe0573d5f288462e124246e68bea69d9c9"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/input_interface/zmq_manager.hpp": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/input_interface/zmq_manager.hpp",
+    "source_sha256": "f4df0b9fd94181bb6cb0200a7efb8559ed7ef27e93988e7d86d78dbe47d054f7"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/output_interface/ros2_output_handler.hpp": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/output_interface/ros2_output_handler.hpp",
+    "source_sha256": "c84de8865a77c4a013eb57b191cdff0ba2b04756b626781f94651c3db4fbe270"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/output_interface/zmq_output_handler.hpp": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/output_interface/zmq_output_handler.hpp",
+    "source_sha256": "4c921315e4c55379df1a10691ffb414af788e574795c241b7476067ffeb8e94e"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/output_interface/output_interface.hpp": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/include/output_interface/output_interface.hpp",
+    "source_sha256": "4b689db1422b03bccdbb6ee454e43db6ed4d7297d0132e6dbf573323e7bf72a4"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/src/g1_deploy_onnx_ref.cpp": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/src/g1_deploy_onnx_ref.cpp",
+    "source_sha256": "f495a9fd1b6caf01bd2dff94a9b4a62e1d6f1cc4fbdae76cf162aa6b6921fdb5"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/pico_manager_thread_server.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/pico_manager_thread_server.py",
+    "source_sha256": "9fcc4882e74f6e7f74c7a9911da03269b1350b5af6ca5cef07ec7b461d034e8c"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/validate_g1_vla_dataset.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/validate_g1_vla_dataset.py",
+    "source_sha256": "d145d3ce4fa3a6a80050bf94cb0df67e6125c9aabf1bca05789d5ecac135cb38"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/run_data_exporter.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/run_data_exporter.py",
+    "source_sha256": "0f442d247b4594b585e035112bd4eb5bb70356288c67ed607e4293b27205c247"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/check_camera_stream.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/check_camera_stream.py",
+    "source_sha256": "2caed8f648546dab4c3e47e9d9cd007fecc9bd7bde92ff6c3ebef69e03c5cc36"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/run_camera_viewer.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/run_camera_viewer.py",
+    "source_sha256": "4ca5db17c3315fed814b2b27c52edefaa856948e7b35f9616bdfd4148494ac73"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/convert_to_humanoidarena_v3_1.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/convert_to_humanoidarena_v3_1.py",
+    "source_sha256": "2a4fad58ff96e9b8c1eacfeacb5ae0a82cb09724371e3fbf4e6e1ffe975e8b32"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/scan_datasets.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/scan_datasets.py",
+    "source_sha256": "c9f582a1562ff1c3bb60751c890b97163251bb73be473b4b68a7f69f34e506ce"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/scripts/run_realsense_camera_server.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/scripts/run_realsense_camera_server.py",
+    "source_sha256": "2ebc89725b405ca056589d1813aab20fc589327c486aeaf14c362af05f977bd5"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/data/features_sonic_vla.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/data/features_sonic_vla.py",
+    "source_sha256": "9f81be868dbc92835aa9b51d7e5b787ab7487d8f95d80e5e633aeb8984d3339e"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/data/video_writer.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/data/video_writer.py",
+    "source_sha256": "65e0d7086b25e2fe4d4d633e8990e5fdc826b183b690eafbf001f5b3a592ab0a"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/data/exporter.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/data/exporter.py",
+    "source_sha256": "c6d079802e8361f7c37f70cb64fe62933046c0e579784a9669bca80e6cc74379"
+  },
+  "collection/overlay/GR00T-WholeBodyControl/gear_sonic/data/g1_reference.py": {
+    "source": "rtx/controlnet_v1.2/real-world/GR00T-WholeBodyControl/gear_sonic/data/g1_reference.py",
+    "source_sha256": "e0a79a1669a241bb3068ceabeb2d4f0c5189e9926dfd4fb3c7952145a08d896c"
+  },
+  "collection/bin/build-sonic": {
+    "source": "rtx/bin/build-sonic",
+    "source_sha256": "ed43a9cbc44a7fd99423a738f5f26005a51bb39dd6e82f51615ae154e7a401da"
+  },
+  "collection/bin/common.sh": {
+    "source": "rtx/bin/common.sh",
+    "source_sha256": "4c6f08b92ce6d0c1f300998d8f46a0604ed6e2584b3bd0034f6c499cc72757ec"
+  },
+  "collection/bin/check-camera": {
+    "source": "rtx/bin/check-camera",
+    "source_sha256": "7fab6478238d5f2aeb44a14c835e511e7da2939846d0ab9ddd61ef59960ec476"
+  },
+  "collection/bin/collect": {
+    "source": "rtx/bin/collect",
+    "source_sha256": "cd7379e501a06042f59dc30e461461300da55c8ea1ff0636f30ce2b90898ddd4"
+  },
+  "collection/bin/validate-dataset": {
+    "source": "rtx/bin/validate-dataset",
+    "source_sha256": "7823de773117d340c4e83f7002b39405f718a91b8d46897a8240d16a9de5c218"
+  },
+  "collection/bin/check-local": {
+    "source": "rtx/bin/check-local",
+    "source_sha256": "25d9afcb2ead2d305233ad5416f66152779cbd30c06a044802aa27fd8a8688b5"
+  },
+  "collection/bin/pico-manager": {
+    "source": "rtx/bin/pico-manager",
+    "source_sha256": "0a1f99f0cb573ba5d2dab9699c9556a34021b052de87459f5b6c5f58801a7564"
+  },
+  "collection/bin/check-network": {
+    "source": "rtx/bin/check-network",
+    "source_sha256": "25d6faf8a73500f82c30de7d36e94ff1258084242c7aa1c44809ce3fe76c1c26"
+  },
+  "collection/bin/xrt-service": {
+    "source": "rtx/bin/xrt-service",
+    "source_sha256": "6dd9a7718502ff015548c40582d1daf6375d0ad4e4192d101ea9ed0d0f440e1a"
+  },
+  "collection/bin/sonic-control": {
+    "source": "rtx/bin/sonic-control",
+    "source_sha256": "87028b095d0af9624d37131e3e3a7c12ec4b147f017245209689be0fb60c52e0"
+  },
+  "collection/bin/scan-datasets": {
+    "source": "rtx/bin/scan-datasets",
+    "source_sha256": "8eb318907de2cb935bf7a0620bbf8b18796cceaf0c456ba78d8dd2e535ca9e2c"
+  },
+  "collection/setup/native_env.sh": {
+    "source": "rtx/controlnet_v1.2/setup/native_env.sh",
+    "source_sha256": "13a4e09c6ccafebde3fd2d6c13e931184eb607c30de4b23489a1eafc006d7833"
+  },
+  "training/overlay/scripts/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse.yaml": {
+    "source": "h20/scripts/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse.yaml",
+    "source_sha256": "9a1c2ba895d57e7c000a310668fdeb184f96357019ada13f8a9f72542f58af5d"
+  },
+  "training/overlay/scripts/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse.sh": {
+    "source": "h20/scripts/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse.sh",
+    "source_sha256": "f08ee2f670a7c3cf2a1b4c873f3fd79c7f4c57acd37f65f0278eb1e3cb6d9a62"
+  },
+  "training/overlay/data/realworld_loader.py": {
+    "source": "h20/data/realworld_loader.py",
+    "source_sha256": "ff9a8e79daac7c41863d939ae0c47a7e4b1dbfed7451191256388d945d667452"
+  },
+  "training/overlay/model/kimodo_policy.py": {
+    "source": "h20/model/kimodo_policy.py",
+    "source_sha256": "e0827b20ce1503bf93546f78ec9268b7adc3e9468fcf11bbda0bf40ad6e222ee"
+  },
+  "deploy/sonic.sh": {
+    "source": "h20/real-world/deploy/sonic.sh",
+    "source_sha256": "d72038bd32be06d99f914ede3083da0fafdfd3189464333e98afb3f9aa24182f"
+  },
+  "training/overlay/motion/g1_reference.py": {
+    "source": "h20/motion/g1_reference.py",
+    "source_sha256": "fd4c3770168c6a56536f38e0f7b49a20f825ecf076131dcf27458dc8ac978bc0"
+  },
+  "assets/text-cache/teleop-sitting__d43c5d3890f3.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-sitting__d43c5d3890f3.pt",
+    "source_sha256": "d663d3c6fe6449e8c3bee326d0f9ef6485d9da6815c710862defa4f6e713668a"
+  },
+  "assets/text-cache/teleop-football__ddee1bcebe62.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-football__ddee1bcebe62.pt",
+    "source_sha256": "7c6389543c1eb41da1e3325b9a08e690bb2d3ad083fa5b4514d507c2cb2b1885"
+  },
+  "assets/text-cache/teleop-banana__b11cb9af8794.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-banana__b11cb9af8794.pt",
+    "source_sha256": "10241b9f3224a44fae0f7b5336d83a84685aa984800290ed036cc1d3fded2e49"
+  },
+  "assets/text-cache/teleop-transportation__dc51a0c0c5aa.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-transportation__dc51a0c0c5aa.pt",
+    "source_sha256": "720c2fb2ae21ff38a3f3e6ca4543e83393049a5217aef5f401946843013ff125"
+  },
+  "assets/text-cache/teleop-long-v2__120940e830f4.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-long-v2__120940e830f4.pt",
+    "source_sha256": "16a1f66f7d239c9701c83925c1018d2fceb56250b54aedc6ece3cf40a27e8156"
+  },
+  "assets/text-cache/teleop-boxing__986113d51416.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-boxing__986113d51416.pt",
+    "source_sha256": "54dd75f5ebeeff3c01d3520e3ac096a619335752ae62584be66347e06828472c"
+  },
+  "assets/text-cache/teleop-pnp__ca9a651badf1.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-pnp__ca9a651badf1.pt",
+    "source_sha256": "b678eaa69d5df67d8fda3dfac3347fbbe9e463c6f58d0a1f217c4cb40d2c32ac"
+  },
+  "assets/text-cache/teleop-pushing__bd82fc4820be.pt": {
+    "source": "h20/data/cache/RealWorld/teleop-pushing__bd82fc4820be.pt",
+    "source_sha256": "ddf92453082ccc14f092921fffb10cfee69cf819620359d86ac26fa78ab7f8d5"
+  }
+}

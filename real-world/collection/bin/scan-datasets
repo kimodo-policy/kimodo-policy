@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+export PYTHONPATH="$WBC_ROOT"
+exec "${COLLECTION_PYTHON:?Set COLLECTION_PYTHON in local.env}" "$WBC_ROOT/gear_sonic/scripts/scan_datasets.py" "$@"

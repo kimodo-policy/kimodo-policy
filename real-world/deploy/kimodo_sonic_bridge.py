@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """Runtime bridge between the Kimodo 40D action schema and SONIC Protocol v1.
 
 The SONIC repository intentionally remains an external runtime.  This module
@@ -8,15 +6,17 @@ only owns the boundary between the two projects:
 * SONIC ``g1_debug`` state (MuJoCo order) -> Kimodo 64D state (canonical /
   IsaacLab order),
 * Kimodo 40D semantic reference action -> SONIC streamed joint reference,
-* deterministic packed ZMQ Protocol v1 messages.
+* deterministic packed KP reference-stream messages (SONIC Protocol v1).
 
 No hardware command is issued by this module.  The caller decides whether to
 publish the returned packet to the SONIC C++ process.
 """
 
+from __future__ import annotations
+
 import json
-import struct
 import time
+from collections import deque
 from dataclasses import dataclass
 from typing import Any
 
@@ -26,8 +26,9 @@ from scipy.spatial.transform import Rotation as SciPyRotation
 
 # SONIC's C++ output publishes body_q/body_dq in MuJoCo order.  The source and
 # target arrays are the official mapping in policy_parameters.hpp.  Kimodo's
-# canonical 29D order is the same order used by SONIC Protocol v1's
-# ``joint_pos``/``joint_vel`` fields (IsaacLab order, pelvis omitted).
+# canonical 29D order is the order consumed by SONIC's MotionSequence. The
+# SONIC output interface applies its IsaacLab-to-MuJoCo mapping when building
+# hardware targets, so this boundary must not permute the action a second time.
 ISAACLAB_TO_MUJOCO = np.asarray(
     [0, 3, 6, 9, 13, 17, 1, 4, 7, 10, 14, 18, 2, 5, 8, 11, 15, 19, 21, 23, 25, 27, 12, 16, 20, 22, 24, 26, 28],
     dtype=np.int64,
@@ -44,6 +45,17 @@ SONIC_PROTOCOL_VERSION = 1
 SONIC_HEADER_SIZE = 4096
 KIMODO_STATE_DIM = 64
 KIMODO_ACTION_DIM = 40
+
+# Keep this projection identical to ``data.realworld_loader``.  The training
+# target is the normalized projection of the Dex3 middle-grip close pose:
+# zero is open and one is fully closed.
+REALWORLD_LEFT_HAND_CLOSE = np.asarray(
+    [0.0, 0.7, 0.7, -1.0, -1.5, -1.0, -1.5], dtype=np.float32
+)
+REALWORLD_RIGHT_HAND_CLOSE = -REALWORLD_LEFT_HAND_CLOSE
+REALWORLD_HAND_CLOSE_POSES = np.stack(
+    (REALWORLD_LEFT_HAND_CLOSE, REALWORLD_RIGHT_HAND_CLOSE), axis=0
+)
 
 
 class BridgeSafetyError(ValueError):
@@ -88,6 +100,32 @@ def optional_scalar(value: Any, name: str) -> float | None:
     if arr.size != 1 or not np.isfinite(arr[0]):
         raise BridgeSafetyError(f"{name} must be one finite scalar")
     return float(arr[0])
+
+
+def measured_hand_closure_from_state(state_msg: dict[str, Any]) -> np.ndarray:
+    """Project measured SONIC Dex3 joints to the training closure convention."""
+    if not isinstance(state_msg, dict):
+        raise BridgeSafetyError("g1_debug state must be a dictionary")
+
+    hand_values = []
+    for side in ("left", "right"):
+        value = state_msg.get(f"{side}_hand_q_measured")
+        if value is None:
+            value = state_msg.get(f"{side}_hand_q")
+        if value is None:
+            raise BridgeSafetyError(
+                f"g1_debug is missing measured {side}_hand_q_measured/{side}_hand_q"
+            )
+        joints = _finite_array(value, (7,), f"g1_debug.{side}_hand_q")
+        hand_values.append(joints)
+
+    hand_q = np.stack(hand_values, axis=0)
+    denominators = np.sum(REALWORLD_HAND_CLOSE_POSES**2, axis=1)
+    closure = np.sum(hand_q * REALWORLD_HAND_CLOSE_POSES, axis=1) / denominators
+    closure = np.clip(closure, 0.0, 1.0).astype(np.float32)
+    if closure.shape != (2,) or not np.isfinite(closure).all():
+        raise BridgeSafetyError("measured hand closure must be finite with shape (2,)")
+    return closure
 
 
 def quat_mul_wxyz(q1: Any, q2: Any) -> np.ndarray:
@@ -164,10 +202,8 @@ def pack_pose_v1(
 ) -> bytes:
     """Pack one SONIC Protocol-v1 pose frame.
 
-    ``joint_pos`` and ``joint_vel`` are sent in Kimodo's canonical/IsaacLab
-    order required by SONIC Protocol v1.  Kimodo's action codec emits this
-    order and the SONIC streamed ``MotionSequence`` consumes it directly;
-    **no MuJoCo permutation is applied at this boundary**.  The root
+    Kimodo's action codec emits the canonical order consumed by SONIC's
+    MotionSequence. SONIC applies the hardware mapping downstream. The root
     quaternion is WXYZ and the root position is in the streamed reference
     frame (x-forward, y-left, z-up).
     """
@@ -202,6 +238,75 @@ def pack_pose_v1(
         arrays.append(np.ascontiguousarray(hand.reshape(1, 7), dtype=np.float32))
     payload = b"".join(arr.tobytes() for arr in arrays)
     return b"pose" + _build_header(fields, SONIC_PROTOCOL_VERSION) + payload
+
+
+class SonicPoseWindow:
+    """Send overlapping past frames and optional committed future references.
+
+    The SONIC callback keeps only the latest received packet. A single-frame
+    sender loses coverage when one packet is overwritten; SONIC then resets
+    both playback AND heading. Five overlapping frames tolerate four skipped
+    packets without inventing targets or modifying their original timestamps.
+    """
+    def __init__(self, size: int = 5, lookahead_frames: int = 0, rate: float = 50.0):
+        if size < 1:
+            raise ValueError("window size must be positive")
+        if lookahead_frames < 0 or rate <= 0:
+            raise ValueError("lookahead must be non-negative and rate positive")
+        self.lookahead_frames = int(lookahead_frames)
+        self.rate = float(rate)
+        self.frames = deque(maxlen=size)
+
+    def append(self, future_references=(), **pose) -> bytes | None:
+        # Reuse single-frame validation and wire encoding before retaining it.
+        packet = pack_pose_v1(**pose)
+        header = json.loads(packet[4:4 + SONIC_HEADER_SIZE].rstrip(b"\x00"))
+        offset = 4 + SONIC_HEADER_SIZE
+        arrays = {}
+        for field in header["fields"]:
+            dtype = {"f32": "<f4", "f64": "<f8", "i64": "<i8", "bool": "?"}[field["dtype"]]
+            count = int(np.prod(field["shape"]))
+            array = np.frombuffer(packet, dtype=dtype, count=count, offset=offset).reshape(field["shape"])
+            arrays[field["name"]] = array.copy()
+            offset += array.nbytes
+        if self.frames and int(arrays["frame_index"][0]) != int(self.frames[-1]["frame_index"][0]) + 1:
+            raise ValueError("SONIC pose window requires consecutive frame indices")
+        self.frames.append(arrays)
+        if len(self.frames) < self.frames.maxlen:
+            return None
+        # Only already-admitted references are supplied by the caller. Unknown
+        # future is endpoint hold, never extrapolated motion. Keep the packet's
+        # end advancing every tick so the native merger does not reset heading.
+        sequence = list(self.frames)
+        future = list(future_references)[:self.lookahead_frames]
+        last = arrays
+        for index in range(self.lookahead_frames):
+            item = {name: value.copy() for name, value in last.items()}
+            if index < len(future):
+                ref = future[index]
+                item["joint_pos"] = _finite_array(ref["joint_pos"], (29,), "future joints")[None].astype('<f4')
+                item["joint_vel"] = _finite_array(ref["joint_vel"], (29,), "future velocity")[None].astype('<f4')
+                item["body_quat"] = normalize_quat_wxyz(ref["body_quat"])[None,None].astype('<f4')
+                item["root_position"] = _finite_array(ref["root_position"], (3,), "future root")[None].astype('<f4')
+            else:
+                item["joint_vel"] = np.zeros_like(item["joint_vel"])
+            item["frame_index"] = np.asarray([int(arrays["frame_index"][0])+index+1],dtype='<i8')
+            if "timestamp_monotonic" in arrays:
+                item["timestamp_monotonic"] = arrays["timestamp_monotonic"]+(index+1)/self.rate
+            sequence.append(item)
+            last = item
+        per_frame = {"joint_pos", "joint_vel", "body_quat", "root_position", "frame_index"}
+        fields, payload = [], []
+        for field in header["fields"]:
+            name = field["name"]
+            array = np.concatenate([frame[name] for frame in sequence], axis=0) if name in per_frame else arrays[name]
+            fields.append(dict(name=name, dtype=field["dtype"], shape=list(array.shape)))
+            payload.append(array.tobytes())
+        if all("timestamp_monotonic" in frame for frame in sequence):
+            stamps = np.concatenate([frame["timestamp_monotonic"] for frame in sequence])
+            fields.append(dict(name="reference_timestamp_monotonic", dtype="f64", shape=[len(stamps)]))
+            payload.append(stamps.tobytes())
+        return b"pose" + _build_header(fields, SONIC_PROTOCOL_VERSION) + b"".join(payload)
 
 
 def state_msg_to_kimodo_state(
@@ -256,6 +361,21 @@ def state_msg_to_kimodo_state(
     return state, q, dq, root_quat, timestamp, initial_root_quat_wxyz
 
 
+def reference_to_boundary_action(reference: dict[str, Any]) -> np.ndarray:
+    """Encode a held/queued command boundary without reapplying a root delta."""
+    action = np.zeros(KIMODO_ACTION_DIM, dtype=np.float32)
+    action[2] = _finite_array(reference["root_position"], (3,), "root_position")[2]
+    quat = normalize_quat_wxyz(reference["body_quat"], "boundary quaternion")
+    rotation = SciPyRotation.from_quat(quat[[1, 2, 3, 0]]).as_matrix()
+    action[3:9] = rotation[:, :2].reshape(6)
+    action[9:38] = _finite_array(reference["joint_pos"], (29,), "joint_pos")
+    hand = reference.get("hand_closure")
+    if hand is None:
+        hand = reference["hand_binary"]
+    action[38:40] = _finite_array(hand, (2,), "hand closure")
+    return action
+
+
 class KimodoActionRuntime:
     """Decode 40D Kimodo actions into SONIC Protocol-v1 reference frames."""
 
@@ -269,8 +389,40 @@ class KimodoActionRuntime:
         self.reference_root_position = np.zeros(3, dtype=np.float32)
         self.previous_reference_z: float | None = None
         self.previous_joint_q: np.ndarray | None = None
-        self.previous_reference_quat: np.ndarray | None = None
+        # SONIC starts a streamed episode from the identity reference frame
+        # and applies the measured robot heading on its side.  Seed the
+        # quaternion limiter accordingly so the first model frame cannot
+        # command an unbounded yaw (for example a 180-degree flip).
+        self.previous_reference_quat: np.ndarray | None = np.asarray(
+            [1.0, 0.0, 0.0, 0.0], dtype=np.float32
+        )
         self.frame_index = 0
+
+    def prime_joints(self, measured_joint_q: Any) -> None:
+        """Seed the jump limiter from the first measured canonical pose."""
+        if self.previous_joint_q is None:
+            self.previous_joint_q = _finite_array(
+                measured_joint_q, (29,), "measured joint_pos"
+            )
+
+    def snapshot(self) -> tuple[np.ndarray, float | None, np.ndarray | None, np.ndarray | None, int]:
+        """Capture mutable decoder state so a rejected action is transactional."""
+        return (
+            self.reference_root_position.copy(),
+            self.previous_reference_z,
+            None if self.previous_joint_q is None else self.previous_joint_q.copy(),
+            None if self.previous_reference_quat is None else self.previous_reference_quat.copy(),
+            self.frame_index,
+        )
+
+    def restore(self, snapshot) -> None:
+        """Restore a state captured by :meth:`snapshot`."""
+        root, previous_z, previous_joint, previous_quat, frame_index = snapshot
+        self.reference_root_position = np.asarray(root, dtype=np.float32).copy()
+        self.previous_reference_z = previous_z
+        self.previous_joint_q = None if previous_joint is None else np.asarray(previous_joint, dtype=np.float32).copy()
+        self.previous_reference_quat = None if previous_quat is None else np.asarray(previous_quat, dtype=np.float32).copy()
+        self.frame_index = int(frame_index)
 
     def decode(self, action: Any, *, current_root_quat_wxyz: Any) -> dict[str, Any]:
         action = _finite_array(action, (KIMODO_ACTION_DIM,), "Kimodo action")
@@ -316,13 +468,25 @@ class KimodoActionRuntime:
             raise BridgeSafetyError("action.root_p has an implausible one-frame XY jump")
         self.reference_root_position[:2] += world_delta[:2]
         self.reference_root_position[2] = root_z
-        if np.linalg.norm(self.reference_root_position[:2]) > self.limits.max_root_xy_abs:
+        if (self.limits.max_root_xy_abs > 0
+                and np.linalg.norm(self.reference_root_position[:2]) > self.limits.max_root_xy_abs):
             raise BridgeSafetyError("action.root_p exceeded the configured XY workspace")
         q = action[9:38].copy()
         if np.max(np.abs(q)) > self.limits.max_joint_abs:
             raise BridgeSafetyError("action.joint_pos contains an implausible angle")
-        if self.previous_joint_q is not None and np.max(np.abs(q - self.previous_joint_q)) > self.limits.max_joint_step:
-            raise BridgeSafetyError("action.joint_pos has an implausible one-frame jump")
+        if self.previous_joint_q is not None:
+            joint_delta = np.abs(q - self.previous_joint_q)
+            max_joint_delta = float(np.max(joint_delta))
+            if max_joint_delta > self.limits.max_joint_step:
+                joint_index = int(np.argmax(joint_delta))
+                raise BridgeSafetyError(
+                    "action.joint_pos has an implausible one-frame jump: "
+                    f"joint_index={joint_index} "
+                    f"previous={float(self.previous_joint_q[joint_index]):.5f} "
+                    f"command={float(q[joint_index]):.5f} "
+                    f"delta={max_joint_delta:.5f} "
+                    f"limit={self.limits.max_joint_step:.5f}"
+                )
         dq = np.zeros(29, dtype=np.float32) if self.previous_joint_q is None else (q - self.previous_joint_q) * self.reference_rate_hz
         if np.max(np.abs(dq)) > self.limits.max_joint_velocity:
             raise BridgeSafetyError("action.joint_pos implies an implausible joint velocity")
@@ -332,6 +496,7 @@ class KimodoActionRuntime:
             "joint_vel": dq,
             "body_quat": q_ref,
             "root_position": self.reference_root_position.copy(),
+            "hand_closure": hand,
             "hand_binary": hand,
             "frame_index": self.frame_index,
         }

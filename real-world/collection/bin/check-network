@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/common.sh"
+: "${CAMERA_HOST:?Set CAMERA_HOST in local.env}"
+"${COLLECTION_PYTHON:?Set COLLECTION_PYTHON in local.env}" - <<'PY'
+import json, os, socket, subprocess, sys
+iface=os.environ['ROBOT_INTERFACE']; host=os.environ['CAMERA_HOST']
+route=json.loads(subprocess.check_output(['ip','-j','route','get',host]))[0]
+print('G1 route:',route)
+if route.get('dev') != iface:
+    sys.exit(f'FAIL: G1 route is not via {iface}; run sudo nmcli connection up kimodo-g1')
+print('PASS: robot traffic uses',iface)
+for port in (22,5555):
+    with socket.socket() as s:
+        s.settimeout(2)
+        err=s.connect_ex((host,port))
+        print(f'{host}:{port}: '+('OPEN' if err==0 else f'UNAVAILABLE (errno={err})'))
+        if port==5555 and err:
+            sys.exit('FAIL: camera TCP port unavailable; inspect onboard camera service')
+print('TCP checks passed; run check-camera to verify actual frames.')
+PY

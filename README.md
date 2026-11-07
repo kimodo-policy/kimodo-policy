@@ -46,7 +46,7 @@
 
 - [x] [HumanoidArena Training & Evaluation](#humanoidarena-training--evaluation)
 - [x] SIMPLE Benchmark: [Training](scripts/Simple_Single_Task/) & [Evaluation](evaluation/simple_eval.md)
-- [ ] Real-World Data Collection, Training & Deployment
+- [x] [Real-World Data Collection, Training & Deployment](real-world/README.md) — source and guides; runtime assets and checkpoints are obtained separately.
 - [ ] More Benchmarks (Coming Soon)
 
 ## 🤖 HumanoidArena Training & Evaluation
@@ -246,6 +246,14 @@ bash evaluation/humanoidarena_eval_signal_task_twist2.sh \
 ~~~
 
 Every evaluation run should have its own results directory. The wrappers write summary statistics, per-episode outputs, and optional videos there. A failed preflight usually indicates a missing simulator asset, cache file, environment variable, or incomplete checkpoint; the wrapper prints the missing path before launching the worker.
+
+## 🦾 Real-World G1 Workflow
+
+The [real-world guide](real-world/README.md) covers PICO teleoperation, synchronized recording, dataset validation and transfer, fine-tuning, and remote policy deployment to a Unitree G1 with Dex3 hands.
+
+The policy runs on a model-server GPU; the workstation runs the bridge and SONIC controller. This workflow does not require Isaac Sim or Isaac Lab. Start with the [observed versions and required assets](real-world/docs/00-versions-assets.md), then follow the [installation guide](real-world/docs/01-install.md) and [terminal-by-terminal deployment commands](real-world/deploy/start.md).
+
+The old `real-world/GR00T-WholeBodyControl` submodule is replaced by a pinned runtime bundle installed under `real-world/external/`. Use a fresh checkout when migrating. The runtime archive and task checkpoints are not bundled in Git, and their public download locations still need to be supplied. Offline validation does not replace clean Linux and on-site hardware acceptance; see the [validation record](real-world/docs/verification.md).
 
 ## 📄 License
 

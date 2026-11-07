@@ -1,0 +1,23 @@
+{
+  "observed_date": "2026-11-07",
+  "workstation": {
+    "os": "Ubuntu 20.04.6 LTS",
+    "gpu_driver": "NVIDIA GeForce RTX 3060 Laptop GPU, 570.133.07",
+    "python": "3.10.9",
+    "tensorrt": "10.13.0.35",
+    "cuda_runtime": "11.8.89",
+    "onnxruntime": "1.16.3",
+    "xrt_pc_service": "1.0.0.0",
+    "xrt_python_sdk": "1.0.2",
+    "gmr_commit": "bb1bbe40774794fceb2a7c579a3464a28e68c844",
+    "sonic_git_commit": null,
+    "sonic_identity": "workstation runtime bundle SHA256; original checkout has no .git"
+  },
+  "server": {
+    "python": "3.10.20",
+    "gpu_driver": "NVIDIA H20, 595.58.03",
+    "main_repository_commit": "9837bf86a273a83b60b5a8fefa71d1a5f563d95c",
+    "working_tree": "locally modified; commit alone does not identify all deployed files"
+  },
+  "reproduction_scope": "Observed package inventories are NOT wheel hashes or a tested clean conda solve."
+}

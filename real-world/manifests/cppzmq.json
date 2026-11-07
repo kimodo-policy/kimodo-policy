@@ -1,0 +1,8 @@
+{
+  "version": "4.10.0",
+  "source": "https://github.com/zeromq/cppzmq/tree/v4.10.0",
+  "sha256": {
+    "zmq.hpp": "1f8b641161dcf12641ae4951c2c49552de425be88d66c988ec5e85046f1320f6",
+    "zmq_addon.hpp": "1dc1d551d7eca43ce31031b2104c0acb204e97fe0921e75741be5a8448ce8814"
+  }
+}

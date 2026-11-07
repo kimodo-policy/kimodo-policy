@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+# G1 network preflight: do not initialize DDS without an IPv4 address.
+if ! ip -4 -o address show dev "$ROBOT_INTERFACE" scope global 2>/dev/null | grep -q ' inet '; then
+    echo "ERROR: G1 interface $ROBOT_INTERFACE has no IPv4 address. Run: sudo nmcli connection up kimodo-g1" >&2
+    exit 2
+fi
+source "$REAL_WORLD_ROOT/collection/setup/native_env.sh"
+cd "$WBC_ROOT/gear_sonic_deploy"
+exec ./target/release/g1_deploy_onnx_ref "$ROBOT_INTERFACE" policy/release/model_decoder.onnx reference/example/ --obs-config policy/release/observation_config.yaml --encoder-file policy/release/model_encoder.onnx --planner-file planner/target_vel/V2/planner_sonic.onnx --input-type zmq_manager --output-type all --zmq-host localhost "$@"

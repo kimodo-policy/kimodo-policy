@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+"${TELEOP_PYTHON:?Set TELEOP_PYTHON}" -m pip check
+"${COLLECTION_PYTHON:?Set COLLECTION_PYTHON}" -m pip check
+"${TELEOP_PYTHON:?Set TELEOP_PYTHON in local.env}" - <<'PY'
+import os
+import numpy, scipy, pinocchio, xrobotoolkit_sdk
+from gear_sonic.scripts.pico_manager_thread_server import GMRReferenceRetargeter
+r=GMRReferenceRetargeter(1.75,os.environ['GMR_ROOT'])
+assert r.retargeter.configuration.model.nq == 36
+print('PASS teleop imports and GMR q29; no live device connection')
+PY
+"${COLLECTION_PYTHON:?Set COLLECTION_PYTHON in local.env}" - <<'PY'
+import av,cv2,pyarrow,torch
+from gear_sonic.data.exporter import Gr00tDataExporter
+from gear_sonic.scripts.run_data_exporter import GrootDataCollector
+print('PASS collection imports; torch',torch.__version__)
+PY
+source "$REAL_WORLD_ROOT/collection/setup/native_env.sh"
+result="$(ldd "$WBC_ROOT/gear_sonic_deploy/target/release/g1_deploy_onnx_ref" 2>&1)"
+if printf '%s\n' "$result" | grep -E 'not found'; then exit 1; fi
+XRT="$SONIC_NATIVE_ROOT/xrt/opt/apps/roboticsservice"
+LIBC="$SONIC_NATIVE_ROOT/xrt-runtime/lib/x86_64-linux-gnu"
+"$LIBC/ld-linux-x86-64.so.2" --library-path "$LIBC:$XRT:$XRT/lib:$XRT/SDK/x64" --list "$XRT/RoboticsServiceProcess" >/dev/null
+printf '%s\n' 'PASS SONIC and isolated PC Service libraries' 'Local software checks passed; physical PICO/G1/camera tests are separate.'

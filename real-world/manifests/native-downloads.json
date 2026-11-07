@@ -1,0 +1,74 @@
+[
+  {
+    "name": "libnvinfer10",
+    "version": "10.13.0.35-1+cuda11.8",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/libnvinfer10_10.13.0.35-1+cuda11.8_amd64.deb",
+    "sha256": "a676dba07bb34d5043698eca3b92f8e67598b277f307b8f6fe34a68c1b15f561"
+  },
+  {
+    "name": "libnvinfer-plugin10",
+    "version": "10.13.0.35-1+cuda11.8",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/libnvinfer-plugin10_10.13.0.35-1+cuda11.8_amd64.deb",
+    "sha256": "8c26aaf1889f753483a480520cae454af437055cc2bd219b0a9f644197d6f86e"
+  },
+  {
+    "name": "libnvonnxparsers10",
+    "version": "10.13.0.35-1+cuda11.8",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/libnvonnxparsers10_10.13.0.35-1+cuda11.8_amd64.deb",
+    "sha256": "aeab5e9de849fd28b97b8ad2cd4265450a1963075ddcdbce0d183b409119d077"
+  },
+  {
+    "name": "libnvinfer-headers-dev",
+    "version": "10.13.0.35-1+cuda11.8",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/libnvinfer-headers-dev_10.13.0.35-1+cuda11.8_amd64.deb",
+    "sha256": "a94b594fe28f021cf41bb507071727e4d45dcaefbb616894231bca672bab9f1d"
+  },
+  {
+    "name": "libnvinfer-headers-plugin-dev",
+    "version": "10.13.0.35-1+cuda11.8",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/libnvinfer-headers-plugin-dev_10.13.0.35-1+cuda11.8_amd64.deb",
+    "sha256": "5e693ee9e275e8981f04991903f5552f22d53d57bc166de7e5e15b144b935abe"
+  },
+  {
+    "name": "libnvinfer-bin",
+    "version": "10.13.0.35-1+cuda11.8",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/libnvinfer-bin_10.13.0.35-1+cuda11.8_amd64.deb",
+    "sha256": "79c6633211088d4081d9a6b773cc8be29812a23917820230746daa7cddbc8e0a"
+  },
+  {
+    "name": "cuda-cudart-11-8",
+    "version": "11.8.89-1",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-cudart-11-8_11.8.89-1_amd64.deb",
+    "sha256": "4f603955b63d228e980f14f32dbdabcfa154f4b9659dcc222b746a6c4f450239"
+  },
+  {
+    "name": "cuda-cudart-dev-11-8",
+    "version": "11.8.89-1",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-cudart-dev-11-8_11.8.89-1_amd64.deb",
+    "sha256": "c3ad62dbe3e80a7ba09fb9a69e5819abb274bb398fdcffbd7c7d8fa583dd700d"
+  },
+  {
+    "name": "cuda-driver-dev-11-8",
+    "version": "11.8.89-1",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-driver-dev-11-8_11.8.89-1_amd64.deb",
+    "sha256": "ee491628df1b08a633d7ca580d11d6aad48bd95af8e5ddb5c382d19ce1fc3596"
+  },
+  {
+    "name": "cuda-cccl-11-8",
+    "version": "11.8.89-1",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-cccl-11-8_11.8.89-1_amd64.deb",
+    "sha256": "38dc61ecf5059b8b22dc7cae2e5aa1f09263b8b9295eb225f69b3d4d76778c53"
+  },
+  {
+    "name": "cuda-nvcc-11-8",
+    "version": "11.8.89-1",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-nvcc-11-8_11.8.89-1_amd64.deb",
+    "sha256": "f72fcab60e94ae2ffbf7c24bedde5329fd7f3ca8fd07b6a5e92fd85759ecabdf"
+  },
+  {
+    "name": "libnvonnxparsers-dev",
+    "version": "10.13.0.35-1+cuda11.8",
+    "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/libnvonnxparsers-dev_10.13.0.35-1+cuda11.8_amd64.deb",
+    "sha256": "62722167907d0856a058dc27938db15d34421be89b10020b0c6dfe8c9d86f9d1"
+  }
+]

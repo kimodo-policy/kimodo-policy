@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "server": {
+    "gpu": 0,
+    "port": 18080,
+    "python": "python3",
+    "dtype": "bf16",
+    "diffusion_steps": 10,
+    "rtc": true,
+    "execution_frames": 15,
+    "rtc_overlap_frames": 8,
+    "rtc_frozen_frames": 2,
+    "rtc_ramp_power": 1.0,
+    "control_fps": 50,
+    "hand_rtc": true,
+    "hand_stabilization": true,
+    "hand_close_threshold": 0.65,
+    "hand_open_threshold": 0.35,
+    "hand_close_frames": 6,
+    "hand_open_frames": 21
+  },
+  "bridge": {
+    "python": "python3",
+    "camera_host": "SET_CAMERA_HOST",
+    "camera_port": 5555,
+    "request_when_queue_below": 32,
+    "initial_inference_latency_s": 0.5,
+    "inference_lead_margin_s": 0.08,
+    "sonic_lookahead_frames": 46,
+    "max_reference_xy_radius": 0,
+    "hand_control_mode": "auto",
+    "check_steps": 1500,
+    "dry_run_steps": 1500,
+    "state_kp_port": 5557,
+    "action_kp_port": 5556
+  },
+  "tasks": {
+    "banana": {
+      "checkpoint": 20000,
+      "initial_pose": "banana_initial_pose.json"
+    },
+    "boxing": {
+      "checkpoint": 25000,
+      "initial_pose": "boxing_initial_pose.json"
+    },
+    "pushing": {
+      "checkpoint": 25000,
+      "initial_pose": "pushing_initial_pose.json",
+      "hand_open_frames": 30
+    },
+    "transportation": {
+      "checkpoint": 30000,
+      "initial_pose": "transportation_initial_pose.json"
+    },
+    "sitting": {
+      "checkpoint": 20000,
+      "initial_pose": "sitting_initial_pose.json"
+    },
+    "football": {
+      "checkpoint": 30000,
+      "initial_pose": "football_initial_pose.json"
+    },
+    "pnp": {
+      "checkpoint": 25000,
+      "initial_pose": "pnp_initial_pose.json"
+    },
+    "long": {
+      "checkpoint": 30000,
+      "initial_pose": "long_v2_initial_pose.json",
+      "dataset": "teleop-long-v2"
+    }
+  }
+}

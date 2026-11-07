@@ -64,6 +64,11 @@ if (( NUM_PROCESSES < 1 )); then
   exit 2
 fi
 
+CHECKPOINT_FLAG="--init-checkpoint"
+if [[ "${KIMODO_RESUME:-0}" == "1" ]]; then
+  CHECKPOINT_FLAG="--resume"
+fi
+
 export CUDA_VISIBLE_DEVICES="${GPU_LIST}"
 export TOKENIZERS_PARALLELISM=false
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-1}"
@@ -79,7 +84,7 @@ cd "${PROJECT_ROOT}"
   --main_process_port "${KIMODO_MASTER_PORT:-29653}" \
   train.py \
   --config "${CONFIG_PATH}" \
-  --init-checkpoint "${INIT_CHECKPOINT}"
+  "${CHECKPOINT_FLAG}" "${INIT_CHECKPOINT}"
 
 # Example:
 # conda activate kimodo
