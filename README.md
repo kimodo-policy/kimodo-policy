@@ -67,7 +67,7 @@ Clone the project and run the setup script. The `--system-deps` option installs 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/kimodo-policy/kimodo-policy.git
 cd kimodo-policy
-bash scripts/setup.sh --system-deps --accept-isaac-eula
+bash setup.sh --system-deps --accept-isaac-eula
 source .setup/env.sh
 ```
 
@@ -79,20 +79,20 @@ Existing named environments are reused; missing ones are created. Rerunning rein
 
 ```bash
 # Preview the installation plan without making changes.
-bash scripts/setup.sh --dry-run
+bash setup.sh --dry-run
 
 # Install only training dependencies.
-bash scripts/setup.sh --only training
+bash setup.sh --only training
 
 # Install one benchmark and the shared Kimodo model environment.
-bash scripts/setup.sh --only arena --accept-isaac-eula
-bash scripts/setup.sh --only simple --accept-isaac-eula
+bash setup.sh --only arena --accept-isaac-eula
+bash setup.sh --only simple --accept-isaac-eula
 
 # Also download SONIC controller files and SIMPLE base scene/robot resources.
-bash scripts/setup.sh --accept-isaac-eula --download-resources
+bash setup.sh --accept-isaac-eula --download-resources
 
 # Check existing environments without reinstalling packages.
-bash scripts/setup.sh --check --accept-isaac-eula
+bash setup.sh --check --accept-isaac-eula
 ```
 
 Use `--conda /path/to/bin/conda` if Conda is not detected. For SIMPLE, the script prefers `/usr/local/cuda-12.8` when available; set `CUDA_HOME` to select another CUDA 12.x toolkit. The script does not install GPU drivers or CUDA toolkits.

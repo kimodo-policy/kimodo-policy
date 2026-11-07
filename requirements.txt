@@ -1,4 +1,4 @@
-# Python 3.10. Install the CUDA PyTorch wheels separately (scripts/setup.sh).
+# Python 3.10. Install the CUDA PyTorch wheels separately (setup.sh).
 # Direct dependency versions from the server environment checked for this release.
 numpy==2.2.6
 transformers==5.1.0
