@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="159" viewBox="0 0 1000 159" role="img" aria-labelledby="title desc">
+<title id="title">Note</title><desc id="desc">Unitree continues to update its datasets. Our pretraining used data available before September 15 and includes only the 14 task subsets reported in the paper. Later additions are not included in the released pretraining checkpoints.</desc>
+<rect x="1" y="1" width="998" height="157" rx="12" fill="#eff7ff" stroke="#cddff5"/>
+<rect x="1" y="17" width="4" height="125" rx="2" fill="#4c9aef"/>
+<circle cx="36" cy="34" r="11" fill="none" stroke="#397dcc" stroke-width="2"/>
+<text x="36" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#397dcc">i</text>
+<text x="60" y="41" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#245fa8">Note</text>
+<text x="28" y="76" font-family="Arial,sans-serif" font-size="20" fill="#35516e">Unitree continues to update its datasets. Our pretraining used data available</text>
+<text x="28" y="103" font-family="Arial,sans-serif" font-size="20" fill="#35516e">before September 15 and includes only the 14 task subsets reported in the paper.</text>
+<text x="28" y="130" font-family="Arial,sans-serif" font-size="20" fill="#35516e">Later additions are not included in the released pretraining checkpoints.</text>
+</svg>
