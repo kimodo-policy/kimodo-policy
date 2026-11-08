@@ -42,7 +42,6 @@ hf download YunhengWang/kimodo-policy \
   --include 'checkpoints/Kimodo-G1-RP-v1/**' \
             'checkpoints/dinov3-vitl16-pretrain-lvd1689m/**' \
   --local-dir .
-python utils/prepare_simple.py --text-cache
 ```
 
 For a complete Close Door example, download the released task checkpoint:
@@ -60,7 +59,8 @@ and use their actual timestamp/checkpoint directory. `config.json` and
 policies were fine-tuned from the 419h pretraining checkpoint for 200,000 steps.
 There are no released MP task policies in this collection.
 
-The supplied 18 text embeddings cover the bundled instructions. Training and
+The 18 text embeddings are bundled in Git under `data/cache/Simple/` and are
+ready to use after cloning; no Hugging Face download is needed. Training and
 evaluation of these instructions do not need the full Llama/LLM2Vec weights.
 For new instructions, download the configured `Meta-Llama-3-8B-Instruct` and both
 `LLM2Vec-Meta-Llama-3-8B-Instruct-mntp*` folders from the
@@ -76,7 +76,7 @@ For the frozen resource versions assembled for this release, use our
 [backup collection](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/simple_assets):
 
 ```bash
-python utils/prepare_simple.py --assets --text-cache
+python utils/prepare_simple.py --assets
 export SIMPLE_DATA_DIR="$PWD/SIMPLE/data"
 export EVAL_DATA_ROOT="$SIMPLE_DATA_DIR/simple-eval"
 ```
@@ -93,7 +93,7 @@ SIMPLE/data/
 ├── scenes/hssd/<six room directories>/
 ├── vMaterials_2/
 └── simple-eval/<TASK>/dr-level-{0,1,2}/meta/episodes.jsonl
-data/cache/Simple/*.pt
+data/cache/Simple/*.pt  # already included in Git
 ```
 
 The frozen episodes cover 12 tasks, with 10 episodes at each of three levels.
@@ -120,7 +120,7 @@ If the official data changes or the task is unavailable, use the
 [frozen training snapshots](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/Simple):
 
 ```bash
-python utils/prepare_simple.py --training-task "$TASK" --text-cache
+python utils/prepare_simple.py --training-task "$TASK"
 ```
 
 There are 12 training snapshots (1,187 demonstrations), including

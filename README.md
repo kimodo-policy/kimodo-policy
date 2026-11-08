@@ -88,7 +88,7 @@ bash setup.sh --only training
 bash setup.sh --only arena --accept-isaac-eula
 bash setup.sh --only simple --accept-isaac-eula
 
-# Also download SONIC controller files and complete SIMPLE evaluation assets/text caches.
+# Also download SONIC controller files and complete SIMPLE evaluation assets.
 bash setup.sh --accept-isaac-eula --download-resources
 
 # Check existing environments without reinstalling packages.
@@ -112,7 +112,7 @@ The generated file configures the Python executables, model dependency path, and
 
 Environment installation does not include model weights or benchmark datasets. Before evaluation, prepare:
 
-- **Kimodo weights and text caches:** download the required [released checkpoints](https://huggingface.co/YunhengWang/kimodo-policy), prepare the backbone/encoder files required by the configuration under `checkpoints/`, and place task embeddings under `data/cache/HumanoidArena/` or `data/cache/Simple/`. Training generates missing task embeddings when the LLM2Vec weights are available.
+- **Kimodo weights and text embeddings:** download the required [released checkpoints](https://huggingface.co/YunhengWang/kimodo-policy) and prepare the backbone/encoder files under `checkpoints/`. Task text embeddings are included in this Git repository under [`data/cache/`](data/cache/README.md), ready to use after cloning. Training generates embeddings for new instructions when the LLM2Vec weights are available.
 
 - **Arena scenes and SONIC:** follow **Evaluation Assets** under **Data Preparation** below for the official downloads, our backup asset link, and the required directory layout.
 
@@ -256,7 +256,7 @@ Check the installed resource paths before evaluation:
 )
 ```
 
-These are presence checks, not a full asset-integrity or rendering test. `check_datasets.py` audits training episodes; it does not validate simulator assets. Before a full evaluation, also prepare the task checkpoint and `data/cache/HumanoidArena/`, run the evaluation wrapper with `--dry-run`, and verify a small simulation run.
+These are presence checks, not a full asset-integrity or rendering test. `check_datasets.py` audits training episodes; it does not validate simulator assets. Before a full evaluation, prepare the task checkpoint and use the bundled `data/cache/HumanoidArena/` embeddings, run the evaluation wrapper with `--dry-run`, and verify a small simulation run.
 
 ### 🚀 Kimodo-Policy Single-Task Training on HumanoidArena
 
@@ -395,9 +395,9 @@ Train Kimodo-Policy directly on SIMPLE demonstrations or evaluate our released p
 Download demonstrations from the [official SIMPLE training dataset](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple). If the official data changes or a task is unavailable, use our [frozen training snapshots](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/Simple). The snapshots contain 12 tasks and 1,187 demonstrations, including `G1WholebodyXMoveBendPickTeleop-v0`. The loader reads the original LeRobot format without replay or conversion.
 
 ```bash
-# Download one frozen training task and its available task text embeddings.
+# Download one frozen training task; task text embeddings are bundled in Git.
 export TASK=G1WholebodyCloseDoorTeleop-v0
-python utils/prepare_simple.py --training-task "$TASK" --text-cache
+python utils/prepare_simple.py --training-task "$TASK"
 export KIMODO_SIMPLE_ROOT="$PWD/datasets/Simple"
 
 KIMODO_SIMPLE_TASK="$TASK" python utils/check_datasets.py \
@@ -409,17 +409,17 @@ The check validates metadata, parquet contents and video presence; it does not d
 
 #### • Evaluation Assets & Model Dependencies
 
-Official resources are available from [SIMPLE assets](https://huggingface.co/datasets/USC-PSI-Lab/SIMPLE) and [evaluation episodes](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple-eval). Our [frozen backup](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/simple_assets) includes robots, grasp objects, articulated objects, containers, six rooms, materials, fixed evaluation episodes and task text embeddings.
+Official resources are available from [SIMPLE assets](https://huggingface.co/datasets/USC-PSI-Lab/SIMPLE) and [evaluation episodes](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple-eval). Our [frozen backup](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/simple_assets) includes robots, grasp objects, articulated objects, containers, six rooms, materials and fixed evaluation episodes. The small task text embeddings are included in this Git repository.
 
 ```bash
-python utils/prepare_simple.py --assets --text-cache
+python utils/prepare_simple.py --assets
 hf download YunhengWang/kimodo-policy \
   --include 'checkpoints/Kimodo-G1-RP-v1/**' \
             'checkpoints/dinov3-vitl16-pretrain-lvd1689m/**' \
   --local-dir .
 ```
 
-The helper verifies checksums and installs resources under `SIMPLE/data/`. The frozen episodes cover 12 tasks × 3 levels × 10 episodes; the text caches cover 18 instructions. For these instructions, the full Llama/LLM2Vec weights are unnecessary. Environment directories and CUDA binaries are installed or compiled locally.
+The helper verifies checksums and installs resources under `SIMPLE/data/`. The frozen episodes cover 12 tasks × 3 levels × 10 episodes; the bundled [`data/cache/Simple/`](data/cache/Simple) embeddings cover 18 instructions and require no separate download. For these instructions, the full Llama/LLM2Vec weights are unnecessary. Environment directories and CUDA binaries are installed or compiled locally.
 
 ### 🚀 Kimodo-Policy Single-Task Training on SIMPLE
 

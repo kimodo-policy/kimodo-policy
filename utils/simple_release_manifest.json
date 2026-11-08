@@ -146,78 +146,79 @@
     }
   },
   "text_cache": {
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyBendHandoverTeleop-v0__5b3061f90127.pt": {
+    "data/cache/Simple/G1WholebodyBendHandoverTeleop-v0__5b3061f90127.pt": {
       "sha256": "5888b091d3b7de154039c42bc303ef379c67b90c0285e1bfcc8b0495f189029e",
       "bytes": 10426
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyBendPickAndPlaceOnSofaMP-v0__4de813626165.pt": {
+    "data/cache/Simple/G1WholebodyBendPickAndPlaceOnSofaMP-v0__4de813626165.pt": {
       "sha256": "7bbeca1651cd12c619897cf88358d45ba7654118b8047b87e6b96c7f3801269f",
       "bytes": 10532
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyBendPickAndPlaceTeleop-v0__85310808247e.pt": {
+    "data/cache/Simple/G1WholebodyBendPickAndPlaceTeleop-v0__85310808247e.pt": {
       "sha256": "4eb5dd03f411fe1a3e33238d5045055110316b37406d17d4a552a974bb59a99a",
       "bytes": 10454
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyBendPickMP-v0__748220ffc81e.pt": {
+    "data/cache/Simple/G1WholebodyBendPickMP-v0__748220ffc81e.pt": {
       "sha256": "17ab1b34fb39e47c51b933f747869c3505a4b533848de8068ee174c44f04e239",
       "bytes": 10306
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyBendPickTeleop-v0__2755b747052f.pt": {
+    "data/cache/Simple/G1WholebodyBendPickTeleop-v0__2755b747052f.pt": {
       "sha256": "78bf695c645ed2949936e679b815e2dca786ba42e168a2a1f72076b9ca0ed630",
       "bytes": 10334
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyCloseDoorTeleop-v0__8910f3c6933a.pt": {
+    "data/cache/Simple/G1WholebodyCloseDoorTeleop-v0__8910f3c6933a.pt": {
       "sha256": "93f45205e740f0359b5a976dc45dab3a1502f9260080ad13b2efebeaa00fecd6",
       "bytes": 10341
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyHandoverTeleop-v0__2c77541b74d7.pt": {
+    "data/cache/Simple/G1WholebodyHandoverTeleop-v0__2c77541b74d7.pt": {
       "sha256": "11c7c8d49caa6af84a2599e35e6453dd0e637da698be1cd2f04b6ada673084a9",
       "bytes": 10398
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyLocomotionPickBetweenTablesTeleop-v0__b31ead284331.pt": {
+    "data/cache/Simple/G1WholebodyLocomotionPickBetweenTablesTeleop-v0__b31ead284331.pt": {
       "sha256": "2fb44f70f6229aa55c022bc1bc53f6bb189eb12b4d94dfcf3bbffc993db4404e",
       "bytes": 10851
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyOpenFaucetTeleop-v0__a9e450545958.pt": {
+    "data/cache/Simple/G1WholebodyOpenFaucetTeleop-v0__a9e450545958.pt": {
       "sha256": "50672ada353722b52f0462f603108b08e030a27331cda1b7b15508920e61c7af",
       "bytes": 10348
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyOpenOvenTeleop-v0__46eb0082c57a.pt": {
+    "data/cache/Simple/G1WholebodyOpenOvenTeleop-v0__46eb0082c57a.pt": {
       "sha256": "e615f9087987b16cdbbe4ef0379a7c257a0134d1ff044b2f9df61efb7fdc61ab",
       "bytes": 10334
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyOpenTrashCanTeleop-v0__e2e886e423c7.pt": {
+    "data/cache/Simple/G1WholebodyOpenTrashCanTeleop-v0__e2e886e423c7.pt": {
       "sha256": "7035f7cd2d6aafb3340e5d2e6070053b0794716f1aee72983b3672b2cd20b5f6",
       "bytes": 10426
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyPickAndBendPlaceMP-v0__1e02d0034289.pt": {
+    "data/cache/Simple/G1WholebodyPickAndBendPlaceMP-v0__1e02d0034289.pt": {
       "sha256": "fe1f90325fb2261e21e3c25a44b05b72c12888d3aa65ed4eb6c51e71e29056ac",
       "bytes": 10426
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyPickAndPlaceAndHugContainerTeleop-v0__2d7db39599f6.pt": {
+    "data/cache/Simple/G1WholebodyPickAndPlaceAndHugContainerTeleop-v0__2d7db39599f6.pt": {
       "sha256": "0e9af28b6877f9e68e247047d1a2fce40ed1d5599519ef3d0ab5dc476c4eec2c",
       "bytes": 10851
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyPushOfficeChairTeleop-v0__6ae8cb3a3e08.pt": {
+    "data/cache/Simple/G1WholebodyPushOfficeChairTeleop-v0__6ae8cb3a3e08.pt": {
       "sha256": "0b0e16461ea1e065ef4d7462afd5f5de3778a6a346b0ab83f6a211f23f2e196b",
       "bytes": 10447
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyTabletopGraspMP-v0__be88ad8d8af6.pt": {
+    "data/cache/Simple/G1WholebodyTabletopGraspMP-v0__be88ad8d8af6.pt": {
       "sha256": "55c3df7454c61b2766a1e3c80d659236864c570fa6f284b032ffa5a93b1428dc",
       "bytes": 10341
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyTabletopHandoverMP-v0__f973bf58e690.pt": {
+    "data/cache/Simple/G1WholebodyTabletopHandoverMP-v0__f973bf58e690.pt": {
       "sha256": "8706126004459f0d71597c9d9d966417d0d280af2085db4f0f07144cab4b63fb",
       "bytes": 10426
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyXMoveBendPickTeleop-v0__5a56a52d01e2.pt": {
+    "data/cache/Simple/G1WholebodyXMoveBendPickTeleop-v0__5a56a52d01e2.pt": {
       "sha256": "d14090c18408b88c9ef216e211436eca9456ea35d007f5881bc30333c0cda21f",
       "bytes": 10433
     },
-    "assets/simple_assets/text_embeddings/Simple/G1WholebodyXMovePickTeleop-v0__e3c19d410263.pt": {
+    "data/cache/Simple/G1WholebodyXMovePickTeleop-v0__e3c19d410263.pt": {
       "sha256": "4fec369be0e7f6ae729bf8e91a904e709a454319d9b12ff840cf7e059b70085a",
       "bytes": 10341
     }
   },
-  "upstream_asset_revision": "0e8f23cce8f2e96717aa60a0e26bed9d56223c2d"
+  "upstream_asset_revision": "0e8f23cce8f2e96717aa60a0e26bed9d56223c2d",
+  "text_cache_source": "https://github.com/kimodo-policy/kimodo-policy/tree/main/data/cache/Simple"
 }

@@ -26,14 +26,14 @@ a CUDA toolkit with nvcc (set CUDA_HOME if necessary).
   --conda PATH                    Path to the conda executable.
   --system-deps                   Install Ubuntu system packages using apt.
   --accept-isaac-eula              Confirm acceptance of NVIDIA Isaac Sim EULA.
-  --download-resources            Download Arena SONIC + complete SIMPLE eval assets/text caches.
+  --download-resources            Download Arena SONIC + complete SIMPLE evaluation assets.
   --dry-run                       Print the plan; do not install or write files.
   --check                         Check existing installations; do not install.
   -h, --help                      Show this help.
 
 After installation: source .setup/env.sh
-Model checkpoints, text caches, Arena scene assets, and benchmark datasets
-are separate from environment installation; see README.md.
+Model checkpoints, Arena scene assets, and benchmark datasets are separate
+from environment installation. Task text embeddings are bundled in Git. See README.md.
 EOF
 }
 die() { printf '[setup] ERROR: %s\n' "$*" >&2; exit 1; }
@@ -228,7 +228,7 @@ if (( DOWNLOAD_RESOURCES )); then
     "$KIMODO_ENV/bin/hf" download nvidia/GEAR-SONIC model_encoder.onnx model_decoder.onnx observation_config.yaml --local-dir "$PROJECT_ROOT/HumanoidArena/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release"
   fi
   if (( WANT_SIMPLE )); then
-    "$KIMODO_ENV/bin/python" "$PROJECT_ROOT/utils/prepare_simple.py" --assets --text-cache
+    "$KIMODO_ENV/bin/python" "$PROJECT_ROOT/utils/prepare_simple.py" --assets
   fi
 fi
 if (( CHECK_ONLY )); then log 'Requested environment checks passed (no simulation launched).'; exit 0; fi
@@ -259,4 +259,4 @@ STAGE=runtime-paths
 mv "$STATE_DIR/env.sh.tmp" "$STATE_DIR/env.sh"
 log "Installation and import checks completed. Log: $LOG_FILE"
 printf 'Next: source %q\n' "$STATE_DIR/env.sh"
-echo 'Prepare checkpoints, text caches, scene assets, and task datasets before evaluation.'
+echo 'Task text embeddings are bundled in Git. Prepare checkpoints, scene assets, and task datasets before evaluation.'

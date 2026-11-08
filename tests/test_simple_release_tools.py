@@ -9,7 +9,23 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from unittest.mock import patch
 
-from utils.prepare_simple import extract_archive
+from utils.prepare_simple import digest, extract_archive, verify_text_cache
+
+
+class BundledTextCacheTest(unittest.TestCase):
+    def test_offline_check_detects_missing_and_modified_files(self):
+        with tempfile.TemporaryDirectory() as tmp, patch("utils.prepare_simple.ROOT", Path(tmp)):
+            path = Path(tmp) / "data/cache/Simple/task.pt"
+            path.parent.mkdir(parents=True)
+            path.write_bytes(b"bundled embedding")
+            manifest = {"text_cache": {"data/cache/Simple/task.pt": {"sha256": digest(path)}}}
+            verify_text_cache(manifest)
+            path.write_bytes(b"changed")
+            with self.assertRaisesRegex(RuntimeError, "missing or modified"):
+                verify_text_cache(manifest)
+            path.unlink()
+            with self.assertRaisesRegex(RuntimeError, "missing or modified"):
+                verify_text_cache(manifest)
 
 
 class ArchiveTest(unittest.TestCase):

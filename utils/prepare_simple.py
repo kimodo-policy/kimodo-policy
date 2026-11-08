@@ -24,6 +24,18 @@ def digest(path):
     return result.hexdigest()
 
 
+def verify_text_cache(release):
+    """Check the small task embeddings bundled with the Git checkout, offline."""
+    for relative, entry in release["text_cache"].items():
+        path = ROOT / relative
+        if not path.is_file() or digest(path) != entry["sha256"]:
+            raise RuntimeError(
+                f"Bundled text embedding is missing or modified: {relative}. "
+                "Restore this file from the matching Git checkout."
+            )
+    print(f"Verified {len(release['text_cache'])} bundled SIMPLE text embeddings (no download).")
+
+
 def extract_archive(archive, destination, strip_prefix=""):
     """Extract only regular files/directories, rejecting links and path escapes."""
     destination = Path(destination).resolve()
@@ -80,7 +92,7 @@ def extract_archive(archive, destination, strip_prefix=""):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--assets", action="store_true", help="Download robots, objects, rooms, materials and fixed evaluation episodes")
-    parser.add_argument("--text-cache", action="store_true", help="Download the released task embeddings")
+    parser.add_argument("--text-cache", action="store_true", help="Verify the task embeddings bundled in Git (no download)")
     parser.add_argument("--training-task", metavar="TASK", help="Download one frozen training task (or all)")
     parser.add_argument("--data-dir", type=Path, default=ROOT / "SIMPLE/data")
     parser.add_argument("--training-root", type=Path, default=ROOT / "datasets/Simple")
@@ -88,10 +100,14 @@ def main():
     args = parser.parse_args()
     if not (args.assets or args.text_cache or args.training_task):
         parser.error("Select --assets, --text-cache and/or --training-task TASK")
-    from huggingface_hub import hf_hub_download
     release = json.loads(Path(__file__).with_name("simple_release_manifest.json").read_text())
 
+    if args.text_cache:
+        verify_text_cache(release)
+
     def download(path, entry):
+        from huggingface_hub import hf_hub_download
+
         cached = args.cache_dir / release["revision"] / path
         if not cached.is_file() or digest(cached) != entry["sha256"]:
             cached = Path(hf_hub_download(
@@ -109,12 +125,6 @@ def main():
             print(f"Preparing {path}", flush=True)
             extract_archive(download(path, entry), args.data_dir)
         print(f"SIMPLE evaluation resources: {args.data_dir.resolve()}")
-    if args.text_cache:
-        destination = ROOT / "data/cache/Simple"
-        destination.mkdir(parents=True, exist_ok=True)
-        for path, entry in release["text_cache"].items():
-            shutil.copy2(download(path, entry), destination / Path(path).name)
-        print(f"Task text embeddings: {destination}")
     if args.training_task:
         tasks = release["training"]
         if args.training_task != "all" and args.training_task not in tasks:
