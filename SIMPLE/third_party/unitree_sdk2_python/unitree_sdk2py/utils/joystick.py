@@ -39,7 +39,7 @@ class Button:
     self.data = data
     
   def reset_click_count(self):
-        """手动重置连续点击计数器"""
+        """Manually reset the consecutive-click counter."""
         self.click_count = 0
 
 class Axis:
@@ -148,7 +148,7 @@ class Joystick:
         self.last_active_time = time.perf_counter()  # Reset the last activity time
 
   def reset_all_click_counts(self):
-        """重置所有按键的连续点击计数器"""
+        """Reset consecutive-click counters for all buttons."""
         for button in [
             self.LT, self.RT, self.back, self.start, self.LB, self.RB,
             self.left, self.down, self.right, self.up, self.Y, self.X, self.B, self.A

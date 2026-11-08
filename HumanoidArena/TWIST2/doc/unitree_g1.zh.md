@@ -1,79 +1,79 @@
-# 实物部署
+# Deployment on Physical Robots
 
-本代码可以在实物部署训练的网络。目前支持的机器人包括 Unitree G1, H1, H1_2。
+This code deploys trained policies on physical robots. Supported robots include Unitree G1, H1, and H1_2.
 
 | G1 | H1 | H1_2 |
 |--- | --- | --- |
 | [![real_g1](https://oss-global-cdn.unitree.com/static/78c61459d3ab41448cfdb31f6a537e8b.GIF)](https://oss-global-cdn.unitree.com/static/0818dcf7a6874b92997354d628adcacd.mp4) | [![real_h1](https://oss-global-cdn.unitree.com/static/fa07b2fd2ad64bb08e6b624d39336245.GIF)](https://oss-global-cdn.unitree.com/static/ea0084038d384e3eaa73b961f33e6210.mp4) | [![real_h1_2](https://oss-global-cdn.unitree.com/static/a88915e3523546128a79520aa3e20979.GIF)](https://oss-global-cdn.unitree.com/static/12d041a7906e489fae79d55b091a63dd.mp4) |
 
-## 启动用法
+## Launch Usage
 
 ```bash
 python deploy_real.py {net_interface} {config_name}
 ```
 
-- `net_interface`: 为连接机器人的网卡的名字，例如`enp3s0`
-- `config_name`: 配置文件的文件名。配置文件会在 `deploy/deploy_real/configs/` 下查找， 例如`g1.yaml`, `h1.yaml`, `h1_2.yaml`。
+- `net_interface`: Name of the network interface connected to the robot, such as `enp3s0`.
+- `config_name`: Configuration filename under `deploy/deploy_real/configs/`, such as `g1.yaml`, `h1.yaml`, or `h1_2.yaml`.
 
-## 启动过程
+## Startup Procedure
 
-### 1. 启动机器人
+### 1. Power On the Robot
 
-将机器人在吊装状态下启动，并等待机器人进入 `零力矩模式`
+Power on the robot while it is supported by a suspension rig, and wait for it to enter zero-torque mode.
 
-### 2. 进入调试模式
+### 2. Enter Debug Mode
 
-确保机器人处于 `零力矩模式` 的情况下，按下遥控器的 `L2+R2`组合键；此时机器人会进入`调试模式`, `调试模式`下机器人关节处于阻尼状态。
+With the robot in zero-torque mode, press `L2+R2` on the controller to enter debug mode. The joints are damped in this mode.
 
-### 3. 连接机器人
+### 3. Connect to the Robot
 
-使用网线连接自己的电脑和机器人上的网口。修改网络配置如下
+Connect the computer to the robot with an Ethernet cable and configure the network as follows.
 
 <img src="https://doc-cdn.unitree.com/static/2023/9/6/0f51cb9b12f94f0cb75070d05118c00a_980x816.jpg" width="400px">
 
-然后使用 `ifconfig` 命令查看与机器人连接的网卡的名称。网卡名称记录下来，后面会作为启动命令的参数
+Use `ifconfig` to identify the network interface connected to the robot. Record its name for the launch command.
 
 <img src="https://oss-global-cdn.unitree.com/static/b84485f386994ef08b0ccfa928ab3830_825x484.png" width="400px">
 
-### 4. 启动程序
+### 4. Start the Program
 
-假设目前与实物机器人连接的网卡名为`enp3s0`.以G1机器人为例，执行下面的命令启动
+For a G1 connected through the `enp3s0` interface, start the program with the following command.
 
 ```bash
-python deploy/deploy_real/deploy_real.py eno1 g1.yaml
+python deploy/deploy_real/deploy_real.py enp3s0 g1.yaml
 ```
 
-#### 4.1 零力矩状态
+#### 4.1 Zero-Torque State
 
-启动之后，机器人关节会处于零力矩状态，可以用手晃动机器人的关节感受并确认一下。
+After startup, the joints remain in the zero-torque state. Carefully move a joint by hand to confirm this state.
 
-#### 4.2 默认位置状态
+#### 4.2 Default Pose
 
-在零力矩状态时，按下遥控器上的`start`按键，机器人会运动到默认关节位置状态。
+In the zero-torque state, press `start` on the controller to move the robot to its default joint configuration.
 
-在机器人运动到默认关节位置之后，可以缓慢的下放吊装机构，让机器人的脚与地面接触。
+Once the default pose is reached, slowly lower the suspension rig until the feet touch the ground.
 
-#### 4.3 运动控制模式
+#### 4.3 Motion Control Mode
 
-准备工作完成，按下遥控器上`A`键，机器人此时会原地踏步，在机器人状态稳定之后，可以逐渐降低吊装绳，给机器人一定的活动空间。
+When ready, press `A` on the controller. The robot will step in place. Once stable, gradually loosen the suspension to allow some movement.
 
-此时使用遥控器上的摇杆就可以控制机器人的运动了。
-左摇杆的前后，控制机器人的x方向的运动速度
-左摇杆的左右，控制机器人的y方向的运动速度
-右摇杆的左右，控制机器人的偏航角yaw的运动速度
+Use the controller joysticks to command robot motion.
+Move the left joystick forward/backward to control x velocity.
+Move the left joystick left/right to control y velocity.
+Move the right joystick left/right to control yaw velocity.
 
-#### 4.4 退出控制
+#### 4.4 Exit Control
 
-在运动控制模式下，按下遥控器上 `select` 按键，机器人会进入阻尼模式倒下，程序退出。或者在终端中 使用 `ctrl+c` 关闭程序。
+In motion control mode, pressing `select` enters damping mode and exits the program; the robot may fall. Alternatively, stop the program with `Ctrl+C` in the terminal.
 
-> 注意：
+> Note:
 > 
-> 由于本示例部署并非稳定的控制程序，仅用于示例作用，请控制过程尽量不要给机器人施加扰动，如果控制过程中出现任何意外情况，请及时退出控制，以免发生危险。
+> This deployment is an example, not a stable production controller. Avoid applying disturbances during control, and exit control promptly if unexpected behavior occurs to reduce the risk of injury or damage.
 
-## 视频教程
+## Video Tutorials
 
-部署在G1上：[https://oss-global-cdn.unitree.com/static/ff70a257ddf34adbb67733d8a90b24d4.mp4](https://oss-global-cdn.unitree.com/static/ff70a257ddf34adbb67733d8a90b24d4.mp4)
+G1 deployment: [https://oss-global-cdn.unitree.com/static/ff70a257ddf34adbb67733d8a90b24d4.mp4](https://oss-global-cdn.unitree.com/static/ff70a257ddf34adbb67733d8a90b24d4.mp4)
 
-部署在H1上：[https://oss-global-cdn.unitree.com/static/6dae1756f4214409a5ced7386ca011ae.mp4](https://oss-global-cdn.unitree.com/static/6dae1756f4214409a5ced7386ca011ae.mp4)
+H1 deployment: [https://oss-global-cdn.unitree.com/static/6dae1756f4214409a5ced7386ca011ae.mp4](https://oss-global-cdn.unitree.com/static/6dae1756f4214409a5ced7386ca011ae.mp4)
 
-部署在H1_2上：[https://oss-global-cdn.unitree.com/static/9d61a1470d3e4b9a9af6d131324fcb94.mp4](https://oss-global-cdn.unitree.com/static/9d61a1470d3e4b9a9af6d131324fcb94.mp4)
+H1_2 deployment: [https://oss-global-cdn.unitree.com/static/9d61a1470d3e4b9a9af6d131324fcb94.mp4](https://oss-global-cdn.unitree.com/static/9d61a1470d3e4b9a9af6d131324fcb94.mp4)

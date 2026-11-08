@@ -10,7 +10,7 @@ else
   ACCELERATE_BIN="$(command -v accelerate || true)"
 fi
 if [[ -z "${ACCELERATE_BIN}" || ! -x "${ACCELERATE_BIN}" ]]; then
-  echo "accelerate was not found; activate kimodo-env or set KIMODO_ENV=/path/to/env" >&2
+  echo "accelerate was not found; activate kimodo-policy or set KIMODO_ENV=/path/to/env" >&2
   exit 1
 fi
 
@@ -60,7 +60,7 @@ cd "${PROJECT_ROOT}"
   --config "${CONFIG_PATH}" \
   --init-checkpoint "${INIT_CHECKPOINT}"
 
-# conda activate kimodo-env
+# conda activate kimodo-policy
 # export KIMODO_ENV="$CONDA_PREFIX"
 # KIMODO_GPUS=0,1,2,3 \
 # HUMANOID_ARENA_ROOT=/path/to/HumanoidArena_dataset_v3_1 \

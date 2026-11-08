@@ -29,9 +29,10 @@ if __name__ == "__main__":
 
     sport_client.WaveHand()
 
-    audio_client.TtsMaker("大家好!我是宇树科技人形机器人。语音开发测试例程运行成功！ 很高兴认识你！",0)
+    # speaker_id=1 selects English TTS in the Unitree audio API.
+    audio_client.TtsMaker("Hello! I am a Unitree humanoid robot. The speech example ran successfully. Nice to meet you!",1)
     time.sleep(8)
-    audio_client.TtsMaker("接下来测试灯带开发例程！",0)
+    audio_client.TtsMaker("Next, we will test the light strip example.",1)
     time.sleep(1)
     audio_client.LedControl(255,0,0)
     time.sleep(1)
@@ -40,5 +41,5 @@ if __name__ == "__main__":
     audio_client.LedControl(0,0,255)
 
     time.sleep(3)
-    audio_client.TtsMaker("测试完毕，谢谢大家！",0)
+    audio_client.TtsMaker("Testing is complete. Thank you!",1)
     

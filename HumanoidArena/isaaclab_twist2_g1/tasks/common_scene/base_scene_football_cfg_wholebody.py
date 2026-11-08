@@ -2,8 +2,8 @@
 # License: Apache License, Version 2.0
 """
 Football (soccer ball) scene configuration for G1 wholebody tasks.
-Uses textured soccer ball USD and goal net USD. 完全移除 warehouse / room / box，
-僅保留 ground + 球 + 球門 + 燈光 + 相機。
+Uses a textured soccer ball USD and goal net USD. Removes the warehouse, room, and box,
+leaving only the ground, ball, goal, lights, and cameras.
 """
 import os
 
@@ -68,7 +68,7 @@ GOAL_BACKDROP_COLOR = (0.35, 0.35, 0.35)
 @configclass
 class TableFootballSceneCfgWH(InteractiveSceneCfg):
     """Football scene configuration.
-    足球場景：完全移除 warehouse / room_walls / box，僅保留 ground + 球 + 球門 + 燈光 + 相機。
+    Football scene: removes the warehouse, room_walls, and box, retaining only the ground, ball, goal, lights, and cameras.
     """
 
     # Football - BALL_DISTANCE in front of the robot, rotated with the robot's 90-degree left turn

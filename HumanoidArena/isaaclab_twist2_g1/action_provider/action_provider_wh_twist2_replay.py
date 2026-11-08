@@ -758,14 +758,14 @@ class ReplayActionProvider(ActionProvider):
                     vel_error = np.linalg.norm(actual_root_state[7:10].cpu().numpy() - self.replay_data_root_lin_vel[1])
                     print(f"[{self.name}] Velocity error: {vel_error:.6f} m/s")
 
-                print(f"[{self.name}] Expected Frame 1 joint pos (前5个): {self.replay_data_qpos_actual[1][:5]}")
-                print(f"[{self.name}] Actual joint pos (前5个): {actual_joint_pos[:5].cpu().numpy()}")
+                print(f"[{self.name}] Expected Frame 1 joint pos (first 5): {self.replay_data_qpos_actual[1][:5]}")
+                print(f"[{self.name}] Actual joint pos (first 5): {actual_joint_pos[:5].cpu().numpy()}")
                 joint_pos_error = np.linalg.norm(actual_joint_pos.cpu().numpy() - self.replay_data_qpos_actual[1])
                 print(f"[{self.name}] Joint position error: {joint_pos_error:.6f} rad")
 
                 if self.replay_data_qvel is not None:
-                    print(f"[{self.name}] Expected Frame 1 joint vel (前5个): {self.replay_data_qvel[1][:5]}")
-                    print(f"[{self.name}] Actual joint vel (前5个): {actual_joint_vel[:5].cpu().numpy()}")
+                    print(f"[{self.name}] Expected Frame 1 joint vel (first 5): {self.replay_data_qvel[1][:5]}")
+                    print(f"[{self.name}] Actual joint vel (first 5): {actual_joint_vel[:5].cpu().numpy()}")
                     joint_vel_error = np.linalg.norm(actual_joint_vel.cpu().numpy() - self.replay_data_qvel[1])
                     print(f"[{self.name}] Joint velocity error: {joint_vel_error:.6f} rad/s")
 

@@ -89,28 +89,28 @@ def update_light(
     cast_shadows=None,
 ):
     """
-    更新光源属性，支持不同光源类型。
-    支持参数包括颜色、强度、旋转角度、位置、半径、是否开启、色温、阴影开启等。
+    Update light properties for different light types.
+    Supports color, intensity, rotation, position, radius, enabled state, color temperature, and shadows.
 
     Args:
-        prim_path: USD Prim 路径，如 "/World/light"
-        color: 光颜色 RGB tuple，范围0-1
-        intensity: 光强度
-        rotation: 旋转角 (度)，tuple(x,y,z)
-        position: 位置坐标 tuple(x,y,z) 或 None（不改位置）
-        radius: 仅 SphereLight 支持，半径
-        enabled: 是否启用光源，bool 或 None
-        temperature: 色温，仅部分光源支持
-        cast_shadows: 是否投射阴影，bool 或 None
+        prim_path: USD prim path, such as "/World/light".
+        color: RGB color tuple in the range 0–1.
+        intensity: Light intensity.
+        rotation: Rotation in degrees as tuple(x, y, z).
+        position: Position as tuple(x, y, z), or None to leave it unchanged.
+        radius: Radius; supported only by SphereLight.
+        enabled: Whether the light is enabled; bool or None.
+        temperature: Color temperature; supported by some light types only.
+        cast_shadows: Whether to cast shadows; bool or None.
     """
     _omni, UsdLux, _UsdGeom, Gf, Sdf = _usd_modules()
     stage = _get_stage()
     prim = stage.GetPrimAtPath(prim_path)
     if not prim.IsValid():
-        raise RuntimeError(f"[update_light] ❌ 找不到光源 Prim: {prim_path}")
+        raise RuntimeError(f"[update_light] ❌ Light prim not found: {prim_path}")
 
     type_name = prim.GetTypeName()
-    print(f"[update_light] ✅ 光源类型: {type_name}")
+    print(f"[update_light] ✅ Light type: {type_name}")
 
     _set_xform_attrs(prim, rotation=rotation, position=position)
 
@@ -118,7 +118,7 @@ def update_light(
     light = _as_light_api(prim, type_name, UsdLux)
     if light is None:
         # Use a generic interface for unknown light types
-        print(f"[update_light] ⚠️ 未知光源类型 {type_name}，使用通用接口设置 color 和 intensity")
+        print(f"[update_light] ⚠️ Unknown light type {type_name}; using the generic interface for color and intensity")
         safe_set_attr(prim, "color", Gf.Vec3f(*color), Sdf.ValueTypeNames.Color3f)
         safe_set_attr(prim, "intensity", intensity, Sdf.ValueTypeNames.Float)
         return
@@ -140,7 +140,7 @@ def update_light(
     if radius is not None and type_name == "SphereLight":
         light.CreateRadiusAttr().Set(radius)
 
-    print(f"[update_light] ✅ 光源 {prim_path} 设置完成")
+    print(f"[update_light] ✅ Updated light {prim_path}")
 
 
 def replace_light_with_distant(
@@ -158,7 +158,7 @@ def replace_light_with_distant(
     _omni, UsdLux, _UsdGeom, _Gf, _Sdf = _usd_modules()
     stage = _get_stage()
     if stage is None:
-        raise RuntimeError("[replace_light_with_distant] USD Stage 未初始化")
+        raise RuntimeError("[replace_light_with_distant] USD stage is not initialized")
 
     prim = stage.GetPrimAtPath(prim_path)
     if prim.IsValid() and prim.GetTypeName() != "DistantLight":
@@ -619,23 +619,23 @@ def augment_camera_appearance(
     focus_distance: float = None,
 ):
     """
-    修改静态相机的视觉成像属性，用于增强数据多样性。
-    支持调整焦距、视野范围、曝光、景深等。
+    Modify the visual properties of a static camera to increase data diversity.
+    Supports focal length, field of view, exposure, and depth of field.
 
     Args:
-        camera_path: USD 相机 Prim 路径
-        focal_length: 焦距（单位 mm）
-        horizontal_aperture: 传感器宽度（单位 mm）
-        vertical_aperture: 传感器高度（单位 mm）
-        exposure: 曝光值
-        focus_distance: 聚焦距离（景深效果）
+        camera_path: USD camera prim path.
+        focal_length: Focal length in mm.
+        horizontal_aperture: Sensor width in mm.
+        vertical_aperture: Sensor height in mm.
+        exposure: Exposure value.
+        focus_distance: Focus distance for depth of field.
     """
     _omni, _UsdLux, UsdGeom, _Gf, _Sdf = _usd_modules()
     stage = _get_stage()
     prim = stage.GetPrimAtPath(camera_path)
 
     if not prim or not prim.IsValid():
-        raise RuntimeError(f"[augment_camera_appearance] ❌ 找不到相机 prim: {camera_path}")
+        raise RuntimeError(f"[augment_camera_appearance] ❌ Camera prim not found: {camera_path}")
 
     camera = UsdGeom.Camera(prim)
 
@@ -654,7 +654,7 @@ def augment_camera_appearance(
     if focus_distance is not None:
         camera.CreateFocusDistanceAttr().Set(focus_distance)
 
-    print(f"[augment_camera_appearance] ✅ 设置相机 {camera_path} 属性完成")
+    print(f"[augment_camera_appearance] ✅ Updated camera {camera_path}")
 
 # --- New: modify cameras in batches by matching name keywords ---
 def batch_augment_cameras_by_name(
@@ -666,16 +666,16 @@ def batch_augment_cameras_by_name(
     focus_distance=None,
 ):
     """
-    批量修改场景中所有名称包含 names 中任意关键词的相机属性。
+    Update all scene cameras whose names contain any keyword in names.
 
-    参数:
-        names: list[str] — 相机名称关键词，如 ["front_cam", "wrist_camera"]
-        其余参数: 可为单值（广播）或与匹配的相机数量一致的列表（逐个赋值）
+    Parameters:
+        names: list[str] — Camera name keywords, such as ["front_cam", "wrist_camera"].
+        Other parameters: A scalar broadcast to all cameras or a list matching the number of cameras.
     """
     _omni, _UsdLux, UsdGeom, _Gf, _Sdf = _usd_modules()
     stage = _get_stage()
     if stage is None:
-        raise RuntimeError("[batch_augment_cameras_by_name] USD Stage 未初始化")
+        raise RuntimeError("[batch_augment_cameras_by_name] USD stage is not initialized")
 
     matched_prims = []
 
@@ -692,7 +692,7 @@ def batch_augment_cameras_by_name(
     traverse_prim(stage.GetPseudoRoot())
 
     if not matched_prims:
-        print("[batch_augment_cameras_by_name] ⚠️ 没有找到匹配的相机")
+        print("[batch_augment_cameras_by_name] ⚠️ No matching cameras found")
         return
 
     # Parameter expansion helper
@@ -719,9 +719,9 @@ def batch_augment_cameras_by_name(
                 focus_distance=focus_distances[i],
             )
         except Exception as e:
-            print(f"[batch_augment_cameras_by_name] 修改相机 {prim.GetPath().pathString} 出错: {e}")
+            print(f"[batch_augment_cameras_by_name] Failed to update camera {prim.GetPath().pathString}: {e}")
 
-    print(f"[batch_augment_cameras_by_name] ✅ 批量修改完成，目标数: {len(matched_prims)}")
+    print(f"[batch_augment_cameras_by_name] ✅ Batch update complete; targets: {len(matched_prims)}")
 
 
 

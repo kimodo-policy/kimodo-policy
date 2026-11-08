@@ -65,7 +65,7 @@ Paths and scheduling:
   --gpus LIST             Comma/space-separated GPU indices (default: 0)
   --seeds LIST            Override official task seeds, e.g. 0,1,2
   --repeats N             Override episodes per seed
-  --results-dir PATH      Root directory for the three task results
+  --results-dir PATH      Root directory for the selected task results
   --port-base N           First model-server port (default: 18080)
   --timeout N             Timeout for each task in seconds (default: 10800)
   --max-steps N           Override the official task maximum simulation steps
@@ -97,7 +97,7 @@ Example:
   bash evaluation/humanoidarena_eval_multi_task_sonic.sh \
     --task hoi \
     --checkpoint log/experiments/my_run/checkpoint_500000 \
-    --gpus 5,6,7 --seeds 0,1,2
+    --gpus 0,1,2 --seeds 0,1,2
 EOF
 }
 

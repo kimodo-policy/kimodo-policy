@@ -10,7 +10,7 @@ else
   ACCELERATE_BIN="$(command -v accelerate || true)"
 fi
 if [[ -z "${ACCELERATE_BIN}" || ! -x "${ACCELERATE_BIN}" ]]; then
-  echo "accelerate was not found; activate kimodo-env or set KIMODO_ENV=/path/to/env" >&2
+  echo "accelerate was not found; activate kimodo-policy or set KIMODO_ENV=/path/to/env" >&2
   exit 1
 fi
 
@@ -87,7 +87,7 @@ cd "${PROJECT_ROOT}"
   "${CHECKPOINT_FLAG}" "${INIT_CHECKPOINT}"
 
 # Example:
-# conda activate kimodo
+# conda activate kimodo-policy
 # export KIMODO_ENV="$CONDA_PREFIX"
 # export REAL_WORLD_ROOT=real-world
 # export REAL_WORLD_DATASET=01_SitSofa

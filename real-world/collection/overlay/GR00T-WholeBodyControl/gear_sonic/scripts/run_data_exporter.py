@@ -384,15 +384,15 @@ class GrootDataCollector:
         label = None
         color = "33"
         if message.startswith("Started recording episode"):
-            label, color = ">>> REC | 开始录制", "32"
+            label, color = ">>> REC | Recording started", "32"
         elif message.startswith(("Stopping recording episode", "Saving buffered episode")):
-            label = "[STOP] SAVING | 停止录制，正在保存"
+            label = "[STOP] SAVING | Recording stopped; saving"
         elif message.startswith("Finished saving episode"):
-            label, color = "[OK] SAVED | 保存完成", "36"
+            label, color = "[OK] SAVED | Save complete", "36"
         elif message.startswith(("Discarded episode", "[Recording aborted]")):
-            label, color = "[X] DISCARDED | 已丢弃", "31"
+            label, color = "[X] DISCARDED | Discarded", "31"
         elif message.startswith(("Cannot start recording", "Skipping save", "Error saving episode")):
-            label, color = "[!] ATTENTION | 录制或保存异常", "31"
+            label, color = "[!] ATTENTION | Recording or save error", "31"
         if label is not None:
             banner = f"\n{'=' * 68}\n{label}\n{message}\n{'=' * 68}\n"
             # Keep redirected logs readable; honor the standard NO_COLOR switch.

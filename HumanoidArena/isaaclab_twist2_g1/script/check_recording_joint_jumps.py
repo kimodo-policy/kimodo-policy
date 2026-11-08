@@ -59,12 +59,12 @@ def resolve_npz_files(input_path: Path) -> list[Path]:
 def pick_joint_key(npz_data: np.lib.npyio.NpzFile, specified_key: str | None) -> str:
     if specified_key:
         if specified_key not in npz_data:
-            raise KeyError(f"指定关节键不存在: {specified_key}")
+            raise KeyError(f"Requested joint key not found: {specified_key}")
         return specified_key
     for key in JOINT_KEY_CANDIDATES:
         if key in npz_data:
             return key
-    raise KeyError(f"未找到关节键，可用键: {sorted(npz_data.files)}")
+    raise KeyError(f"No joint key found; available keys: {sorted(npz_data.files)}")
 
 
 def get_joint_names(joint_dim: int) -> list[str]:
@@ -148,17 +148,17 @@ def print_file_report(
     total_zero = sum(item["zero_wrap_jump_count"] for item in summary)
     total = total_half + total_zero
 
-    print(f"\n=== 文件: {npz_file} ===")
-    print(f"关节键: {joint_key}")
-    print(f"数组形状: {qpos_shape}")
-    print(f"异常统计: 总计={total}, 超过半圈={total_half}, 零点突变={total_zero}")
+    print(f"\n=== File: {npz_file} ===")
+    print(f"Joint key: {joint_key}")
+    print(f"Array shape: {qpos_shape}")
+    print(f"Anomalies: total={total}, over half-turn={total_half}, zero-wrap jumps={total_zero}")
 
     if total == 0:
-        print("结论: 未发现异常")
+        print("Conclusion: no anomalies found")
         return 0
 
-    print("结论: 检测到异常")
-    print("按关节统计(仅显示有异常的关节):")
+    print("Conclusion: anomalies detected")
+    print("Per-joint counts (only joints with anomalies):")
     for item in summary:
         c1 = item["over_half_turn_count"]
         c2 = item["zero_wrap_jump_count"]
@@ -166,15 +166,15 @@ def print_file_report(
             continue
         print(
             f"  [{item['joint_idx']:02d}] {item['joint_name']}: "
-            f"超过半圈={c1}, 零点突变={c2}"
+            f"over half-turn={c1}, zero-wrap jumps={c2}"
         )
 
-    print(f"异常明细(最多显示 {max_events} 条):")
+    print(f"Anomaly details (up to {max_events} entries):")
     for event in events[:max_events]:
         print(
-            f"  帧 {event['frame_from']}->{event['frame_to']}, "
-            f"关节[{event['joint_idx']:02d}] {event['joint_name']}, "
-            f"类型={event['kind']}, "
+            f"  Frame {event['frame_from']}->{event['frame_to']}, "
+            f"joint[{event['joint_idx']:02d}] {event['joint_name']}, "
+            f"type={event['kind']}, "
             f"prev={math.degrees(event['prev']):.2f}°, "
             f"curr={math.degrees(event['curr']):.2f}°, "
             f"raw={math.degrees(event['raw_delta']):.2f}°, "
@@ -182,7 +182,7 @@ def print_file_report(
         )
 
     if len(events) > max_events:
-        print(f"  ... 还有 {len(events) - max_events} 条未显示")
+        print(f"  ... {len(events) - max_events} more entries omitted")
     return total
 
 
@@ -197,10 +197,10 @@ def analyze_single_file(
         joint_key = pick_joint_key(npz_data, key)
         qpos = np.asarray(npz_data[joint_key])
         if qpos.ndim != 2:
-            raise ValueError(f"{joint_key} 不是二维数组，当前形状: {qpos.shape}")
+            raise ValueError(f"{joint_key} must be a 2D array; got shape: {qpos.shape}")
         if qpos.shape[0] < 2:
-            print(f"\n=== 文件: {npz_file} ===")
-            print("帧数小于2，跳过")
+            print(f"\n=== File: {npz_file} ===")
+            print("Fewer than 2 frames; skipping")
             return 0
         events, summary = detect_joint_anomalies(
             qpos=qpos,
@@ -219,42 +219,42 @@ def analyze_single_file(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="检测录制数据中机器人关节是否存在超过半圈或零点突变"
+        description="Detect recorded robot joint jumps exceeding half a turn or crossing the zero wrap"
     )
     parser.add_argument(
         "input_path",
         nargs="?",
         default="/home/dreams/Users/taowen/HumanoidArena/isaaclab_twist2_g1/recording_data/0319",
-        help="输入文件或目录，默认检查 recording_data/0319",
+        help="Input file or directory; default: recording_data/0319",
     )
     parser.add_argument(
         "--key",
         type=str,
         default=None,
-        help="指定关节键名，不填则自动在候选键中选择",
+        help="Joint key to inspect; choose automatically from candidates if omitted",
     )
     parser.add_argument(
         "--half-turn-deg",
         type=float,
         default=180.0,
-        help="超过半圈阈值，单位度",
+        help="Half-turn jump threshold in degrees",
     )
     parser.add_argument(
         "--zero-wrap-deg",
         type=float,
         default=30.0,
-        help="零点突变判定时的包裹后角度阈值，单位度",
+        help="Wrapped angle threshold for detecting zero-wrap jumps, in degrees",
     )
     parser.add_argument(
         "--max-events",
         type=int,
         default=20,
-        help="每个文件最多显示多少条异常明细",
+        help="Maximum anomaly details to display per file",
     )
     parser.add_argument(
         "--strict-exit",
         action="store_true",
-        help="若检测到任何异常则返回非零退出码",
+        help="Exit with a nonzero status if any anomalies are detected",
     )
     return parser.parse_args()
 
@@ -264,16 +264,16 @@ def main() -> int:
     input_path = normalize_input_path(args.input_path)
     npz_files = resolve_npz_files(input_path)
     if not npz_files:
-        print(f"未找到 .npz 文件: {input_path}")
+        print(f"No .npz files found: {input_path}")
         return 1
 
     half_turn_threshold_rad = math.radians(args.half_turn_deg)
     zero_wrap_threshold_rad = math.radians(args.zero_wrap_deg)
 
-    print(f"开始检测，共 {len(npz_files)} 个文件")
-    print(f"输入路径: {input_path}")
-    print(f"超过半圈阈值: {args.half_turn_deg:.2f}°")
-    print(f"零点突变包裹阈值: {args.zero_wrap_deg:.2f}°")
+    print(f"Starting inspection of {len(npz_files)} files")
+    print(f"Input path: {input_path}")
+    print(f"Half-turn threshold: {args.half_turn_deg:.2f}°")
+    print(f"Zero-wrap threshold: {args.zero_wrap_deg:.2f}°")
 
     total_anomalies = 0
     failed_files = 0
@@ -289,13 +289,13 @@ def main() -> int:
             )
         except Exception as exc:
             failed_files += 1
-            print(f"\n=== 文件: {npz_file} ===")
-            print(f"处理失败: {exc}")
+            print(f"\n=== File: {npz_file} ===")
+            print(f"Processing failed: {exc}")
 
-    print("\n=== 总结 ===")
-    print(f"文件总数: {len(npz_files)}")
-    print(f"失败文件: {failed_files}")
-    print(f"异常总数: {total_anomalies}")
+    print("\n=== Summary ===")
+    print(f"Total files: {len(npz_files)}")
+    print(f"Failed files: {failed_files}")
+    print(f"Total anomalies: {total_anomalies}")
 
     if failed_files > 0:
         return 1

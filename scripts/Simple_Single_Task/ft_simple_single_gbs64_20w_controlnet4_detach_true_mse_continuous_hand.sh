@@ -122,7 +122,7 @@ MULTI_GPU_ARGS=()
   --config "${CONFIG_PATH}" \
   --init-checkpoint "${INIT_CHECKPOINT}"
 
-# conda activate kimodo-env
+# conda activate kimodo-policy
 # export KIMODO_ENV="$CONDA_PREFIX"
 # KIMODO_GPUS=0,1,2,3 \
 # KIMODO_SIMPLE_ROOT=/path/to/SIMPLE \

@@ -1,8 +1,8 @@
 # Common Env Config YAML
 
-`sim_main.py` 支持通过 `--env_config_yaml` 在 `gym.make(...)` 之前覆盖环境配置。
+`sim_main.py` supports environment overrides through `--env_config_yaml` before calling `gym.make(...)`.
 
-最简单写法：
+Minimal configuration:
 
 ```yaml
 task_name: Isaac-Move-Football-Single-G129-Dex3-Wholebody
@@ -13,7 +13,7 @@ overrides:
   decimation: 4
 ```
 
-也支持按路由或任务附加覆盖：
+Additional overrides can be applied by route or task:
 
 ```yaml
 task_name: Isaac-Move-Football-Single-G129-Dex3-Wholebody
@@ -33,24 +33,24 @@ tasks:
     episode_length_s: 30.0
 ```
 
-合并顺序：
+Merge order:
 `overrides` -> `routes.<gmt_backend|action_source>` -> `tasks.<task_name>` -> `route_tasks.<route>.<task>`
 
-脚本约定：
-- `run_sonic.sh` / `run_twist2.sh` 会从 yaml 顶层 `task_name` 自动读取 Isaac task id
-- 因此切换任务时，只需要改 `ENV_CONFIG_YAML`
+Launcher conventions:
+- `run_sonic.sh` / `run_twist2.sh` read the Isaac task ID from the YAML top-level `task_name`.
+- Switch tasks by changing only `ENV_CONFIG_YAML`.
 
-当前会自动同步的派生字段：
+Derived fields synchronized automatically:
 - `scene.contact_forces.update_period <- sim.dt`
 - `sim.render_interval <- decimation`
 
-推荐做法：
-- 通用默认继续放在 `twist2_default.yaml` / `sonic_default.yaml`
-- 具体任务单独建文件，例如 `football_single_twist2.yaml` / `football_single_sonic.yaml` / `football_single_vla.yaml`
-- 每个任务 yaml 顶层都带上 `task_name`
-- run 脚本直接指向对应任务 YAML，避免再单独维护 `TASK_NAME`
+Recommended practices:
+- Keep shared defaults in `twist2_default.yaml` / `sonic_default.yaml`.
+- Use separate task files, such as `football_single_twist2.yaml`, `football_single_sonic.yaml`, or `football_single_vla.yaml`.
+- Include `task_name` at the top level of every task YAML.
+- Point run scripts directly at the task YAML instead of maintaining `TASK_NAME` separately.
 
-如果任务里有需要 deterministic reset / recording / replay restore 的环境对象，建议在任务 YAML 中直接配置：
+For environment objects requiring deterministic reset, recording, or replay restoration, configure the following directly in the task YAML:
 
 ```yaml
 overrides:
@@ -67,17 +67,17 @@ overrides:
       zero_velocity_on_reset: true
 ```
 
-种子来源建议：
+Recommended seed sources:
 - `object_reset_seed_source: time`
-  适合真人录制采数。每次 episode 会拿到新的局部伪随机对象初始状态，但不会污染全局 RNG。
+  Suitable for human demonstration collection. Each episode gets new local pseudorandom object states without affecting the global RNG.
 - `object_reset_seed_source: env_seed`
-  适合 VLA / policy 评测。同一个 `--seed` 下，每次冷启动和每一轮 reset 的对象出生点序列都一致，方便不同模型横向对比。
+  Suitable for VLA/policy evaluation. Under the same `--seed`, cold starts and reset cycles produce identical object spawn sequences for model comparisons.
 
-场景随机化原则：
-- 一个 task 的场景随机化只能有一颗主 seed，也就是 `episode_object_seed`
-- `target_sign`、`obstacle layout`、task-specific scene init 都必须从这颗主 seed 派生
-- 不要再为某个局部子系统单独维护第二颗 layout seed
-- replay 必须优先使用录制文件中的 `episode_object_seed` 重建场景
+Scene randomization rules:
+- Each task must have only one master scene seed: `episode_object_seed`.
+- Derive `target_sign`, obstacle layout, and task-specific scene initialization from this seed.
+- Do not maintain a second layout seed for a local subsystem.
+- Replay must prioritize the recorded `episode_object_seed` when rebuilding the scene.
 
-详细约束见：
+Detailed constraints:
 - [docs/SCENE_RANDOMIZATION_SEED_RULES.md](../../docs/SCENE_RANDOMIZATION_SEED_RULES.md)

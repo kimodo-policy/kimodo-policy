@@ -82,14 +82,14 @@ def _extract_scalar(value) -> float:
 
 def get_step_reward_value(env) -> torch.Tensor:
     """
-    快速获取当前环境的总奖励值。
+    Get the current environment's total reward efficiently.
 
-    优先返回最近一次 ``env.step()`` 已写入的 ``reward_buf``，避免再次调用
-    ``reward_manager.compute()``。重复 compute 会让带内部状态的 reward 函数执行两遍，
-    与 Isaac Lab 的 ``episode_length_buf == 1`` 等逻辑叠加后会导致阶段标志被错误清空。
+    Prefer ``reward_buf`` written by the latest ``env.step()`` to avoid another call to
+    ``reward_manager.compute()``. Repeated computation executes stateful reward functions twice;
+    combined with Isaac Lab logic such as ``episode_length_buf == 1``, this can incorrectly clear phase flags.
 
     Returns:
-        torch.Tensor: 当前总奖励，失败时返回零张量。
+        torch.Tensor: Current total reward, or a zero tensor on failure.
     """
     try:
         rb = getattr(env, "reward_buf", None)
@@ -99,15 +99,15 @@ def get_step_reward_value(env) -> torch.Tensor:
             return env.reward_manager.compute(dt=_env_reward_dt(env))
         return _default_reward_tensor(env)
     except Exception as e:
-        print(f"获取奖励值时出错: {e}")
+        print(f"Failed to retrieve reward: {e}")
         return _default_reward_tensor(env)
 
 
 def get_current_rewards(env):
     """
-    获取当前环境的奖励值。
+    Get the current environment reward.
 
-    优先使用 ``reward_buf``（与 ``get_step_reward_value`` 一致），避免重复 compute。
+    Prefer ``reward_buf`` (as in ``get_step_reward_value``) to avoid repeated computation.
     """
     try:
         rb = getattr(env, "reward_buf", None)
@@ -116,17 +116,17 @@ def get_current_rewards(env):
         if hasattr(env, "reward_manager"):
             return env.reward_manager.compute(dt=_env_reward_dt(env))
     except Exception as e:
-        print(f"获取奖励值时出错: {e}")
+        print(f"Failed to retrieve reward: {e}")
     return _default_reward_tensor(env)
 
 
 def get_reward_debug_string(env) -> str:
     """
-    生成易读的 reward 调试字符串。
+    Generate a readable reward debug string.
 
-    调试字符串里的 ``total`` 优先显示 reward 函数记录的**原始未缩放总和**（例如 0/3），
-    而不是 Isaac Lab 的 ``reward_buf``（它已经乘过 ``dt``）。
-    若当前任务没有提供原始值，则回退到 ``reward_buf`` / ``compute``。
+    The ``total`` field prefers the **raw, unscaled total** recorded by the reward function (for example, 0/3),
+    rather than Isaac Lab's ``reward_buf``, which has already been multiplied by ``dt``.
+    If the task provides no raw value, fall back to ``reward_buf`` / ``compute``.
     """
     if not hasattr(env, "reward_manager"):
         return "[reward_debug] reward_manager unavailable"

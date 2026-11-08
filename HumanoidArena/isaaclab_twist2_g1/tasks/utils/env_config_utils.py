@@ -1,6 +1,6 @@
 """
-环境配置工具模块
-提供增强的环境配置管理和参数传递功能
+Environment configuration utilities.
+Provides enhanced environment configuration management and argument handling.
 """
 
 import argparse
@@ -9,14 +9,14 @@ from pathlib import Path
 
 
 def create_enhanced_env_cfg(task_name: str, args: argparse.Namespace):
-    """创建增强的环境配置
+    """Create an enhanced environment configuration.
     
     Args:
-        task_name: 任务名称
-        args: 命令行参数
+        task_name: Task name.
+        args: Command-line arguments.
         
     Returns:
-        环境配置对象
+        Environment configuration object.
     """
     
     # Choose the configuration factory for the task
@@ -29,13 +29,13 @@ def create_enhanced_env_cfg(task_name: str, args: argparse.Namespace):
 
 
 def create_g129_pickplace_cfg(args: argparse.Namespace):
-    """创建G129抓取放置任务的环境配置
+    """Create the environment configuration for the G129 pick-and-place task.
     
     Args:
-        args: 命令行参数
+        args: Command-line arguments.
         
     Returns:
-        PickPlaceG129DEX1JointWaistFixEnvCfg: 环境配置
+        PickPlaceG129DEX1JointWaistFixEnvCfg: Environment configuration.
     """
     from tasks.g1_tasks.pick_place_cylinder_g1_29dof_dex1.pickplace_cylinder_g1_29dof_dex1_joint_env_cfg import (
         PickPlaceG129DEX1JointWaistFixEnvCfg
@@ -64,11 +64,11 @@ def create_g129_pickplace_cfg(args: argparse.Namespace):
 
 
 def apply_performance_optimizations(env_cfg, args: argparse.Namespace):
-    """应用性能优化设置
+    """Apply performance optimization settings.
     
     Args:
-        env_cfg: 环境配置
-        args: 命令行参数
+        env_cfg: Environment configuration.
+        args: Command-line arguments.
     """
     
     # Adjust simulation parameters for the precision mode
@@ -108,11 +108,11 @@ def apply_performance_optimizations(env_cfg, args: argparse.Namespace):
 
 
 def apply_termination_settings(env_cfg, args: argparse.Namespace):
-    """应用终止条件设置
+    """Apply termination settings.
     
     Args:
-        env_cfg: 环境配置
-        args: 命令行参数
+        env_cfg: Environment configuration.
+        args: Command-line arguments.
     """
     
     # Decide whether to remove timeout termination based on the options
@@ -126,58 +126,58 @@ def apply_termination_settings(env_cfg, args: argparse.Namespace):
 
 
 def add_env_config_args(parser: argparse.ArgumentParser):
-    """添加环境配置相关的命令行参数
+    """Add environment configuration command-line arguments.
     
     Args:
-        parser: 参数解析器
+        parser: Argument parser.
     """
     
     # Basic environment parameters
-    env_group = parser.add_argument_group('环境配置参数')
-    env_group.add_argument("--num_envs", type=int, default=1, help="环境数量")
-    env_group.add_argument("--env_spacing", type=float, default=2.5, help="环境间距")
-    env_group.add_argument("--episode_length", type=float, default=20.0, help="Episode长度（秒）")
-    env_group.add_argument("--disable_timeout", action="store_true", default=True, help="禁用超时终止")
+    env_group = parser.add_argument_group('Environment configuration')
+    env_group.add_argument("--num_envs", type=int, default=1, help="Number of environments")
+    env_group.add_argument("--env_spacing", type=float, default=2.5, help="Environment spacing")
+    env_group.add_argument("--episode_length", type=float, default=20.0, help="Episode length in seconds")
+    env_group.add_argument("--disable_timeout", action="store_true", default=True, help="Disable timeout termination")
     
     # Simulation parameters
-    sim_group = parser.add_argument_group('仿真参数')
-    sim_group.add_argument("--sim_dt", type=float, default=0.005, help="仿真时间步长")
-    sim_group.add_argument("--substeps", type=int, default=2, help="仿真子步数")
+    sim_group = parser.add_argument_group('Simulation parameters')
+    sim_group.add_argument("--sim_dt", type=float, default=0.005, help="Simulation time step")
+    sim_group.add_argument("--substeps", type=int, default=2, help="Simulation substeps")
     
     # Performance optimization parameters
-    perf_group = parser.add_argument_group('性能优化参数')
+    perf_group = parser.add_argument_group('Performance optimization')
     perf_group.add_argument("--precision_mode", type=str, default="balanced", 
-                           choices=["fast", "balanced", "precise"], help="精度模式")
-    perf_group.add_argument("--disable_optimizations", action="store_true", help="禁用所有优化")
+                           choices=["fast", "balanced", "precise"], help="Precision mode")
+    perf_group.add_argument("--disable_optimizations", action="store_true", help="Disable all optimizations")
 
 
 def print_env_config_info(env_cfg, args: argparse.Namespace):
-    """打印环境配置信息
+    """Print environment configuration information.
     
     Args:
-        env_cfg: 环境配置
-        args: 命令行参数
+        env_cfg: Environment configuration.
+        args: Command-line arguments.
     """
     
-    print("\n=== 环境配置信息 ===")
-    print(f"任务名称: {getattr(env_cfg, 'env_name', 'Unknown')}")
-    print(f"环境数量: {env_cfg.scene.num_envs}")
-    print(f"环境间距: {env_cfg.scene.env_spacing}")
-    print(f"物理复制: {env_cfg.scene.replicate_physics}")
-    print(f"仿真时间步: {env_cfg.sim.dt}")
-    print(f"Episode长度: {env_cfg.episode_length_s}s")
-    print(f"控制频率: {1.0 / (env_cfg.sim.dt * env_cfg.decimation):.1f}Hz")
-    print(f"精度模式: {getattr(args, 'precision_mode', 'unknown')}")
-    print(f"优化状态: {'禁用' if getattr(args, 'disable_optimizations', False) else '启用'}")
+    print("\n=== Environment Configuration ===")
+    print(f"Task name: {getattr(env_cfg, 'env_name', 'Unknown')}")
+    print(f"Number of environments: {env_cfg.scene.num_envs}")
+    print(f"Environment spacing: {env_cfg.scene.env_spacing}")
+    print(f"Replicate physics: {env_cfg.scene.replicate_physics}")
+    print(f"Simulation time step: {env_cfg.sim.dt}")
+    print(f"Episode length: {env_cfg.episode_length_s}s")
+    print(f"Control frequency: {1.0 / (env_cfg.sim.dt * env_cfg.decimation):.1f}Hz")
+    print(f"Precision mode: {getattr(args, 'precision_mode', 'unknown')}")
+    print(f"Optimizations: {'disabled' if getattr(args, 'disable_optimizations', False) else 'enabled'}")
     print("==================")
 
 
 # Convenience helpers
 def setup_env_from_args(args: argparse.Namespace):
-    """从命令行参数设置环境配置
+    """Set environment configuration from command-line arguments.
     
     Args:
-        args: 命令行参数
+        args: Command-line arguments.
         
     Returns:
         tuple: (env_cfg, env)

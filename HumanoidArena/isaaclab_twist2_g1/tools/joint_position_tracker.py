@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-关节位置跟踪统计工具（纯文本版本，无GUI）
-实时统计29个关节的跟踪误差，用于PD参数调试
+Joint position tracking statistics (text only, no GUI).
+Track errors for 29 joints in real time to help tune PD parameters.
 """
 
 import numpy as np
@@ -10,13 +10,13 @@ import time
 
 
 class JointPositionTracker:
-    """跟踪关节目标位置和当前位置的统计信息"""
+    """Track statistics for target and current joint positions."""
 
     def __init__(self, num_joints=29, window_size=200):
         """
         Args:
-            num_joints: 关节数量
-            window_size: 滑动窗口大小（用于计算移动平均）
+            num_joints: Number of joints.
+            window_size: Sliding window size for the moving average.
         """
         self.num_joints = num_joints
         self.window_size = window_size
@@ -53,12 +53,12 @@ class JointPositionTracker:
 
     def update_data(self, target_pos, current_pos, timestamp=None):
         """
-        更新数据
+        Update the data.
 
         Args:
-            target_pos: 目标位置 (num_joints,)
-            current_pos: 当前位置 (num_joints,)
-            timestamp: 时间戳（可选）
+            target_pos: Target positions, shape (num_joints,).
+            current_pos: Current positions, shape (num_joints,).
+            timestamp: Optional timestamp.
         """
         if timestamp is None:
             timestamp = self.update_count
@@ -80,7 +80,7 @@ class JointPositionTracker:
         self.update_count += 1
 
     def get_statistics(self):
-        """获取统计信息"""
+        """Get statistics."""
         stats = {}
         for i in range(self.num_joints):
             joint_name = self.joint_names[i] if i < len(self.joint_names) else f"Joint_{i}"
@@ -92,7 +92,7 @@ class JointPositionTracker:
         return stats
 
     def print_statistics(self, top_n=10):
-        """打印统计信息，只显示误差最大的前N个关节"""
+        """Print statistics for the top N joints with the largest errors."""
         print("\n" + "="*100)
         print(f"Joint Tracking Statistics (Updates: {self.update_count}, Window: {len(self.timestamps)})")
         print("="*100)
@@ -121,7 +121,7 @@ class JointPositionTracker:
         print("="*100 + "\n")
 
     def print_compact_summary(self):
-        """打印紧凑的摘要信息"""
+        """Print a compact summary."""
         if self.update_count == 0:
             return
 

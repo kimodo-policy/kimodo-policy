@@ -2,14 +2,14 @@
 # Copyright (c) 2025, HumanoidArena Project
 # License: Apache License, Version 2.0
 """
-轉換倒吊拳擊沙袋資產：URDF → Articulation USD。
+Convert hanging boxing bag assets from URDF to articulation USD.
 
-流程:
-  1. 使用 MeshConverter 將 bag OBJ 轉為 USD（含 translation/rotation/scale，與 convert_boxing_bag_assets 一致）
-  2. 使用 UrdfConverter 將 URDF 轉為 Articulation USD
-  3. 後處理：用預旋轉的 bag USD 替換 articulation 中 bag link 的 mesh
+Workflow:
+  1. Convert the bag OBJ to USD with MeshConverter, including translation/rotation/scale as in convert_boxing_bag_assets.
+  2. Convert the URDF to articulation USD with UrdfConverter.
+  3. Postprocess: replace the bag link mesh in the articulation with the pre-rotated bag USD.
 
-用法:
+Usage:
     python scripts/convert_hanging_boxing_bag_assets.py --headless --device cuda
 """
 
@@ -54,7 +54,7 @@ def convert_obj_to_usd(
     rotation=(1.0, 0.0, 0.0, 0.0),
     scale=(1.0, 1.0, 1.0),
 ) -> str:
-    """使用 MeshConverter 轉換 OBJ，支援 translation/rotation/scale（與 convert_boxing_bag_assets 一致）。"""
+    """Convert OBJ with MeshConverter, supporting translation/rotation/scale as in convert_boxing_bag_assets."""
     obj_path = os.path.abspath(obj_path)
     usd_path = os.path.abspath(usd_path)
     if not os.path.exists(obj_path):

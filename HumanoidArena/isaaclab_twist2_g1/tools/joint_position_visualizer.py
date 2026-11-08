@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-关节位置可视化工具
-实时显示29个关节的目标位置和当前位置，用于PD参数调试
+Joint position visualization utility.
+Display target and current positions of 29 joints in real time to help tune PD parameters.
 """
 
 import numpy as np
@@ -29,14 +29,14 @@ import threading
 
 
 class JointPositionVisualizer:
-    """滑动窗口显示关节目标位置和当前位置"""
+    """Display target and current joint positions in a sliding window."""
 
     def __init__(self, num_joints=29, window_size=200, update_interval=50):
         """
         Args:
-            num_joints: 关节数量
-            window_size: 滑动窗口大小（显示多少个时间步）
-            update_interval: 更新间隔（毫秒）
+            num_joints: Number of joints.
+            window_size: Sliding window size in time steps.
+            update_interval: Update interval in milliseconds.
         """
         self.num_joints = num_joints
         self.window_size = window_size
@@ -77,7 +77,7 @@ class JointPositionVisualizer:
         self._init_plot()
 
     def _init_plot(self):
-        """初始化matplotlib图形"""
+        """Initialize the matplotlib figure."""
         # Set minimum font size to avoid ppem error
         plt.rcParams['font.size'] = 10
         plt.rcParams['axes.titlesize'] = 12
@@ -121,7 +121,7 @@ class JointPositionVisualizer:
         plt.tight_layout(pad=2.0)
 
     def _on_key_press(self, event):
-        """处理键盘事件"""
+        """Handle keyboard events."""
         if event.key == 'right':
             self.current_joint_idx = min(self.current_joint_idx + self.joints_per_plot,
                                          self.num_joints - self.joints_per_plot)
@@ -130,12 +130,12 @@ class JointPositionVisualizer:
 
     def update_data(self, target_pos, current_pos, timestamp=None):
         """
-        更新数据
+        Update the data.
 
         Args:
-            target_pos: 目标位置 (num_joints,)
-            current_pos: 当前位置 (num_joints,)
-            timestamp: 时间戳（可选）
+            target_pos: Target positions, shape (num_joints,).
+            current_pos: Current positions, shape (num_joints,).
+            timestamp: Optional timestamp.
         """
         with self.lock:
             if timestamp is None:
@@ -155,7 +155,7 @@ class JointPositionVisualizer:
                     self.mean_error[i] = np.mean(np.abs(list(self.errors[i])))
 
     def _update_plot(self, frame):
-        """更新图形（动画回调）"""
+        """Update the plot (animation callback)."""
         with self.lock:
             if len(self.timestamps) == 0:
                 return self.lines_target + self.lines_current + self.lines_error
@@ -201,7 +201,7 @@ class JointPositionVisualizer:
         return self.lines_target + self.lines_current + self.lines_error
 
     def start(self):
-        """启动可视化（阻塞）"""
+        """Start visualization (blocking)."""
         self.anim = FuncAnimation(
             self.fig,
             self._update_plot,
@@ -212,7 +212,7 @@ class JointPositionVisualizer:
         plt.show()
 
     def start_non_blocking(self):
-        """启动可视化（非阻塞）"""
+        """Start visualization (nonblocking)."""
         self.anim = FuncAnimation(
             self.fig,
             self._update_plot,
@@ -224,7 +224,7 @@ class JointPositionVisualizer:
         plt.show()
 
     def get_statistics(self):
-        """获取统计信息"""
+        """Get statistics."""
         stats = {}
         for i in range(self.num_joints):
             joint_name = self.joint_names[i] if i < len(self.joint_names) else f"Joint_{i}"
@@ -235,7 +235,7 @@ class JointPositionVisualizer:
         return stats
 
     def print_statistics(self):
-        """打印统计信息"""
+        """Print statistics."""
         print("\n" + "="*80)
         print("Joint Tracking Statistics")
         print("="*80)

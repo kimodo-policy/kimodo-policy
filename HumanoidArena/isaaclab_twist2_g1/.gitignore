@@ -59,16 +59,16 @@ Thumbs.db
 *.ipynb
 
 # ================================
-# 日志文件
+# Log files
 # ================================
 *.log
 logs/
 log/
 
 # ================================
-# 仿真和机器人相关
+# Simulation and robot files
 # ================================
-# Isaac Lab 相关
+# Isaac Lab files
 .isaac/
 isaac-sim/
 kit/
@@ -78,14 +78,14 @@ screenshots/
 *.usda
 
 
-# ROS 相关（如果使用）
+# ROS files (if used)
 devel/
 build/
 install/
 .catkin_workspace
 *.pyc
 
-# Gazebo 相关
+# Gazebo files
 *.world~
 models/
 
@@ -93,7 +93,7 @@ models/
 
 
 # ================================
-# 缓存和临时文件
+# Caches and temporary files
 # ================================
 .cache/
 .tmp/
@@ -110,7 +110,7 @@ temp/
 
 
 # ================================
-# Git 相关
+# Git files
 # ================================
 *.orig
 *.rej

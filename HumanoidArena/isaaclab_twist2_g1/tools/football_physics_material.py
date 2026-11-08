@@ -1,7 +1,7 @@
 """
-足球物理材質工具。
-UsdFileCfg 不支援 physics_material，需於場景 reset 後動態套用。
-FIFA 足球 restitution 典型區間 0.7–0.8。
+Football physics material utilities.
+UsdFileCfg does not support physics_material; apply it dynamically after resetting the scene.
+The typical FIFA football restitution range is 0.7–0.8.
 """
 
 
@@ -12,18 +12,18 @@ def apply_football_physics_material(
     dynamic_friction: float = 0.4,
 ) -> bool:
     """
-    於場景載入後動態套用物理材質到足球 prim，使彈性接近真實足球。
+    Apply a physics material to the football prim after scene loading to approximate realistic bounce.
 
-    需在 Isaac Sim / Isaac Lab 環境內執行（含 isaaclab、omni 模組）。
+    Run inside Isaac Sim / Isaac Lab with the isaaclab and omni modules available.
 
     Args:
-        ball_prim_pattern: 足球 prim 路徑或 regex，預設 /World/envs/env_.*/Object
-        restitution: 恢復係數，FIFA 典型 0.7–0.8
-        static_friction: 靜摩擦
-        dynamic_friction: 動摩擦
+        ball_prim_pattern: Football prim path or regex; default: /World/envs/env_.*/Object.
+        restitution: Coefficient of restitution; typical FIFA range: 0.7–0.8.
+        static_friction: Static friction.
+        dynamic_friction: Dynamic friction.
 
     Returns:
-        True 若成功套用，False 若跳過或發生錯誤
+        True on success; False if skipped or an error occurs.
     """
     try:
         import omni.usd
@@ -33,7 +33,7 @@ def apply_football_physics_material(
 
         stage = omni.usd.get_context().get_stage()
         if stage is None:
-            print("[football_physics_material] ⚠️ 無有效 stage，跳過")
+            print("[football_physics_material] ⚠️ No valid stage; skipping")
             return False
 
         matches = []
@@ -51,7 +51,7 @@ def apply_football_physics_material(
                     matches = [p]
                     break
         if not matches:
-            print(f"[football_physics_material] ⚠️ 找不到足球 prim: {ball_prim_pattern}")
+            print(f"[football_physics_material] ⚠️ Football prim not found: {ball_prim_pattern}")
             return False
 
         material_path = "/World/FootballPhysicsMaterial"
@@ -73,16 +73,16 @@ def apply_football_physics_material(
                 pass
 
         if bound > 0:
-            print(f"[football_physics_material] ✓ 已套用 restitution={restitution} 到足球 ({bound} 處)")
+            print(f"[football_physics_material] ✓ Applied restitution={restitution} to football ({bound} bindings)")
             return True
-        print("[football_physics_material] ⚠️ 未成功綁定（足球 geometry 可能為 instanced，需修改 USD）")
+        print("[football_physics_material] ⚠️ Binding failed (football geometry may be instanced; edit the USD)")
         return False
 
     except ImportError as e:
-        print(f"[football_physics_material] ⚠️ 無法載入必要模組，跳過: {e}")
+        print(f"[football_physics_material] ⚠️ Required modules unavailable; skipping: {e}")
         return False
     except Exception as e:
-        print(f"[football_physics_material] ⚠️ 套用失敗: {e}")
+        print(f"[football_physics_material] ⚠️ Failed to apply material: {e}")
         import traceback
 
         traceback.print_exc()

@@ -1,91 +1,66 @@
-# 环境
-conda activate kimodo
-python
-conda activate unitree_sim_env
-python
+# HumanoidArena Evaluation
 
-# SONIC 单任务评估
-```bash
-bash ./evaluation/humanoidarena_eval_signal_task_sonic.sh \
-      --project . \
-      --task doubledesk \
-      --checkpoint /path/to/checkpoint \
-      --gpus 5,6,7 \
-      --dtype fp32 \
-      --diffusion-steps 10 \
-      --execution-frames 15 \
-      --rtc 0 \
-      --rtc-overlap-frames 0 \
-      --rtc-frozen-frames 0 \
-      --rtc-ramp-power 1.0 \
-      --persistent-sim 0 \
-      --deterministic-eval 1 \
-      --record-video-every-n 1 \
-      --port-base 18080 \
-      --results-dir ./eval_results/doubledesk_deterministic
-```
+This guide evaluates the released Kimodo-Policy checkpoints with the SONIC controller. Run all commands from the repository root. The standard evaluation configuration uses **3 GPUs (`0,1,2`)**, three seeds (`0,1,2`), and 20 episodes per seed: **60 episodes per task**. Change the GPU IDs to match your machine.
 
+## 1. Install the environments
 
-
-# SONIC 多任务连续评估
-
-新脚本支持通过 `--task` 指定一个或多个任务，并严格按照输入顺序连续评估。
-
-任务组展开规则：
-
-```text
-hoi -> doubledesk -> football -> pp_box
-hsi -> boxing -> open_door -> sit_sofa -> vision_navi
-all -> doubledesk -> football -> pp_box -> boxing -> open_door -> sit_sofa -> vision_navi
-```
-
-例如 `--task doubledesk football pp_box` 会按照 doubledesk、football、pp_box 的顺序执行；也支持 `--task double desk football` 和 `--task ppbox` 这种写法。
-
-当使用 `--rtc 0` 时，RTC 不会参与预测，`--rtc-overlap-frames`、
-`--rtc-frozen-frames` 和 `--rtc-ramp-power` 不会影响轨迹融合；它们仍会进行参数校验并记录到运行配置中。
+Follow [Installation & Environment Setup](../README.md#installation-environment-setup), or install only the shared model environment and Arena runtime:
 
 ```bash
-bash ./evaluation/humanoidarena_eval_multi_task_sonic.sh \
-      --task doubledesk football pp_box \
-      --project . \
-      --checkpoint /path/to/checkpoint \
-      --gpus 5,6,7 \
-      --dtype fp32 \
-      --diffusion-steps 10 \
-      --execution-frames 15 \
-      --rtc 0 \
-      --rtc-overlap-frames 0 \
-      --rtc-frozen-frames 0 \
-      --rtc-ramp-power 1.0 \
-      --persistent-sim 0 \
-      --deterministic-eval 1 \
-      --record-video-every-n 1 \
-      --port-base 18080 \
-      --results-dir ./eval_results/hoi_tasks_deterministic
+# Review and accept the Isaac Sim license before using this option.
+bash setup.sh --only arena --accept-isaac-eula
+source .setup/env.sh
+conda activate kimodo-policy
 ```
 
-# TWIST2 football 正式统计评估
+The policy server uses `kimodo-policy` (Python 3.10). The Isaac Sim / Isaac Lab simulator uses `unitree_sim_env` (Python 3.11). The generated `.setup/env.sh` selects their Python executables and the runtime paths; the evaluation wrappers launch each process in the correct environment. Load this file again in every new terminal. You do not need to activate the simulator environment manually.
 
-下面的命令按照 football 测试配置的默认规模运行 3 个 seed、每个 seed 20
-次，共 60 个 episode。命令不显式传入 `--max-steps`；wrapper 会根据所选
-TWIST2 任务的官方 runner 自动读取对应的 `MAX_STEPS`（football 为 2000，
-其它任务同理）。`--anchor-root 1` 是 TWIST2 root window 对齐修正；
-`--persistent-sim 0 --deterministic-eval 1` 保证 episode 之间隔离并保持可复现。
-评估前建议在 RTX 服务器上使用 `tmux`，避免 SSH 断开导致评估中止。
+## 2. Prepare weights and simulation assets
+
+Before running an evaluation:
+
+1. Download the **Kimodo-G1-RP-v1 backbone and DINOv3 encoder** using the commands in [Prepare Runtime Assets](../README.md#prepare-runtime-assets). Preserve the complete folders under `checkpoints/`, including configurations and motion statistics. For a SEED policy, use its matching motion backbone.
+2. Download a **task-specific Kimodo-Policy checkpoint** from the [single-task or multi-task tables](../README.md#-kimodo-policy-single-task-training-on-humanoidarena). Pass the actual `checkpoint_STEP` directory containing `config.json` and `training_state.pt`, rather than its parent experiment directory. A single-task policy should be evaluated on its corresponding task; use a jointly trained policy for multi-task evaluation.
+3. Prepare **Arena simulation assets and SONIC controller files** following [HumanoidArena Data Preparation](../README.md#-humanoidarena-training--evaluation). Use the official downloads first, or our frozen backup when the upstream files have changed. Training demonstrations alone do not include all evaluation resources.
+4. Keep the bundled task text embeddings under `data/cache/`. They are included in this repository; no text encoder download is needed for the released task instructions.
+
+Training demonstrations are needed for training, but are not required just to evaluate a released policy. Policy checkpoints, the motion backbone, the vision encoder, and SONIC controller files serve different roles and are not interchangeable.
+
+## 3. Check the launch configuration
+
+Set a real checkpoint path, then validate the paths and launch arguments without starting the simulator:
 
 ```bash
-tmux new -s football_twist2_formal
+export CHECKPOINT=/path/to/checkpoint_STEP
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+bash evaluation/humanoidarena_eval_signal_task_sonic.sh \
+  --project "$PROJECT_ROOT" \
+  --task doubledesk \
+  --checkpoint "$CHECKPOINT" \
+  --gpus 0 \
+  --seeds 0 \
+  --repeats 1 \
+  --max-steps 30 \
+  --rtc 0 \
+  --persistent-sim 0 \
+  --deterministic-eval 1 \
+  --results-dir "$PROJECT_ROOT/eval_results/arena_smoke" \
+  --dry-run
+```
 
-cd "$(git rev-parse --show-toplevel)"
-export CONDA_BASE="$(conda info --base)"
-export KIMODO_SERVER_PYTHON="$CONDA_BASE/envs/lerobot/bin/python"
-export VLA_MAX_ROOT_DELTA_DEG=26.0
+After this passes, remove `--dry-run` for a short end-to-end smoke test. The 30-step limit is only for checking startup and communication; do not use its success rate as a benchmark result. A successful dry run validates configuration and paths, not simulator execution or model inference.
 
-bash evaluation/humanoidarena_eval_signal_task_twist2.sh \
-  --project . \
-  --task football \
-  --checkpoint log/experiments/scratch_sonic_8/humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_football_twist2/2026-08-28_16-23-14/checkpoint_200000 \
-  --gpus 5,6,7 \
+## 4. Evaluate a single task
+
+The example below matches the main README. Use a fresh results directory for each run. Leave `--max-steps` unset for formal evaluation so the wrapper reads the selected task's configured episode length.
+
+```bash
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+bash evaluation/humanoidarena_eval_signal_task_sonic.sh \
+  --project "$PROJECT_ROOT" \
+  --task doubledesk \
+  --checkpoint "$CHECKPOINT" \
+  --gpus 0,1,2 \
   --seeds 0,1,2 \
   --repeats 20 \
   --dtype fp32 \
@@ -94,50 +69,59 @@ bash evaluation/humanoidarena_eval_signal_task_twist2.sh \
   --rtc 0 \
   --persistent-sim 0 \
   --deterministic-eval 1 \
-  --anchor-root 1 \
   --record-video-every-n 1 \
-  --port-base 19420 \
-  --server-port-max 20000 \
-  --trace 0 \
-  --results-dir ./eval_results/football_twist2_checkpoint200000_formal
+  --results-dir "$PROJECT_ROOT/eval_results/arena_doubledesk"
 ```
 
-完成后可用以下命令查看总体结果：
+`--record-video-every-n 1` records every episode; use a larger interval to reduce disk usage, or `0` to disable recording. The main README omits this option and uses the wrapper's recording default. RTC is disabled, each episode uses a separate simulator process, and deterministic startup is enabled. When `--rtc 0` is set, RTC overlap, frozen-frame, and ramp settings do not affect trajectory blending.
+
+## 5. Evaluate a multi-task policy
+
+The multi-task wrapper evaluates tasks sequentially in the order requested, using the selected GPUs for the seed jobs within each task. Supported groups are:
+
+| Group | Tasks, in evaluation order |
+| --- | --- |
+| `hoi` | `doubledesk`, `football`, `pp_box` |
+| `hsi` | `boxing`, `open_door`, `sit_sofa`, `vision_navi` |
+| `all` | All three HOI tasks, followed by all four HSI tasks |
 
 ```bash
-jq '.overall_success_rate, .failure_reason_counts' \
-  ./eval_results/football_twist2_checkpoint200000_formal/summary.json
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+bash evaluation/humanoidarena_eval_multi_task_sonic.sh \
+  --project "$PROJECT_ROOT" \
+  --task all \
+  --checkpoint /path/to/multi_task/checkpoint_STEP \
+  --gpus 0,1,2 \
+  --seeds 0,1,2 \
+  --repeats 20 \
+  --dtype fp32 \
+  --diffusion-steps 10 \
+  --execution-frames 15 \
+  --rtc 0 \
+  --persistent-sim 0 \
+  --deterministic-eval 1 \
+  --record-video-every-n 1 \
+  --results-dir "$PROJECT_ROOT/eval_results/arena_multi_task"
 ```
 
-结果目录中的 `summary.json`、`final.csv` 和 `episodes/` 保存统计与逐回合结果，
-视频位于 `videos/success/` 和 `videos/failure/`。`--record-video-every-n 1`
-会保存全部 60 个 episode 的视频；磁盘空间有限时可改为 `5`。
+Use `--task hoi`, `--task hsi`, or an explicit list such as `--task doubledesk football pp_box` to select a subset. Add `--dry-run` to validate all selected task launch plans. The full seven-task configuration runs 420 episodes in total.
 
-说明：wrapper 默认 `video-fps=30`、`num-workers=1`，因此正式命令无需重复指定。
-`--trace 0` 需要保留，因为 wrapper 的默认值是 `1`；它仅用于关闭 Kimodo server
-调试日志，不会关闭模型推理或视频录制。
+## 6. Inspect results
 
-TWIST2 的 checkpoint 是 Kimodo 目录（必须包含 `config.json` 和
-`training_state.pt`），不能传给 LeRobot 的 `pretrained_model` server。仿真使用
-`unitree_sim_env`，模型 server 通过 `KIMODO_SERVER_PYTHON` 指定（若没有独立
-`kimodo` 环境，当前部署可使用 `lerobot/bin/python` 运行同一个
-`humanoidarena_server.py`）。`MODEL_PATHS_CSV` 用于传入一个或多个直接 checkpoint 目录。
+For a single task, the results directory contains:
+
+- `aggregate_summary.json`: total episodes, successes, overall success rate, failure reasons, and per-seed statistics.
+- `seed_0/`, `seed_1/`, `seed_2/`: individual seed outputs, including `summary.json`, `final.csv`, episode records, and `pipeline.log`.
+- Optional videos under each seed's `videos/success/` and `videos/failure/` directories.
+
+For a multi-task run, each task has its own subdirectory and aggregate summary. For example:
 
 ```bash
-conda activate unitree_sim_env
-export CONDA_BASE="$(conda info --base)"
-# 当前远端部署使用 lerobot 环境；若存在独立 kimodo 环境可替换此路径。
-export KIMODO_SERVER_PYTHON="$CONDA_BASE/envs/lerobot/bin/python"
-export MODEL_PATHS_CSV=/path/to/kimodo/checkpoint_200000
-export ENV_CONFIG_YAML=tasks/common_test_config/base_test/doubledesk_twist2_test.yaml
-export SERVER_GPU_IDS=5,6,7
-export NUM_WORKERS=1
-export SEEDS_OVERRIDE="0 1 2"
-export REPEATS_PER_SEED=20
-
-bash ./HumanoidArena/isaaclab_twist2_g1/script/eval_scripts/twist2/run_vla_eval_parallel.sh
+python -m json.tool eval_results/arena_doubledesk/aggregate_summary.json
+python -m json.tool eval_results/arena_multi_task/doubledesk/aggregate_summary.json
 ```
 
-TWIST2 server 的默认推理时序为 50 Hz 控制、15 个模型执行帧、10 个扩散步，
-RTC 默认关闭；这些参数可通过 `KIMODO_*` 环境变量覆盖。录像保存在脚本目录的
-`eval_results/` 下，每个 episode 是连续控制帧。
+Check the wrapper's exit status and any `.failed` markers before treating a result as complete. If a run fails, inspect the relevant seed's `pipeline.log`. Use distinct results directories and port ranges when launching independent evaluations concurrently (`--port-base` sets the starting port).
+
+> [!NOTE]
+> HumanoidArena is built on Isaac Sim. Small differences in visual rendering and simulation may lead to slight variations in evaluation results, even with the same seeds and deterministic startup settings.

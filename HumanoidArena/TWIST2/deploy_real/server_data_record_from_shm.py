@@ -5,9 +5,9 @@ Enhanced data collection script for TWIST2+IsaacLab.
 Reads directly from IsaacLab shared memory (no network needed).
 
 Collects data from Redis and IsaacLab simulation, including:
-- Front camera: RGB + Depth (第一人称视角)
-- World camera: RGB + Depth (第三人称视角)
-- SMPLX motion data (人体姿态数据)
+- Front camera: RGB + Depth (first-person view)
+- World camera: RGB + Depth (third-person view)
+- SMPLX motion data (human body poses)
 - Body and hand state
 - Body and hand action
 
@@ -42,12 +42,12 @@ from image_server.shared_memory_utils import MultiImageReader
 
 
 class IsaacLabVisionClient:
-    """直接从 IsaacLab 共享内存读取多相机图像"""
+    """Read multiple camera images directly from IsaacLab shared memory."""
 
     def __init__(self, shm_name="isaac_multi_image_shm"):
         """
         Args:
-            shm_name: IsaacLab 共享内存名称
+            shm_name: IsaacLab shared-memory name
         """
         self.shm_name = shm_name
         self.reader = None
@@ -86,7 +86,7 @@ class IsaacLabVisionClient:
 
     def get_images(self):
         """
-        读取所有相机图像和真实深度数据
+        Read all camera images and metric depth data.
 
         Returns:
             dict: {
@@ -157,7 +157,7 @@ class IsaacLabVisionClient:
             return None
 
     def close(self):
-        """关闭连接"""
+        """Close the connection."""
         self.running = False
         if self.reader:
             self.reader.close()

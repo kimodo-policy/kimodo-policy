@@ -77,7 +77,7 @@ def get_robot_gipper_joint_states(
         env: ManagerBasedRLEnv - reinforcement learning environment instance
         enable_dds: bool - whether to enable the DDS publish function
     
-    返回:
+    Returns:
         torch.Tensor
     """
     # get the gripper joint states

@@ -210,7 +210,7 @@ class EpisodeWriter():
     def close(self):
         """
         Stop the worker thread and ensure all tasks are completed.
-        停止后台线程并确保所有任务完成
+        Stop the background thread and ensure all tasks finish.
         """
         print("==>  Starting EpisodeWriter shutdown...")
         

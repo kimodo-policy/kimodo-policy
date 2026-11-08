@@ -1422,7 +1422,7 @@ def main():
                         try:
                             print(get_reward_debug_string(env))
                         except Exception as e:
-                            print(f"奖励输出失败: {e}")
+                            print(f"Failed to print rewards: {e}")
 
                     # Update joint tracker
                     # if joint_tracker and loop_count % 2 == 0:  # Update every 2 steps

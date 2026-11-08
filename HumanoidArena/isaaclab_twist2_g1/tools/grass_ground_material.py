@@ -1,7 +1,7 @@
 """
-草坪 PBR 地面材質工具。
-在場景載入後動態將草坪 PBR 貼圖套用到地面 prim，需在 Isaac Sim 環境內執行。
-支援 AITextured 轉出的 PBR 貼圖命名（*__Png_albedo.png, *__Png_normal.png 等）。
+Grass PBR ground material utilities.
+Apply grass PBR textures to the ground prim after scene loading; run inside Isaac Sim.
+Supports AITextured PBR texture naming (*__Png_albedo.png, *__Png_normal.png, etc.).
 """
 
 import glob
@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 def _find_texture(textures_dir: str, patterns: list[str]) -> str | None:
-    """在目錄中依多個 pattern 尋找貼圖，回傳第一個找到的完整路徑。"""
+    """Search a directory using multiple patterns and return the first matching full path."""
     for pat in patterns:
         matches = glob.glob(os.path.join(textures_dir, pat))
         if matches:
@@ -24,24 +24,24 @@ def apply_grass_pbr_to_ground(
     uv_scale: tuple = (25.0, 25.0),
 ) -> bool:
     """
-    將草坪 PBR 材質套用到指定地面 prim。
+    Apply a grass PBR material to the specified ground prim.
 
-    需在 Isaac Sim 環境內執行（含 pxr、omni 模組）。
-    若貼圖檔案不存在則跳過，不影響場景運行。
+    Run inside Isaac Sim with the pxr and omni modules available.
+    Skip missing textures without interrupting scene execution.
 
     Args:
-        prim_path: 地面 prim 路徑，預設 /World/GroundPlane
-        textures_dir: 貼圖目錄，預設使用 PROJECT_ROOT/assets/objects/materials/grass_turf
-        uv_scale: UV 重複倍率 (scale_u, scale_v)，越大貼圖越細密。預設 (25, 25) 使草地比例相對於機器人合理
+        prim_path: Ground prim path; default: /World/GroundPlane.
+        textures_dir: Texture directory; defaults to PROJECT_ROOT/assets/objects/materials/grass_turf.
+        uv_scale: UV repetition factors (scale_u, scale_v); larger values produce finer textures. The default (25, 25) scales grass appropriately for the robot.
 
     Returns:
-        True 若成功套用 PBR 材質，False 若貼圖缺失或發生錯誤
+        True if the PBR material is applied; False if textures are missing or an error occurs.
     """
     try:
         import omni.usd
         from pxr import Sdf, UsdShade, UsdGeom, Usd, Vt, Gf
     except ImportError as e:
-        print(f"[grass_ground_material] ⚠️ 無法載入 omni.usd 或 pxr，跳過草坪材質套用: {e}")
+        print(f"[grass_ground_material] ⚠️ Cannot import omni.usd or pxr; skipping grass material: {e}")
         return False
 
     # Resolve the texture directory
@@ -57,19 +57,19 @@ def apply_grass_pbr_to_ground(
         ["*__Png_albedo.png", "*_albedo.png", "grass_albedo.png"],
     )
     if not albedo_path:
-        print(f"[grass_ground_material] ⚠️ Albedo 貼圖未找到，請參考 assets/objects/materials/grass_turf/README.md")
+        print(f"[grass_ground_material] ⚠️ Albedo texture not found; see assets/objects/materials/grass_turf/README.md")
         return False
 
     # Use an absolute path because Omniverse requires it to resolve textures
     albedo_path = os.path.abspath(albedo_path)
     textures_dir = os.path.abspath(textures_dir)
-    print(f"[grass_ground_material] 貼圖目錄: {textures_dir}")
+    print(f"[grass_ground_material] Texture directory: {textures_dir}")
     print(f"[grass_ground_material] Albedo: {albedo_path}")
 
     stage = omni.usd.get_context().get_stage()
     prim = stage.GetPrimAtPath(prim_path)
     if not prim or not prim.IsValid():
-        print(f"[grass_ground_material] ⚠️ 找不到地面 prim: {prim_path}")
+        print(f"[grass_ground_material] ⚠️ Ground prim not found: {prim_path}")
         return False
 
     # Collect all meshes that need the material, including the prim and its descendants
@@ -248,7 +248,7 @@ def apply_grass_pbr_to_ground(
                 bound_count += 1
 
     print(
-        f"[grass_ground_material] ✅ 草坪 PBR 材質已套用到 {bound_count} 個 mesh，"
-        f"已寫入 st UV 的 mesh: {st_bound_count}"
+        f"[grass_ground_material] ✅ Applied grass PBR material to {bound_count} meshes; "
+        f"meshes with st UV coordinates: {st_bound_count}"
     )
     return True

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-关节位置可视化集成模块
-可以轻松集成到任何仿真脚本中
+Joint position visualization integration module.
+Can be integrated into any simulation script.
 """
 
 import torch
@@ -23,15 +23,15 @@ except Exception as e:
 
 
 class JointVisualizerIntegration:
-    """集成到仿真循环的可视化器包装类"""
+    """Visualizer wrapper for integration into a simulation loop."""
 
     def __init__(self, robot, env_id=0, window_size=200, update_frequency=2):
         """
         Args:
-            robot: Isaac Lab robot对象
-            env_id: 要可视化的环境ID
-            window_size: 滑动窗口大小
-            update_frequency: 更新频率（每N步更新一次）
+            robot: Isaac Lab robot object.
+            env_id: ID of the environment to visualize.
+            window_size: Sliding window size.
+            update_frequency: Update every N steps.
         """
         print(f"[JointVizIntegration] Initializing with robot: {type(robot)}")
         print(f"[JointVizIntegration] Robot num_joints: {robot.num_joints}")
@@ -82,7 +82,7 @@ class JointVisualizerIntegration:
         print(f"{'='*80}\n")
 
     def update(self):
-        """在仿真循环中调用此方法"""
+        """Call this method from the simulation loop."""
         self.step_count += 1
 
         if self.step_count % self.update_frequency == 0:
@@ -93,11 +93,11 @@ class JointVisualizerIntegration:
             self.visualizer.update_data(target_pos, current_pos, timestamp=self.step_count)
 
     def print_statistics(self):
-        """打印统计信息"""
+        """Print statistics."""
         self.visualizer.print_statistics()
 
     def get_statistics(self):
-        """获取统计信息"""
+        """Get statistics."""
         return self.visualizer.get_statistics()
 
 

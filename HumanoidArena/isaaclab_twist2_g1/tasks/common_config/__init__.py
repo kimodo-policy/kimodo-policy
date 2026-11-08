@@ -1,6 +1,6 @@
 """
-公共配置模块
-提供可复用的机器人和相机配置
+Shared configuration module
+Reusable robot and camera configurations
 """
 
 from .robot_configs import G129dofRobotBaseCfg, G1RobotPresets, G1RobotJointTemplates

@@ -416,8 +416,8 @@ def compute_reward(
 def reset_ppdd_reward_cache(env: "ManagerBasedRLEnv") -> None:
     """Clear pick-place reward state after ``reset_object_self`` / ``reset_all_self``.
 
-    Wholebody 路径常常不调用 ``env.step()``，``episode_length_buf`` 不会走 ``ep==1`` 分支，
-    物体被事件重置后必须手动刷新 rest 基线与阶段标志，否则 ``dz``/``dxy`` 会相对错误 pose 计算。
+    The whole-body path often bypasses ``env.step()``, so ``episode_length_buf`` does not enter the ``ep==1`` branch.
+    After an event resets an object, refresh its rest baseline and phase flags manually; otherwise, ``dz``/``dxy`` use the wrong reference pose.
     """
     for name in (
         "_ppdd_rest_com_w",

@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="asset/picture/kimodo-policy-title-dark.svg">
-    <img src="asset/picture/kimodo-policy-title.svg" alt="Kimodo-Policy: From Text-to-Motion Generators to Humanoid Vision-Language-Action Policies" width="960">
+    <img src="asset/picture/kimodo-policy-title.svg" alt="Kimodo-Policy: Towards Kinematic Action Models for Humanoid Loco-Manipulation" width="960">
   </picture>
 </p>
 
@@ -53,6 +53,8 @@
 - [ ] [BiGym 2.0](https://bigym2.github.io/docs/) Training & Evaluation (Coming Soon)
 
 - [ ] [HumanoidToolBench](https://github.com/SNU-PI/HumanoidToolBench) Training & Evaluation (Coming Soon)
+
+<a id="installation-environment-setup"></a>
 
 ## ⚙️ Installation & Environment Setup
 
@@ -116,7 +118,19 @@ The generated file configures the Python executables, model dependency path, and
 
 Environment installation does not include model weights or benchmark datasets. Before evaluation, prepare:
 
-- **Kimodo weights and text embeddings:** download the required [released checkpoints](https://huggingface.co/YunhengWang/kimodo-policy) and prepare the backbone/encoder files under `checkpoints/`. Task text embeddings are included in this Git repository under [`data/cache/`](data/cache/README.md), ready to use after cloning. Training generates embeddings for new instructions when the LLM2Vec weights are available.
+**Backbone and visual encoder:** training and evaluation use the frozen Kimodo motion backbone and DINOv3 encoder. These shared weights are separate from task-specific policy checkpoints. Download the complete folders from our Hugging Face backups: [Kimodo-G1-RP-v1](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/checkpoints/Kimodo-G1-RP-v1) and [DINOv3 ViT-L/16](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/checkpoints/dinov3-vitl16-pretrain-lvd1689m). Run from the repository root:
+
+```bash
+conda activate kimodo-policy
+hf download YunhengWang/kimodo-policy \
+  --include 'checkpoints/Kimodo-G1-RP-v1/**' \
+            'checkpoints/dinov3-vitl16-pretrain-lvd1689m/**' \
+  --local-dir .
+```
+
+Keep the configuration files and motion statistics alongside the weights. These paths match the default training and evaluation configurations. The SEED variant additionally needs its matching motion backbone; use the checkpoint and configuration specified for that variant.
+
+**Policy checkpoints and text embeddings:** download a task-specific policy from the checkpoint tables below. Released task text embeddings are included in this Git repository under [`data/cache/`](data/cache/README.md). For new language instructions, prepare the LLM2Vec weights as described in **Kimodo-Policy Pretraining** below.
 
 - **Arena scenes and SONIC:** follow **Evaluation Assets** under **Data Preparation** below for the official downloads, our backup asset link, and the required directory layout.
 

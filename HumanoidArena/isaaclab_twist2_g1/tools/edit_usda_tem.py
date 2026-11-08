@@ -17,9 +17,9 @@ logger = logging.getLogger(__name__)
 
 def modify_usda_file(input_file, output_file, target_links):
     """
-    修改usda文件
-    - 所有visuals下的instanceable改为false
-    - 指定link下的collisions的instanceable改为false
+    Modify a USDA file:
+    - Set instanceable to false for all visuals.
+    - Set instanceable to false for collisions under the specified link.
     """
     with open(input_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
@@ -86,7 +86,7 @@ def modify_usda_file(input_file, output_file, target_links):
         f.writelines(modified_lines)
 
 def main():
-    """主函数"""
+    """Main entry point."""
     # Usage
     target_links = [
         "right_hand_index_0_link", 
@@ -112,9 +112,9 @@ def main():
     
     try:
         modify_usda_file(input_file, output_file, target_links)
-        logger.info(f"文件处理完成，已保存到: {output_file}")
+        logger.info(f"File processed and saved to: {output_file}")
     except Exception as e:
-        logger.error(f"程序执行失败: {str(e)}")
+        logger.error(f"Execution failed: {str(e)}")
         sys.exit(1)
 
 if __name__ == "__main__":

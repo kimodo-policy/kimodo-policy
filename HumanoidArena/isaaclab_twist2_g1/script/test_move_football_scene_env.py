@@ -4,22 +4,22 @@
 """
 Move-football G1 29DOF Dex3 wholebody scene visualization script.
 
-參考 `test_visual_zones_env.py`，用於快速檢查
-`move_football_g1_29dof_dex3_wholebody` 場景能否正確建立並渲染。
+Based on `test_visual_zones_env.py`, this quickly checks whether the
+`move_football_g1_29dof_dex3_wholebody` scene can be constructed and rendered.
 
-用法（在專案根目錄）:
+Usage (from the project root):
     cd isaaclab_twist2_g1
 
-    # 僅測試是否能跑起來（無視覺渲染）
+    # Test startup only (without visual rendering)
     python scripts/test_move_football_scene_env.py --headless --device cuda
 
-    # 帶渲染（需要顯示環境，請不要加 --headless）
+    # Enable rendering (requires a display; omit --headless)
     python scripts/test_move_football_scene_env.py --device cuda
 
-    # 自訂步數（例如 500 步）
+    # Set a custom step count (for example, 500)
     python scripts/test_move_football_scene_env.py --device cuda --num_steps 500
 
-    # 無步數上限，直到 Ctrl+C
+    # Run without a step limit until Ctrl+C
     python scripts/test_move_football_scene_env.py --device cuda --no_limit
 """
 
@@ -96,7 +96,7 @@ def main():
         env_cfg.sim.device = sim_device
         print("   ✓ Configuration created")
         print(f"   - Num envs: {env_cfg.scene.num_envs}")
-        print(f"   - Sim device: {env_cfg.sim.device} (fabric 將使用 GPU)")
+        print(f"   - Sim device: {env_cfg.sim.device} (fabric will use the GPU)")
         print(f"   - Decimation: {env_cfg.decimation}")
         print(f"   - dt: {env_cfg.sim.dt}")
     except Exception as e:
@@ -158,11 +158,11 @@ def main():
         try:
             apply_grass_pbr_to_ground(prim_path="/World/GroundPlane", uv_scale=(150.0, 150.0))
         except Exception as e:
-            print(f"   [grass] 貼圖未準備或跳過: {e}")
+            print(f"   [grass] Texture unavailable or skipped: {e}")
         try:
             apply_football_physics_material(restitution=0.75)
         except Exception as e:
-            print(f"   [football_physics] 跳過: {e}")
+            print(f"   [football_physics] Skipped: {e}")
         # Simplified test markings: a 7.32 m line in front of the goal and a 2 m circle around the robot
         try:
             import omni.usd
@@ -173,7 +173,7 @@ def main():
                 line_color=(127.0 / 255.0, 127.0 / 255.0, 127.0 / 255.0),
             )
         except Exception as e:
-            print(f"   [pitch_lines] 標線未建立或跳過: {e}")
+            print(f"   [pitch_lines] Field markings unavailable or skipped: {e}")
         if args.no_limit:
             print("   Running until Ctrl+C (no step limit)...")
 

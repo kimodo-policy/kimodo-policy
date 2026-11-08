@@ -35,36 +35,36 @@ bash teleop_data_record.sh
 bash sim2real.sh
 ```
 
-# 按键说明
+# Controller buttons
 
 teleop:
 
-    右手A: 开始/暂停teleop
-    左手X: 退出teleop,进入default pose
+    Right A: Start/pause teleoperation
+    Left X: Exit teleoperation and enter the default pose
 
-    右手index grip: close right hand
-    右手grip: open right hand
+    Right index grip: Close the right hand
+    Right grip: Open the right hand
 
-    左手index grip: close left hand
-    左手grip: open left hand
+    Left index grip: Close the left hand
+    Left grip: Open the left hand
 
-    右手B: 缩小streamed RGB in VR
+    Right B: Reduce the size of the streamed RGB view in VR
 
-    左手axis click: robot急停
+    Left axis click: Robot emergency stop
     
 
 motion gen:
 
-    右手axis clik: 进入/退出motion gen mode
+    Right axis click: Enter/exit motion generation mode
 
-    左手方向盘: motion gen mode下，控制机器人运动x
-    右手方向盘: motion gen mode下，控制机器人运动yaw
+    Left joystick: Control robot x motion in motion generation mode
+    Right joystick: Control robot yaw in motion generation mode
 
 data record:
 
-    左手Y: 开始/暂停 data record
+    Left Y: Start/pause recording
 
-    左手axis click: 退出data record
+    Left axis click: Exit recording
 
 
 

@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 def convert_nested_lists_to_tensor(obj):
     """
-    递归遍历 obj，把所有形如 list[list[float]] 的结构转为 torch.tensor。
+    Recursively traverse obj and convert all list[list[float]] structures to torch.tensor.
     """
     if isinstance(obj, dict):
         return {k: convert_nested_lists_to_tensor(v) for k, v in obj.items()}
@@ -19,12 +19,12 @@ def convert_nested_lists_to_tensor(obj):
         return obj
 def load_robot_data(json_path):
     """
-    读取并解析 robot data.json 文件，并将 sim_state 中所有 list[list[float]] 转为 tensor。
+    Read and parse robot data.json, converting all list[list[float]] structures in sim_state to tensors.
 
-    参数:
-        json_path (str): JSON 文件路径
+    Parameters:
+        json_path (str): Path to the JSON file.
 
-    返回:
+    Returns:
         tuple: (robot_action: List[np.ndarray], hand_action: List[np.ndarray], sim_state: dict with torch.tensor)
     """
     with open(json_path, 'r') as f:
@@ -87,12 +87,12 @@ def load_robot_data(json_path):
 
 def load_robot_data2(json_path):
     """
-    读取并解析 robot data.json 文件，并将 sim_state 中所有 list[list[float]] 转为 tensor。
+    Read and parse robot data.json, converting all list[list[float]] structures in sim_state to tensors.
 
-    参数:
-        json_path (str): JSON 文件路径
+    Parameters:
+        json_path (str): Path to the JSON file.
 
-    返回:
+    Returns:
         tuple: (robot_action: List[np.ndarray], hand_action: List[np.ndarray], sim_state: dict with torch.tensor)
     """
     with open(json_path, 'r') as f:

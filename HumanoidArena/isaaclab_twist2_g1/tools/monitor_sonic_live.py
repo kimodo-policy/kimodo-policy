@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-SONIC实时数据监控工具
+SONIC live data monitoring utility.
 
-用法：
-1. 启动pico_server
-2. 运行此脚本：python monitor_sonic_live.py
-3. 在VR中做动作，观察数据变化
+Usage:
+1. Start pico_server.
+2. Run: python monitor_sonic_live.py
+3. Move in VR and observe changes in the data.
 
-显示：
-- SMPL joints的变化幅度
-- Body orientation的变化
-- Joint positions的变化
-- 数据接收频率
+Displays:
+- SMPL joint variation amplitudes.
+- Body orientation changes.
+- Joint position changes.
+- Data reception frequency.
 """
 
 import json
@@ -24,7 +24,7 @@ from collections import deque
 _HEADER_SIZE = 1280
 
 def parse_zmq_pose(raw: bytes):
-    """解析ZMQ pose消息"""
+    """Parse a ZMQ pose message."""
     try:
         topic_end = raw.index(b"{")
         header_bytes = raw[topic_end: topic_end + _HEADER_SIZE]
@@ -49,15 +49,15 @@ def parse_zmq_pose(raw: bytes):
         return None
 
 def monitor():
-    """实时监控数据流"""
+    """Monitor the data stream in real time."""
     ZMQ_HOST = "localhost"
     ZMQ_PORT = 5556
 
     print("=" * 80)
-    print("SONIC实时数据监控")
+    print("SONIC Live Data Monitor")
     print("=" * 80)
-    print(f"连接到: {ZMQ_HOST}:{ZMQ_PORT}")
-    print("按Ctrl+C停止\n")
+    print(f"Connecting to: {ZMQ_HOST}:{ZMQ_PORT}")
+    print("Press Ctrl+C to stop.\n")
 
     context = zmq.Context()
     socket = context.socket(zmq.SUB)
@@ -74,7 +74,7 @@ def monitor():
     last_report_time = time.time()
     fps_counter = 0
 
-    print("等待数据...\n")
+    print("Waiting for data...\n")
 
     try:
         while True:
@@ -121,47 +121,47 @@ def monitor():
                 # Clear the screen and print
                 print("\033[2J\033[H")  # ANSI screen clear
                 print("=" * 80)
-                print(f"SONIC实时监控 | 帧: {frame_count} | FPS: {fps:.1f}")
+                print(f"SONIC Live Monitor | Frame: {frame_count} | FPS: {fps:.1f}")
                 print("=" * 80)
-                print(f"\n📊 数据统计（最近1秒）:")
-                print(f"  SMPL Joints 变化幅度: {smpl_diff:.4f}  范围: {smpl_range}")
-                print(f"  Body Quat 变化幅度:   {quat_diff:.4f}  当前: {body_quat}")
-                print(f"  Joint Pos 变化幅度:   {joint_diff:.4f}  范围: {joint_range}")
+                print(f"\n📊 Statistics (last 1 second):")
+                print(f"  SMPL joint variation: {smpl_diff:.4f}  Range: {smpl_range}")
+                print(f"  Body quaternion variation: {quat_diff:.4f}  Current: {body_quat}")
+                print(f"  Joint position variation: {joint_diff:.4f}  Range: {joint_range}")
 
                 # Status indicator
-                print(f"\n🎯 状态:")
+                print(f"\n🎯 Status:")
                 if smpl_diff < 0.001:
-                    print(f"  ⚠️  SMPL数据几乎不变 - 请在VR中做动作！")
+                    print(f"  ⚠️  SMPL data barely changes: move in VR!")
                 elif smpl_diff < 0.01:
-                    print(f"  ⚡ SMPL数据有小幅变化")
+                    print(f"  ⚡ Small changes in SMPL data")
                 else:
-                    print(f"  ✅ SMPL数据正常变化")
+                    print(f"  ✅ SMPL data changes normally")
 
                 if joint_diff < 0.001:
-                    print(f"  ⚠️  关节位置几乎不变")
+                    print(f"  ⚠️  Joint positions barely change")
                 elif joint_diff < 0.1:
-                    print(f"  ⚡ 关节位置有小幅变化")
+                    print(f"  ⚡ Small changes in joint positions")
                 else:
-                    print(f"  ✅ 关节位置正常变化")
+                    print(f"  ✅ Joint positions change normally")
 
                 # Monitor key joints (right shoulder, elbow, and wrist)
-                print(f"\n🤖 关键关节位置（右手）:")
-                print(f"  右肩pitch [12]: {joint_pos[12]:+.3f}")
-                print(f"  右肩roll  [16]: {joint_pos[16]:+.3f}")
-                print(f"  右肩yaw   [20]: {joint_pos[20]:+.3f}")
-                print(f"  右肘      [22]: {joint_pos[22]:+.3f}")
-                print(f"  右腕roll  [24]: {joint_pos[24]:+.3f}")
+                print(f"\n🤖 Key joint positions (right arm):")
+                print(f"  Right shoulder pitch [12]: {joint_pos[12]:+.3f}")
+                print(f"  Right shoulder roll  [16]: {joint_pos[16]:+.3f}")
+                print(f"  Right shoulder yaw   [20]: {joint_pos[20]:+.3f}")
+                print(f"  Right elbow          [22]: {joint_pos[22]:+.3f}")
+                print(f"  Right wrist roll     [24]: {joint_pos[24]:+.3f}")
 
-                print(f"\n💡 提示:")
-                print(f"  - 在VR中举起右手，观察右肩/右肘数值变化")
-                print(f"  - 如果数值不变，说明数据流有问题")
-                print(f"  - 按Ctrl+C停止监控")
+                print(f"\n💡 Tips:")
+                print(f"  - Raise your right hand in VR and watch the right shoulder/elbow values.")
+                print(f"  - Unchanging values indicate a data stream problem.")
+                print(f"  - Press Ctrl+C to stop monitoring.")
 
                 last_report_time = current_time
                 fps_counter = 0
 
     except KeyboardInterrupt:
-        print("\n\n监控已停止")
+        print("\n\nMonitoring stopped")
 
 if __name__ == "__main__":
     monitor()

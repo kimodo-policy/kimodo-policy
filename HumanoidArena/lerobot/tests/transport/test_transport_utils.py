@@ -426,7 +426,7 @@ def test_python_object_to_bytes_none():
         3.14159,
         -2.71828,
         "Hello, World!",
-        "Unicode: 你好世界 🌍",
+        "Unicode: café 🌍",
         True,
         False,
         b"byte string",

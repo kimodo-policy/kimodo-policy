@@ -4,9 +4,9 @@
 Enhanced data collection script for TWIST2+IsaacLab.
 
 Collects data from Redis and IsaacLab simulation, including:
-- Front camera: RGB + Depth (第一人称视角)
-- World camera: RGB + Depth (第三人称视角)
-- SMPLX motion data (人体姿态数据)
+- Front camera: RGB + Depth (first-person view)
+- World camera: RGB + Depth (third-person view)
+- SMPLX motion data (human body poses)
 - Body and hand state
 - Body and hand action
 
@@ -34,13 +34,13 @@ from datetime import datetime
 
 
 class MultiCameraVisionClient:
-    """管理多个相机的视觉客户端"""
+    """Manage visual clients for multiple cameras."""
 
     def __init__(self, robot_ip, num_cameras=2):
         """
         Args:
-            robot_ip: 机器人IP地址
-            num_cameras: 相机数量（默认2: front + world）
+            robot_ip: Robot IP address
+            num_cameras: Number of cameras (default: 2, front + world)
         """
         self.robot_ip = robot_ip
         self.num_cameras = num_cameras
@@ -175,14 +175,14 @@ class MultiCameraVisionClient:
         time.sleep(0.5)
 
     def get_front_images(self):
-        """获取第一人称相机图像"""
+        """Get the first-person camera image."""
         return {
             'rgb': self.front_rgb_array.copy(),
             'depth': self.front_depth_array.copy()
         }
 
     def get_world_images(self):
-        """获取第三人称相机图像 (returns None if world camera not available)"""
+        """Get the third-person camera image (None if unavailable)."""
         if not self.world_camera_available or self.world_rgb_array is None:
             return None
         return {
@@ -191,7 +191,7 @@ class MultiCameraVisionClient:
         }
 
     def get_all_images(self):
-        """获取所有相机图像"""
+        """Get images from all cameras."""
         result = {
             'front': self.get_front_images()
         }
@@ -204,7 +204,7 @@ class MultiCameraVisionClient:
         return result
 
     def cleanup(self):
-        """清理共享内存"""
+        """Clean up shared memory."""
         try:
             # Unlink and close front camera shared memory
             self.front_rgb_shm.unlink()

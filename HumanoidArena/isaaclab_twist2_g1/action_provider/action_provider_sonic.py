@@ -1,29 +1,29 @@
 # Copyright (c) 2025. All Rights Reserved.
 # License: Apache License, Version 2.0
-"""SonicActionProvider: POSE 模式全身遥操作，驱动 Isaac Lab 仿真。
+"""SonicActionProvider: POSE-mode whole-body teleoperation for Isaac Lab.
 
-POSE 模式数据流：
-  Pico 头显 + 手腕控制器 + 脚踝 tracker
+POSE-mode data flow:
+  Pico headset + wrist controllers + ankle trackers
     → pico_server/pico_server_pose_only.py
-    → Redis keys（主链路）/ legacy ZMQ "pose"（兼容链路）
+    → Redis keys (primary transport) / legacy ZMQ "pose" (compatibility transport)
     → SonicActionProvider._fetch_*_pose()
-    → GEAR-SONIC ONNX encoder + decoder（全身 retargeting）
-    → Isaac Lab 全身关节目标（29 DOF，含腿部）
+    → GEAR-SONIC ONNX encoder + decoder (whole-body retargeting)
+    → Isaac Lab whole-body joint targets (29 DOF, including legs)
 
-关节顺序说明：
-  - SONIC encoder/decoder 输入输出都是 SONIC IsaacLab order
-  - 这个顺序对应 TWIST2 的 old_action_joints_names
-  - 在 Isaac Lab 仿真中不需要顺序转换
-  - 只有在真实硬件执行时才会转换成 MuJoCo/hardware order
+Joint ordering:
+  - SONIC encoder/decoder inputs and outputs use SONIC IsaacLab order.
+  - This order corresponds to TWIST2 old_action_joints_names.
+  - No reordering is required inside the Isaac Lab simulation.
+  - Conversion to MuJoCo/hardware order is only needed for physical robot execution.
 
-ZMQ "pose" 消息关键字段（POSE 模式，Protocol v3）：
-  smpl_joints   : (N, 24, 3)  float32  SMPL 24 关节局部坐标
-  smpl_pose     : (N, 21, 3)  float32  SMPL 21 关节轴角旋转
-  body_quat_w   : (N, 4)      float32  全局朝向四元数 [qw,qx,qy,qz]
-  joint_pos     : (N, 29)     float32  G1 机器人关节位置（SONIC IsaacLab order）
-  joint_vel     : (N, 29)     float32  G1 机器人关节速度（SONIC IsaacLab order）
-  left_hand_joints  : (M,)    float32  左手关节
-  right_hand_joints : (M,)    float32  右手关节
+Key ZMQ "pose" message fields (POSE mode, Protocol v3):
+  smpl_joints   : (N, 24, 3)  float32  Local coordinates of 24 SMPL joints
+  smpl_pose     : (N, 21, 3)  float32  Axis-angle rotations of 21 SMPL joints
+  body_quat_w   : (N, 4)      float32  Global orientation quaternion [qw,qx,qy,qz]
+  joint_pos     : (N, 29)     float32  G1 joint positions (SONIC IsaacLab order)
+  joint_vel     : (N, 29)     float32  G1 joint velocities (SONIC IsaacLab order)
+  left_hand_joints  : (M,)    float32  Left-hand joints
+  right_hand_joints : (M,)    float32  Right-hand joints
 
 Usage:
     python sim_main.py --action_source sonic_wholebody \\
@@ -123,7 +123,7 @@ SONIC_HAND_POSE_ROBOT_NAME = "unitree_g1_with_hands"
 
 
 def _parse_zmq_pose(raw: bytes) -> Optional[dict]:
-    """解析 ZMQ 'pose' 消息，返回 {field_name: np.ndarray} 或 None。"""
+    """Parse a ZMQ 'pose' message into {field_name: np.ndarray}, or return None."""
     try:
         topic_end = raw.index(b"{")
         header_bytes = raw[topic_end: topic_end + _HEADER_SIZE]
@@ -151,16 +151,16 @@ def _parse_zmq_pose(raw: bytes) -> Optional[dict]:
 
 def quat_to_rotation_6d(quat: np.ndarray) -> np.ndarray:
     """
-    将四元数转换为6D旋转表示（旋转矩阵的前2列，按行展开）
+    Convert quaternions to 6D rotations (first two matrix columns, flattened row-wise).
 
-    这是SONIC encoder期望的输入格式，与C++实现保持一致。
-    参考: gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/src/g1_deploy_onnx_ref.cpp:514-580
+    This is the input format expected by the SONIC encoder, matching the C++ implementation.
+    Reference: gear_sonic_deploy/src/g1/g1_deploy_onnx_ref/src/g1_deploy_onnx_ref.cpp:514-580
 
     Args:
-        quat: (..., 4) 四元数 [w, x, y, z]
+        quat: (..., 4) Quaternion [w, x, y, z]
 
     Returns:
-        rot6d: (..., 6) 6D旋转表示 [R00, R01, R10, R11, R20, R21]
+        rot6d: (..., 6) 6D rotation [R00, R01, R10, R11, R20, R21]
     """
     w, x, y, z = quat[..., 0], quat[..., 1], quat[..., 2], quat[..., 3]
 
@@ -1470,11 +1470,11 @@ def _organize_sonic_episode(
 
 
 class SonicActionProvider(ActionProvider):
-    """POSE 模式全身遥操作 ActionProvider。
+    """POSE-mode whole-body teleoperation ActionProvider.
 
-    使用 Pico 脚踝 tracker 提供的完整 SMPL 全身姿态，
-    通过 GEAR-SONIC encoder+decoder ONNX 模型做全身 retargeting，
-    输出 G1 机器人 29 DOF 关节目标（上半身 + 下半身均来自 SMPL 跟踪）。
+    Uses full-body SMPL poses from the Pico ankle trackers,
+    performs whole-body retargeting through the GEAR-SONIC encoder/decoder ONNX models,
+    and outputs 29-DOF G1 joint targets (both upper and lower body follow SMPL tracking).
     """
 
     def __init__(self, env, args_cli):
@@ -1910,7 +1910,7 @@ class SonicActionProvider(ActionProvider):
             traceback.print_exc()
 
     def _setup_redis(self):
-        """Redis 直连：从 human_smplx_data_unitree_g1_with_hands 读 pose，不再经 ZMQ。"""
+        """Read poses directly from Redis human_smplx_data_unitree_g1_with_hands, bypassing ZMQ."""
         self._redis_client = None
         self._redis_control_client = None
         self._redis_frame_index = 0
@@ -2141,7 +2141,7 @@ class SonicActionProvider(ActionProvider):
         return None
 
     def _make_session(self, path: str):
-        """创建 ONNX InferenceSession，并显式绑定当前 worker GPU。"""
+        """Create an ONNX InferenceSession explicitly bound to the current worker GPU."""
         if not path:
             raise ValueError("[SonicActionProvider] model path is empty")
         if not os.path.isfile(path):
@@ -2193,7 +2193,7 @@ class SonicActionProvider(ActionProvider):
         return sess
 
     def _setup_policy(self):
-        """加载 GEAR-SONIC encoder 和 decoder ONNX 模型。"""
+        """Load the GEAR-SONIC encoder and decoder ONNX models."""
         self._encoder = self._make_session(self.encoder_path)
         self._decoder = self._make_session(self.decoder_path)
         print('Successful load sonic model')
@@ -4129,7 +4129,7 @@ class SonicActionProvider(ActionProvider):
             print(f"[SonicActionProvider] hand DDS init skipped: {e}")
 
     def _update_robot_hist_from_env(self):
-        """仅用当前仿真中的机器人状态更新 _robot_joint_pos_hist / _robot_joint_vel_hist（原 warmup/现 history 未满时填历史用）。"""
+        """Update _robot_joint_pos_hist / _robot_joint_vel_hist from the current simulation state while filling the history buffer (formerly warmup)."""
         try:
             robot = self.env.scene["robot"].data
             joint_pos_sonic = robot.joint_pos[0, self._sonic_idx].cpu().numpy()
@@ -4181,7 +4181,7 @@ class SonicActionProvider(ActionProvider):
     # ------------------------------------------------------------------
 
     def _fetch_zmq_pose(self):
-        """从 ZMQ 读取最新 POSE 消息，更新 SMPL 历史缓冲。"""
+        """Read the latest ZMQ POSE message and update the SMPL history buffer."""
         if self._zmq_poller is None:
             if self._sonic_debug and self._frame_count <= 3:
                 print("[ZMQ] ERROR: _zmq_poller is None!")
@@ -4202,7 +4202,7 @@ class SonicActionProvider(ActionProvider):
         self._apply_pose_data(data, "zmq")
 
     def _fetch_redis_pose(self):
-        """从 Redis 读取遥操 pose（human_smplx_data_unitree_g1_with_hands），转成与 ZMQ 同格式后更新缓冲。"""
+        """Read teleoperation poses from Redis human_smplx_data_unitree_g1_with_hands, convert to ZMQ format, and update buffers."""
         if self._sonic_joint29_mode:
             self._fetch_redis_joint29_pose()
             return
@@ -4435,7 +4435,7 @@ class SonicActionProvider(ActionProvider):
             self._latest_controller_data = self._raw_controller_data
             self._consumed_controller_data = self._raw_controller_data
 
-        """用解析后的 pose 字典更新 SMPL/机器人/手部缓冲。data 格式与 ZMQ v3 一致。"""
+        """Update SMPL/robot/hand buffers from a parsed pose dictionary in ZMQ v3 format."""
         tag = source.upper()
         # print(f"[{tag}] Received data keys: {list(data.keys())}")
         got_pose_frame = False
@@ -4955,23 +4955,23 @@ class SonicActionProvider(ActionProvider):
     # ------------------------------------------------------------------
 
     def _run_gear_sonic(self) -> np.ndarray:
-        """运行 GEAR-SONIC encoder+decoder，返回 SONIC IsaacLab 顺序的 29 DOF 关节目标。
+        """Run the GEAR-SONIC encoder/decoder and return 29-DOF targets in SONIC IsaacLab order.
 
-        Encoder输入: 1762维，包含所有启用的观察值
-        - encoder_mode_4: 4   固定 SMPL 模式
-        - motion_joint_positions_10frame_step5: 290  机器人关节位置历史，step5采样
-        - motion_joint_velocities_10frame_step5: 290  机器人关节速度历史，step5采样
-        - motion_root_z_position_10frame_step5: 10  机器人根位置历史，step5采样
-        - motion_root_z_position: 1  机器人根位置
-        - motion_anchor_orientation: 6  机器人锚点旋转（6D）
-        - motion_anchor_orientation_10frame_step5: 60  机器人锚点旋转历史，step5采样
-        - motion_joint_positions_lowerbody_10frame_step5: 120  机器人下半身关节位置历史，step5采样
-        - motion_joint_velocities_lowerbody_10frame_step5: 120  机器人下半身关节速度历史，step5采样
-        - vr_3point_local_target: 9  虚拟目标点位置（3个点，每个3维）
-        - vr_3point_local_orn_target: 12  虚拟目标点旋转（3个点，每个6D）
-        - smpl_joints_10frame_step1: 720  SMPL 关节位置历史，step1采样
-        - smpl_anchor_orientation_10frame_step1: 60  SMPL 锚点旋转历史，step1采样
-        - motion_joint_velocities_wrists_10frame_step1: 60  机器人手腕关节速度历史，step1采样
+        Encoder input: 1762 dimensions, comprising all enabled observations
+        - encoder_mode_4: 4   Fixed SMPL mode
+        - motion_joint_positions_10frame_step5: 290  Robot joint position history, stride 5
+        - motion_joint_velocities_10frame_step5: 290  Robot joint velocity history, stride 5
+        - motion_root_z_position_10frame_step5: 10  Robot root height history, stride 5
+        - motion_root_z_position: 1  Robot root height
+        - motion_anchor_orientation: 6  Robot anchor orientation (6D)
+        - motion_anchor_orientation_10frame_step5: 60  Robot anchor orientation history, stride 5
+        - motion_joint_positions_lowerbody_10frame_step5: 120  Lower-body joint position history, stride 5
+        - motion_joint_velocities_lowerbody_10frame_step5: 120  Lower-body joint velocity history, stride 5
+        - vr_3point_local_target: 9  Virtual target positions (3 points, 3D each)
+        - vr_3point_local_orn_target: 12  Virtual target orientations (3 points, 6D each)
+        - smpl_joints_10frame_step1: 720  SMPL joint position history, stride 1
+        - smpl_anchor_orientation_10frame_step1: 60  SMPL anchor orientation history, stride 1
+        - motion_joint_velocities_wrists_10frame_step1: 60  Robot wrist joint velocity history, stride 1
         """
         do_log = self._sonic_debug and (
             self._frame_count <= 3 or self._frame_count % self._sonic_log_every == 0

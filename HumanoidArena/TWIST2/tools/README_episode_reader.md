@@ -1,45 +1,45 @@
-# Episode Reader 使用指南
+# Episode Reader Guide
 
-用于读取和可视化TWIST2数据记录的工具类。
+Utilities for reading and visualizing recorded TWIST2 data.
 
-## 功能特性
+## Features
 
-- ✅ 加载episode数据（支持front camera和world camera）
-- ✅ 生成视频（front camera / world camera）
-- ✅ 在world camera上可视化关节点
-- ✅ 访问SMPLX数据、状态、动作等所有记录数据
-- ✅ 支持部分帧的处理（指定start_frame和end_frame）
+- ✅ Load episode data (front and world cameras supported)
+- ✅ Generate front-camera or world-camera videos
+- ✅ Overlay joint keypoints on world-camera images
+- ✅ Access recorded SMPLX data, states, actions, and other fields
+- ✅ Process a frame range using start_frame and end_frame
 
-## 快速开始
+## Quick Start
 
-### 1. 命令行使用
+### 1. Command Line
 
-#### 查看episode信息
+#### Inspect Episode Information
 ```bash
 python3 tools/episode_reader.py /path/to/episode_0001 --info
 ```
 
-#### 生成前置相机视频
+#### Generate a Front-Camera Video
 ```bash
 python3 tools/episode_reader.py /path/to/episode_0001 \
     --create-video output/front.mp4 \
     --camera front
 ```
 
-#### 生成世界相机视频
+#### Generate a World-Camera Video
 ```bash
 python3 tools/episode_reader.py /path/to/episode_0001 \
     --create-video output/world.mp4 \
     --camera world
 ```
 
-#### 生成带关节点的世界相机视频
+#### Generate a World-Camera Video with Joint Keypoints
 ```bash
 python3 tools/episode_reader.py /path/to/episode_0001 \
     --visualize-keypoints output/world_with_keypoints.mp4
 ```
 
-#### 指定帧范围
+#### Select a Frame Range
 ```bash
 python3 tools/episode_reader.py /path/to/episode_0001 \
     --visualize-keypoints output/partial.mp4 \
@@ -47,27 +47,27 @@ python3 tools/episode_reader.py /path/to/episode_0001 \
     --end-frame 300
 ```
 
-### 2. Python API使用
+### 2. Python API
 
 ```python
 from episode_reader import EpisodeReader
 
-# 加载数据
+# Load data
 reader = EpisodeReader('/path/to/episode_0001')
 
-# 打印详细信息
+# Print detailed information
 reader.print_info()
 
-# 生成视频
+# Generate videos
 reader.create_video('front.mp4', camera='front')
 reader.create_video('world.mp4', camera='world')
 
-# 可视化关节点
+# Visualize joint keypoints
 reader.visualize_keypoints_on_world_cam('world_with_keypoints.mp4')
 
-# 访问数据
+# Access data
 frame_data = reader.get_frame(100)
-front_img = reader.get_image(100, 'front')  # RGB格式
+front_img = reader.get_image(100, 'front')  # RGB format
 world_img = reader.get_image(100, 'world')
 keypoints = reader.get_keypoints(100)
 smplx = reader.get_smplx_data(100)
@@ -75,125 +75,125 @@ state = reader.get_state_body(100)
 action = reader.get_action_body(100)
 ```
 
-### 3. 运行示例
+### 3. Run the Examples
 
 ```bash
-# 运行所有示例
+# Run all examples
 python3 tools/example_usage.py --example all
 
-# 运行特定示例
-python3 tools/example_usage.py --example basic      # 基本使用
-python3 tools/example_usage.py --example videos    # 生成视频
-python3 tools/example_usage.py --example keypoints # 可视化关节点
-python3 tools/example_usage.py --example data      # 访问数据
-python3 tools/example_usage.py --example partial   # 部分视频
+# Run a specific example
+python3 tools/example_usage.py --example basic      # Basic usage
+python3 tools/example_usage.py --example videos    # Generate videos
+python3 tools/example_usage.py --example keypoints # Visualize keypoints
+python3 tools/example_usage.py --example data      # Access data
+python3 tools/example_usage.py --example partial   # Generate a partial video
 ```
 
-## 数据结构
+## Data Structure
 
-Episode目录结构：
+Episode directory layout:
 ```
 episode_0001/
-├── data.json          # 元数据和所有非图像数据
-├── front_rgb/         # 前置相机图像序列
+├── data.json          # Metadata and all non-image data
+├── front_rgb/         # Front-camera image sequence
 │   ├── 000000.jpg
 │   ├── 000001.jpg
 │   └── ...
-└── world_rgb/         # 世界相机图像序列（可能不存在）
+└── world_rgb/         # World-camera image sequence (optional)
     ├── 000000.jpg
     ├── 000001.jpg
     └── ...
 ```
 
-data.json包含的数据：
-- `info`: 录制信息（版本、日期、fps等）
-- `text`: 任务描述（goal、desc、steps）
-- `data`: 帧数据列表，每帧包含：
-  - `front_rgb`: 前置相机图像路径
-  - `world_rgb`: 世界相机图像路径（可能为空）
-  - `world_camera_joint_keypoints`: 关节点2D坐标
-  - `smplx_data`: SMPLX人体姿态数据
-  - `state_body`, `state_hand_left`, `state_hand_right`, `state_neck`: 状态数据
-  - `action_body`, `action_hand_left`, `action_hand_right`, `action_neck`: 动作数据
-  - 时间戳等
+Fields in data.json:
+- `info`: Recording metadata (version, date, fps, etc.)
+- `text`: Task descriptions (goal, desc, steps)
+- `data`: List of frames; each frame contains:
+  - `front_rgb`: Front-camera image path
+  - `world_rgb`: World-camera image path (may be empty)
+  - `world_camera_joint_keypoints`: 2D joint coordinates
+  - `smplx_data`: SMPLX human body pose data
+  - `state_body`, `state_hand_left`, `state_hand_right`, `state_neck`: State data
+  - `action_body`, `action_hand_left`, `action_hand_right`, `action_neck`: Action data
+  - Timestamps and other metadata
 
-## API 文档
+## API Reference
 
-### EpisodeReader类
+### EpisodeReader Class
 
-#### 初始化
+#### Initialization
 ```python
 reader = EpisodeReader(episode_path: str)
 ```
 
-#### 主要方法
+#### Main Methods
 
-**获取数据：**
-- `get_frame(idx: int) -> Dict`: 获取指定帧的所有数据
-- `get_image(idx: int, camera: str) -> np.ndarray`: 获取图像（RGB格式）
-- `get_keypoints(idx: int) -> List`: 获取关节点坐标
-- `get_smplx_data(idx: int) -> Dict`: 获取SMPLX数据
-- `get_state_body(idx: int) -> List`: 获取身体状态
-- `get_action_body(idx: int) -> List`: 获取身体动作
-- `get_state_hand(idx: int, hand: str) -> List`: 获取手部状态
-- `get_action_hand(idx: int, hand: str) -> List`: 获取手部动作
+**Read data:**
+- `get_frame(idx: int) -> Dict`: Get all data for a frame
+- `get_image(idx: int, camera: str) -> np.ndarray`: Get an image in RGB format
+- `get_keypoints(idx: int) -> List`: Get joint coordinates
+- `get_smplx_data(idx: int) -> Dict`: Get SMPLX data
+- `get_state_body(idx: int) -> List`: Get body state
+- `get_action_body(idx: int) -> List`: Get body actions
+- `get_state_hand(idx: int, hand: str) -> List`: Get hand state
+- `get_action_hand(idx: int, hand: str) -> List`: Get hand actions
 
-**生成视频：**
-- `create_video(output_path, camera, fps, start_frame, end_frame) -> bool`: 生成视频
-- `visualize_keypoints_on_world_cam(output_path, fps, ...) -> bool`: 生成带关节点的视频
+**Generate videos:**
+- `create_video(output_path, camera, fps, start_frame, end_frame) -> bool`: Generate a video
+- `visualize_keypoints_on_world_cam(output_path, fps, ...) -> bool`: Generate a video with joint keypoints
 
-**其他：**
-- `print_info()`: 打印详细信息
-- `__len__()`: 返回总帧数
+**Other methods:**
+- `print_info()`: Print detailed information
+- `__len__()`: Return the frame count
 
-#### 属性
-- `frames`: 所有帧数据
-- `info`: 录制信息
-- `text`: 任务描述
-- `has_front_cam`: 是否有前置相机
-- `has_world_cam`: 是否有世界相机
-- `fps`: 帧率
+#### Properties
+- `frames`: All frame data
+- `info`: Recording metadata
+- `text`: Task descriptions
+- `has_front_cam`: Whether front-camera data is available
+- `has_world_cam`: Whether world-camera data is available
+- `fps`: Frame rate
 
-## 测试
+## Tests
 
-测试数据：
+Test data:
 ```bash
 /home/hcl4070-1/Desktop/taowen/projects/TWIST2/data/demo_20260114_222032/episode_0001
 ```
 
-快速测试：
+Quick test:
 ```bash
-# 信息查看
+# Inspect episode information
 python3 tools/episode_reader.py data/demo_20260114_222032/episode_0001 --info
 
-# 生成测试视频（前30帧）
+# Generate a test video (first 30 frames)
 python3 tools/episode_reader.py data/demo_20260114_222032/episode_0001 \
     --visualize-keypoints test_output.mp4 \
     --start-frame 0 \
     --end-frame 30
 ```
 
-## 注意事项
+## Notes
 
-1. **World camera可能不存在**：代码已处理这种情况，会自动检测并提示
-2. **图像格式**：`get_image()`返回RGB格式，OpenCV需要BGR格式时请转换
-3. **关节点坐标**：某些关节点可能为None（表示不在视野内）
-4. **视频编码**：默认使用mp4v编码，可通过codec参数修改
+1. **The world camera is optional:** the code detects missing data and reports it.
+2. **Image format:** `get_image()` returns RGB; convert to BGR when required by OpenCV.
+3. **Joint coordinates:** a keypoint may be None when outside the camera view.
+4. **Video encoding:** mp4v is the default; use the codec argument to change it.
 
-## 问题排查
+## Troubleshooting
 
-**Q: 提示"World camera not available"**
-A: 这个episode没有world camera数据，只能使用front camera相关功能
+**Q: The program reports "World camera not available".**
+A: This episode has no world-camera data; only front-camera functions are available.
 
-**Q: 生成的视频无法播放**
-A: 尝试使用不同的codec参数，如'XVID', 'H264'等
+**Q: The generated video will not play.**
+A: Try another codec, such as 'XVID' or 'H264'.
 
-**Q: 关节点没有显示**
-A: 检查world_camera_joint_keypoints是否为None，某些帧可能没有关节点数据
+**Q: Joint keypoints are not displayed.**
+A: Check whether world_camera_joint_keypoints is None. Some frames may lack keypoints.
 
-## 相关文件
+## Related Files
 
-- `episode_reader.py`: 主要的数据读取类
-- `example_usage.py`: 使用示例脚本
-- `../deploy_real/server_data_record_from_shm.py`: 数据记录脚本
-- `../deploy_real/data_utils/episode_writer.py`: 数据写入类
+- `episode_reader.py`: Main data reader class
+- `example_usage.py`: Usage examples
+- `../deploy_real/server_data_record_from_shm.py`: Recording script
+- `../deploy_real/data_utils/episode_writer.py`: Data writer class

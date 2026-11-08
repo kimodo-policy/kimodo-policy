@@ -1,9 +1,9 @@
 """
-足球場標線工具。
-在場景載入後動態於地面建立白色劃線，需在 Isaac Sim 環境內執行。
+Football pitch marking utilities.
+Create white ground markings dynamically after scene loading; run inside Isaac Sim.
 
-座標（Isaac Sim Z-up）：地面 XY，高度 Z。
-重要：若 USD stage 使用 metersPerUnit=0.01（公分），會自動將「米」轉為 USD 單位。
+Coordinates (Isaac Sim, Z-up): ground in XY, height along Z.
+Important: if the USD stage uses metersPerUnit=0.01 (centimeters), meters are converted to USD units automatically.
 """
 
 import math
@@ -16,7 +16,7 @@ DEFAULT_LINE_COLOR = (127.0 / 255.0, 127.0 / 255.0, 127.0 / 255.0)
 
 # Compact field layout synced with base_scene_football_cfg_wholebody (goal_y is the goal y; grass_half is half the grass width)
 def _get_football_layout():
-    """從場景配置讀取佈局，若失敗則用 fallback。"""
+    """Read the layout from scene configuration, using fallback values on failure."""
     try:
         from tasks.common_scene.base_scene_football_cfg_wholebody import (
             GOAL_DISTANCE,
@@ -49,9 +49,9 @@ FIFA_PENALTY_ARC_RADIUS = 9.15
 
 def _get_stage_scale(stage) -> float:
     """
-    取得 stage 的單位比例：我們的參數一律為「米」。
-    若 metersPerUnit=1，1m=1 USD 單位；若 metersPerUnit=0.01（公分），1m=100 USD 單位。
-    回傳：米 -> USD 單位的乘數（= 1/metersPerUnit）
+    Get the stage unit scale; all input parameters are in meters.
+    For metersPerUnit=1, 1 m equals 1 USD unit; for metersPerUnit=0.01 (centimeters), 1 m equals 100 USD units.
+    Returns the conversion multiplier from meters to USD units (= 1/metersPerUnit).
     """
     try:
         root = stage.GetRootLayer()
@@ -60,7 +60,7 @@ def _get_stage_scale(stage) -> float:
             mpu_f = float(mpu)
             if mpu_f > 0 and mpu_f != 1.0:
                 scale = 1.0 / mpu_f
-                print(f"[pitch_lines] 偵測 metersPerUnit={mpu}，米值已乘 {scale:.0f} 轉為 USD 單位")
+                print(f"[pitch_lines] Detected metersPerUnit={mpu}; multiplied meter values by {scale:.0f} to convert to USD units")
                 return scale
         return 1.0
     except Exception:
@@ -68,12 +68,12 @@ def _get_stage_scale(stage) -> float:
 
 
 def _check_stage_axes(stage) -> None:
-    """檢查 stage 單位與 upAxis，若異常則印出警告。"""
+    """Check stage units and upAxis, warning about unexpected settings."""
     try:
         root = stage.GetRootLayer()
         up = root.GetMetadataByKey("upAxis") if root else None
         if up is not None and str(up) != "Z":
-            print(f"[pitch_lines] ⚠️ upAxis={up} (非 Z-up)，標線可能錯位")
+            print(f"[pitch_lines] ⚠️ upAxis={up} (not Z-up); markings may be misaligned")
     except Exception:
         pass
 
@@ -89,26 +89,26 @@ def create_robot_circle(
     n_segments: int = 128,
 ) -> bool:
     """
-    在機器人周圍畫一個白色圓圈（半徑 2m，可自訂）。
-    使用 Mesh 環形幾何（頂點直接定義圓弧），避免 cube 拼接的鋸齒與 X/Y 縮放不一致問題。
+    Draw a white circle around the robot (default radius: 2 m, configurable).
+    Use an annular mesh with vertices along the arc to avoid jagged cube seams and inconsistent X/Y scaling.
 
     Args:
         stage: USD stage（omni.usd.get_context().get_stage()）
-        center: 圓心 (x, y)，預設 (0, 0) 與機器人初始位置一致
-        radius: 圓圈半徑 (m)
-        parent_path: 父 prim 路徑
-        line_width: 線寬 (m)
-        line_height: 線厚度（略高於地面避免 z-fighting）
-        line_color: 標線顏色
-        n_segments: 圓弧分段數（越多越平滑，預設 128）
+        center: Circle center (x, y); defaults to (0, 0), matching the robot's initial position.
+        radius: Circle radius in meters.
+        parent_path: Parent prim path.
+        line_width: Line width in meters.
+        line_height: Line thickness; slightly above the ground to avoid z-fighting.
+        line_color: Marking color.
+        n_segments: Number of arc segments; more segments give a smoother circle (default: 128).
 
     Returns:
-        True 若成功
+        True on success.
     """
     try:
         from pxr import Gf, Sdf, UsdGeom, UsdShade, Vt
     except ImportError as e:
-        print(f"[pitch_lines] ⚠️ 無法載入 pxr，跳過: {e}")
+        print(f"[pitch_lines] ⚠️ Cannot import pxr; skipping: {e}")
         return False
 
     scale = _get_stage_scale(stage)
@@ -166,8 +166,8 @@ def create_robot_circle(
     binding.Bind(mat)
 
     print(
-        f"[pitch_lines] 已建立圓圈（Mesh 環形）：圓心 {center}，半徑 {radius}m，線寬 {w}m，"
-        f"{n_segments} 段，line_color={line_color}"
+        f"[pitch_lines] Created annular mesh: center {center}, radius {radius}m, line width {w}m, "
+        f"{n_segments} segments, line_color={line_color}"
     )
     return True
 
@@ -178,8 +178,8 @@ def _create_rect_ring_mesh(
     line_color: Tuple[float, float, float],
 ) -> None:
     """
-    建立矩形環狀 mesh（單一幾何體），四邊等寬、角落無重疊，形成完整矩形框。
-    gx, gy = 半寬、半長；w = 線寬。
+    Create a rectangular ring mesh with uniform width and nonoverlapping corners as a single geometry.
+    gx, gy = half-width and half-length; w = line width.
     """
     from pxr import Gf, Sdf, UsdGeom, UsdShade, Vt
     # Four outer corners (counterclockwise)
@@ -232,16 +232,16 @@ def create_small_pitch_boundary(
     clear_parent: bool = False,
 ) -> bool:
     """
-    建立小型球場四條邊線。所有參數單位為「米」，會依 stage 的 metersPerUnit 自動轉換。
-    - 球門線 1: y=goal_y（球門側），沿 X
-    - 球門線 2: y=-goal_y，沿 X
-    - 邊線 1: x=-grass_half（草地邊緣），沿 Y
-    - 邊線 2: x=+grass_half，沿 Y
+    Create four boundary lines for a small pitch. Parameters are in meters and converted using the stage's metersPerUnit.
+    - Goal line 1: y=goal_y (goal side), along X.
+    - Goal line 2: y=-goal_y, along X.
+    - Touchline 1: x=-grass_half (grass edge), along Y.
+    - Touchline 2: x=+grass_half, along Y.
     """
     try:
         from pxr import UsdGeom
     except ImportError as e:
-        print(f"[pitch_lines] ⚠️ 無法載入 pxr: {e}")
+        print(f"[pitch_lines] ⚠️ Cannot import pxr: {e}")
         return False
 
     scale = _get_stage_scale(stage)
@@ -265,7 +265,7 @@ def create_small_pitch_boundary(
         line_color,
     )
 
-    print(f"[pitch_lines] 已建立球場邊線：{2*grass_half:.1f}m × {2*goal_y:.1f}m（球門線 y=±{goal_y}，邊線 x=±{grass_half}）")
+    print(f"[pitch_lines] Created pitch boundaries: {2*grass_half:.1f}m × {2*goal_y:.1f}m (goal lines y=±{goal_y}, touchlines x=±{grass_half})")
     return True
 
 
@@ -282,7 +282,7 @@ def create_goal_reference_lines(
     try:
         from pxr import Gf, Sdf, UsdGeom, UsdPhysics, UsdShade
     except ImportError as e:
-        print(f"[pitch_lines] ⚠️ 無法載入 pxr: {e}")
+        print(f"[pitch_lines] ⚠️ Cannot import pxr: {e}")
         return False
 
     scale = _get_stage_scale(stage)
@@ -323,7 +323,7 @@ def create_goal_reference_lines(
         collision_api.CreateCollisionEnabledAttr(False)
 
     print(
-        f"[pitch_lines] 已建立球網參考線：length={goal_line_length}m, width={goal_line_width}m, "
+        f"[pitch_lines] Created goal reference line: length={goal_line_length}m, width={goal_line_width}m, "
         f"offsets={goal_relative_offsets}, centers={goal_centers}"
     )
     return True
@@ -347,8 +347,8 @@ def create_simple_debug_lines(
     **kwargs,
 ) -> bool:
     """
-    建立標線：機器人周圍圓圈 + 球場四條邊線。
-    對外保留此函數名稱以相容現有呼叫（sim_main、test_* 腳本）。
+    Create markings: a circle around the robot and four pitch boundaries.
+    Keep this public function name for compatibility with existing callers (sim_main and test_* scripts).
     """
     ok1 = create_robot_circle(
         stage,
@@ -386,29 +386,29 @@ def create_pitch_lines_in_stage(
     axis_mode: str = "z_up",
 ) -> bool:
     """
-    在 USD stage 中建立完整 FIFA 標準足球場白色標線。
-    scale 縮放球場尺寸（供縮小版球場使用），line_width 保持正常寬度不縮放，
-    使縮小場地上標線仍清晰可辨。球與球門尺寸不變，僅場地佈局縮小。
+    Create complete white FIFA-standard football pitch markings in a USD stage.
+    scale reduces pitch dimensions for a smaller pitch; line_width is not scaled,
+    so markings remain visible. Ball and goal dimensions remain unchanged; only the pitch layout is scaled.
 
-    需在 Isaac Sim 環境內執行（含 pxr、omni 模組）。
+    Run inside Isaac Sim with the pxr and omni modules available.
 
     Args:
-        stage: USD stage（例如 omni.usd.get_context().get_stage()）
-        parent_path: 所有標線的父 prim 路徑
-        center: 球場中心 (x, y)
-        scale: FIFA 縮放係數，球場尺寸按此縮小（球門與球不變）
-        line_width: 標線寬度 (m)，預設 0.12 不隨 scale 縮放，保持正常可見
-        line_height: 標線厚度（略高於地面以避免 z-fighting）
-        line_color: RGB 標線顏色，預設白色
-        axis_mode: "z_up"=地面 XY 平面(Isaac Sim 預設)，"y_up"=地面 XZ 平面
+        stage: USD stage, for example omni.usd.get_context().get_stage().
+        parent_path: Parent prim path for all markings.
+        center: Pitch center (x, y).
+        scale: Scale factor for FIFA pitch dimensions; the goal and ball remain unchanged.
+        line_width: Marking width in meters; default 0.12, independent of scale to preserve visibility.
+        line_height: Marking thickness; slightly above the ground to avoid z-fighting.
+        line_color: RGB marking color; white by default.
+        axis_mode: "z_up" uses the XY ground plane (Isaac Sim default); "y_up" uses the XZ ground plane.
 
     Returns:
-        True 若成功建立，False 若發生錯誤
+        True on success; False on error.
     """
     try:
         from pxr import Gf, Sdf, UsdGeom, UsdShade
     except ImportError as e:
-        print(f"[pitch_lines] ⚠️ 無法載入 pxr，跳過標線建立: {e}")
+        print(f"[pitch_lines] ⚠️ Cannot import pxr; skipping markings: {e}")
         return False
 
     w = line_width  # Do not scale with the field; keep the normal width
@@ -429,7 +429,7 @@ def create_pitch_lines_in_stage(
 
     def _add_arc_segments(name_prefix: str, arc_cx: float, arc_cy: float, radius: float,
                           angle_start: float, angle_end: float, n_seg: int = 12):
-        """畫圓弧（多段直線近似），從 angle_start 到 angle_end 弧度。"""
+        """Draw an arc approximated by line segments, from angle_start to angle_end in radians."""
         for i in range(n_seg):
             t1 = i / n_seg
             t2 = (i + 1) / n_seg
@@ -446,8 +446,8 @@ def create_pitch_lines_in_stage(
             _add_line(f"{name_prefix}_{i}", seg_len, w, mid_x, mid_y, seg_angle)
 
     def _add_line(name: str, length: float, width: float, px: float, py: float, angle: float):
-        """建立單一標線立方體。length=沿線方向，width=線寬，h=厚度。angle 為繞法線的弧度。
-        z_up: 地面 XY，法線 Z；y_up: 地面 XZ，法線 Y
+        """Create a single marking cube. length follows the line, width is line width, and h is thickness. angle is rotation around the normal in radians.
+        z_up: XY ground, Z normal; y_up: XZ ground, Y normal.
         """
         path = f"{parent_path}/{name}"
         cube = UsdGeom.Cube.Define(stage, path)
@@ -556,6 +556,6 @@ def create_pitch_lines_in_stage(
     for cname, corn_x, corn_y, a_start, a_end in corners:
         _add_arc_segments(f"corner_arc_{cname}", corn_x, corn_y, corner_arc_radius, a_start, a_end, n_seg=8)
 
-    print(f"[pitch_lines] 已建立完整 FIFA 標線於 {parent_path}，中心 {center}，縮放 {scale} "
-          f"(場地約 {FIFA_PITCH_LENGTH*scale:.1f}m x {FIFA_PITCH_WIDTH*scale:.1f}m，線寬 {w*100:.1f}cm)")
+    print(f"[pitch_lines] Created full FIFA markings at {parent_path}, center {center}, scale {scale} "
+          f"(pitch approximately {FIFA_PITCH_LENGTH*scale:.1f}m x {FIFA_PITCH_WIDTH*scale:.1f}m, line width {w*100:.1f}cm)")
     return True

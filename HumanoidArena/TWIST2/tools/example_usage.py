@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 """
-EpisodeReader使用示例
+EpisodeReader usage examples
 
-展示如何使用EpisodeReader类来：
-1. 读取episode数据
-2. 生成视频
-3. 可视化关节点
-4. 访问各种数据
+Demonstrates how to use EpisodeReader to:
+1. Read episode data
+2. Generate videos
+3. Visualize joint keypoints
+4. Access the recorded data fields
 """
 
 import sys
@@ -20,9 +20,9 @@ from episode_reader import EpisodeReader
 
 
 def example_basic_usage():
-    """基本使用示例"""
+    """Basic usage example."""
     print("\n" + "="*60)
-    print("示例 1: 基本使用")
+    print("Example 1: Basic usage")
     print("="*60)
 
     # Load episode data.
@@ -33,17 +33,17 @@ def example_basic_usage():
     reader.print_info()
 
     # Get the total number of frames.
-    print(f"总帧数: {len(reader)}")
+    print(f"Total frames: {len(reader)}")
 
     # Get the first frame.
     frame_0 = reader.get_frame(0)
-    print(f"\n第一帧的数据键: {list(frame_0.keys())}")
+    print(f"\nFirst-frame data keys: {list(frame_0.keys())}")
 
 
 def example_create_videos():
-    """生成视频示例"""
+    """Video generation example."""
     print("\n" + "="*60)
-    print("示例 2: 生成视频")
+    print("Example 2: Generate videos")
     print("="*60)
 
     episode_path = "/home/hcl4070-1/Desktop/taowen/projects/TWIST2/data/demo_20260114_222032/episode_0001"
@@ -54,7 +54,7 @@ def example_create_videos():
 
     # Generate a video from the front camera.
     if reader.has_front_cam:
-        print("\n1. 生成前置相机视频...")
+        print("\n1. Generating the front-camera video...")
         reader.create_video(
             output_path=f"{output_dir}/front_camera.mp4",
             camera="front",
@@ -63,7 +63,7 @@ def example_create_videos():
 
     # Generate a video from the world camera.
     if reader.has_world_cam:
-        print("\n2. 生成世界相机视频...")
+        print("\n2. Generating the world-camera video...")
         reader.create_video(
             output_path=f"{output_dir}/world_camera.mp4",
             camera="world",
@@ -72,9 +72,9 @@ def example_create_videos():
 
 
 def example_visualize_keypoints():
-    """可视化关节点示例"""
+    """Joint keypoint visualization example."""
     print("\n" + "="*60)
-    print("示例 3: 可视化关节点")
+    print("Example 3: Visualize joint keypoints")
     print("="*60)
 
     episode_path = "/home/hcl4070-1/Desktop/taowen/projects/TWIST2/data/demo_20260114_222032/episode_0001"
@@ -85,7 +85,7 @@ def example_visualize_keypoints():
 
     # Visualize joints on the world-camera view.
     if reader.has_world_cam:
-        print("\n生成带关节点的世界相机视频...")
+        print("\nGenerating the world-camera video with joint keypoints...")
         reader.visualize_keypoints_on_world_cam(
             output_path=f"{output_dir}/world_with_keypoints.mp4",
             keypoint_radius=3,
@@ -96,9 +96,9 @@ def example_visualize_keypoints():
 
 
 def example_access_data():
-    """访问各种数据示例"""
+    """Example of accessing different data fields."""
     print("\n" + "="*60)
-    print("示例 4: 访问数据")
+    print("Example 4: Access data")
     print("="*60)
 
     episode_path = "/home/hcl4070-1/Desktop/taowen/projects/TWIST2/data/demo_20260114_222032/episode_0001"
@@ -107,52 +107,52 @@ def example_access_data():
     frame_idx = 100
 
     # Get images.
-    print(f"\n1. 获取第{frame_idx}帧的图像")
+    print(f"\n1. Get images for frame {frame_idx}")
     if reader.has_front_cam:
         front_img = reader.get_image(frame_idx, "front")
-        print(f"   前置相机图像形状: {front_img.shape}")
+        print(f"   Front-camera image shape: {front_img.shape}")
 
     if reader.has_world_cam:
         world_img = reader.get_image(frame_idx, "world")
-        print(f"   世界相机图像形状: {world_img.shape}")
+        print(f"   World-camera image shape: {world_img.shape}")
 
     # Get joints.
-    print(f"\n2. 获取关节点")
+    print(f"\n2. Get joint keypoints")
     keypoints = reader.get_keypoints(frame_idx)
     if keypoints:
         visible_count = sum(1 for kp in keypoints if kp is not None)
-        print(f"   总关节点数: {len(keypoints)}")
-        print(f"   可见关节点数: {visible_count}")
+        print(f"   Total keypoints: {len(keypoints)}")
+        print(f"   Visible keypoints: {visible_count}")
         if keypoints[0] is not None:
-            print(f"   第一个关节点位置: {keypoints[0]}")
+            print(f"   First keypoint position: {keypoints[0]}")
 
     # Get SMPL-X data.
-    print(f"\n3. 获取SMPLX数据")
+    print(f"\n3. Get SMPLX data")
     smplx_data = reader.get_smplx_data(frame_idx)
     if smplx_data:
-        print(f"   SMPLX数据键: {list(smplx_data.keys())}")
+        print(f"   SMPLX data keys: {list(smplx_data.keys())}")
 
     # Get states and actions.
-    print(f"\n4. 获取状态和动作数据")
+    print(f"\n4. Get states and actions")
     state_body = reader.get_state_body(frame_idx)
     action_body = reader.get_action_body(frame_idx)
     if state_body:
-        print(f"   身体状态维度: {len(state_body)}")
+        print(f"   Body state dimensions: {len(state_body)}")
     if action_body:
-        print(f"   身体动作维度: {len(action_body)}")
+        print(f"   Body action dimensions: {len(action_body)}")
 
     state_hand_left = reader.get_state_hand(frame_idx, "left")
     state_hand_right = reader.get_state_hand(frame_idx, "right")
     if state_hand_left:
-        print(f"   左手状态维度: {len(state_hand_left)}")
+        print(f"   Left-hand state dimensions: {len(state_hand_left)}")
     if state_hand_right:
-        print(f"   右手状态维度: {len(state_hand_right)}")
+        print(f"   Right-hand state dimensions: {len(state_hand_right)}")
 
 
 def example_partial_video():
-    """生成部分视频示例"""
+    """Generate a video for part of an episode."""
     print("\n" + "="*60)
-    print("示例 5: 生成部分视频（指定帧范围）")
+    print("Example 5: Generate a video for a selected frame range")
     print("="*60)
 
     episode_path = "/home/hcl4070-1/Desktop/taowen/projects/TWIST2/data/demo_20260114_222032/episode_0001"
@@ -165,7 +165,7 @@ def example_partial_video():
     start_frame = 0
     end_frame = 300
 
-    print(f"\n生成第{start_frame}-{end_frame}帧的视频...")
+    print(f"\nGenerating video for frames {start_frame}-{end_frame}...")
 
     if reader.has_world_cam:
         reader.visualize_keypoints_on_world_cam(
@@ -179,13 +179,13 @@ def example_partial_video():
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="EpisodeReader使用示例")
+    parser = argparse.ArgumentParser(description="EpisodeReader usage examples")
     parser.add_argument(
         "--example",
         type=str,
         default="all",
         choices=["all", "basic", "videos", "keypoints", "data", "partial"],
-        help="选择要运行的示例"
+        help="Select the example to run"
     )
 
     args = parser.parse_args()
@@ -209,11 +209,11 @@ if __name__ == "__main__":
             example_partial_video()
 
         print("\n" + "="*60)
-        print("✓ 所有示例运行完成！")
+        print("✓ All examples completed!")
         print("="*60)
 
     except Exception as e:
-        print(f"\n❌ 错误: {e}")
+        print(f"\n❌ Error: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)

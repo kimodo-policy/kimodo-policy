@@ -18,12 +18,12 @@ class SimpleEvent:
 
 
 class MultiObjectEvent:
-    """支持多个物体操作的事件类"""
+    """Event class supporting operations on multiple objects."""
     
     def __init__(self, reset_configs=None):
         """
         Args:
-            reset_configs: 多物体重置配置列表，格式为:
+            reset_configs: List of object reset configurations in the following format:
             [
                 {
                     "asset_cfg": SceneEntityCfg("red_block"),
@@ -41,7 +41,7 @@ class MultiObjectEvent:
     
     def trigger(self, env):
         """
-        触发多物体重置事件
+        Trigger a reset event for multiple objects.
         """
         env_ids = torch.arange(env.num_envs, device=env.device)
         results = []
@@ -56,31 +56,31 @@ class MultiObjectEvent:
                     asset_cfg=config["asset_cfg"]
                 )
                 results.append(result)
-                print(f"重置物体: {config['asset_cfg'].name}")
+                print(f"Resetting object: {config['asset_cfg'].name}")
             except Exception as e:
-                print(f"物体 {config['asset_cfg'].name} 重置失败: {e}")
+                print(f"Failed to reset object {config['asset_cfg'].name}: {e}")
         
         return results
 
 
 class BatchObjectEvent:
-    """批量物体事件类 - 更灵活的配置方式"""
+    """Batch object event class with flexible configuration."""
     
     def __init__(self, object_names=None, pose_ranges=None, velocity_ranges=None):
         """
         Args:
-            object_names: 物体名称列表，如 ["red_block", "yellow_block", "green_block"]
-            pose_ranges: 位置范围配置，可以是:
-                - 单个配置（所有物体使用相同范围）: {"x": [-0.05, 0.05], "y": [-0.05, 0.05]}
-                - 字典配置（每个物体不同范围）: {"red_block": {...}, "yellow_block": {...}}
-            velocity_ranges: 速度范围配置，格式同pose_ranges
+            object_names: Object names, such as ["red_block", "yellow_block", "green_block"]
+            pose_ranges: Position ranges specified as either:
+                - One configuration shared by all objects: {"x": [-0.05, 0.05], "y": [-0.05, 0.05]}
+                - A dictionary with per-object ranges: {"red_block": {...}, "yellow_block": {...}}
+            velocity_ranges: Velocity ranges, using the same format as pose_ranges.
         """
         self.object_names = object_names or []
         self.pose_ranges = pose_ranges or {}
         self.velocity_ranges = velocity_ranges or {}
     
     def trigger(self, env):
-        """触发批量重置"""
+        """Trigger a batch reset."""
         env_ids = torch.arange(env.num_envs, device=env.device)
         results = []
         
@@ -112,10 +112,10 @@ class BatchObjectEvent:
                     asset_cfg=SceneEntityCfg(obj_name)
                 )
                 results.append(result)
-                print(f"✅ 重置物体: {obj_name}")
+                print(f"✅ Reset object: {obj_name}")
                 
             except Exception as e:
-                print(f"❌ 物体 {obj_name} 重置失败: {e}")
+                print(f"❌ Failed to reset object {obj_name}: {e}")
         
         return results
 
@@ -140,13 +140,13 @@ class SimpleEventManager:
     
     def register_multi_object_reset(self, name, object_names, pose_ranges=None, velocity_ranges=None):
         """
-        便捷方法：注册多物体重置事件
+        Convenience method for registering a multi-object reset event.
         
         Args:
-            name: 事件名称
-            object_names: 物体名称列表
-            pose_ranges: 位置范围配置
-            velocity_ranges: 速度范围配置
+            name: Event name.
+            object_names: List of object names.
+            pose_ranges: Position range configuration.
+            velocity_ranges: Velocity range configuration.
         """
         event = BatchObjectEvent(
             object_names=object_names,

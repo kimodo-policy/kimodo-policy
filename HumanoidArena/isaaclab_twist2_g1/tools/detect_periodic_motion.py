@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-检测SONIC数据流中的规律变化
+Detect periodic changes in the SONIC data stream.
 
-用法：
-1. 启动pico_server
-2. 运行此脚本：python detect_periodic_motion.py
-3. 在VR中规律地甩手（比如左右甩，频率约1Hz）
-4. 脚本会分析数据的周期性，找出哪个环节丢失了规律
+Usage:
+1. Start pico_server.
+2. Run: python detect_periodic_motion.py
+3. Swing your hands rhythmically in VR (for example, left and right at about 1 Hz).
+4. The script analyzes periodicity to identify where the pattern is lost.
 
-输出：
-- Pico端数据的周期性分析
-- 每个关键数据字段的变化幅度
-- FFT频谱分析（检测主频率）
+Output:
+- Periodicity analysis of Pico data.
+- Variation amplitudes for each key data field.
+- FFT spectrum analysis to detect the dominant frequency.
 """
 
 import json
@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 _HEADER_SIZE = 1280
 
 def parse_zmq_pose(raw: bytes):
-    """解析ZMQ pose消息"""
+    """Parse a ZMQ pose message."""
     try:
         topic_end = raw.index(b"{")
         header_bytes = raw[topic_end: topic_end + _HEADER_SIZE]
@@ -52,7 +52,7 @@ def parse_zmq_pose(raw: bytes):
         return None
 
 def analyze_periodicity(signal, fps=50):
-    """分析信号的周期性"""
+    """Analyze signal periodicity."""
     if len(signal) < 50:
         return None, None
 
@@ -76,17 +76,17 @@ def analyze_periodicity(signal, fps=50):
     return None, None
 
 def detect_periodic_motion():
-    """检测周期性运动"""
+    """Detect periodic motion."""
     ZMQ_HOST = "localhost"
     ZMQ_PORT = 5556
     BUFFER_SIZE = 200  # 4 seconds of data (50 Hz)
 
     print("=" * 80)
-    print("SONIC周期性运动检测")
+    print("SONIC Periodic Motion Detection")
     print("=" * 80)
-    print(f"连接到: {ZMQ_HOST}:{ZMQ_PORT}")
-    print("\n请在VR中做规律的甩手动作（左右甩，频率约1Hz，持续5秒）")
-    print("按Ctrl+C停止\n")
+    print(f"Connecting to: {ZMQ_HOST}:{ZMQ_PORT}")
+    print("\nSwing your hands rhythmically in VR (left and right at about 1 Hz for 5 seconds).")
+    print("Press Ctrl+C to stop.\n")
 
     context = zmq.Context()
     socket = context.socket(zmq.SUB)
@@ -109,7 +109,7 @@ def detect_periodic_motion():
     frame_count = 0
     start_time = time.time()
 
-    print("开始采集数据...\n")
+    print("Collecting data...\n")
 
     try:
         while True:
@@ -142,12 +142,12 @@ def detect_periodic_motion():
             # Report once per second
             if frame_count % 50 == 0:
                 elapsed = time.time() - start_time
-                print(f"已采集 {frame_count} 帧 ({elapsed:.1f}秒)")
+                print(f"Collected {frame_count} frames ({elapsed:.1f} seconds)")
 
                 # Analyze periodic motion when enough data is available
                 if len(smpl_right_wrist_x_history) >= 100:
                     print("\n" + "=" * 80)
-                    print("周期性分析（最近2秒数据）")
+                    print("Periodicity analysis (last 2 seconds)")
                     print("=" * 80)
 
                     # Analyze the SMPL right-wrist X coordinate
@@ -155,62 +155,62 @@ def detect_periodic_motion():
                     freq, power = analyze_periodicity(signal)
                     std = np.std(signal)
 
-                    print(f"\n📊 SMPL右手腕X坐标:")
-                    print(f"   标准差: {std:.4f}")
+                    print(f"\n📊 SMPL right wrist X:")
+                    print(f"   Standard deviation: {std:.4f}")
                     if freq is not None:
-                        print(f"   主频率: {freq:.2f} Hz")
-                        print(f"   功率: {power:.2f}")
+                        print(f"   Dominant frequency: {freq:.2f} Hz")
+                        print(f"   Power: {power:.2f}")
                         if freq > 0.5 and freq < 2.0:
-                            print(f"   ✅ 检测到周期性运动！频率约 {freq:.2f} Hz")
+                            print(f"   ✅ Periodic motion detected at approximately {freq:.2f} Hz")
                         else:
-                            print(f"   ⚠️  频率异常（预期0.5-2Hz）")
+                            print(f"   ⚠️  Unexpected frequency (expected 0.5–2 Hz)")
                     else:
-                        print(f"   ❌ 未检测到明显周期性")
+                        print(f"   ❌ No clear periodicity detected")
 
                     # Analyze the right shoulder pitch in joint_pos
                     signal = np.array(list(right_shoulder_pitch_history))
                     freq, power = analyze_periodicity(signal)
                     std = np.std(signal)
 
-                    print(f"\n📊 G1右肩pitch (joint_pos[12]):")
-                    print(f"   标准差: {std:.4f}")
+                    print(f"\n📊 G1 right shoulder pitch (joint_pos[12]):")
+                    print(f"   Standard deviation: {std:.4f}")
                     if freq is not None:
-                        print(f"   主频率: {freq:.2f} Hz")
-                        print(f"   功率: {power:.2f}")
+                        print(f"   Dominant frequency: {freq:.2f} Hz")
+                        print(f"   Power: {power:.2f}")
                         if freq > 0.5 and freq < 2.0:
-                            print(f"   ✅ 检测到周期性运动！频率约 {freq:.2f} Hz")
+                            print(f"   ✅ Periodic motion detected at approximately {freq:.2f} Hz")
                         else:
-                            print(f"   ⚠️  频率异常（预期0.5-2Hz）")
+                            print(f"   ⚠️  Unexpected frequency (expected 0.5–2 Hz)")
                     else:
-                        print(f"   ❌ 未检测到明显周期性")
+                        print(f"   ❌ No clear periodicity detected")
 
                     # Analyze the right elbow in joint_pos
                     signal = np.array(list(right_elbow_history))
                     freq, power = analyze_periodicity(signal)
                     std = np.std(signal)
 
-                    print(f"\n📊 G1右肘 (joint_pos[22]):")
-                    print(f"   标准差: {std:.4f}")
+                    print(f"\n📊 G1 right elbow (joint_pos[22]):")
+                    print(f"   Standard deviation: {std:.4f}")
                     if freq is not None:
-                        print(f"   主频率: {freq:.2f} Hz")
-                        print(f"   功率: {power:.2f}")
+                        print(f"   Dominant frequency: {freq:.2f} Hz")
+                        print(f"   Power: {power:.2f}")
                         if freq > 0.5 and freq < 2.0:
-                            print(f"   ✅ 检测到周期性运动！频率约 {freq:.2f} Hz")
+                            print(f"   ✅ Periodic motion detected at approximately {freq:.2f} Hz")
                         else:
-                            print(f"   ⚠️  频率异常（预期0.5-2Hz）")
+                            print(f"   ⚠️  Unexpected frequency (expected 0.5–2 Hz)")
                     else:
-                        print(f"   ❌ 未检测到明显周期性")
+                        print(f"   ❌ No clear periodicity detected")
 
                     print("\n" + "=" * 80)
-                    print("继续采集数据...\n")
+                    print("Continuing data collection...\n")
 
     except KeyboardInterrupt:
-        print("\n\n停止采集")
+        print("\n\nData collection stopped")
 
         # Final analysis
         if len(smpl_right_wrist_x_history) >= 50:
             print("\n" + "=" * 80)
-            print("最终分析报告")
+            print("Final Analysis Report")
             print("=" * 80)
 
             # Plot the time-series data
@@ -240,34 +240,34 @@ def detect_periodic_motion():
 
             plt.tight_layout()
             plt.savefig('periodic_motion_analysis.png', dpi=150)
-            print("\n📈 时间序列图已保存到: periodic_motion_analysis.png")
+            print("\n📈 Time-series plot saved to: periodic_motion_analysis.png")
 
             # Numerical analysis
-            print(f"\n📊 数值统计:")
-            print(f"   SMPL右手腕X: 范围[{signal1.min():.3f}, {signal1.max():.3f}], 标准差={np.std(signal1):.4f}")
-            print(f"   G1右肩pitch: 范围[{signal2.min():.3f}, {signal2.max():.3f}], 标准差={np.std(signal2):.4f}")
-            print(f"   G1右肘:      范围[{signal3.min():.3f}, {signal3.max():.3f}], 标准差={np.std(signal3):.4f}")
+            print(f"\n📊 Statistics:")
+            print(f"   SMPL right wrist X: range [{signal1.min():.3f}, {signal1.max():.3f}], std={np.std(signal1):.4f}")
+            print(f"   G1 right shoulder pitch: range [{signal2.min():.3f}, {signal2.max():.3f}], std={np.std(signal2):.4f}")
+            print(f"   G1 right elbow: range [{signal3.min():.3f}, {signal3.max():.3f}], std={np.std(signal3):.4f}")
 
             # Evaluate
-            print(f"\n🔍 诊断结果:")
+            print(f"\n🔍 Diagnosis:")
             smpl_has_variation = np.std(signal1) > 0.01
             g1_shoulder_has_variation = np.std(signal2) > 0.01
             g1_elbow_has_variation = np.std(signal3) > 0.01
 
             if smpl_has_variation:
-                print(f"   ✅ SMPL数据有明显变化")
+                print(f"   ✅ SMPL data changes significantly")
             else:
-                print(f"   ❌ SMPL数据几乎不变 - 问题在Pico追踪")
+                print(f"   ❌ SMPL data barely changes: check Pico tracking")
 
             if g1_shoulder_has_variation:
-                print(f"   ✅ G1关节位置有明显变化")
+                print(f"   ✅ G1 joint positions change significantly")
             else:
-                print(f"   ❌ G1关节位置几乎不变 - 问题在SMPL→G1转换")
+                print(f"   ❌ G1 joint positions barely change: check SMPL-to-G1 conversion")
 
             if smpl_has_variation and not g1_shoulder_has_variation:
-                print(f"\n⚠️  关键发现：SMPL数据正常，但G1关节位置不变！")
-                print(f"   这说明问题出在pico_server中的关节位置计算（1286-1344行）")
-                print(f"   或者joint_pos数据没有正确发送到IsaacLab")
+                print(f"\n⚠️  Key finding: SMPL data changes normally, but G1 joint positions remain constant.")
+                print(f"   Check joint position calculations in pico_server (lines 1286–1344)")
+                print(f"   and whether joint_pos data reaches IsaacLab correctly.")
 
 if __name__ == "__main__":
     detect_periodic_motion()
