@@ -109,6 +109,6 @@
   "tools/preflight_server.py": "78ff1a1e672ba668b2bf89de6804afb02af1971dd9e1c0a26049c80c0ad99f66",
   "tools/test_release_installation.py": "e09810ea891efc38cf481d66dee2b7ff1295b0afa61a195112cdd7acf7bca90d",
   "tools/verify_package.py": "ba347b51ae07f4748f67d199cf2231cd2f7e092040b54039b52299224409b3b2",
-  "docs/released-assets.md": "054544138d322627cbbcf8200e3de48dcc4135c38fba86a32f3bac393824de81",
+  "docs/released-assets.md": "6910ed5617c78336ec73904c7c947d0fad4369059ac7a61b9f63f45796e107b1",
   "manifests/released-assets.json": "e372cec496c3604f2cd33d61bd5b1702bb20a1d3966f8b65c79acb23f53f286b"
 }

@@ -38,15 +38,17 @@ For training, set `REAL_WORLD_ROOT="$PWD/real-world"` and pass `teleop-banana` t
 
 ```bash
 conda activate kimodo-policy
-hf download YunhengWang/kimodo-policy \
-  --include 'Real_World/**' --local-dir .
-hf download YunhengWang/kimodo-policy --repo-type dataset \
-  --include 'data/RealWorld/**' --local-dir .setup/real-world-data
 mkdir -p real-world/data
-cp -a .setup/real-world-data/data/RealWorld/teleop-* real-world/data/
+for TASK in banana boxing pushing transportation sitting football pnp long; do
+  hf download YunhengWang/kimodo-policy \
+    --include "Real_World/*_teleop-$TASK/**" --local-dir .
+  hf download YunhengWang/kimodo-policy --repo-type dataset \
+    --include "data/RealWorld/teleop-$TASK/**" --local-dir .setup/real-world-data
+  cp -a ".setup/real-world-data/data/RealWorld/teleop-$TASK" real-world/data/
+done
 ```
 
-The checkpoint files total approximately **8.81 GB** and the training data **1.54 GB** (decimal units), excluding shared base models and the workstation runtime. The data copy retains the download cache, so reserve additional disk space for both copies. The release excludes `teleop-long-v2`, smoke-test runs, unrelated tasks, and internal recording/merge logs.
+The checkpoint files total approximately **8.81 GB** and the training data **1.54 GB** (decimal units), excluding shared base models and the workstation runtime. The data copy retains the download cache, so reserve additional disk space for both copies. Smoke-test runs, unrelated tasks, and internal recording/merge logs are excluded.
 
 ## Verify downloads
 
