@@ -50,7 +50,9 @@
 
 - [x] [Real-World Data Collection, Training & Deployment](#-real-world-data-collection-training--deployment)
 
-- [ ] More Benchmarks (Coming Soon)
+- [ ] [BiGym 2.0](https://bigym2.github.io/docs/) Training & Evaluation (Coming Soon)
+
+- [ ] [HumanoidToolBench](https://github.com/SNU-PI/HumanoidToolBench) Training & Evaluation (Coming Soon)
 
 ## ⚙️ Installation & Environment Setup
 
@@ -641,4 +643,38 @@ For configuration, troubleshooting, and validation scope, see the [real-world gu
 
 ## 📄 License
 
-The code in this repository is released under the [MIT License](LICENSE).
+Except where otherwise noted, the original source code and documentation in this repository are distributed under the [MIT License](LICENSE). Use, modification, and redistribution are permitted subject to its terms, including preservation of the copyright and license notices. The software is provided without warranties, as specified in the license.
+
+Third-party code, pretrained models, datasets, and simulation assets remain subject to their respective licenses and usage terms. Their inclusion, integration, or redistribution through this project does not replace those terms. Please consult the license files and model or dataset cards accompanying each resource.
+
+## 🙏 Acknowledgments
+
+Kimodo-Policy builds on the work of the open-source robotics and machine learning communities. We thank the authors and maintainers of the following projects for making their code, models, datasets, and tools available:
+
+- **Motion, vision, and language models:** [Kimodo](https://github.com/nv-tlabs/kimodo), [DINOv3](https://github.com/facebookresearch/dinov3), and [LLM2Vec](https://github.com/McGill-NLP/llm2vec), together with the Meta Llama models used by our text encoder.
+
+- **Whole-body control and teleoperation:** [SONIC / GR00T-WholeBodyControl](https://github.com/NVlabs/GR00T-WholeBodyControl), [General Motion Retargeting (GMR)](https://github.com/YanjieZe/GMR), [XRoboToolkit](https://github.com/XR-Robotics), and the [Unitree SDK](https://github.com/unitreerobotics/unitree_sdk2), which support our motion tracking, data collection, and real-world deployment workflows.
+
+- **Benchmarks and evaluation:** [HumanoidArena](https://github.com/William-wAng618/HumanoidArena) and [SIMPLE](https://github.com/physical-superintelligence-lab/SIMPLE), for their environments, task definitions, demonstrations, and evaluation infrastructure.
+
+- **Pretraining datasets:** [HIW-500](https://huggingface.co/datasets/BitRobot/HIW-500-LeRobot), [UniFoLM-WBT](https://huggingface.co/collections/unitreerobotics/unifolm-wbt-dataset), and [Humanoid Everyday](https://github.com/physical-superintelligence-lab/Humanoid-Everyday), for sharing diverse humanoid demonstrations.
+
+- **Simulation and development tools:** [Isaac Sim](https://github.com/isaac-sim/IsaacSim), [Isaac Lab](https://github.com/isaac-sim/IsaacLab), [MuJoCo](https://github.com/google-deepmind/mujoco), [cuRobo](https://github.com/NVlabs/curobo), [PyTorch](https://pytorch.org/), and the [Hugging Face](https://huggingface.co/) ecosystem.
+
+We also thank the contributors and maintainers of the dependencies used throughout this repository. Please acknowledge and cite the original projects when using their resources.
+
+## 📚 Citation
+
+If you find Kimodo-Policy useful in your research, please cite our work using the BibTeX entry below. We will update this entry with the arXiv identifier once it is available.
+
+```bibtex
+@misc{wang2026kimodopolicy,
+  title  = {{Kimodo-Policy}: Towards Kinematic Action Models for Humanoid Loco-Manipulation},
+  author = {Wang, Yunheng and Zhang, Jiaxi and Lu, Wei and Fang, Yuetong and
+            Wang, Taowen and Feng, Yixiao and Zhang, Shuning and Xu, Junzhe and
+            Wang, Yichi and Yuan, Zizhao and Huang, Kailun and Li, Lusong and
+            Zhou, Mingqian and Zeng, Zecui and Xu, Renjing},
+  year   = {2026},
+  url    = {https://kimodo-policy.github.io/}
+}
+```
