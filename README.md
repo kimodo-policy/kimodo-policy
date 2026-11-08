@@ -42,11 +42,13 @@
 
 ## 🗺️ Open-Source Roadmap
 
-- [x] [HumanoidArena Training & Evaluation](#humanoidarena-training--evaluation)
+- [x] [Kimodo-Policy Pretraining](#-kimodo-policy-pretraining)
+
+- [x] [HumanoidArena Training & Evaluation](#-humanoidarena-training--evaluation)
 
 - [x] [SIMPLE Training & Evaluation](#-simple-training--evaluation)
 
-- [x] [Real-World Data Collection, Training & Deployment](real-world/README.md)
+- [x] [Real-World Data Collection, Training & Deployment](#-real-world-data-collection-training--deployment)
 
 - [ ] More Benchmarks (Coming Soon)
 
@@ -121,99 +123,6 @@ Environment installation does not include model weights or benchmark datasets. B
 - **Training data:** follow **Data Preparation** below.
 
 Add `--dry-run` to either evaluation wrapper to check its configuration and required paths before launching simulation. Installation/import checks do not replace a small end-to-end evaluation.
-
-## 🧠 Kimodo-Policy Pretraining
-
-We pretrain Kimodo-Policy on a **419-hour corpus** assembled from HIW-500, UniFoLM-WBT, and Humanoid Everyday. Policy pretraining learns the visual conditioning modules and hand head while keeping the pretrained Kimodo motion backbone frozen.
-
-![Figure 5. Composition of the policy pretraining corpus, with examples from HIW-500, UniFoLM-WBT, and Humanoid Everyday.](asset/readme/pretraining-datasets.png)
-
-### 📦 Data Preparation
-
-#### • Datasets
-
-Download the official **LeRobot-format data**, including `meta/`, `data/`, and `videos/`, from the sources below.
-
-| Dataset | How we use it |
-| --- | --- |
-| [HIW-500](https://huggingface.co/datasets/BitRobot/HIW-500-LeRobot/tree/main) | Real-home G1 demonstrations covering furniture assembly, kitchen tasks, laundry, and home organization. We use the left egocentric view, body state/action signals, and hand commands. |
-| [UniFoLM-WBT](https://huggingface.co/collections/unitreerobotics/unifolm-wbt-dataset) | The **14 G1 task subsets** listed in the paper, spanning BrainCo, Dex1, and Inspire hands. We use head-camera images and whole-body/hand targets, including the available main-camera-only variants. |
-| [Humanoid Everyday](https://huggingface.co/datasets/USC-PSI-Lab/humanoid-everyday/tree/main) | G1 demonstrations of manipulation, tool use, human–robot interaction, and locomotion. The loader selects G1 episodes, pairs egocentric images with language, and uses arm/hand actions with measured leg and root states. |
-
-All three sources are converted to a shared **30 Hz** motion representation with binary left/right hand targets. Training uses an image, a language instruction, **100 history frames**, and **50 future action frames**; the loaders filter motion discontinuities and build motion/text caches automatically.
-
-![Note: Unitree continues to update its datasets. Our pretraining used data available before September 15 and includes only the 14 task subsets reported in the paper. Later additions are not included in the released pretraining checkpoints.](asset/readme/pretraining-data-note.svg)
-
-The [Unitree download list](scripts/Pre_Train/unifolm_datasets.txt) contains exactly those 14 subsets and pins compatible revisions from before September 15. Use these revisions: newer releases changed the data schema. Keep only these subsets under `UNIFOLM_ROOT`, since the training configuration discovers every compatible task in that directory. Preserve the nested directories in the main-camera-only releases; the loader finds them recursively.
-
-#### • Download & Check
-
-Run these commands from the repository root after installing `kimodo-policy`. Replace `/path/to/pretraining-data` with your data directory; keep the same environment variables for training.
-
-```bash
-conda activate kimodo-policy
-export KIMODO_ENV="$CONDA_PREFIX"
-export UNIFOLM_ROOT=/path/to/pretraining-data/UnifoLM_WBT_Dataset
-export HUMANOID_EVERYDAY_ROOT=/path/to/pretraining-data/HumanoidEveryday
-export HIW500_ROOT=/path/to/pretraining-data/HIW500
-
-hf download BitRobot/HIW-500-LeRobot --repo-type dataset \
-  --local-dir "$HIW500_ROOT"
-hf download USC-PSI-Lab/humanoid-everyday --repo-type dataset \
-  --local-dir "$HUMANOID_EVERYDAY_ROOT"
-while read -r repo revision; do
-  hf download "$repo" --repo-type dataset --revision "$revision" \
-    --local-dir "$UNIFOLM_ROOT/${repo##*/}" || exit 1
-done < scripts/Pre_Train/unifolm_datasets.txt
-
-python utils/check_datasets.py \
-  --config scripts/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.yaml \
-  --workers 4 --fail-on-errors --output pretraining_data_check.json
-```
-
-The check audits episode metadata and motion/state data without decoding every video frame. Review its per-source counts and rejected episodes before training.
-
-Pretraining also requires the frozen motion/vision backbones and the text encoder. The benchmark text caches bundled with this repository do not cover the pretraining corpus; the first run generates its own caches. Download the model dependencies into `checkpoints/`:
-
-```bash
-hf download YunhengWang/kimodo-policy \
-  --include 'checkpoints/Kimodo-G1-RP-v1/**' \
-            'checkpoints/dinov3-vitl16-pretrain-lvd1689m/**' \
-            'checkpoints/Meta-Llama-3-8B-Instruct/**' \
-            'checkpoints/LLM2Vec-Meta-Llama-3-8B-Instruct-mntp/**' \
-            'checkpoints/LLM2Vec-Meta-Llama-3-8B-Instruct-mntp-supervised/**' \
-  --local-dir .
-```
-
-### 🚀 Pretrained Checkpoints & Training
-
-Use these released checkpoints to initialize downstream fine-tuning. Both runs train for **1,000,000 steps**. The 105h configuration selects a deterministic **25% subset of episodes** from the same corpus; 419h uses the full corpus. The hour labels denote the nominal pretraining data scale.
-
-| Pretraining data | Episode fraction | Kimodo-Policy checkpoint | Intermediate checkpoints |
-| --- | --- | --- | --- |
-| 105h | 25% | [Download · step 1,000,000](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train/pt_105h_gbs1024_100w_controlnet4_detach_true_mse/2026-08-30_19-45-25/checkpoint_1000000) | [Browse all steps](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train/pt_105h_gbs1024_100w_controlnet4_detach_true_mse/2026-08-30_19-45-25) |
-| 419h | 100% | [Download · step 1,000,000](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse/2026-08-26_17-06-35/checkpoint_1000000) | [Browse all steps](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse/2026-08-26_17-06-35) |
-
-Download the complete checkpoint directory, including `config.json` and `training_state.pt`, and pass its local path to a downstream fine-tuning command.
-
-To run pretraining yourself, use the dataset paths exported above. The released launcher defaults to **8 GPUs**, batch **128 per GPU** (global batch **1024**), and **bfloat16**. Changing the GPU count also changes the global batch size unless you adjust the configuration.
-
-**419h pretraining:**
-
-```bash
-KIMODO_GPUS=0,1,2,3,4,5,6,7 \
-bash scripts/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.sh
-```
-
-**105h pretraining:**
-
-```bash
-KIMODO_GPUS=0,1,2,3,4,5,6,7 \
-KIMODO_CONFIG=scripts/Pre_Train/pt_105h_gbs1024_100w_controlnet4_detach_true_mse.yaml \
-bash scripts/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.sh
-```
-
-The same launcher accepts either configuration. Checkpoints are saved every **200,000 steps** under `log/Pre_Train/`; set `KIMODO_PT_SAVE_ROOT` to change the output directory.
 
 ## 🤖 HumanoidArena Training & Evaluation
 
@@ -566,6 +475,86 @@ This example uses **three GPUs**, one per level. With `--gpus 0`, the levels run
 ![Note: SIMPLE evaluations involve stochastic policy sampling and simulation. Success rates may vary slightly across runs, even with the same settings.](asset/readme/simple-reproducibility-note.svg)
 
 ![Note: SIMPLE's official datasets and evaluation resources are still evolving. Once the upstream resources are fully released and stable, we plan to extend single-task training to more tasks and add multi-task training and mixed-task evaluation.](asset/readme/simple-future-releases-note.svg)
+
+## 🧠 Kimodo-Policy Pretraining
+
+We pretrain Kimodo-Policy on a **419-hour corpus** assembled from HIW-500, UniFoLM-WBT, and Humanoid Everyday. Policy pretraining learns the visual conditioning modules and hand head while keeping the pretrained Kimodo motion backbone frozen.
+
+### 📦 Data Preparation
+
+#### • Datasets
+
+Download the official **LeRobot-format data**, including `meta/`, `data/`, and `videos/`, from the sources below.
+
+| Dataset | How we use it |
+| --- | --- |
+| [HIW-500](https://huggingface.co/datasets/BitRobot/HIW-500-LeRobot/tree/main) | Real-home G1 demonstrations covering furniture assembly, kitchen tasks, laundry, and home organization. We use the left egocentric view, body state/action signals, and hand commands. |
+| [UniFoLM-WBT](https://huggingface.co/collections/unitreerobotics/unifolm-wbt-dataset) | The **14 G1 task subsets** listed in the paper, spanning BrainCo, Dex1, and Inspire hands. We use head-camera images and whole-body/hand targets, including the available main-camera-only variants. |
+| [Humanoid Everyday](https://huggingface.co/datasets/USC-PSI-Lab/humanoid-everyday/tree/main) | G1 demonstrations of manipulation, tool use, human–robot interaction, and locomotion. The loader selects G1 episodes, pairs egocentric images with language, and uses arm/hand actions with measured leg and root states. |
+
+All three sources are converted to a shared **30 Hz** motion representation with binary left/right hand targets. Training uses an image, a language instruction, **100 history frames**, and **50 future action frames**; the loaders filter motion discontinuities and build motion/text caches automatically.
+
+![Note: Unitree continues to update its datasets. Our pretraining used data available before September 15 and includes only the 14 task subsets reported in the paper. Later additions are not included in the released pretraining checkpoints.](asset/readme/pretraining-data-note.svg)
+
+The [Unitree download list](scripts/Pre_Train/unifolm_datasets.txt) contains exactly those 14 subsets and pins compatible revisions from before September 15. Use these revisions: newer releases changed the data schema. Keep only these subsets under `UNIFOLM_ROOT`, since the training configuration discovers every compatible task in that directory. Preserve the nested directories in the main-camera-only releases; the loader finds them recursively.
+
+#### • Download & Check
+
+Run these commands from the repository root after installing `kimodo-policy`. Replace `/path/to/pretraining-data` with your data directory; keep the same environment variables for training.
+
+```bash
+conda activate kimodo-policy
+export KIMODO_ENV="$CONDA_PREFIX"
+export UNIFOLM_ROOT=/path/to/pretraining-data/UnifoLM_WBT_Dataset
+export HUMANOID_EVERYDAY_ROOT=/path/to/pretraining-data/HumanoidEveryday
+export HIW500_ROOT=/path/to/pretraining-data/HIW500
+
+hf download BitRobot/HIW-500-LeRobot --repo-type dataset \
+  --local-dir "$HIW500_ROOT"
+hf download USC-PSI-Lab/humanoid-everyday --repo-type dataset \
+  --local-dir "$HUMANOID_EVERYDAY_ROOT"
+while read -r repo revision; do
+  hf download "$repo" --repo-type dataset --revision "$revision" \
+    --local-dir "$UNIFOLM_ROOT/${repo##*/}" || exit 1
+done < scripts/Pre_Train/unifolm_datasets.txt
+
+python utils/check_datasets.py \
+  --config scripts/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.yaml \
+  --workers 4 --fail-on-errors --output pretraining_data_check.json
+```
+
+The check audits episode metadata and motion/state data without decoding every video frame. Review its per-source counts and rejected episodes before training.
+
+Pretraining also requires the frozen motion/vision backbones and the text encoder. The benchmark text caches bundled with this repository do not cover the pretraining corpus; the first run generates its own caches. Download the model dependencies into `checkpoints/`:
+
+```bash
+hf download YunhengWang/kimodo-policy \
+  --include 'checkpoints/Kimodo-G1-RP-v1/**' \
+            'checkpoints/dinov3-vitl16-pretrain-lvd1689m/**' \
+            'checkpoints/Meta-Llama-3-8B-Instruct/**' \
+            'checkpoints/LLM2Vec-Meta-Llama-3-8B-Instruct-mntp/**' \
+            'checkpoints/LLM2Vec-Meta-Llama-3-8B-Instruct-mntp-supervised/**' \
+  --local-dir .
+```
+
+### 🚀 Pretrained Checkpoints & Training
+
+We release the Kimodo-Policy checkpoint pretrained on the full **419-hour corpus** for **1,000,000 steps**, ready to initialize downstream fine-tuning. Intermediate checkpoints are also available.
+
+| Pretraining data | Training steps | Kimodo-Policy checkpoint | Intermediate checkpoints |
+| --- | --- | --- | --- |
+| 419h | 1,000,000 | [Download · step 1,000,000](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse/2026-08-26_17-06-35/checkpoint_1000000) | [Browse all steps](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse/2026-08-26_17-06-35) |
+
+Download the complete checkpoint directory, including `config.json` and `training_state.pt`, and pass its local path to a downstream fine-tuning command.
+
+To run pretraining yourself, use the dataset paths exported above. The released launcher defaults to **8 GPUs**, batch **128 per GPU** (global batch **1024**), and **bfloat16**. Changing the GPU count also changes the global batch size unless you adjust the configuration.
+
+```bash
+KIMODO_GPUS=0,1,2,3,4,5,6,7 \
+bash scripts/Pre_Train/pt_419h_gbs1024_100w_controlnet4_detach_true_mse.sh
+```
+
+Checkpoints are saved every **200,000 steps** under `log/Pre_Train/`; set `KIMODO_PT_SAVE_ROOT` to change the output directory.
 
 ## 🦾 Real-World Data Collection, Training & Deployment
 
