@@ -386,6 +386,8 @@ Use a separate `--results-dir` for each evaluation run. Summary statistics, per-
 
 Train Kimodo-Policy directly on SIMPLE demonstrations or evaluate our released policies. Training uses `kimodo-policy`; evaluation uses `SIMPLE/.venv`. Complete the environment setup above, then follow the [step-by-step SIMPLE guide](evaluation/simple_eval.md) for downloads and commands.
 
+![SIMPLE — eight task demonstrations](asset/readme/simple-gallery.gif)
+
 ### 📦 Data Preparation
 
 #### • Training Data
@@ -421,18 +423,18 @@ The helper verifies checksums and installs resources under `SIMPLE/data/`. The f
 
 ### 🚀 Kimodo-Policy Single-Task Training on SIMPLE
 
-We release [eight task policies](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task), fine-tuned independently from the 419h pretrained model for 200,000 steps, together with [evaluation results and visualizations](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task).
+To help you quickly reproduce our SIMPLE results, we provide eight task-specific checkpoints, each fine-tuned from 419h pretraining for 200,000 steps, together with evaluation results and visualizations. Click a checkpoint to download the weights, or a result to explore the evaluations. SR is the overall success rate across 30 episodes (10 at each of levels 0, 1 and 2).
 
-| Released task | SIMPLE task name |
-| --- | --- |
-| Close Door | `G1WholebodyCloseDoorTeleop-v0` |
-| Handover | `G1WholebodyHandoverTeleop-v0` |
-| Pick Between Tables | `G1WholebodyLocomotionPickBetweenTablesTeleop-v0` |
-| Open Faucet | `G1WholebodyOpenFaucetTeleop-v0` |
-| Open Oven | `G1WholebodyOpenOvenTeleop-v0` |
-| Open Trash Can | `G1WholebodyOpenTrashCanTeleop-v0` |
-| Push Office Chair | `G1WholebodyPushOfficeChairTeleop-v0` |
-| Move & Bend Pick | `G1WholebodyXMoveBendPickTeleop-v0` |
+| Task | Pretrain | Kimodo-Policy checkpoint | Results&nbsp;(SR) |
+| --- | --- | --- | --- |
+| Close Door | ✅ 419h | [ft_419h_simple_20w_CloseDoor](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyCloseDoorTeleop-v0/2026-09-20_15-15-36/checkpoint_200000) | [100.0%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20w_G1WholebodyCloseDoorTeleop-v0_exec15) |
+| Handover | ✅ 419h | [ft_419h_simple_20w_Handover](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyHandoverTeleop-v0/2026-09-20_00-34-00/checkpoint_200000) | [83.3%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20w_G1WholebodyHandoverTeleop-v0_exec_15) |
+| Pick Between Tables | ✅ 419h | [ft_419h_simple_20w_LocomotionPickBetweenTables](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyLocomotionPickBetweenTablesTeleop-v0/2026-09-19_02-30-20/checkpoint_200000) | [70.0%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20w_G1WholebodyLocomotionPickBetweenTablesTeleop-v0_exec_15) |
+| Open Faucet | ✅ 419h | [ft_419h_simple_20w_OpenFaucet](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyOpenFaucetTeleop-v0/2026-09-20_15-15-36/checkpoint_200000) | [53.3%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20w_G1WholebodyOpenFaucetTeleop-v0_exec50) |
+| Open Oven | ✅ 419h | [ft_419h_simple_20w_OpenOven](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyOpenOvenTeleop-v0/2026-09-21_01-25-28/checkpoint_200000) | [56.7%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20W_G1WholebodyOpenOvenTeleop-v0_exec15) |
+| Open Trash Can | ✅ 419h | [ft_419h_simple_20w_OpenTrashCan](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyOpenTrashCanTeleop-v0/2026-09-21_01-25-30/checkpoint_200000) | [63.3%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20W_G1WholebodyOpenTrashCanTeleop-v0_exec15) |
+| Push Office Chair | ✅ 419h | [ft_419h_simple_20w_PushOfficeChair](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyPushOfficeChairTeleop-v0/2026-09-22_00-40-29/checkpoint_200000) | [80.0%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20W_G1WholebodyPushOfficeChairTeleop-v0_exec50) |
+| Move & Bend Pick | ✅ 419h | [ft_419h_simple_20w_XMoveBendPick](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand_G1WholebodyXMoveBendPickTeleop-v0/2026-09-19_02-30-18/checkpoint_200000) | [80.0%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task/ft_20W_G1WholebodyXMoveBendPickTeleop-v0_exec50) |
 
 To fine-tune your own policy, download a [pretraining checkpoint](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train) and replace its path below. The default configuration uses **four GPUs**, batch 16 per GPU (global batch 64), and 200,000 steps.
 
@@ -451,15 +453,24 @@ You can also initialize the trainable policy modules from scratch; the frozen mo
 Download the checkpoint for your task using the [complete download example](evaluation/simple_eval.md#2-base-models-task-policy-and-text-embeddings), then run:
 
 ```bash
+# Match the execution horizon used in each released evaluation.
+case "$TASK" in
+  G1WholebodyOpenFaucetTeleop-v0|G1WholebodyPushOfficeChairTeleop-v0|G1WholebodyXMoveBendPickTeleop-v0)
+    EXECUTION_FRAMES=50 ;;
+  *) EXECUTION_FRAMES=15 ;;
+esac
+
 bash evaluation/simple_eval_signal_task_sonic.sh \
   --task "$TASK" --checkpoint /path/to/task/checkpoint_200000 \
   --gpus 0,1,2 --levels 0,1,2 --seeds 0 --episodes 10 \
   --simple-data-dir "$PWD/SIMPLE/data" \
-  --dtype fp32 --diffusion-steps 10 --execution-frames 15 \
+  --dtype fp32 --diffusion-steps 10 --execution-frames "$EXECUTION_FRAMES" \
   --rtc 0 --max-navigation-speed 10.0 --max-steps auto
 ```
 
-This example uses **three GPUs**, one per level. With `--gpus 0`, the levels run sequentially on one GPU. Keep the explicit 15-frame execution setting to reproduce the released configuration. Append `--dry-run` to check paths; use one episode with a short step limit for an initial smoke test. The [evaluation guide](evaluation/simple_eval.md#5-evaluation) explains outputs, full-protocol checks and MP task requirements.
+This example uses **three GPUs**, one per level. With `--gpus 0`, the levels run sequentially on one GPU. The released Open Faucet, Push Office Chair and Move & Bend Pick evaluations execute **50 frames** per update; the other five tasks execute **15 frames**. The command above selects the matching setting. Append `--dry-run` to check paths; use one episode with a short step limit for an initial smoke test. The [evaluation guide](evaluation/simple_eval.md#5-evaluation) explains outputs, full-protocol checks and MP task requirements.
+
+![Note: SIMPLE evaluations involve stochastic policy sampling and simulation. Success rates may vary slightly across runs, even with the same settings.](asset/readme/simple-reproducibility-note.svg)
 
 ## 🦾 Real-World Data Collection, Training & Deployment
 

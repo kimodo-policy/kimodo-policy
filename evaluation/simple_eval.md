@@ -174,12 +174,19 @@ resuming an interrupted training run; initialization and resume are different.
 With `TASK`, `CHECKPOINT`, resource paths and model files prepared as above:
 
 ```bash
+# Match the execution horizon used in each released evaluation.
+case "$TASK" in
+  G1WholebodyOpenFaucetTeleop-v0|G1WholebodyPushOfficeChairTeleop-v0|G1WholebodyXMoveBendPickTeleop-v0)
+    EXECUTION_FRAMES=50 ;;
+  *) EXECUTION_FRAMES=15 ;;
+esac
+
 bash evaluation/simple_eval_signal_task_sonic.sh \
   --task "$TASK" --checkpoint "$CHECKPOINT" \
   --gpus 0,1,2 --levels 0,1,2 --seeds 0 --episodes 10 \
   --simple-data-dir "$SIMPLE_DATA_DIR" \
   --eval-data-root "$EVAL_DATA_ROOT" \
-  --dtype fp32 --diffusion-steps 10 --execution-frames 15 \
+  --dtype fp32 --diffusion-steps 10 --execution-frames "$EXECUTION_FRAMES" \
   --rtc 0 --max-navigation-speed 10.0 --max-steps auto
 ```
 
@@ -188,13 +195,14 @@ sequentially on one GPU; the wrapper defaults to one GPU when the option is
 omitted. Level 0/1/2 use their fixed `environment_config` values, rather than new
 randomly sampled scenes. Keep the task, policy and episode data matched.
 
-The released evaluation configuration uses FP32, 10 diffusion steps, 15 executed
-model frames and RTC disabled. The checkpoint predicts 50 frames; explicitly
-passing `--execution-frames 15` executes the first 15 and replans. The wrapper's
-default is 50, so retain the explicit argument when reproducing the released
-results. Likewise retain `--max-navigation-speed 10.0` (the diagnostic default is
-1.5). Other RTC settings retain their defaults: overlap 0, frozen frames 0,
-ramp power 1.0.
+The released evaluations use FP32, 10 diffusion steps and RTC disabled. Open
+Faucet, Push Office Chair and Move & Bend Pick execute 50 frames per update; the
+other five released tasks execute 15. The command above selects this value from
+`TASK`. The checkpoint predicts 50 frames; `--execution-frames 15` executes the
+first 15 and replans. The wrapper defaults to 50, so keep the explicit task-specific
+argument and consult the linked result folder's `run_config.txt`. Likewise retain
+`--max-navigation-speed 10.0` (the diagnostic default is 1.5). Other RTC settings
+retain their defaults: overlap 0, frozen frames 0, ramp power 1.0.
 
 For a path/launch-plan check, append `--dry-run`. For a short end-to-end smoke
 run, use `--gpus 0 --levels 0 --episodes 1 --max-steps 2`. A smoke run is not a

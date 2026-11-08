@@ -1,0 +1,34 @@
+[
+  {
+    "task": "Close Door",
+    "video": "https://kimodo-policy.github.io/videos/simple/CloseDoor/ego_view_success%202.mp4"
+  },
+  {
+    "task": "Handover",
+    "video": "https://kimodo-policy.github.io/videos/simple/Handover/ego_view_success%204.mp4"
+  },
+  {
+    "task": "Mobile Pick & Place",
+    "video": "https://kimodo-policy.github.io/videos/simple/LocomotionPickBetweenTables/head_stereo_right_success%202.mp4"
+  },
+  {
+    "task": "Open Faucet",
+    "video": "https://kimodo-policy.github.io/videos/simple/OpenFaucet/ego_view_success.mp4"
+  },
+  {
+    "task": "Open Oven",
+    "video": "https://kimodo-policy.github.io/videos/simple/OpenOven/ego_view_success.mp4"
+  },
+  {
+    "task": "Open Trash Can",
+    "video": "https://kimodo-policy.github.io/videos/simple/OpenTrashCan/head_stereo_right_success%202.mp4"
+  },
+  {
+    "task": "Push Office Chair",
+    "video": "https://kimodo-policy.github.io/videos/simple/PushOfficeChair/head_stereo_right_success%202.mp4"
+  },
+  {
+    "task": "XMoveBendPick",
+    "video": "https://kimodo-policy.github.io/videos/simple/XMoveBendPick/head_stereo_right_success%202.mp4"
+  }
+]
