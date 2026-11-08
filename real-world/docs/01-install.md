@@ -1,17 +1,18 @@
 # 1. Installation and Directory Layout
 
-Prepare compatible Conda environments first. Clone this release on both hosts. The model host needs the complete top-level model source; the workstation uses this real-world directory and the runtime archive.
+The workstation requires the compatible teleoperation and collection Conda environments listed in chapter 0. Clone this release on both hosts. The model host needs the complete top-level model source; the workstation uses this real-world directory and the runtime archive.
 
 ## 1.1 Clone and configure both hosts
 
 ```bash
-git clone https://github.com/kimodo-policy/kimodo-policy.git "$HOME/kimodo-policy"
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/kimodo-policy/kimodo-policy.git "$HOME/kimodo-policy"
 cd "$HOME/kimodo-policy/real-world"
 cp local.env.example local.env
 cp deploy/deploy_config.example.json deploy/deploy_config.json
+nano local.env
 ```
 
-These instructions require a revision containing this integrated release. For an unmerged PR, check out its branch first. Do not overwrite an existing machine's configuration with these copy commands.
+Use a fresh clone when migrating from the old SONIC submodule layout. Do not overwrite existing machine configuration with these copy commands. `GIT_LFS_SKIP_SMUDGE=1` avoids downloading unrelated benchmark assets during clone; the real-world runtime is installed separately.
 
 Edit `local.env`:
 
@@ -66,7 +67,21 @@ The source installer binds SONIC, GMR, and the PICO SDK to their new paths. It d
 
 ## 1.3 Model host: validate sources and assets
 
-The model and training interfaces are already integrated in this repository. No training overlay installation is needed.
+If the model environment is not installed, run the root installer for **training only** (not its default, which also installs simulators):
+
+```bash
+cd "$KIMODO_PROJECT_ROOT"
+bash setup.sh --only training
+source .setup/env.sh
+conda activate kimodo-policy
+python -m pip install pyzmq==27.2.0 opencv-python-headless==5.0.0.93
+python -c 'import sys; print(sys.executable)'
+cd real-world
+nano local.env  # Set KIMODO_SERVER_PYTHON to the printed path
+source env.sh
+```
+
+The two additional packages match the real-world environment checker and are not installed by the root training requirements. Skip installation if your model environment already exists. This installer does not create the workstation teleoperation/collection environments. The model and training interfaces are already integrated; no source overlay is needed.
 
 ```bash
 "$KIMODO_SERVER_PYTHON" tools/check_environment.py server
@@ -75,6 +90,7 @@ The model and training interfaces are already integrated in this repository. No 
 Follow the [download and verification guide](released-assets.md) to obtain the eight evaluated task checkpoints and training datasets. Install the base models under `$KIMODO_PROJECT_ROOT/checkpoints/`. In `deploy/deploy_config.json`, set each `tasks.<task>.checkpoint` to an **absolute checkpoint directory**. Explicit paths avoid ambiguity between training runs.
 
 ```bash
+nano deploy/deploy_config.json  # Set tasks.boxing.checkpoint to the downloaded absolute path
 "$KIMODO_SERVER_PYTHON" tools/preflight_server.py boxing
 ```
 

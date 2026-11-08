@@ -1,6 +1,13 @@
 # 3. Teleoperation, Recording, Validation, and Fine-Tuning
 
-Complete chapters 1 and 2. Open separate workstation terminals and source `env.sh` in each.
+Complete chapters 1 and 2. Open separate workstation terminals; start each with:
+
+```bash
+cd "$HOME/kimodo-policy/real-world"  # Adjust to your clone
+source env.sh
+```
+
+For released-data training only, skip sections 3.1–3.6: [download and verify a dataset](released-assets.md), then follow section 3.7 on the model host.
 
 ## 3.1 Workstation terminal A: XRT service
 
@@ -45,7 +52,7 @@ Finish and save the episode, wait for confirmation, and exit the recorder. Secur
 
 ```bash
 export DATASET="$WBC_ROOT/outputs/teleop-your_timestamp"
-"$COLLECTION_PYTHON" "$WBC_ROOT/gear_sonic/scripts/validate_g1_vla_dataset.py" "$DATASET"
+bash collection/bin/validate-dataset "$DATASET"
 bash collection/bin/scan-datasets "$WBC_ROOT/outputs" \
   --report "$REAL_WORLD_ROOT/runtime/collection-report.json"
 ```
@@ -98,4 +105,13 @@ The public `train.py` uses W&B (offline by default in the real-world YAML). The 
 
 `prepare_text_embeddings` generates/loads instruction caches under `$KIMODO_PROJECT_ROOT/data/cache/RealWorld`. Missing caches require the LLM2Vec assets. For a new task instruction, set the server's `KIMODO_TEXT_CACHE` in `local.env` to this training cache directory. Do not substitute the bundled eight-task cache for newly trained text.
 
-After training, set the exact checkpoint path in deployment JSON, run `tools/preflight_server.py TASK`, and follow the deployment guide.
+After training, return to the real-world directory before deployment checks:
+
+```bash
+cd "$KIMODO_PROJECT_ROOT/real-world"
+source env.sh
+nano deploy/deploy_config.json  # Set the task checkpoint's absolute path
+"$KIMODO_SERVER_PYTHON" tools/preflight_server.py banana
+```
+
+Replace `banana` with your task, then follow the [deployment guide](../deploy/start.md).

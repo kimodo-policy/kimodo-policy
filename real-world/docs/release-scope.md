@@ -21,3 +21,7 @@ See the [validation record](verification.md). Offline checks do not establish su
 `SOURCE_MANIFEST.json` records historical source hashes. `PACKAGE_MANIFEST.json` records current packaged files; runtime assets have their own manifest. Historical hashes may differ after reviewed edits or refer to interfaces now maintained in the parent repository.
 
 KP is the existing name of owned channels. ZeroMQ transport and legacy argument compatibility remain unchanged.
+
+## Upgrade from the original deployment directory
+
+Use a fresh clone instead of overlaying a working robot installation. The old `real-world/GR00T-WholeBodyControl` submodule and `deploy/Start.md` have been replaced by the pinned runtime installation and `deploy/start.md`. Preserve datasets, checkpoints, local configuration, and logs before retiring an old checkout.

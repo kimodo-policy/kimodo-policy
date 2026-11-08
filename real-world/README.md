@@ -1,49 +1,32 @@
 # Kimodo Policy — Real-World Robotics
 
-PICO teleoperation → G1 data collection → server-side fine-tuning → remote policy inference → workstation/SONIC execution.
+PICO teleoperation → G1 recording → fine-tuning → remote policy deployment.
 
-This directory provides the real-world workflow for **Unitree G1 with two Dex3 hands**. The model runs on a remote GPU server; the workstation runs camera/state clients, the deployment bridge, and the GPU-backed SONIC controller. Isaac Sim and Isaac Lab are **not required** for this workflow.
+**Hardware:** Unitree G1 with two Dex3 hands, a robot camera, an NVIDIA workstation, and a GPU model server. PICO is needed for teleoperation only. The workstation runs SONIC; the server runs Kimodo. Isaac Sim/Lab are not required.
 
-## Requirements and release status
+## Before you start
 
-Prepare separate compatible Conda environments for teleoperation, collection/bridge, and the model server. See the [observed versions and asset requirements](docs/00-versions-assets.md). These are records of working installations, not a fully resolved cross-platform environment lock.
+Prepare the [matching environments and assets](docs/00-versions-assets.md). The eight evaluated policies and datasets are released; [download commands](docs/released-assets.md) include checksum verification. Text embeddings and task poses are included in Git.
 
-The eight evaluated [task checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World) and [training datasets](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld) are publicly available. Follow the [download and verification guide](docs/released-assets.md); the small task text caches and initial poses are bundled in Git.
+**Remaining prerequisite:** obtain the matching 3.81 GB workstation runtime archive from the maintainer; its public distribution is still pending. The matched PICO APK and robot camera environment also need confirmation. See [validation scope](docs/verification.md); offline tests do not establish a clean-machine or hardware reproduction.
 
-**Robot-side runtime distribution remains pending.** Collection and execution still require the matching `workstation-runtime.tar.gz` (approximately 3.81 GB), verified against [its manifest](manifests/workstation-runtime.json). Its public download location has not yet been established. Base models and runtime assets are separate from task checkpoints and are not included in a clone.
+## Follow the commands in order
 
-Offline tests and archive integrity checks have passed. A clean Linux rebuild and a complete hardware acceptance run remain separate validation steps. The PICO headset APK version and the robot-side camera environment still need a verified version record.
+| Step | Guide | Where / completion check |
+|---|---|---|
+| 1 | [Install and configure](docs/01-install.md) | Both hosts: configure `local.env`; workstation passes `check-local`; server passes task preflight |
+| 2 | [Connect G1, camera, and PICO](docs/02-network-camera.md) | Workstation + robot: correct route, fresh camera frames; PICO connected for collection |
+| 3 | [Collect, validate, transfer, and train](docs/03-collection-training.md) | Workstation records valid episodes; model host fine-tunes or resumes |
+| 4 | [Deploy a task](deploy/start.md) | Server → SSH tunnel → SONIC → check → run → HOLD/shutdown |
 
-## Follow this sequence
+**Deployment only:** use a released checkpoint and follow steps 1, 2 (skip PICO), and 4. **Training only:** follow step 1's model-host setup, download a dataset, then section 3.7. Each operating guide identifies the host and terminal; replace placeholders before running commands.
 
-1. [Verified environment records and required assets](docs/00-versions-assets.md)
-2. [Installation and directory layout](docs/01-install.md)
-3. [Networking, PICO, and robot camera](docs/02-network-camera.md)
-4. [Teleoperation, recording, validation, transfer, and fine-tuning](docs/03-collection-training.md)
-5. [Deployment: commands for each terminal](deploy/start.md)
+## Files you edit
 
-Additional references: [architecture](docs/architecture.md), [data semantics](docs/data-and-training.md), [validation record](docs/verification.md), and [distribution scope](docs/release-scope.md).
+- `local.env`: machine paths, Python interpreters, network interfaces, camera address, and SSH alias.
+- `deploy/deploy_config.json`: task checkpoints, diffusion steps, execution length, RTC, and bridge settings. Copy the example once; `deploy.sh run boxing` selects a task without rewriting JSON.
+- `deploy/*_initial_pose.json`: recorded task-specific starting poses; check them against your robot/data before execution.
 
-## Directory layout
+See the [complete directory map](docs/directory.md) for every tracked file and generated runtime directory. Additional references: [architecture](docs/architecture.md), [data semantics](docs/data-and-training.md), and [distribution/migration notes](docs/release-scope.md).
 
-```text
-real-world/
-  local.env.example       # Copy to local.env and configure this machine
-  env.sh                  # Source in each terminal; starts no services
-  setup/                  # Runtime source binding and collection overlay
-  collection/bin/         # PICO, SONIC, recording, and validation commands
-  collection/overlay/     # Reviewed changes applied to the pinned runtime bundle
-  deploy/                 # Server, bridge, task poses, and configuration example
-  environments/           # Observed Python package versions and constraints
-  manifests/              # Native dependencies, runtime files, and task assets
-  assets/text-cache/      # Eight original task embeddings
-  external/               # Installed SONIC/GMR sources; excluded from Git
-  runtime/                # Installed native libraries, logs, and state; excluded from Git
-  tools/                  # Installation, validation, and maintainer export tools
-```
-
-Model, dataset, and training code live in the parent repository under `model/`, `data/`, `motion/`, and `scripts/Real_World/`. The integrated release does not require copying a second training overlay over those files.
-
-For upgrades from the old layout, use a fresh clone. The former `real-world/GR00T-WholeBodyControl` submodule and `deploy/Start.md` are replaced by the asset installation workflow and the lowercase [deploy/start.md](deploy/start.md). Preserve existing datasets, checkpoints, local configuration, and logs outside the old checkout before retiring it.
-
-SONIC and deployment `run` commands can move the robot. An on-site operator must support the robot and have an emergency stop available. Ctrl+C enters a streaming HOLD only while the controller and communication remain operational; it is not power-loss protection.
+An on-site operator must support the robot and prepare an emergency stop before starting SONIC or `run`. Ctrl+C enters streaming HOLD; follow the [shutdown sequence](deploy/start.md#46-stop-hold-and-switch-tasks) before closing the controller.

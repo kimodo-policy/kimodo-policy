@@ -62,3 +62,7 @@ The existing HTTP test double was updated for the session-aware reset/runtime-ow
 - All learned model tensors are finite and unchanged after replacing machine-specific path metadata with portable paths.
 - The 236 demonstrations contain 157,769 frames. Episode metadata, required action/state shapes, finite values, and decoded video frame counts agree.
 - Checkpoint and data file sizes and SHA-256 hashes are recorded in [released-assets.json](../manifests/released-assets.json). These structural and integrity checks do not assert that every demonstration is successful or free of recording artifacts.
+
+## Documentation follow-through review — 2026-11-08
+
+Reviewed against main `6a0245784d9f74a84f6d499a929baa13b1b1d479`, preserving the released eight-task assets and `teleop-long` mapping. All 39 Bash code blocks passed syntax checks; the eight release checkpoint/dataset/pose mappings matched. Package syntax, relative links, and hashes passed, and `setup.sh --only training --dry-run` selected only the model environment. This documentation-only revision did not rerun GPU or physical robot tests. The README now links to an exact source/generated-directory inventory and separates deployment-only, training-only, and full collection workflows.
