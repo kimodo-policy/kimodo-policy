@@ -2,6 +2,10 @@
 /HumanoidArena/**/assets/
 /log/
 /data/cache/
+/datasets/
+/.cache/
+/Simple_Single_Task/
+/Pre_Train/
 /scripts/logs/
 /real-world/data/
 

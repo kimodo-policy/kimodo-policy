@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
 
 TASK="${TASK:-G1WholebodyCloseDoorTeleop-v0}"
-CHECKPOINT="${CHECKPOINT:-${PROJECT_ROOT}/log/experiments/simple_single_gbs64_20w_controlnet4_detach_true_mse_G1WholebodyCloseDoorTeleop-v0/2026-08-28_23-55-15/checkpoint_100000}"
+CHECKPOINT="${CHECKPOINT:-}"
 GPUS="${GPUS:-0}"
 SEEDS="${SEEDS:-0}"
 # The official SIMPLE protocol has 10 fixed episodes for each of levels 0, 1
@@ -114,6 +114,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+[[ -n "$CHECKPOINT" ]] || { echo 'Pass --checkpoint /path/to/checkpoint_STEP (see evaluation/simple_eval.md).' >&2; exit 2; }
 [[ "$TASK" == simple/* ]] || TASK="simple/${TASK}"
 CHECKPOINT="$(readlink -m "$CHECKPOINT")"
 TEXT_CACHE="$(readlink -m "$TEXT_CACHE")"
@@ -303,6 +304,10 @@ run_one() {
   local -a max_steps_args=()
   [[ "$MAX_STEPS" == auto ]] || max_steps_args=(--max-episode-steps "$MAX_STEPS")
   local model_device="cuda:0"
+  local cuda_arch="${TORCH_CUDA_ARCH_LIST:-}"
+  if [[ -z "$cuda_arch" ]]; then
+    cuda_arch="$(env -u CUDA_VISIBLE_DEVICES "$PYTHON_BIN" -c 'import sys, torch; print("%d.%d" % torch.cuda.get_device_capability(int(sys.argv[1])))' "$gpu")"
+  fi
   local -a env_args=(
     "MUJOCO_GL=egl"
     "OMNI_KIT_ACCEPT_EULA=Y"
@@ -311,7 +316,7 @@ run_one() {
     "XDG_CACHE_HOME=${worker_cache}/xdg"
     "WARP_CACHE_PATH=${worker_cache}/warp"
     "TMPDIR=${worker_cache}/tmp"
-    "TORCH_CUDA_ARCH_LIST=8.6+PTX"
+    "TORCH_CUDA_ARCH_LIST=$cuda_arch"
     "TORCH_EXTENSIONS_DIR=${torch_extensions_root}"
     "KIMODO_MODEL_SITE_PACKAGES=${MODEL_SITE_PACKAGES}"
     "PYTHONPATH=$PROJECT_ROOT:$PROJECT_ROOT/SIMPLE/src:$PROJECT_ROOT/SIMPLE/third_party:$PROJECT_ROOT/SIMPLE/third_party/curobo/src:$PROJECT_ROOT/SIMPLE/third_party/unitree_sdk2_python${PYTHONPATH:+:$PYTHONPATH}"

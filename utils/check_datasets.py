@@ -46,6 +46,7 @@ from data.datasetloader import (
     SOURCE_HUMANOID_EVERYDAY,
     SOURCE_HUMANOID_ARENA,
     SOURCE_UNIFOLM,
+    SOURCE_SIMPLE,
     _as_matrix,
     _hiw_joint_discontinuity,
     _unifolm_motion_discontinuity,
@@ -352,10 +353,37 @@ def _audit_arena(episode: EpisodeRecord) -> dict[str, Any]:
     return {"source": SOURCE_HUMANOID_ARENA, "status": "valid"}
 
 
+def _audit_simple(episode: EpisodeRecord) -> dict[str, Any]:
+    """Check the same recorded joint/command contract used by SimpleAdapter.
+
+    Discovery already checks metadata, parquet row counts and video presence.
+    SIMPLE root motion is reconstructed from commands, so Arena's measured
+    floating-base discontinuity thresholds do not apply to this source.
+    """
+    from data.simple_loader import SIMPLE_COLUMNS, simple_training_arrays
+
+    assert _WORKER_READER is not None
+    table = _WORKER_READER.read(episode, list(SIMPLE_COLUMNS))
+    task_indices = np.asarray(table["task_index"]).reshape(-1)
+    if (len(task_indices) != episode.source_length
+            or not np.all(task_indices == episode.metadata["task_index"])):
+        raise ValueError("Simple parquet task_index differs from episode metadata")
+    arrays = simple_training_arrays(
+        table, episode.source_fps,
+        str(_selection(SOURCE_SIMPLE).get("hand_control_mode", "binary")),
+    )
+    for name, values in arrays.items():
+        if len(values) != episode.source_length or not np.isfinite(values).all():
+            raise ValueError(f"Invalid Simple {name}: non-finite values or wrong length")
+    return {"source": SOURCE_SIMPLE, "status": "valid"}
+
+
 def _audit_episode(item: tuple[str, EpisodeRecord]) -> dict[str, Any]:
     """Audit one episode, keeping data errors separate from quality rejects."""
     source, episode = item
     try:
+        if source == SOURCE_SIMPLE:
+            return _audit_simple(episode)
         if source == SOURCE_HUMANOID_ARENA:
             return _audit_arena(episode)
         if source in {SOURCE_UNIFOLM, SOURCE_HUMANOID_EVERYDAY}:
@@ -435,6 +463,9 @@ def _check_arena_inventory(dataset) -> None:
 
 
 def _post_trim_windows(episode: EpisodeRecord, trim_frames: int) -> int:
+    if episode.source == SOURCE_SIMPLE and trim_frames == 0:
+        # SIMPLE deliberately pads terminal holds; those are valid windows.
+        return int(episode.sample_count)
     target_length = _target_length_after_trim(episode, trim_frames)
     if target_length < _WORKER_ACTION_CHUNK:
         return 0

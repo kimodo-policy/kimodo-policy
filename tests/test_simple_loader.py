@@ -60,6 +60,22 @@ def write_official_task(root, indices=(7,), task_name="G1WholebodyBendPickMP-v0"
 
 
 class SimpleAdapterTest(unittest.TestCase):
+    def test_release_audit_keeps_terminal_padding_and_rejects_nan_commands(self):
+        from utils import check_datasets as audit
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            task = write_official_task(root, length=60)
+            adapter = SimpleAdapter(root, {"task": task.name, "hand_control_mode": "continuous"}, 30, 50)
+            episode = adapter.episodes[0]
+            audit._initialize_worker({"Simple": {"hand_control_mode": "continuous"}}, 50)
+            self.assertEqual(audit._audit_episode(("Simple", episode))["status"], "valid")
+            self.assertEqual(audit._post_trim_windows(episode, 0), episode.sample_count)
+            values = recorded_episode(60)
+            values["action"][2, 31] = np.nan
+            pq.write_table(pa.table({k: v.tolist() for k, v in values.items()}), episode.data_path)
+            audit._initialize_worker({"Simple": {"hand_control_mode": "continuous"}}, 50)
+            self.assertEqual(audit._audit_episode(("Simple", episode))["status"], "error")
+
     def test_official_layout_needs_no_export_and_ignores_global_inclusive_indices(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

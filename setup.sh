@@ -26,7 +26,7 @@ a CUDA toolkit with nvcc (set CUDA_HOME if necessary).
   --conda PATH                    Path to the conda executable.
   --system-deps                   Install Ubuntu system packages using apt.
   --accept-isaac-eula              Confirm acceptance of NVIDIA Isaac Sim EULA.
-  --download-resources            Download Arena SONIC + SIMPLE base resources.
+  --download-resources            Download Arena SONIC + complete SIMPLE eval assets/text caches.
   --dry-run                       Print the plan; do not install or write files.
   --check                         Check existing installations; do not install.
   -h, --help                      Show this help.
@@ -88,6 +88,7 @@ CONDA_BASE="$("$CONDA_BIN" info --base)"
 command -v nvidia-smi >/dev/null || die 'NVIDIA driver not detected (nvidia-smi is missing).'
 nvidia-smi -L >/dev/null || die 'Cannot access an NVIDIA GPU.'
 if (( WANT_SIMPLE && ! CHECK_ONLY )); then
+  "$CONDA_BASE/bin/python" -c 'import platform; name, version = platform.libc_ver(); assert name == "glibc" and tuple(map(int, version.split(".")[:2])) >= (2, 34)' || die 'A fresh SIMPLE environment needs glibc >= 2.34 (Ubuntu 22.04 or newer recommended). Existing environments can be inspected with --check.'
   # SIMPLE pins torch/cu128. Prefer a matching toolkit over a system CUDA 13.
   if [[ -z "${CUDA_HOME:-}" && -x /usr/local/cuda-12.8/bin/nvcc ]]; then
     export CUDA_HOME=/usr/local/cuda-12.8
@@ -97,6 +98,13 @@ if (( WANT_SIMPLE && ! CHECK_ONLY )); then
   if [[ -n "${CUDA_HOME:-}" ]]; then export PATH="$CUDA_HOME/bin:$PATH"; fi
   command -v nvcc >/dev/null || die 'SIMPLE needs nvcc. Install a CUDA toolkit and set CUDA_HOME, then rerun.'
   nvcc --version | grep -Eq 'release 12\.' || die 'SIMPLE uses PyTorch CUDA 12.8. Set CUDA_HOME to a CUDA 12.x toolkit (12.8 recommended).'
+  if [[ -z "${CUDA_HOME:-}" ]]; then
+    export CUDA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v nvcc)")")")"
+  fi
+  # Recent Conda CUDA toolkits keep headers below targets/ instead of include/.
+  if [[ ! -f "$CUDA_HOME/include/cuda_runtime.h" && -d "$CUDA_HOME/targets/x86_64-linux/include" ]]; then
+    export CPATH="$CUDA_HOME/targets/x86_64-linux/include${CPATH:+:$CPATH}"
+  fi
 fi
 if (( (WANT_ARENA || WANT_SIMPLE) && ! ACCEPT_EULA )); then
   die 'Review https://docs.omniverse.nvidia.com/isaacsim/latest/common/NVIDIA_Omniverse_License_Agreement.html and rerun with --accept-isaac-eula.'
@@ -116,12 +124,15 @@ if (( ! CHECK_ONLY )); then
     command -v apt-get >/dev/null || die '--system-deps requires Ubuntu/Debian apt-get.'
     SUDO=(); (( EUID == 0 )) || SUDO=(sudo)
     "${SUDO[@]}" apt-get update
-    "${SUDO[@]}" apt-get install -y git git-lfs curl wget unzip cmake build-essential python3-dev ffmpeg gstreamer1.0-libav cyclonedds-dev
+    "${SUDO[@]}" apt-get install -y git git-lfs curl wget unzip cmake build-essential python3-dev ffmpeg gstreamer1.0-libav cyclonedds-dev libegl1 libgl1 libvulkan1 libglib2.0-0 libsm6 libice6 libxrender1
   fi
   for cmd in git cmake curl; do command -v "$cmd" >/dev/null || die "Missing $cmd; rerun with --system-deps."; done
   git lfs version >/dev/null || die 'Missing Git LFS; rerun with --system-deps.'
   git -C "$PROJECT_ROOT" lfs install --local
-  git -C "$PROJECT_ROOT" lfs pull
+  # Papers/media are not runtime dependencies; SIMPLE controllers are regular Git files.
+  if (( WANT_ARENA )); then
+    git -C "$PROJECT_ROOT" lfs pull --include='HumanoidArena/**' --exclude=''
+  fi
 fi
 
 find_env() {
@@ -186,6 +197,7 @@ fi
 
 if (( WANT_SIMPLE )); then
   STAGE=simple-environment
+  "$KIMODO_ENV/bin/python" -c 'import ctypes; ctypes.CDLL("libEGL.so.1"); ctypes.CDLL("libvulkan.so.1")' || die 'Missing EGL/Vulkan system libraries. Rerun with --system-deps (and expose NVIDIA graphics libraries when using a container).'
   if (( ! CHECK_ONLY )); then
     # Isolate uv from an activated caller environment. Keep all vendored sources.
     UV_BIN="$(type -P uv || true)"
@@ -216,7 +228,7 @@ if (( DOWNLOAD_RESOURCES )); then
     "$KIMODO_ENV/bin/hf" download nvidia/GEAR-SONIC model_encoder.onnx model_decoder.onnx observation_config.yaml --local-dir "$PROJECT_ROOT/HumanoidArena/GR00T-WholeBodyControl/gear_sonic_deploy/policy/release"
   fi
   if (( WANT_SIMPLE )); then
-    (cd "$PROJECT_ROOT/SIMPLE"; bash scripts/pre-minimal-download.sh)
+    "$KIMODO_ENV/bin/python" "$PROJECT_ROOT/utils/prepare_simple.py" --assets --text-cache
   fi
 fi
 if (( CHECK_ONLY )); then log 'Requested environment checks passed (no simulation launched).'; exit 0; fi
@@ -236,6 +248,11 @@ STAGE=runtime-paths
   printf 'export KIMODO_PYTHON=%q\n' "$PROJECT_ROOT/SIMPLE/.venv/bin/python"
   printf 'export SIMPLE_DATA_DIR=%q\n' "$PROJECT_ROOT/SIMPLE/data"
   printf 'export EVAL_DATA_ROOT=%q\n' "$PROJECT_ROOT/SIMPLE/data/simple-eval"
+  if [[ -n "${CUDA_HOME:-}" ]]; then
+    printf 'export CUDA_HOME=%q\n' "$CUDA_HOME"
+    echo 'export PATH="$CUDA_HOME/bin:$PATH"'
+    if [[ -n "${CPATH:-}" ]]; then printf 'export CPATH=%q\n' "$CPATH"; fi
+  fi
   echo 'export MUJOCO_GL=egl'
   (( ! ACCEPT_EULA )) || echo 'export OMNI_KIT_ACCEPT_EULA=YES'
 } > "$STATE_DIR/env.sh.tmp"

@@ -44,7 +44,7 @@
 
 - [x] [HumanoidArena Training & Evaluation](#humanoidarena-training--evaluation)
 
-- [x] SIMPLE Benchmark: [Training](scripts/Simple_Single_Task/) & [Evaluation](evaluation/simple_eval.md)
+- [x] [SIMPLE Training & Evaluation](#-simple-training--evaluation)
 
 [Real-World Data Collection, Training & Deployment](real-world/README.md)
 
@@ -88,7 +88,7 @@ bash setup.sh --only training
 bash setup.sh --only arena --accept-isaac-eula
 bash setup.sh --only simple --accept-isaac-eula
 
-# Also download SONIC controller files and SIMPLE base scene/robot resources.
+# Also download SONIC controller files and complete SIMPLE evaluation assets/text caches.
 bash setup.sh --accept-isaac-eula --download-resources
 
 # Check existing environments without reinstalling packages.
@@ -116,7 +116,7 @@ Environment installation does not include model weights or benchmark datasets. B
 
 - **Arena scenes and SONIC:** follow **Evaluation Assets** under **Data Preparation** below for the official downloads, our backup asset link, and the required directory layout.
 
-- **SIMPLE evaluation episodes:** download the target task archives from the [official evaluation dataset](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple-eval) and extract them under `SIMPLE/data/simple-eval/`, following the [evaluation guide](https://github.com/physical-superintelligence-lab/SIMPLE/blob/main/docs/source/tutorials/eval.md).
+- **SIMPLE:** follow **SIMPLE Training & Evaluation** below for model files, task text caches, training data and the complete evaluation resource bundle.
 
 - **Training data:** follow **Data Preparation** below.
 
@@ -381,6 +381,85 @@ To evaluate multiple tasks, use `evaluation/humanoidarena_eval_multi_task_sonic.
 Use a separate `--results-dir` for each evaluation run. Summary statistics, per-episode results, and optional videos are saved there. The checkpoint must be a Kimodo-Policy training checkpoint; SONIC simulator assets are configured separately.
 
 ![Note: HumanoidArena is built on Isaac Sim. Small differences in visual rendering may lead to slight variations in evaluation results.](asset/readme/arena-reproducibility-note.svg)
+
+## 🤖 SIMPLE Training & Evaluation
+
+Train Kimodo-Policy directly on SIMPLE demonstrations or evaluate our released policies. Training uses `kimodo-policy`; evaluation uses `SIMPLE/.venv`. Complete the environment setup above, then follow the [step-by-step SIMPLE guide](evaluation/simple_eval.md) for downloads and commands.
+
+### 📦 Data Preparation
+
+#### • Training Data
+
+Download demonstrations from the [official SIMPLE training dataset](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple). If the official data changes or a task is unavailable, use our [frozen training snapshots](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/Simple). The snapshots contain 12 tasks and 1,187 demonstrations, including `G1WholebodyXMoveBendPickTeleop-v0`. The loader reads the original LeRobot format without replay or conversion.
+
+```bash
+# Download one frozen training task and its available task text embeddings.
+export TASK=G1WholebodyCloseDoorTeleop-v0
+python utils/prepare_simple.py --training-task "$TASK" --text-cache
+export KIMODO_SIMPLE_ROOT="$PWD/datasets/Simple"
+
+KIMODO_SIMPLE_TASK="$TASK" python utils/check_datasets.py \
+  --config scripts/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand.yaml \
+  --workers 4 --fail-on-errors --output simple_data_check.json
+```
+
+The check validates metadata, parquet contents and video presence; it does not decode every video frame. Instructions for downloading the official archives are in the [training guide](evaluation/simple_eval.md#4-training-data-and-commands).
+
+#### • Evaluation Assets & Model Dependencies
+
+Official resources are available from [SIMPLE assets](https://huggingface.co/datasets/USC-PSI-Lab/SIMPLE) and [evaluation episodes](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple-eval). Our [frozen backup](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/simple_assets) includes robots, grasp objects, articulated objects, containers, six rooms, materials, fixed evaluation episodes and task text embeddings.
+
+```bash
+python utils/prepare_simple.py --assets --text-cache
+hf download YunhengWang/kimodo-policy \
+  --include 'checkpoints/Kimodo-G1-RP-v1/**' \
+            'checkpoints/dinov3-vitl16-pretrain-lvd1689m/**' \
+  --local-dir .
+```
+
+The helper verifies checksums and installs resources under `SIMPLE/data/`. The frozen episodes cover 12 tasks × 3 levels × 10 episodes; the text caches cover 18 instructions. For these instructions, the full Llama/LLM2Vec weights are unnecessary. Environment directories and CUDA binaries are installed or compiled locally.
+
+### 🚀 Kimodo-Policy Single-Task Training on SIMPLE
+
+We release [eight task policies](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Simple_Single_Task), fine-tuned independently from the 419h pretrained model for 200,000 steps, together with [evaluation results and visualizations](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/Simple_Single_Task).
+
+| Released task | SIMPLE task name |
+| --- | --- |
+| Close Door | `G1WholebodyCloseDoorTeleop-v0` |
+| Handover | `G1WholebodyHandoverTeleop-v0` |
+| Pick Between Tables | `G1WholebodyLocomotionPickBetweenTablesTeleop-v0` |
+| Open Faucet | `G1WholebodyOpenFaucetTeleop-v0` |
+| Open Oven | `G1WholebodyOpenOvenTeleop-v0` |
+| Open Trash Can | `G1WholebodyOpenTrashCanTeleop-v0` |
+| Push Office Chair | `G1WholebodyPushOfficeChairTeleop-v0` |
+| Move & Bend Pick | `G1WholebodyXMoveBendPickTeleop-v0` |
+
+To fine-tune your own policy, download a [pretraining checkpoint](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train) and replace its path below. The default configuration uses **four GPUs**, batch 16 per GPU (global batch 64), and 200,000 steps.
+
+```bash
+conda activate kimodo-policy
+export KIMODO_ENV="$CONDA_PREFIX"
+KIMODO_GPUS=0,1,2,3 \
+  bash scripts/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand.sh \
+  "$TASK" /path/to/pretrain/checkpoint_1000000
+```
+
+You can also initialize the trainable policy modules from scratch; the frozen motion backbone and visual encoder are still needed. See the [training guide](evaluation/simple_eval.md#4-training-data-and-commands) for the command and resume instructions.
+
+### 🧪 Evaluation
+
+Download the checkpoint for your task using the [complete download example](evaluation/simple_eval.md#2-base-models-task-policy-and-text-embeddings), then run:
+
+```bash
+bash evaluation/simple_eval_signal_task_sonic.sh \
+  --task "$TASK" --checkpoint /path/to/task/checkpoint_200000 \
+  --gpus 0,1,2 --levels 0,1,2 --seeds 0 --episodes 10 \
+  --simple-data-dir "$PWD/SIMPLE/data" \
+  --dtype fp32 --diffusion-steps 10 --execution-frames 15 \
+  --rtc 0 --max-navigation-speed 10.0 --max-steps auto
+```
+
+This example uses **three GPUs**, one per level. With `--gpus 0`, the levels run sequentially on one GPU. Keep the explicit 15-frame execution setting to reproduce the released configuration. Append `--dry-run` to check paths; use one episode with a short step limit for an initial smoke test. The [evaluation guide](evaluation/simple_eval.md#5-evaluation) explains outputs, full-protocol checks and MP task requirements.
 
 ## 🦾 Real-World Data Collection, Training & Deployment
 

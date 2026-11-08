@@ -386,17 +386,13 @@ class IsaacSimSimulator(Simulator):
                 data_dir = resolve_data_path(scene.data_dir)
 
             env_url = os.path.abspath(f"{data_dir}/{scene.name}.usd")
-            # HSSD USD archives contain exporter-specific absolute references
-            # (for example /data/local-data/props or /tmp/<hash>/textures).
-            # Prepare symlink aliases on the data disk before opening the
-            # stage, so Isaac resolves the complete room instead of an empty
-            # shell with missing meshes.
+            # Rewrite exporter-specific paths in isolated cached USD layers.
+            # This works without root permissions and across concurrent rooms.
             try:
-                from simple.scenes.hssd import HssdSceneManager
-
-                HssdSceneManager()._hack_fix_tmp_paths(env_url)
+                from simple.usd_paths import prepare_hssd_usd
+                env_url = prepare_hssd_usd(env_url)
             except Exception as exc:
-                raise RuntimeError(f"Failed to prepare HSSD asset aliases for {env_url}") from exc
+                raise RuntimeError(f"Failed to prepare portable HSSD assets for {env_url}") from exc
             _add_usd_reference(env_url, scene_prim_path)
             scene_prim = self.world.stage.GetPrimAtPath(scene_prim_path)
 

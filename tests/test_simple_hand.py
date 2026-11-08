@@ -1,4 +1,5 @@
 import unittest
+from types import SimpleNamespace
 
 import numpy as np
 import torch
@@ -15,10 +16,21 @@ from motion.g1_reference import (
     resample_hand_continuous,
     resample_hand_continuous_chunk,
 )
-from evaluation.simple_server import measured_hand_closure_from_proprio
+from evaluation.simple_server import (
+    BODY_NAMES, LEFT_HAND_NAMES, RIGHT_HAND_NAMES, _robot_proprio,
+    measured_hand_closure_from_proprio,
+)
 
 
 class SimpleHandTest(unittest.TestCase):
+    def test_legacy_mp_joint_observations_preserve_measured_closure(self):
+        hands = hand_targets_from_closure(np.asarray([[0.25, 0.75]], np.float32))[0]
+        joints = {name: SimpleNamespace(qpos=[0.0], qvel=[0.0]) for name in BODY_NAMES}
+        joints.update({name: SimpleNamespace(qpos=[value]) for name, value in
+                       zip(LEFT_HAND_NAMES + RIGHT_HAND_NAMES, hands)})
+        actual = measured_hand_closure_from_proprio(_robot_proprio(SimpleNamespace(joints=joints)))
+        np.testing.assert_allclose(actual, [0.25, 0.75], atol=1e-6)
+
     def test_projection_round_trip(self):
         closure = np.asarray([[0.0, 1.0], [0.25, 0.75]], dtype=np.float32)
         targets = hand_targets_from_closure(closure)

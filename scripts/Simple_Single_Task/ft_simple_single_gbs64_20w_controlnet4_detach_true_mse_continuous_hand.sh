@@ -86,6 +86,7 @@ if [[ "${CONFIG_PATH}" != /* ]]; then
 fi
 
 GPU_LIST="${KIMODO_GPUS:-0,1,2,3}"
+[[ "$GPU_LIST" =~ ^[0-9]+(,[0-9]+)*$ ]] || { echo "KIMODO_GPUS must be comma-separated GPU indices" >&2; exit 2; }
 IFS=',' read -r -a GPU_IDS <<< "${GPU_LIST}"
 NUM_PROCESSES="${#GPU_IDS[@]}"
 if (( NUM_PROCESSES < 1 )); then
@@ -110,8 +111,10 @@ echo "Initialization checkpoint: ${INIT_CHECKPOINT}"
 echo "Save root: ${KIMODO_SIMPLE_SAVE_ROOT}"
 
 cd "${PROJECT_ROOT}"
+MULTI_GPU_ARGS=()
+(( NUM_PROCESSES <= 1 )) || MULTI_GPU_ARGS=(--multi_gpu)
 "${ACCELERATE_BIN}" launch \
-  --multi_gpu \
+  "${MULTI_GPU_ARGS[@]}" \
   --num_processes "${NUM_PROCESSES}" \
   --mixed_precision bf16 \
   --main_process_port "${KIMODO_MASTER_PORT:-29665}" \

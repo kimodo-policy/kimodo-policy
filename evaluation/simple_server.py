@@ -426,10 +426,12 @@ def _robot_proprio(robot: Any) -> dict[str, Any] | None:
         # checkpoints need measured 7-DoF hand positions for their history.
         for key, names in (("left_hand_q", LEFT_HAND_NAMES), ("right_hand_q", RIGHT_HAND_NAMES)):
             if all(name in joints for name in names):
-                result[key] = np.asarray(
+                # Named legacy joints use WBC thumb/index/middle order.
+                # Match Sonic's MuJoCo thumb/middle/index observation schema.
+                result[key] = _wbc_hand_to_mjcf(np.asarray(
                     [float(np.asarray(joints[name].qpos).reshape(-1)[0]) for name in names],
                     dtype=np.float32,
-                )
+                ))
         return result
     return None
 

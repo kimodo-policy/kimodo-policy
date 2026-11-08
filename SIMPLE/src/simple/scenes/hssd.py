@@ -18,7 +18,6 @@ import random
 import numpy as np
 from simple.utils import resolve_res_path, resolve_data_path
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
@@ -78,80 +77,6 @@ class HssdSceneManager(SceneManager):
         hssd_scenes_dict = {s["uid"]:s for s in self.hssd_scenes}
         scene_name = hssd_scenes_dict[scene_uid]["name"]
 
-        scene_dir = resolve_data_path(f"scenes/hssd/{scene_name}",auto_download=True)
-        usd_path = os.path.join(scene_dir, f"{scene_name}.usd")
-        self._hack_fix_tmp_paths(usd_path)
+        resolve_data_path(f"scenes/hssd/{scene_name}", auto_download=True)
         
         return HssdSuite(hssd_scenes_dict[scene_uid])
-
-    def _hack_fix_tmp_paths(self, usd_path: str) -> None:
-        import subprocess
-        import re
-
-        if not os.path.exists(usd_path):
-            return
-
-        try:
-            # Read printable USD references.  Archives in the wild use both
-            # /tmp/<hash>/... and absolute /data/local-data/... prefixes.
-            result = subprocess.run(["strings", usd_path], capture_output=True, text=True, check=False)
-            output = result.stdout
-            
-            # Find patterns like tmp/e64068067e09dc45/ and the absolute
-            # /data/local-data/props|textures paths emitted by the HSSD
-            # exporter.  Isaac's USD resolver follows these references
-            # literally, so create lightweight aliases instead of copying
-            # assets into /tmp (which is both slow and quota-sensitive).
-            matches = re.findall(r"tmp/([a-zA-Z0-9]+)/", output)
-            unique_hashes = set(matches)
-            
-            scene_dir = os.path.dirname(usd_path)
-            aliases = {
-                "/data/local-data/props": os.path.join(scene_dir, "props"),
-                "/data/local-data/textures": os.path.join(scene_dir, "textures"),
-                # Some SIMPLE/HSSD archives were exported on the 4090 host
-                # with /ai as the asset root.  Resolve those references in the
-                # same way as the historical /data/local-data prefix.
-                "/ai/props": os.path.join(scene_dir, "props"),
-                "/ai/textures": os.path.join(scene_dir, "textures"),
-            }
-            for alias, source in aliases.items():
-                if not os.path.exists(source):
-                    continue
-                if os.path.lexists(alias):
-                    # Keep a previous scene's compatibility link from
-                    # shadowing the assets of the scene being loaded now.
-                    # Never replace a real directory supplied by the host.
-                    if not os.path.islink(alias):
-                        continue
-                    if os.path.realpath(alias) == os.path.realpath(source):
-                        continue
-                    os.unlink(alias)
-                try:
-                    os.symlink(source, alias)
-                    print(f"HSSD: linked {alias} -> {source}")
-                except OSError as exc:
-                    raise RuntimeError(f"Failed to create HSSD asset alias {alias} -> {source}") from exc
-            
-            for h in unique_hashes:
-                target_dir = f"/tmp/{h}"
-                if not os.path.exists(target_dir):
-                    os.makedirs(target_dir, exist_ok=True)
-                
-                for folder in ["props", "textures"]:
-                    src = os.path.join(scene_dir, folder)
-                    dst = os.path.join(target_dir, folder)
-                    if os.path.exists(src) and not os.path.exists(dst):
-                        try:
-                            os.symlink(src, dst)
-                        except OSError as e:
-                            raise RuntimeError(
-                                f"Failed to prepare HSSD scene asset alias {dst} -> {src}."
-                            ) from e
-                        print(f"HSSD: linked {dst} -> {src}")
-                            
-        except RuntimeError:
-            raise
-        except Exception as e:
-            raise RuntimeError(f"Failed to prepare HSSD temp asset paths for {usd_path}.") from e
-    
