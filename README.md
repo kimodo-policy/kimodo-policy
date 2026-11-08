@@ -472,6 +472,8 @@ This example uses **three GPUs**, one per level. With `--gpus 0`, the levels run
 
 ![Note: SIMPLE evaluations involve stochastic policy sampling and simulation. Success rates may vary slightly across runs, even with the same settings.](asset/readme/simple-reproducibility-note.svg)
 
+![Note: SIMPLE's official datasets and evaluation resources are still evolving. Once the upstream resources are fully released and stable, we plan to extend single-task training to more tasks and add multi-task training and mixed-task evaluation.](asset/readme/simple-future-releases-note.svg)
+
 ## 🦾 Real-World Data Collection, Training & Deployment
 
 Collect demonstrations with PICO teleoperation, fine-tune Kimodo-Policy on your recordings, and deploy the resulting policy on a **Unitree G1 with two Dex3 hands**. The workflow uses a **robot-side workstation** for teleoperation, recording, and SONIC control, plus a **GPU server** for training and policy inference. Isaac Sim and Isaac Lab are not required.
