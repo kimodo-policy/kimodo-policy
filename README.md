@@ -609,7 +609,7 @@ Collect demonstrations with PICO teleoperation, fine-tune Kimodo-Policy on your 
 
 **Workflow:** prepare environments and assets → collect and validate demonstrations → transfer data and fine-tune → serve the policy → execute on the robot. If you already have a compatible task checkpoint, start with environment preparation and proceed to deployment.
 
-### • 1. Prepare Environments & Assets
+### ⚙️ Environments & Runtime Assets
 
 Clone this repository on both machines and follow the [real-world installation guide](real-world/docs/01-install.md). On the GPU server, use the `kimodo-policy` environment; `bash setup.sh --only training` installs the shared training dependencies. The workstation requires separate teleoperation and collection/bridge environments and the matching SONIC runtime; the root setup script does not install these. See [environment versions and required assets](real-world/docs/00-versions-assets.md).
 
@@ -617,7 +617,7 @@ Create `real-world/local.env` and `real-world/deploy/deploy_config.json` from th
 
 The eight evaluated [real-world policy checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World) and their [training datasets](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld) are released separately from Git. The matching `workstation-runtime.tar.gz` is still required for robot-side collection and execution and does not yet have a public download link. Code, checkpoints, and training data are available; the workstation runtime distribution remains pending.
 
-#### • Released Checkpoints & Training Data
+#### 📦 Released Checkpoints & Training Data
 
 The release contains **236 demonstrations** across the eight evaluated tasks. Each policy is fine-tuned from 419h pretraining; the selected checkpoint steps match the deployment task catalog. The `long` task uses the original `teleop-long` dataset.
 
@@ -641,7 +641,7 @@ cd /path/to/kimodo-policy/real-world
 source env.sh
 ```
 
-### • 2. Collect & Validate Demonstrations
+### 🎥 Data Collection & Validation
 
 On the workstation, first complete [network, PICO, and camera setup](real-world/docs/02-network-camera.md). Then follow the [collection guide](real-world/docs/03-collection-training.md) to launch the following in **separate terminals**, each initialized as above:
 
@@ -663,7 +663,7 @@ export DATASET="$WBC_ROOT/outputs/teleop-your_timestamp"
 
 Keep `meta/`, `data/`, and `videos/` together. Follow the [transfer instructions](real-world/docs/03-collection-training.md#36-transfer-data-from-the-workstation) to copy a validated dataset to the GPU server, for example `real-world/data/teleop-banana/`. Independently recorded sessions need episode/metadata merging; copying them into one directory can overwrite episodes.
 
-### • 3. Fine-Tune on Your Data
+### 🚀 Fine-Tuning
 
 Run the following from the **repository root on the GPU server**. Replace the checkpoint path with a compatible [pretrained Kimodo-Policy checkpoint](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train), and `teleop-banana` with your dataset directory name under `$REAL_WORLD_ROOT/data/`.
 
@@ -681,7 +681,7 @@ This example uses **8 GPUs**, batch size 8 per GPU, and no gradient accumulation
 
 See the [fine-tuning and resume guide](real-world/docs/03-collection-training.md#37-model-host-eight-gpu-fine-tuning) for resuming a run and preparing text embeddings. New instructions require the Llama/LLM2Vec assets listed in the [asset guide](real-world/docs/00-versions-assets.md). For deployment of newly trained instructions, set the server's `KIMODO_TEXT_CACHE` in `local.env` to the training-generated `data/cache/RealWorld/` directory.
 
-### • 4. Deploy the Trained Policy
+### 🦾 Policy Deployment
 
 Set `tasks.<task>.checkpoint` in `deploy/deploy_config.json` to your **absolute checkpoint directory**, and check that its dataset, instruction cache, and initial pose match the task. The supplied configurations cover `banana`, `boxing`, `pushing`, `transportation`, `sitting`, `football`, `pnp`, and `long` (`teleop-long`). A new task also needs its own matching configuration and calibrated initial pose.
 
