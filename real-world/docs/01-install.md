@@ -72,7 +72,7 @@ The model and training interfaces are already integrated in this repository. No 
 "$KIMODO_SERVER_PYTHON" tools/check_environment.py server
 ```
 
-Install the base models under `$KIMODO_PROJECT_ROOT/checkpoints/`. In `deploy/deploy_config.json`, set each `tasks.<task>.checkpoint` to an **absolute checkpoint directory**. Explicit paths avoid ambiguity between training runs.
+Follow the [download and verification guide](released-assets.md) to obtain the eight evaluated task checkpoints and training datasets. Install the base models under `$KIMODO_PROJECT_ROOT/checkpoints/`. In `deploy/deploy_config.json`, set each `tasks.<task>.checkpoint` to an **absolute checkpoint directory**. Explicit paths avoid ambiguity between training runs.
 
 ```bash
 "$KIMODO_SERVER_PYTHON" tools/preflight_server.py boxing

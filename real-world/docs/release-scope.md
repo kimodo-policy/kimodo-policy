@@ -10,7 +10,7 @@ The old SONIC submodule path is retired. Use the pinned runtime archive under `e
 
 ## Distribution
 
-Commit source, configuration examples, manifests, and small task text caches to Git. Distribute the approximately 3.81 GB runtime archive, base models, and task checkpoints separately. Maintainers must provide actual download locations; this package does not claim unpublished assets are publicly available.
+Source, configuration examples, manifests, and small task text caches are distributed through Git. The eight evaluated policy checkpoints and training datasets are available through Hugging Face; see [downloads and verification](released-assets.md). Base models are distributed separately. Public distribution of the approximately 3.81 GB workstation runtime archive remains pending.
 
 The runtime archive retains upstream licenses. Native libraries, robot resources, and models remain subject to their original licenses and redistribution conditions. No new third-party license is granted by this packaging work. Workstation native binaries target the recorded Linux x86_64 environment, not the robot's ARM64 environment.
 

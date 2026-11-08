@@ -1,0 +1,2469 @@
+{
+  "schema_version": 1,
+  "model_repo": "YunhengWang/kimodo-policy",
+  "dataset_repo": "YunhengWang/kimodo-policy",
+  "tasks": [
+    {
+      "task": "banana",
+      "dataset": "teleop-banana",
+      "instruction": "Pick up the banana from the white table in front of you and place it on the white table behind you.",
+      "checkpoint_step": 20000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000",
+      "episodes": 33,
+      "frames": 27069,
+      "decoded_video_frames": 27069,
+      "fps": 30
+    },
+    {
+      "task": "boxing",
+      "dataset": "teleop-boxing",
+      "instruction": "Strike the target in front of you, first with your right hand, then with your left hand.",
+      "checkpoint_step": 25000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000",
+      "episodes": 29,
+      "frames": 15693,
+      "decoded_video_frames": 15693,
+      "fps": 30
+    },
+    {
+      "task": "pushing",
+      "dataset": "teleop-pushing",
+      "instruction": "Push the cart in front forward for a certain distance.",
+      "checkpoint_step": 25000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000",
+      "episodes": 25,
+      "frames": 19102,
+      "decoded_video_frames": 19102,
+      "fps": 30
+    },
+    {
+      "task": "transportation",
+      "dataset": "teleop-transportation",
+      "instruction": "Move the gray box from the right-hand table to the white table.",
+      "checkpoint_step": 30000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000",
+      "episodes": 24,
+      "frames": 15012,
+      "decoded_video_frames": 15012,
+      "fps": 30
+    },
+    {
+      "task": "sitting",
+      "dataset": "teleop-sitting",
+      "instruction": "Walk over to the large orange steps and sit down on them.",
+      "checkpoint_step": 20000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000",
+      "episodes": 30,
+      "frames": 10687,
+      "decoded_video_frames": 10687,
+      "fps": 30
+    },
+    {
+      "task": "football",
+      "dataset": "teleop-football",
+      "instruction": "Kick the football into the goal",
+      "checkpoint_step": 30000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000",
+      "episodes": 38,
+      "frames": 11867,
+      "decoded_video_frames": 11867,
+      "fps": 30
+    },
+    {
+      "task": "pnp",
+      "dataset": "teleop-pnp",
+      "instruction": "Use your left hand to place the orange fruit on the left into the plate, then use your right hand to place the purple fruit on the right into the plate.",
+      "checkpoint_step": 25000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000",
+      "episodes": 28,
+      "frames": 18747,
+      "decoded_video_frames": 18747,
+      "fps": 30
+    },
+    {
+      "task": "long",
+      "dataset": "teleop-long",
+      "instruction": "Open the blue section at the front, take the green apple out of the tray and place it in the drawer, then close the drawer.",
+      "checkpoint_step": 30000,
+      "checkpoint_path": "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000",
+      "episodes": 29,
+      "frames": 39592,
+      "decoded_video_frames": 39592,
+      "fps": 30
+    }
+  ],
+  "files": {
+    "models": {
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/config.json": {
+        "size": 2996,
+        "sha256": "90294a989e0e2c44c68299bc96ee5dd2b90c1e1d28304125e603a1dc76a7a5fd"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00000.pt": {
+        "size": 13973,
+        "sha256": "85e3d730fc70a37b35a9124f687573fbdf9515d4e4a4d449d38b67bb8d0f72b7"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "c3bb3b8df51118ccaa75f644720dbac402458fa0bb0a9319fa2f913c40fe6b19"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "fab4fe7680df2ca22970f9060ff57f1a0fe924b5243d3960ad49dddf308b2182"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "69ed6fd17c9a238eaabc23d3a041e47f316ce37954c2062ab3b31c515e957c45"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "9604c39710ab99ad7db416b9b32a40c58df00215eca736f41922a82febfcaff1"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "2e0c501f3ad01cdedc9db7739b0fd0b7a07627897d3529114d4e84c9ee6301a9"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "085a400cffe873df697f15c6bc78e63ca82aafd38f10cee0d128303fbc4636e6"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "6f72c11799c76c03f9ca9aa329f0c14ce090f68d07482e9f5c539090fc5201d2"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "9201d7d9aba40080de8df0af9666d9bfc41e2f4635dbd71d2875e1fd279c697d"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/config.json": {
+        "size": 2976,
+        "sha256": "63152b1730f8edd28166bf816d33d1290c9adb5e0c1c323726cf64f09623e4b1"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00000.pt": {
+        "size": 13909,
+        "sha256": "c0881fe180766fe50d2ba0d1d6c696d0befb516da3fae2fcc5f0f966943a8d4b"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "8064e1f816404b8f210b184ab598f9e8b98474bf657dcaccb5679ec8a31a7366"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "eda8e5cae0833ccfc0a6f605c24dd587b06ff413014d6967822f40704ce4652f"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "1d91fa0f2c87d3fab9ac28e4a29e0abedd271c69355bde26922603f41e172d1c"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "02bf84980ed38ebf776ee61f1a0f2c1d836e736ffb33a7e692917c6323a01300"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "c2565edb227c63b1c273523c7862ba1d92fb8d33c454448276fb37903cfd6151"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "b8ce6ff6651a9255e2240eb48616eae39a3f4edec1e7a7f87ec7e44bdb6efebb"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "df02b0bb8e34443031bbe68dddbcb470e1bbda53014fbf532df2c7c26f30306e"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "e9391fdafb40381d0b047e5c619517857c6f33f74fb4aa2657c65e1f165e4a00"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/config.json": {
+        "size": 2982,
+        "sha256": "617654ad31a08a5fa25e0c66c426aa750313e0e6162914932369a6e9e3a0a815"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00000.pt": {
+        "size": 13909,
+        "sha256": "087e6003dcc8602a130f2b48ffec897cf9af5ea4b4081b4f094fe5ab69fc815a"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "86e84a670f442237c0172aac56fc34693f85324a30e3cd9d4d708c982ffdc449"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "256fda5b21c910e1190200c94cb92653c78e27b1252b702efb65d8194a2497d5"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "86212a33d94e5a284cc6c1f9b06753c9884bb85abac6f2f2c097f3646f877eda"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "7d439c670c567c6dfa8993300196b3ea04f87321a4e56e94f862f9d1b25effaf"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "0d2f795d94ca2a9fc21b9df3ce21290f37a5dff61f9cd1ea9ed7bbeba15ecdc4"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "3b69faddd50e2ea69b9f95b9c5de6e493bd4268d66ba118a9a41c47875eb6a42"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "ff343e5cb686a405a30df9ba2df6aab8bf520f9ed9b4f2ed3f36c20444f74a2b"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "b3725ce011327334c7950bc61198330ecf9734aa77a541b723b968fd9e2e0e05"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/config.json": {
+        "size": 2970,
+        "sha256": "1b8b52523719ad1de77484134f1a3f304f24b39f5a34d0cdef793287021b8e0e"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00000.pt": {
+        "size": 13909,
+        "sha256": "087e6003dcc8602a130f2b48ffec897cf9af5ea4b4081b4f094fe5ab69fc815a"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "86e84a670f442237c0172aac56fc34693f85324a30e3cd9d4d708c982ffdc449"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "256fda5b21c910e1190200c94cb92653c78e27b1252b702efb65d8194a2497d5"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "86212a33d94e5a284cc6c1f9b06753c9884bb85abac6f2f2c097f3646f877eda"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "7d439c670c567c6dfa8993300196b3ea04f87321a4e56e94f862f9d1b25effaf"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "0d2f795d94ca2a9fc21b9df3ce21290f37a5dff61f9cd1ea9ed7bbeba15ecdc4"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "3b69faddd50e2ea69b9f95b9c5de6e493bd4268d66ba118a9a41c47875eb6a42"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "ff343e5cb686a405a30df9ba2df6aab8bf520f9ed9b4f2ed3f36c20444f74a2b"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "86d2bda0bb2afa2a60c17cbaeed3a1c014216de7f09f5d83706f30d128b7c78e"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/config.json": {
+        "size": 2967,
+        "sha256": "296165ce9b57b5203542ac15d041a05597d31469c27d06ab304448e8eeff34cd"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00000.pt": {
+        "size": 13909,
+        "sha256": "51617f23bf8b811c5bcd465ec5bdb8a99b30277ed56317877cb7f8d18a5f254c"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "1e5ea5c4a8542deb9a24fdd721cc271bb6371ec96b517794c7fdef594e2ba0c7"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "cbbf369a87e0541cee8882453a0442fda81151a7180d57403c5716343032b53e"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "dd6c67164bddc97ae66f2df9db949724d33dfb90bc0ac8ac07fd494595bfdbee"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "d9a442fc51ac4449415f0359ec1c5f2f01c57706c81a702e4b1822149af7d656"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "b264af08afa37fad736035269bab1d99daae1f3934913d57fcd4889a966f7cf8"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "a6251722c5e09d0c8274137f7c061ce4e58414af18f9e33e15af90dfd132eeca"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "33c73e15c793da6bf5bf7a22169d34d630a500a3fb199be2e73e8a2c0930735c"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "af185f799daab0fc67ec36ea494305217dc480658e5cbab835e961802fc405bb"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/config.json": {
+        "size": 2979,
+        "sha256": "60b0be4965cad76bdd9853329c8ea3087ecb6badd3b7288a46a1529d6e222b22"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00000.pt": {
+        "size": 13909,
+        "sha256": "c0881fe180766fe50d2ba0d1d6c696d0befb516da3fae2fcc5f0f966943a8d4b"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "8064e1f816404b8f210b184ab598f9e8b98474bf657dcaccb5679ec8a31a7366"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "eda8e5cae0833ccfc0a6f605c24dd587b06ff413014d6967822f40704ce4652f"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "1d91fa0f2c87d3fab9ac28e4a29e0abedd271c69355bde26922603f41e172d1c"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "02bf84980ed38ebf776ee61f1a0f2c1d836e736ffb33a7e692917c6323a01300"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "c2565edb227c63b1c273523c7862ba1d92fb8d33c454448276fb37903cfd6151"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "b8ce6ff6651a9255e2240eb48616eae39a3f4edec1e7a7f87ec7e44bdb6efebb"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "df02b0bb8e34443031bbe68dddbcb470e1bbda53014fbf532df2c7c26f30306e"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "b657f11c2757703c9055f764c61bc1dbe53e10c71459e0bbbed90433007c4927"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/config.json": {
+        "size": 2979,
+        "sha256": "5a2b3908a034ca021cbcf7a33434ce39c4215754a1537429fa1a9014f9be4246"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00000.pt": {
+        "size": 13909,
+        "sha256": "3c56ae8ab128640113df230f64d201490d21c9bb1553dc9693bf184ae67bfa89"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "c3bb3b8df51118ccaa75f644720dbac402458fa0bb0a9319fa2f913c40fe6b19"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "fab4fe7680df2ca22970f9060ff57f1a0fe924b5243d3960ad49dddf308b2182"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "69ed6fd17c9a238eaabc23d3a041e47f316ce37954c2062ab3b31c515e957c45"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "9604c39710ab99ad7db416b9b32a40c58df00215eca736f41922a82febfcaff1"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "2e0c501f3ad01cdedc9db7739b0fd0b7a07627897d3529114d4e84c9ee6301a9"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "085a400cffe873df697f15c6bc78e63ca82aafd38f10cee0d128303fbc4636e6"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "6f72c11799c76c03f9ca9aa329f0c14ce090f68d07482e9f5c539090fc5201d2"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "b5d9ec04df1f89161ec83832f5b352f0c309c8d0e89fa613d64449d10274433b"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/config.json": {
+        "size": 3000,
+        "sha256": "3b78c0efd1a6463fe253595b6ccb04057d93627d23331dd4643049f6918b2526"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00000.pt": {
+        "size": 13909,
+        "sha256": "bd73aa9fa40eccbd7f5ad9e2e0aa4a5c22da1f781ab74e1820529d4321a15e49"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00001.pt": {
+        "size": 13909,
+        "sha256": "1515e8367d122c68c247d29a0b05fb090a6404e694a835c5b9fc384a629bf8b1"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00002.pt": {
+        "size": 13909,
+        "sha256": "633959fccf2af2b65b47943ca50fda5fd063153d2bdac4fc2ac0f192f0c87e1a"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00003.pt": {
+        "size": 13909,
+        "sha256": "b626d13c2c0dcf50ed97ed83646cc46e15e714b17d05950d37e52ca9aaf51e76"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00004.pt": {
+        "size": 13909,
+        "sha256": "9b53434dd8cd650fd0a9b22e9ba902947a8bd177624d9dd2374e2d69407e454c"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00005.pt": {
+        "size": 13909,
+        "sha256": "218b48a634ba3a3e0e51b1c0df7005bce897aa3888a38312525f610905660eee"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00006.pt": {
+        "size": 13973,
+        "sha256": "f93a8ec7749bcdd3c5a77bf4641fb670b44a8cfd6ff5f79c73f655b4398e8ee0"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/rng_state_rank_00007.pt": {
+        "size": 13973,
+        "sha256": "c32c35d3f904df6cfd94d28acd856a4d28178f9ee54bb91b850fb8549e901856"
+      },
+      "Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000/training_state.pt": {
+        "size": 1100888441,
+        "sha256": "d027baaca282a16c2cb08f9e963e53d86008c6699408fbe82d0668391d16418d"
+      }
+    },
+    "datasets": {
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000000.parquet": {
+        "size": 2841191,
+        "sha256": "9061ed621939a14c8f3c10d154fb074e8b2b314ae79aba031ea7a0b209fb2270"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000001.parquet": {
+        "size": 2413059,
+        "sha256": "92fc7aa2b3c0df362c641ee62d87107e6e5ff051647383130ab10330ce8e85e4"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000002.parquet": {
+        "size": 2628999,
+        "sha256": "66206ff3223b5275685fc7216588a227a7170aae8e11a39006e9ccbae86d7904"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000003.parquet": {
+        "size": 2468060,
+        "sha256": "92a7677a16cfaeebe0531b06bec8ddb38c1e3fb3ed7c8a1f7bfefd45cf2795e2"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000004.parquet": {
+        "size": 2943301,
+        "sha256": "f92c188a95d89119e11b7bfb928bb8c02d86f8ccddb33ba3b32ad279601ac2f1"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000005.parquet": {
+        "size": 3422923,
+        "sha256": "3d808c63bdf9a792fc42b4ac9af417b2cb572af7c527033ab3ab07bc719eb11f"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000006.parquet": {
+        "size": 3766927,
+        "sha256": "a552f30e5a943c39586925b67057870aaebd2298b43a43f9c6409543b5516fc3"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000007.parquet": {
+        "size": 2769873,
+        "sha256": "d1b438c1255a0e6bd29f7d68ecbdccd2af83dca00051a348d00dcde4060dc550"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000008.parquet": {
+        "size": 2719971,
+        "sha256": "c0707452651bd33b3476fa22471773d550f113cafb0541a6f6c8d534b3e06be7"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000009.parquet": {
+        "size": 2784870,
+        "sha256": "2b6ecedddc6912c71f9f947ed11b95f2a31457f74f36ad3ec8eb0aca06566701"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000010.parquet": {
+        "size": 3137203,
+        "sha256": "08356d21629841e09c21c8bc101ae74ead88c44c7ea7950d6c30d230ac947f43"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000011.parquet": {
+        "size": 2952830,
+        "sha256": "c878694ffee474c27679584a77128e7dfb202e390d01cbb52484857912b8686e"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000012.parquet": {
+        "size": 2735347,
+        "sha256": "d15556987a3aa61a8bc238c3465ee1b532626f7eb5e5cb593c93bad8874bb067"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000013.parquet": {
+        "size": 3215043,
+        "sha256": "db8b6a5dc3f85d1961ec05eee8232be574efd1c28d14765a45f10faa941a88bf"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000014.parquet": {
+        "size": 2755535,
+        "sha256": "389b50279ab3b1bd4cd117d7bbf31b6797b043078bf9f70561c0f69cb79e0823"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000015.parquet": {
+        "size": 3193647,
+        "sha256": "ca9f9ef18f41a0b5f95a82fdf64648b9fbcde2a9710150f40c413139ff7dbe91"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000016.parquet": {
+        "size": 2886199,
+        "sha256": "7645615f7a3ecec39bc1a4ae9b6a57e10366e352c1c2f1211a0208a47bb8f079"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000017.parquet": {
+        "size": 2874060,
+        "sha256": "a5f215f2f504a6132c900f630fb1111ec0c8514c5628149510c05bb88c153655"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000018.parquet": {
+        "size": 2820274,
+        "sha256": "b92c9edc11af20395017fbb94b271a26f311d56a7b76d72dc46ca2c2663f9243"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000019.parquet": {
+        "size": 2584194,
+        "sha256": "596760d3c5e091b623dd48ef600b830bafd9e344f28eaff100ddb9d9c48f476e"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000020.parquet": {
+        "size": 2707178,
+        "sha256": "4b2c09b00f4ab9ded4dcc59b021ac7ed7e5bed2a609a016029686fe2e063280f"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000021.parquet": {
+        "size": 2858204,
+        "sha256": "688df0b560f2a2e196afd8bd4c2fdf8d2d6f59b45eacb3eee6780011e79dbaf3"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000022.parquet": {
+        "size": 3002581,
+        "sha256": "e258e14bf508ef50a9d9e6cb85fcb33334b7d23310a953a5de34067a64d97669"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000023.parquet": {
+        "size": 3046542,
+        "sha256": "388b01de3cefeacd360b7353be8dcd56e1d10a81b721fe09eb037b5153eb4b85"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000024.parquet": {
+        "size": 2734749,
+        "sha256": "216519ac60845e00e3aa5b35a5751bd8bdab14e987127abec648784f33ccd19b"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000025.parquet": {
+        "size": 2571327,
+        "sha256": "f32374f32c5260e6904e92207d920bdd421682daad2413ddb107ad0d0df69061"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000026.parquet": {
+        "size": 2410119,
+        "sha256": "9830fce2ccd2796a23f02a847c42ae454bfbccad49db5d38aea49139f94c75ca"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000027.parquet": {
+        "size": 3362438,
+        "sha256": "8f8365f5aac6d86380e90010fae7288573b7172e50ed6bcffc20bb6184daf93a"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000028.parquet": {
+        "size": 2364086,
+        "sha256": "d8dc96897c301ae33ef80f1e765f9deb0f6281c8154867f64b7830f5f530fa72"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000029.parquet": {
+        "size": 3061574,
+        "sha256": "5ca6e65bd4c5cccac1de4541a85e014a044117cc66f1c06c913d371df530266f"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000030.parquet": {
+        "size": 2643840,
+        "sha256": "0373a7027755556ef51401af4d5932f5c4ea20b55dd177b3f5976d041568b650"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000031.parquet": {
+        "size": 2676983,
+        "sha256": "5956d583602255a002059f986ec71b749bd83cdc2c17293cc0a731d62792a579"
+      },
+      "data/RealWorld/teleop-banana/data/chunk-000/episode_000032.parquet": {
+        "size": 2862936,
+        "sha256": "7c4f190ac1c8ca2379ccfb9cf6e3ab23c4d108d5d39d0d33db9afebcd85e0fa6"
+      },
+      "data/RealWorld/teleop-banana/meta/episodes.jsonl": {
+        "size": 4974,
+        "sha256": "69a6e5d61bf013e25171f6e65a0c12286c6a1fc0da3f8bb55897659807cf6d77"
+      },
+      "data/RealWorld/teleop-banana/meta/episodes_stats.jsonl": {
+        "size": 1779231,
+        "sha256": "81e59fcb935188eecbe00390833ff8eab12e1a13a85ad21badc539eda7587cee"
+      },
+      "data/RealWorld/teleop-banana/meta/info.json": {
+        "size": 24539,
+        "sha256": "6da5ecfc80d148ce836ad2860062320a3a9644c74747b8c24ebe0860f654e361"
+      },
+      "data/RealWorld/teleop-banana/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-banana/meta/tasks.jsonl": {
+        "size": 129,
+        "sha256": "3ca0d03c6908c39f28717b9b7f81894128f812c632a78373ba747da298fbb779"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 4386065,
+        "sha256": "4ac36e92d9a734bff75d433e97fcd797e40196c85413a536cd2a159ccdaa596a"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 3604361,
+        "sha256": "8fad5f82756a9ce3a8349a8e7861292e06ad6266c73f7ef8edbb11da6bc6665f"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 3509318,
+        "sha256": "d8a928828aa99021869c61d1d4e501d3c3dd373a1c74ab9105a4b98c2d844cca"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 3600790,
+        "sha256": "e55d765243d7099ca4ed8ae1ef7fa6c80107cdc4cb9506b41674b5b72a9c5fc0"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 4139283,
+        "sha256": "c3f548384a35181da16bf6937343626d7e58b62a35f0a1736f1c11ed37576994"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 4305616,
+        "sha256": "8da5accd8439300ed02896eae47b75531e379c54785a1059675ce417ced7f483"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 4945814,
+        "sha256": "c023f1650d3f746a3db887dd4e6f5cd19560dae9121e354729276db81480e6b6"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 3870939,
+        "sha256": "17e81064b2394a28ffcdc372687e091d6d7c747d03800f70291404fbd7fe3ff3"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 4004877,
+        "sha256": "e5e3efe7a3ca6eabdb2079d0627b94696046fe028f94e372d4821d493d74ed77"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 4134433,
+        "sha256": "500539a06c6a2102056132a283cbea3c86fe97e92ac215bda51cb8d5dd6e1308"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 4428029,
+        "sha256": "cdc206280e9ec77542bd698aebf88f08b2bdf1acce531fa5a80f6471b1fc3cdd"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 3958659,
+        "sha256": "5bced3f2afee199131ecbbf5e9c9ce6b1ebaf782df5b889799fa75670a682aca"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 4042100,
+        "sha256": "46f68a42d1be933c0e0a9ac0f9e7f1c691c3d66506df81dff75bbbcc1c13eb9c"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 4889718,
+        "sha256": "2b6885bc1cf885529e8f285cff5a448fc9414c4b6ff70af8e8d3316e674a7e22"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 4426428,
+        "sha256": "539188a260e3ee70b45d73bb53478552658fa2a2dac7e39e809d8d59a71b1c86"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 4534834,
+        "sha256": "e7e0e96d1323ce879d37d489434c2a0a71530d90b999e9b076f1cfea1b1c5eaa"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 4797536,
+        "sha256": "3fcf4510d8cd68adb438589207022fc84aaadc1b144223ad13cc2d9aee264a27"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 4568451,
+        "sha256": "3b9052ad98f845de094744e041f9cd16d81fdd29b9c4f3b60b5636595b2598bf"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 3659241,
+        "sha256": "07577dfc59115c5595da9da77dd8c13b419d6268965a7a577512cc251d30e272"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 3435404,
+        "sha256": "920f6019137d88e5f611fc7871c8cf1ef55ab8c70c04fcb05b283594bd9c89f2"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 4094872,
+        "sha256": "0cec8e2ea538970ae9da085132aace079a0c4b318a573a7542e12d314307702a"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 4419042,
+        "sha256": "5a91acc469cb53f16b445d5f8e84fb529a5009e4b8c0ea67506be5daedb18297"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 4537066,
+        "sha256": "6a5271eb5642e7d9fa06a4d25c3a6053708dcbdffccfa1f15fe4a5f42aaf0cc3"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 4263048,
+        "sha256": "7bbd772739e1502bdba0705ed6448dd3f4045dff0478f0de65822439435312c7"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000024.mp4": {
+        "size": 3797041,
+        "sha256": "439c516a7b6c21380618da5471f2a3d3ef29eae47f62982fa782bf759f9d0c57"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000025.mp4": {
+        "size": 3880090,
+        "sha256": "8730ddcd2bf14185f4e9ac91ae1f0a3262b3eeff33bac062662fd83e736d3254"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000026.mp4": {
+        "size": 3676688,
+        "sha256": "8e00cb4a99c5f50d1cf8f091cfdca05bc6d85be9df0608400605caec30719050"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000027.mp4": {
+        "size": 4588261,
+        "sha256": "67280fe878e556799a91d0794406d5dac8fe9e6073b68a983d3df241986984d1"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000028.mp4": {
+        "size": 3299125,
+        "sha256": "ee293267a35a04a2261c39b35f04194ebe551b0d224d0618029ea23034fcd9ec"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000029.mp4": {
+        "size": 4322448,
+        "sha256": "994b794ceba1842f01313a5f50bf7b21fb7f71df514aaaf99fa4c88b776b8bb5"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000030.mp4": {
+        "size": 3792963,
+        "sha256": "830a46852a3577d203565aa7e8b6f3ee0557d698c8a30b8f095257a31e0ddaf1"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000031.mp4": {
+        "size": 4228794,
+        "sha256": "b7fc40a8a458941a9e9301e52caad74eb91e2003a5b53aba6990b87bc53f8b00"
+      },
+      "data/RealWorld/teleop-banana/videos/chunk-000/observation.images.ego_view/episode_000032.mp4": {
+        "size": 4035447,
+        "sha256": "59fc39afddd197d39dc8e1cb67c156e75cc092fb1478b621d531ffe7798be64e"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000000.parquet": {
+        "size": 2228003,
+        "sha256": "52dc58429ab01a64be2e27f3e15172fed353ff1135929852b64f8c46a82f7d9e"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000001.parquet": {
+        "size": 1820364,
+        "sha256": "be1026e9cb6c2be82df848e1fc8834f0e1bd5abf7b38004f3c26cdb8fc0da81a"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000002.parquet": {
+        "size": 1756038,
+        "sha256": "b432ed25cef34c4b0ee6a960c121136dbb1886139c311dbdef47b93e9f0c800c"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000003.parquet": {
+        "size": 2047420,
+        "sha256": "81df90846ec1ebd78411d3a74d2cbeed7cb695f902f178fd4aa457dbd918f095"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000004.parquet": {
+        "size": 1854576,
+        "sha256": "057c74a4c3ee2f2b2bafbbd8ed7f18b398d4830cebff1459d4189ba59ad5f106"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000005.parquet": {
+        "size": 1942870,
+        "sha256": "0d22f3fbf30657545425f558b0545461482d00559ad23d80050f3b07b36e8d2a"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000006.parquet": {
+        "size": 1833296,
+        "sha256": "82e60435b95a706497c914feca9d6979223a1b66f06ec4430b638791610904ef"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000007.parquet": {
+        "size": 1727207,
+        "sha256": "133561cc8bb30af0b5556143e930c9218446f656e677e30cb2557046fa9c7257"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000008.parquet": {
+        "size": 2572103,
+        "sha256": "47212b37cbae303bdb517265100f0f7bb1554db1c18fd906e7c6043bdb3113fd"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000009.parquet": {
+        "size": 1729150,
+        "sha256": "7d9ac76d6cca871a07759b3bfcd6e3dbf5b62de0c3d82c62c64282b478926e64"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000010.parquet": {
+        "size": 1896885,
+        "sha256": "e801c5731f96ac8feaf0f818ebc8040e65e4314ece29bf24b2d0d51e848b0225"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000011.parquet": {
+        "size": 1868368,
+        "sha256": "dc46eab522037d574856961d3cdd44dfca39af98cb567e849b01248de9f90cdf"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000012.parquet": {
+        "size": 2105516,
+        "sha256": "59b3505f49ed5cff81433ea3c13aa4fd7e1a67725c91407d33bcdc0ae557a256"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000013.parquet": {
+        "size": 1936991,
+        "sha256": "0df5db6adfc484d2e5a8c97065da343ab7b91f29e0e32600036b9d3fa7010ce7"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000014.parquet": {
+        "size": 2106315,
+        "sha256": "1527125f3d256ad5105a9bc26b45efe85893f0a04fd7b565a6d841e5d94704ce"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000015.parquet": {
+        "size": 1848268,
+        "sha256": "64961fea7e67776be2b3b89087570ad11902d0839fa35979b6ace19a001b4e19"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000016.parquet": {
+        "size": 1906791,
+        "sha256": "494ef315d03388f914c838dabde5d1a94a824bbdd01f45fea179aa25511f5ba9"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000017.parquet": {
+        "size": 1890596,
+        "sha256": "0b2b30fbfa849911b5af613341f8bd5f0d3234ab2ea44f0dbdad0911b4938ec6"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000018.parquet": {
+        "size": 1765633,
+        "sha256": "7e28239c93cb1fd5e7e291b5fc50a8fdc914886e71c82c313a828fc34d8d22e7"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000019.parquet": {
+        "size": 1885016,
+        "sha256": "182412385cfc1354a99b56e74844cc18ab94e322b57a661bdd373e3d8c3961d7"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000020.parquet": {
+        "size": 1577336,
+        "sha256": "7589a0d553467d24b5be4212093f40ddcb9cd1fe17c0e495425cc7d8a3b2e79e"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000021.parquet": {
+        "size": 1872594,
+        "sha256": "8e72c419f9843fa64d8ae6edee54bc12a9c61298c3c83d2116b513d97c044656"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000022.parquet": {
+        "size": 1961958,
+        "sha256": "e8890db3a4ae358563779abcdfe03dc1dea07946c56b24e7f77a0a686c4ee3ca"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000023.parquet": {
+        "size": 1758846,
+        "sha256": "277056287d2f6434850a81acb8c051144aef3f0bfe9090c4ab643d6dd78719c0"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000024.parquet": {
+        "size": 1743761,
+        "sha256": "2c0bf68e41147264119922c2f1f47ea658b965190fb0566e9932cca58e25b243"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000025.parquet": {
+        "size": 1710875,
+        "sha256": "2adaa6812498edea1c063fa1f6e0c251090d9e741f3be7259bda0abb97d1d439"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000026.parquet": {
+        "size": 1635293,
+        "sha256": "fc7bf9daae84f6884d431de983416d283f36fb6f88d46f873a2ffafa8d45b737"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000027.parquet": {
+        "size": 1857007,
+        "sha256": "2eeb2c4b7cf6ceae93a1f2e72b5f8321957480155b2563bdb757f2f01ac4c160"
+      },
+      "data/RealWorld/teleop-boxing/data/chunk-000/episode_000028.parquet": {
+        "size": 2183774,
+        "sha256": "90afce07869764684f577840133df4c4d43d29930e2de53988817256f1f22b3b"
+      },
+      "data/RealWorld/teleop-boxing/meta/episodes.jsonl": {
+        "size": 4050,
+        "sha256": "a7502f304c517407943233f8c7d0c0ed6c4064d5c47f5d9165c2532acf5980cd"
+      },
+      "data/RealWorld/teleop-boxing/meta/episodes_stats.jsonl": {
+        "size": 1583017,
+        "sha256": "a23c0d2ca7400581e7c41b377811873db87dc07719f465187a59ab309abc2458"
+      },
+      "data/RealWorld/teleop-boxing/meta/info.json": {
+        "size": 24539,
+        "sha256": "6742c52c0f768d316da4a16b93599d04a2274d1466828404289234e0f126b1c0"
+      },
+      "data/RealWorld/teleop-boxing/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-boxing/meta/tasks.jsonl": {
+        "size": 118,
+        "sha256": "eb2e6b0b62568f6b421845e6ff81219bdade6a403ad6d5aa4e61f1438b0bdba6"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 6255371,
+        "sha256": "75ed97503cd017ab202de278af3f496748b36ee141dd196c8e1247ecf48647a2"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 5593473,
+        "sha256": "6e16006db971ee07778ad29a966f0ed3e86b706ae62f3c7e88dfe003b9828560"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 5092688,
+        "sha256": "e4877a9538202ba4f84aa13720fcb4e316c96fc192026290e41c157dc6b94257"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 5950411,
+        "sha256": "abeec9d03490199f433bc16fe88687bc58c3fbecd1acc085045d681ff7767fa2"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 5556491,
+        "sha256": "65a85e752306149485d1e5605897720e1e5093ff076318414fc37e7deff3637c"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 5884252,
+        "sha256": "07f02b94ff8770cfd2080238caf864d3c4ba3cf945f4bda243b06bb9512c7b2e"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 4942777,
+        "sha256": "4b65f04988f80115335814381c94e2a02d71cfca9bf56b8c59a59ccc4e94d970"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 5443594,
+        "sha256": "620376bcc17d4676ad26debe60b331f4a86ff4b9b619f0da781bca9e7a842cc9"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 7605132,
+        "sha256": "30cfb8a71742012b419e6b59f3403946dd9abd49c3c110a755044926f94db38b"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 5200187,
+        "sha256": "4a99f1c569b838aebcdd7ccef9c6558aea78425a0a9c7819a6bd64ffc7f3a708"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 5516202,
+        "sha256": "5419152168545e543341abcae73c27bc33890cfcc565a74f3054e6dbc5e9fb66"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 4997263,
+        "sha256": "e7a69c24ec0b7f8eed348eb01040879526e03abb7637a76e5341517cd04c4077"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 6885400,
+        "sha256": "8661033a07858f9e85670c95086c3a086a7ed75e548985dde4dfdbda992b048c"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 5789417,
+        "sha256": "12298b14b1525424968e8963848025629dd29ae1e159060c403f3432057fe38a"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 5776066,
+        "sha256": "4bfe2eb99d3579b5df9cc53c595cc538c66883e8b1fbafa614af48471ebc31b6"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 5621401,
+        "sha256": "8d8b6ae17edadcadc5e43529d0544c65989967efc6390c28b35e1751f0d0f74e"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 5663629,
+        "sha256": "9249e5a94d0147a9c3437d218caa574280973c8aee8e4195bea4ef3141086780"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 6109340,
+        "sha256": "c093006c6534d13a27f35dc5cb63fc75dec95d229da84f7b4bbf406e8bd7b775"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 5543517,
+        "sha256": "fca0a1d7e0201d90742425ddbd38d053c2cd841712d6b00d855835f519ca0ec1"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 5634995,
+        "sha256": "1390f43054d8dabe745c5c49e9b97d5443b082cfbea146e602627af3be11f8f7"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 4949948,
+        "sha256": "ba882fb242cd10d7c6edc1d695d2fafdd595d72e4778536bdf6428b6c8a45773"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 5958463,
+        "sha256": "d75fc63d21c9ce9cda5941b58ba1850c31982a8a2d6aad2a0adebab4084f821e"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 6366146,
+        "sha256": "657123441b444230f5bb86046a09edd58c0d727884cf8f9b7cd3e251511c49ff"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 5638374,
+        "sha256": "4a12694559d350b1f137d99ccb23fe83bbf4da8240e552c8bd5d6dd522b3b378"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000024.mp4": {
+        "size": 5736018,
+        "sha256": "f732538166d69b2b2ed06cae12342e89762b375e57031a990e2e0a256529bb60"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000025.mp4": {
+        "size": 4711488,
+        "sha256": "a33209300ab5ec1e32c10cb1c7ea2849909895d0f7140b8e358685a3d5b74021"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000026.mp4": {
+        "size": 5183864,
+        "sha256": "4aec8a9f554741c5f8061944e519bfefb38fbb26f6ddadb463aefe179a832ac5"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000027.mp4": {
+        "size": 5960300,
+        "sha256": "186456f510ef71cbb2018aa5995b099b1cde5be7bd88e54193f2969bda72531f"
+      },
+      "data/RealWorld/teleop-boxing/videos/chunk-000/observation.images.ego_view/episode_000028.mp4": {
+        "size": 6869292,
+        "sha256": "37f3a06dd649a4134fa8c80ebf9b1ea38980d78314da600891b3fda4c6a93a89"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000000.parquet": {
+        "size": 1605727,
+        "sha256": "5018bc060a9701b5ecf590e32b1b9fa2f435a8b209a59eccbf7854228dd0f2bb"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000001.parquet": {
+        "size": 1763476,
+        "sha256": "d864a00a7d62499ce4e9219a768f7c686ff15b1fe14c81ec6b590b81b20b4ed4"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000002.parquet": {
+        "size": 1088557,
+        "sha256": "35c3c2a7b6e439b3cc292966bd9a11142266c683fdfcf42c35eebed0dbe848e4"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000003.parquet": {
+        "size": 1035115,
+        "sha256": "733404ae1045d0d92736ee5e179399cbf81f9acf2591d4566195bf69f3c29d66"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000004.parquet": {
+        "size": 835656,
+        "sha256": "94dc4270f6deb84e3c16355ce24d1f5950f133abbcdf5986169e21cdd6baff4e"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000005.parquet": {
+        "size": 1301439,
+        "sha256": "d96233bf81503ad56fe078d28d91ecd54622e853a1d8b2daa873c676f591e889"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000006.parquet": {
+        "size": 1012740,
+        "sha256": "12f137821d3ab4400f7153d9f1691167ac9c9e84bd6f33a75e9f96b52fcfc5e2"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000007.parquet": {
+        "size": 921541,
+        "sha256": "3ba6583ec13d12c9e35caa2d0ad84ddeb42fb1e5c74066fa352fb6f0ec8faaab"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000008.parquet": {
+        "size": 990420,
+        "sha256": "bdf7d098cb72fac11984e2c9783edf093a9ff9e1221746d3a67316648961623f"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000009.parquet": {
+        "size": 1237920,
+        "sha256": "05598c30f5383df93bb8a3334458f7b9f4951ab41833bf1b6893ba2493f136d4"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000010.parquet": {
+        "size": 847800,
+        "sha256": "d1ea281e7f20cdc3a838372f27ac3e55edebefb4764ef65ee9f3eca3f46cb2a9"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000011.parquet": {
+        "size": 1181642,
+        "sha256": "04a253250d7e849012864c023ce12e3f1643eb09a0c4cd12bef3adfcb22a879b"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000012.parquet": {
+        "size": 1312687,
+        "sha256": "4d3b5dd35b5d75b00d3cd6d644d9e016677db4edd73a54a481427fdec1509835"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000013.parquet": {
+        "size": 1368926,
+        "sha256": "3f1ef252fbc356ded9360f60829bf303487b09b55730bc34b49e6d34af088035"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000014.parquet": {
+        "size": 996542,
+        "sha256": "38345fc4122e2913286abb97e6c2105484cb0045ecce96f89b6170deee33bcc7"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000015.parquet": {
+        "size": 1061219,
+        "sha256": "db73bee27322f9e6632445b6f95b722072375abab32d83602c3df856c09ad2b2"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000016.parquet": {
+        "size": 1045911,
+        "sha256": "e995f2023226a5ed34afbbbf58b7b4408465c041f2ff3817241e58c6f1ed5d0e"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000017.parquet": {
+        "size": 1238665,
+        "sha256": "6e4d6e7c0d6bdd2d3cb46750a4cc840446ed8555ac178f6b3ce7dc5c1d231a09"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000018.parquet": {
+        "size": 1194127,
+        "sha256": "c5ed6dce8dd0e0eb9307fc9999c6c82c42ba102b083bf76116eb0ce31ed9ba3d"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000019.parquet": {
+        "size": 1448711,
+        "sha256": "b5fe8ae13194cb5014ecc583781493a54aa96a84b1afd93a16bd043271eb13fa"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000020.parquet": {
+        "size": 1495302,
+        "sha256": "763ea981aa414d951e08b775033de4a02210d80115a11e5a6bc3b9391e49e1ce"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000021.parquet": {
+        "size": 932093,
+        "sha256": "fe65f048e0cd0bdd1d033849efbfa330c4c005264c1d1b0d2092368faebdd9fe"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000022.parquet": {
+        "size": 1358758,
+        "sha256": "70e59fb29263664283a7bce816d72086464804744c8c5cdf4c21176cd13c10a2"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000023.parquet": {
+        "size": 997228,
+        "sha256": "bb326928bacbc549615e13e54c93dc129095a6c7989e988d4b530a726fff34ef"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000024.parquet": {
+        "size": 958396,
+        "sha256": "292d95240154ae4d2e796fc20f51033d4461ff2bc570be8a89000c68a46d0ad1"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000025.parquet": {
+        "size": 1215110,
+        "sha256": "08e4dc1e8f4b73ccdc47d17df3d83cd1261a6d7e8b77ca7a7144ec8573d2084d"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000026.parquet": {
+        "size": 792598,
+        "sha256": "43e056874b86995811f7fb1f5fef3c88b660aacbc36d78cacd0559b77d633855"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000027.parquet": {
+        "size": 914380,
+        "sha256": "a58e02c1e786e20a9fce6dcf6c04d3e9ebcaace716bec7d58dc8e7b9c0fa5a68"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000028.parquet": {
+        "size": 1002267,
+        "sha256": "b02b71287ea634dfbeca61959e7f810874eb7539d704690307868bf5849ca594"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000029.parquet": {
+        "size": 1072951,
+        "sha256": "02c720f87d342766eba564de2ef532fbc2f20f43e4867ec1fd06be733d00733f"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000030.parquet": {
+        "size": 1026012,
+        "sha256": "4cf6451a2d423f08c52134bcf2dece9d28f2c1bcdf9fbaa46264ca42204ac870"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000031.parquet": {
+        "size": 1001980,
+        "sha256": "6f6802e415e60959715d2b875229b6629509a0a599f1f4782028fe38cf6729cf"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000032.parquet": {
+        "size": 973970,
+        "sha256": "02f46a66dd57e5a9c73f8d5e9dd85a7d00b0f121cb2609f6afbe9746f2c5312f"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000033.parquet": {
+        "size": 1005212,
+        "sha256": "c30e16a481ead967402a5ad99e3f4a14da32543e0d343d3e01cbc3b69e8b73de"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000034.parquet": {
+        "size": 1061881,
+        "sha256": "34c1da755a22597a738561df2240d37e29ac2a287fb3dace713f0c28e16d3d68"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000035.parquet": {
+        "size": 936223,
+        "sha256": "d5329d73e06af6cd34a6acc448886526b8674e63f4177cb220a7110f559580a8"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000036.parquet": {
+        "size": 893464,
+        "sha256": "6486b41c2e80dba8a1cba14b59df71591dd627d4fbb4feec95e621f5c2af9e84"
+      },
+      "data/RealWorld/teleop-football/data/chunk-000/episode_000037.parquet": {
+        "size": 1295404,
+        "sha256": "303237ecb90dd8f2d8872a1279d6eda7da6fd70a0bd9293608784da504c8337d"
+      },
+      "data/RealWorld/teleop-football/meta/episodes.jsonl": {
+        "size": 3144,
+        "sha256": "83cfe28016d67675b9dd5f0b6d71e611e5de033a1ab505e2245ac15c9f775af7"
+      },
+      "data/RealWorld/teleop-football/meta/episodes_stats.jsonl": {
+        "size": 2024241,
+        "sha256": "0394549c631dd7d13a41a786e0a2a63c22ce7b35d8e533b2d7c0bb60d2db58af"
+      },
+      "data/RealWorld/teleop-football/meta/info.json": {
+        "size": 24539,
+        "sha256": "18b692eae3bf22ef1b84e7c0c32d74479e1e22d0509221599ca3ca13547a0857"
+      },
+      "data/RealWorld/teleop-football/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-football/meta/tasks.jsonl": {
+        "size": 61,
+        "sha256": "361ef5666541c6856fe399eea6c0dde95dfbf38a612f9bb5e35fee6aa4145bb8"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 6045964,
+        "sha256": "ff5dab5a0b76950e10813b65cbecca16e7fa9d781125406731dca66423d73dfc"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 6578477,
+        "sha256": "1703a18a3d7b1d94dcbaed02f5395826be72fcddf14699e96c59b2e50715f6d6"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 3988652,
+        "sha256": "d1c1ed76cbdc148043721c3c4816e2b7ba36bfc588653c26f959eee9216f0c6d"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 3181474,
+        "sha256": "3793d1c465eae8a1eb4413c6d36ffa46ccf67173e58a6927a6b61be681e573a9"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 3217490,
+        "sha256": "d765c57e83c4604f679b1c480143bf80c79545fc0c3d2434189801d28ecbb150"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 4318665,
+        "sha256": "4115d5aa0e8cd56d60eb6da4db6d2da28a531f606d677ed7473d7a175b07273d"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 3157784,
+        "sha256": "1933a3e397408e4a338a6c0c8860c31ba35855e959b0dcd29844469d0a937ff4"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 3039767,
+        "sha256": "e1332a7c88f20addab2781816564725da267935bb6a8cd3e7998b3dc2f5e6ea4"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 3454854,
+        "sha256": "942e7db45733765ea1ab911bac80ad8e193462519ff7641cf1437117fddf70a3"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 4187856,
+        "sha256": "f31a3ba5b339891aef1fcdf9baf01426054cd6fd91368a5f022f712351376f57"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 2609160,
+        "sha256": "e192a3469701165fc12cfc89e98d1a6e047c7ad4606827a0e534d3421531783e"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 3968897,
+        "sha256": "002ebbf54491924cd0d9e95e6adc767e3be847ed1675ab7b3684a47e9bcb9661"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 4842414,
+        "sha256": "108abeb0e5ef0e0d8620db90835a67d607402759d4ed9bd6b049c57ad63a2b99"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 5149801,
+        "sha256": "81de0e684a2bdb67145f79837a0b99c0cc5f0ee182e82aff940fe1982c36ac19"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 3426998,
+        "sha256": "aaef7945286680cc02d60e03fdde351bed91df9c9c0520253a8089e9987706c1"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 3425647,
+        "sha256": "605fabc51be3d20c2f95695baf3f93575a0b7b7c6d2edd0f6447c78de5457a31"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 3691256,
+        "sha256": "3079cbe2c1a44566697193f5dcae44215094e050477239e9490d7063891a93a4"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 4431621,
+        "sha256": "1264101ad5fc54d56405a1d2ec80942ae5bc704a34672746b436dcf45241d8dd"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 4573664,
+        "sha256": "11026f9b84f1cd4e57c9c25730b29ecbc8dd1ca17a2620c71d483a2a96d4fe96"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 5431006,
+        "sha256": "eb91ccf139d1da93de4c58dfe0f0db7f7f57e2f63451864fc49e93932901849e"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 5306265,
+        "sha256": "3d6fa8d371a45e01ea49765ec42fea8a6fb2969700097a9a7a33bbc32c955a01"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 3453198,
+        "sha256": "5616e2c84dcaad7d044baa33a436db74f0cad681ec088d44afb55ec2b55baadf"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 5127939,
+        "sha256": "a999cabe23d50d653423512251bad40e3a061c5c7b92b837e5fa91ca8faf7405"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 3717823,
+        "sha256": "01e0397bbd32a00e023daacc3a010058ce4fd4a3ccd8614fa4304a971abd4694"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000024.mp4": {
+        "size": 3484939,
+        "sha256": "52abcb958dc04c6bb516f5f230270d5de6bb4b9dfe9bcfcd9bcf91055c74bbdd"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000025.mp4": {
+        "size": 4486510,
+        "sha256": "bd9b14784f29890254d81b9f29e547f92643ef9e755c37bae0d517e7af3725aa"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000026.mp4": {
+        "size": 2704834,
+        "sha256": "201e4d3a12007640aa23df37f703052440f4d5911d4e0f06460046761eb4ebda"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000027.mp4": {
+        "size": 3428246,
+        "sha256": "fd8b82bca5066bc11d4b6741f0db93dad7fc5ed974d32a7e0f17ff307a65c4c5"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000028.mp4": {
+        "size": 3206500,
+        "sha256": "713211173f58d430c71f3990c28a7b1c8c0276c63cc405d9fec26257153ce373"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000029.mp4": {
+        "size": 3733796,
+        "sha256": "d903b47035b0bcaf5217b62c61593c8620b4a1c4103d10a7dbefaf7808c12a90"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000030.mp4": {
+        "size": 3787362,
+        "sha256": "28baff0ccbebc01dcd2d4e4bd06d7459e59ce68063caeaf057913a0b9719d42a"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000031.mp4": {
+        "size": 3271464,
+        "sha256": "ef242701a1a9f4beb79f23a68663fdeca0de42526f39de2e9d1788fcf2953f31"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000032.mp4": {
+        "size": 3726991,
+        "sha256": "3c4963a3784738891eec75f480f83e0b5d5e3ce959de0f1189fa7e8d25ccf676"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000033.mp4": {
+        "size": 3872835,
+        "sha256": "42e732b3e31be05e6ce7e4a50c7fd9a2adbab1d6924542b87714ceb465a79da6"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000034.mp4": {
+        "size": 3998500,
+        "sha256": "c6cfcdb06dfa6a2be357aec1da80b9417c2af4fd0461a74c2f15833288d2f588"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000035.mp4": {
+        "size": 3587429,
+        "sha256": "03ca98288dbf81e13c4907701e5cc188f22d15387779828ba9375ebcf64fae49"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000036.mp4": {
+        "size": 2867186,
+        "sha256": "010f98a1690cb27ebf88ced8dc2277bf188b03c175681167a79e1eded2426055"
+      },
+      "data/RealWorld/teleop-football/videos/chunk-000/observation.images.ego_view/episode_000037.mp4": {
+        "size": 5032721,
+        "sha256": "3f954393f36930cd0c1cbdc025432e1de5403d7f5e0fe07bd3c80c4eea6f8c6a"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000000.parquet": {
+        "size": 3827328,
+        "sha256": "d3035abe8d6870b439ffb4b5cc30991b78f024b2b1a4279f214718ea01636c1c"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000001.parquet": {
+        "size": 4450108,
+        "sha256": "af4bdb96657b44aad0f1398c4a279abb7eb30d1cd934583b9f9ee95900743179"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000002.parquet": {
+        "size": 3847793,
+        "sha256": "485a5a655e492227c59b373fd7924f07db079e6dac66e20a91ca9cb7c408c12f"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000003.parquet": {
+        "size": 4260487,
+        "sha256": "6ddaa078a6665e1ff9e661846704deff216896ef933600fa4bfeda191904a06b"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000004.parquet": {
+        "size": 4100215,
+        "sha256": "59101169bfd2f83f0db5eb93ef4291a8f81d286070fc8fb9baab66c35c5a1b01"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000005.parquet": {
+        "size": 4600970,
+        "sha256": "1523afc5738f1de27e92304e520b19adec3425666b4d95019b71cdf8cce1f132"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000006.parquet": {
+        "size": 3973522,
+        "sha256": "d02b60913dc65c2f9fb77acabda832adaa7611a9441a9c192713d4314500389f"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000007.parquet": {
+        "size": 4401213,
+        "sha256": "be84991596345ee11c6360842ffc4f0dedec561a8df363d2e43183c58739a53d"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000008.parquet": {
+        "size": 5716023,
+        "sha256": "38d89b29b7f6427c9d704fe9011e9efec3dcd5afdf6bd8d02f579f3d25a13fe2"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000009.parquet": {
+        "size": 4839213,
+        "sha256": "004c1870e17fdd2da4b2874738a7772fd20fc5617a6fb6d6ac249367455217c6"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000010.parquet": {
+        "size": 4818572,
+        "sha256": "07a1ce75adfe2289bd31e872e9fcef10fe6bcd943d90fabb51efd74b12233fd3"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000011.parquet": {
+        "size": 4694064,
+        "sha256": "baf3e26372958c6ab073cbc04f9ca2debcd49734ccee229315f3da7220dd21ef"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000012.parquet": {
+        "size": 4610517,
+        "sha256": "cf4fb7356acd35c4270d73f3ff9fe7afe0a5fc15260a586c90cfa8bc798d39b1"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000013.parquet": {
+        "size": 4506281,
+        "sha256": "f58b43dde9b83fed0a83caf3458b681db0ce9f8ef3b19685ddb46c48d43d0433"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000014.parquet": {
+        "size": 4125182,
+        "sha256": "ef03419e13e538e52a4cdf3c6f3ea8a1f2df1d74d99596f0dd03c94a4e723384"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000015.parquet": {
+        "size": 4922448,
+        "sha256": "083e2ffd069f8ba7cb42d91788fabe6ab3411b52fb234545ce08fb44d0d50104"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000016.parquet": {
+        "size": 4658455,
+        "sha256": "9bb8ec7d6eb9d3ec5a737566f5e3852acecfd11f8971b567c7d479c52cde736d"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000017.parquet": {
+        "size": 6097679,
+        "sha256": "974300e955663c4a951c9c0eccbfde6568967828bd334cb9d4c4a8e84a4d6ee9"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000018.parquet": {
+        "size": 4420520,
+        "sha256": "7a71b08b9d653b66815dce4566b29b4a7d3242623be7b73a6cc7aac8f142039c"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000019.parquet": {
+        "size": 4178693,
+        "sha256": "3999dbb7050c722615a3bdd6179f759bb841c7f2ef41091dd225942dcc1e298d"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000020.parquet": {
+        "size": 5541020,
+        "sha256": "8caadd606080199e4e7df611ddcd32d771bfc0aeca2a475c4c142f397e26c0aa"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000021.parquet": {
+        "size": 3824946,
+        "sha256": "1f487cac6af22717b4b3d934b408763367083b914da669f1fff43d44435c9b51"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000022.parquet": {
+        "size": 4712535,
+        "sha256": "d4f4c2deb27c9f58a75f571e82fef71058c856ed390440531d07a63749719749"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000023.parquet": {
+        "size": 4515452,
+        "sha256": "7aaefe1beb4fc509051b9346aaa900a53107d40c96003f08f3806c92ce42c71d"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000024.parquet": {
+        "size": 3923183,
+        "sha256": "f8b4f785ccfa9787d7526b791602d663eda3f56784f85f11b3863586a75cbc4c"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000025.parquet": {
+        "size": 5196513,
+        "sha256": "134fd190d982cc0cbd123496b4cf07023f7dff4e9c44d54ec30067e6d8b84580"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000026.parquet": {
+        "size": 5697904,
+        "sha256": "59afab76829d2bf68138b87f512b85f2f77c32ab2fba038f987cc7e5060ef425"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000027.parquet": {
+        "size": 5546891,
+        "sha256": "acd43f25d3cab46d9e969acfa2fc279bbb3a062cb6c0fc817d43985ebef6cbaa"
+      },
+      "data/RealWorld/teleop-long/data/chunk-000/episode_000028.parquet": {
+        "size": 5337045,
+        "sha256": "10e03ec35de192dea3c1ad372e2db0417143f008503f8b3c0b86926e35f5b978"
+      },
+      "data/RealWorld/teleop-long/meta/episodes.jsonl": {
+        "size": 5094,
+        "sha256": "a9e1e40a95f36f20b2cd18aa8626cd92398ed29df816967fedb90d149902143c"
+      },
+      "data/RealWorld/teleop-long/meta/episodes_stats.jsonl": {
+        "size": 1593040,
+        "sha256": "80d993e43cc47ebbe0de5ebd51972faccd411f897bea3eb213fbe030ab78f2e8"
+      },
+      "data/RealWorld/teleop-long/meta/info.json": {
+        "size": 24539,
+        "sha256": "01c1322e070745b418be436e979f039dbb28e65521eee6eedc773de8c38960bc"
+      },
+      "data/RealWorld/teleop-long/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-long/meta/tasks.jsonl": {
+        "size": 153,
+        "sha256": "f1c0ae0b3367f7bbc91fd4f41328cb99815b6c8985a2bacfbb59006e2ff7901a"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 3358997,
+        "sha256": "285b8ef93ccafb2e1586a6093797a4d9569b11adad2f343aa7e0d8f0893d6c90"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 3619981,
+        "sha256": "c71f82f261e82692a59968279674dd501d39b7a4ab691afb00ffce5b66b49a68"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 3194712,
+        "sha256": "3d0b730f804d52151d6edb422ae8f5dc5a80b7741adf3ebe4ca2036fe6ec6fab"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 3299675,
+        "sha256": "166e4ac04f21a5985016520b1789ee4e08a5203be027bc3e2d869ffe5bfcab22"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 3328746,
+        "sha256": "6e2ab483ade316f5bcc87793464d358dec40de7f7ae600b94f17eadbb9ed7bb9"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 3840687,
+        "sha256": "55f1e9149e23eb2bdb898d98751c99eebff5540f73001f57063b8a995e525736"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 3261650,
+        "sha256": "b06d11ed3f9ea1c1adc65114939ee476ca872f2b42f8f264f3cae7af0211bb39"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 3533158,
+        "sha256": "e45a6e826bd2c03c7af25b926bb88fb9d000f1290b3e32cf7c4cab0561176cbf"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 4589300,
+        "sha256": "a206a0748eab9cfbb31cf0e55b1c396a98add5d4f35f7b3bd0b3926ca2011bdd"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 3915428,
+        "sha256": "98d24dd237475fec572dfef9f0a8dfca115988be23fd48c2c2643780aa34e5fe"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 3775013,
+        "sha256": "4d5a3fd55450c77089121d6afaf1dc33261e3c8659108115fe1095ab553e2a80"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 3547212,
+        "sha256": "b93090fda1b0f9c5e42b80980535c254c0738c8f99394a465422e23dd66ffc96"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 3625330,
+        "sha256": "4e56d2d7e0bd109422b4792548e721268b554ef2b534a8eef673f6c067c60a7e"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 3551119,
+        "sha256": "ee3ac87015f745cc1737174b664c851be04560dacaab170326565771a45e7388"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 3322990,
+        "sha256": "4c48d97d8a603eff79d9a2f6e516b84b0163c90d9cb62ee44365c3a1a4265b91"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 3878603,
+        "sha256": "feb2c804830b0d8988f717721a4a865d4e23eeb48946d868d714ef6558868bb0"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 3740785,
+        "sha256": "86d46e09f62d2bf2570bbda9fef1030a2e7e78fe5c0143bea13a6eb36a5ded95"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 4940832,
+        "sha256": "47a172d72df538255cb6333d923f364e293355cc3a7f82c34354a79eaeb871a7"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 3563480,
+        "sha256": "befac3c1b5f632c928db41d83c831b354eab9e18694b735e7bae9be7651d062f"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 3297692,
+        "sha256": "bf8600419250fd90eba11b6c8a16043f5da76532196622de015b2b00c3e59e27"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 4558149,
+        "sha256": "6901eefce07f9a92ca7d6771373ec808dfdbe3b399f8c2623d6007ceaf8cbc6b"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 3131873,
+        "sha256": "6745f0f507559dff1d8a614703b570c0952867ffd97b2bd4456c33bd442d639a"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 3728971,
+        "sha256": "cb23cf830a1e8fbced7c18dcc5b155b9b8c27907b8407e57bf9008469164fd8b"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 3533448,
+        "sha256": "6d9080edb44d15b6b0b4199c5dbae7ea34903d6352d3d31a1bd2210393e8b1e1"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000024.mp4": {
+        "size": 3011495,
+        "sha256": "fc8923141a2df6ef96d818188a50b26616458a137089d8aa69912c7b0a20f6e6"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000025.mp4": {
+        "size": 4043263,
+        "sha256": "9a780b23ce4d8ca07aaaf6a38a3291bdd0a9a7ef0c04ab2aa5f224edb957dd89"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000026.mp4": {
+        "size": 4535147,
+        "sha256": "92d4cb8bab214f2e570abb132de2e9d1b8abd132bcc164d007723f2294c1edb2"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000027.mp4": {
+        "size": 4417854,
+        "sha256": "05fb9af4cea0cd0feac310dbefc3ee3b72b70d1015f2321cf369f4822778bb9d"
+      },
+      "data/RealWorld/teleop-long/videos/chunk-000/observation.images.ego_view/episode_000028.mp4": {
+        "size": 4271963,
+        "sha256": "6206c806811981ec93c1d4c5e92e8ad3e88f2117713cdc529966cce6dc10adab"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000000.parquet": {
+        "size": 1517209,
+        "sha256": "de69546616446de0e48287ece6290b32e3dadf57110903ac4c939cf3bb3b9d43"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000001.parquet": {
+        "size": 1945403,
+        "sha256": "ed111c26c3b0ac9892c89fad776491736b0eabd1cfdefc2b951349a963f7c6c9"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000002.parquet": {
+        "size": 1767699,
+        "sha256": "4df66a842a349ce11b668391810b2a7007413b172b2f336178a6893691e4cba2"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000003.parquet": {
+        "size": 1663092,
+        "sha256": "7f38b7a6456d6985738fa37990a0dd0d27ab1fd5342f5086c86a6b87f61bc390"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000004.parquet": {
+        "size": 2881562,
+        "sha256": "b2c8c9ed6a9f1e8eefcc95461969de65f67f64b1ede9793b089c6b469b64e6da"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000005.parquet": {
+        "size": 2373448,
+        "sha256": "e0098d0c62499360061d95ef51e87873bc54136a338b8bfb975d33fd788881ae"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000006.parquet": {
+        "size": 1721909,
+        "sha256": "71f3ef182296f78615f1054b8ec6dce30042454163811652e54220383ec902fb"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000007.parquet": {
+        "size": 2157119,
+        "sha256": "513069e38bfd9183d9013a3cee2ff87496392e9257c96488e1bb712bcb64869e"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000008.parquet": {
+        "size": 2121618,
+        "sha256": "2dc4d93dcc77f57bfc807fb245dae836f1a1e2c196cb7519c27966075ad7e7d3"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000009.parquet": {
+        "size": 1912713,
+        "sha256": "6ee14b29a56a58c72610f39d2877eebc9f2c71c9f08a3dc19c708fe74c13e792"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000010.parquet": {
+        "size": 1996723,
+        "sha256": "9394157adf8c8218dc95292e950d4724b4b9db3068cb63e2c545696bd81f5e53"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000011.parquet": {
+        "size": 1517569,
+        "sha256": "1288f8952fd70f49b9d7c331618fa3b76d1db7b4ef92f1e1af9dbfea93f6c0f7"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000012.parquet": {
+        "size": 1639229,
+        "sha256": "ca8b76b1590724f98010cac24444aed73d92ceaa1fe551a902fe0638eb3ea84d"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000013.parquet": {
+        "size": 3142797,
+        "sha256": "53a130c0952478fca4521b2830d7bf2aacd705cf9b8cb7114e3e9e24ca39f2a2"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000014.parquet": {
+        "size": 2738879,
+        "sha256": "2980f68bab8995063ba8dfccf7353f6fc1befce47040bfd170fb2e7303f6f0bc"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000015.parquet": {
+        "size": 2924419,
+        "sha256": "b694d958b315942c4fc53a3732cd422b001dc44ab94ba87fa877e9b8affdec23"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000016.parquet": {
+        "size": 2879801,
+        "sha256": "cea24e70a5b89d19c9635e8bf6757ca7fad050004b2ab118b83e7c72bc502975"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000017.parquet": {
+        "size": 2914879,
+        "sha256": "d0294d6453d8a669db400e2006c462ea56ed806d2d3dfbf235875f1092d25bff"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000018.parquet": {
+        "size": 2659853,
+        "sha256": "240b2b27c7f89d418417c937ed52bccf0ddccec95a41a8f514444e399eb3225a"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000019.parquet": {
+        "size": 2786717,
+        "sha256": "baae17e50b8fb0b1be0b1bd5f106c61d0e3aae5c47d1568240a319d7d74f35db"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000020.parquet": {
+        "size": 2518298,
+        "sha256": "cf1cbf3b9ed120935bd9c69770e97710632aab32e8a32e9618b0f580ad696d3d"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000021.parquet": {
+        "size": 2658831,
+        "sha256": "59049bfde353213776cad9e945adf28b0b8be8cbd070930f2eb9a833044200ee"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000022.parquet": {
+        "size": 2201435,
+        "sha256": "5dc1b6ce0a225a2141cbb078b96c18979611108ab65760fddcd43c95ab20b823"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000023.parquet": {
+        "size": 2689296,
+        "sha256": "ef5a1cfb412ca57e737f98fb4baf5d333ab5e0880ca12a20ee035ee25fd125cd"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000024.parquet": {
+        "size": 2063221,
+        "sha256": "00687d1246eeb99b631820e14d8ab69df43a0ed80b8ce47212c0de1f0c6be334"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000025.parquet": {
+        "size": 2342425,
+        "sha256": "0f8013cfdbe3fa8c849a3227e9f354e58826331c6076fb1ba613aa8b5a3540dc"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000026.parquet": {
+        "size": 2158527,
+        "sha256": "5b6c5f988eabcc57427ea79076573cfaccd2e653fb407933bfce6566e6ad1d04"
+      },
+      "data/RealWorld/teleop-pnp/data/chunk-000/episode_000027.parquet": {
+        "size": 2011322,
+        "sha256": "966fa85ab53f4b3f28390dbc1112426973c6cd8466bda1f6b016c4c2be4cb94f"
+      },
+      "data/RealWorld/teleop-pnp/meta/episodes.jsonl": {
+        "size": 5702,
+        "sha256": "06edf5beb8890066bf004a251ae09267cd4b9ce73235f3696ba639cc9af826c5"
+      },
+      "data/RealWorld/teleop-pnp/meta/episodes_stats.jsonl": {
+        "size": 1537657,
+        "sha256": "83ee5df9c151c14ca580ac52e4da6222af62e873536502441760320bcad3a3aa"
+      },
+      "data/RealWorld/teleop-pnp/meta/info.json": {
+        "size": 24539,
+        "sha256": "3505b139c707d779e5a4db202a4becaa5f14f2cf5e388edbeb2b01ecff7886d7"
+      },
+      "data/RealWorld/teleop-pnp/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-pnp/meta/tasks.jsonl": {
+        "size": 182,
+        "sha256": "ac6a3af31123632eca5dc9473fe2fce0cfd215d1eb578c6e9ca6041fb9013c50"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 1080532,
+        "sha256": "9db4e544a5566b0880cd4d995a841ae7304119e558bad54f6e091b02a8f3be20"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 1400768,
+        "sha256": "8216e7a469d10dc146b1f40277371ab14d62869000e357f88fe00ec4c2aa1e2e"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 1209836,
+        "sha256": "5ad94746cdd234e4ff8733fd27117702d5e9a9fa3a2b7de3e15daff9fe697f73"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 1177944,
+        "sha256": "17935062da453c1fc0b2fdc8b0468d6679e46b611b50df7be50ee7df7ab1fe84"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 2120769,
+        "sha256": "6513a635163ab28f3d41b1f86fc50bf89ce8211cc0ffc112586a7673159c2ce0"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 1707543,
+        "sha256": "2e3dc034e1d8cee5d8e77dc954ee11f774f230a786c31885ac2a18cb6d301083"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 1265680,
+        "sha256": "8c2c4a1337dd3648664e05e8c02912adc56037eaf6f41e845a2c10e40535d464"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 1521654,
+        "sha256": "18b10f01e9a0bf58a2f85c059e13dca9b3d41ffe9a7f460ccfd41ecf4c5d0cef"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 1462757,
+        "sha256": "2808eb20a42f807e2f41c58b0bc64ba30119b1cb2ebefa3577993b1f1d500188"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 1393670,
+        "sha256": "720f0ee4c3fb7d087c5ee5c13da532695389cc953f324d3a12ee64c3802c47d7"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 1406269,
+        "sha256": "e1fb6500576362cc5824bfb642d40a27d6a43403d6ee383903db28e34920e039"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 1142380,
+        "sha256": "f0c5630fb9199ab8d952d39b4e375869f2c4323e269f7e57355c64dcd6c97a43"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 1172126,
+        "sha256": "0c07cfad70417e7ff2f79d56b7e32af4112ba2d66fa9f298754f69ca7cf715e0"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 2322757,
+        "sha256": "333452cb0613bb50ceb4d78f16c5dc9ecc25e8cef260c6ab49174d0e7d4372d2"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 2042277,
+        "sha256": "8a74e025a050da87de86bc1ce2289d0810bb4ac4e957fd39fc3a294421ca64df"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 2151417,
+        "sha256": "2c6e15c7dd8213c8039d719e42cdbbd718e6a54acbc1e39bef1823be2dd0af2b"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 2090081,
+        "sha256": "22ae12e59af23e20836fe0900cbffc913db00907fcf450a43eab8ae773275039"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 2127177,
+        "sha256": "83f5c0a13fbf50a37ffecf89f3f0e6b11325c592f0602f7b99bd9e419854ec91"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 1915791,
+        "sha256": "49b747aca5971eab8fe232e8a115f8fbaf9b483aac3c47a9d6cb8d122b7a1b3d"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 2018036,
+        "sha256": "9c7063c81033874b7ff94569bbc0bdc06a1e134c9b6f9b042754caf1a19abfec"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 1845056,
+        "sha256": "50aeb06e7f42b48042b73d99426dda1e674c0d198a15906e4e42c58dc949f5e3"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 1844332,
+        "sha256": "aa567d6a45c93de7f1d00d0b87d0c60b534a9b8411f41bbfc4f9bb401edebc8f"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 1570261,
+        "sha256": "befe65312b377dd1228681ad42bf0b331043220fb8f10abf04e36b4d6b7ab727"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 1976647,
+        "sha256": "3502402f0c3b4e3eb7253523a804ffc42ec615937f8f3973215fb95d96401e2c"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000024.mp4": {
+        "size": 1504788,
+        "sha256": "441e23479fecf99e5f362d36dac0de631b1285e38fcb91273dd0f603650edc04"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000025.mp4": {
+        "size": 1725896,
+        "sha256": "d674a706e9dcb7b8cd1eca3a289e3ad83a8e61f02b6c70a033499d52d9a34b0e"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000026.mp4": {
+        "size": 1590714,
+        "sha256": "fb518f15d1b22e5c04ac9812dc09679b58c7793355a166b6464f136dc44d085c"
+      },
+      "data/RealWorld/teleop-pnp/videos/chunk-000/observation.images.ego_view/episode_000027.mp4": {
+        "size": 1417363,
+        "sha256": "b9f24c94dd49a9516ee9f1f03d69a17edbf398354ec34e126e656f9a85b6d68b"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000000.parquet": {
+        "size": 2988776,
+        "sha256": "60f22ccf20eb590a4b316925b30d033e26a794827b53fd996c0d9678618ddb86"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000001.parquet": {
+        "size": 1969896,
+        "sha256": "7daf60093880549b6abf58b88cf44fc3b6c43d83b8315862b69a3a2e63884db1"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000002.parquet": {
+        "size": 2139189,
+        "sha256": "8b57213bad40c1150d7ca421092479a2dee3a65d01af9d3a540964545920320d"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000003.parquet": {
+        "size": 2293578,
+        "sha256": "58c2c1e739704f1d16ca616169c09f53776b55b5dcacbb6b0e4a8137972c3c27"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000004.parquet": {
+        "size": 2177865,
+        "sha256": "3286e1151efdce1cb3876018a0937bd477c77d526fef8f133e77d9e56e76672b"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000005.parquet": {
+        "size": 2228376,
+        "sha256": "83ddaf98db1c8e1c9817709382c3c70ff34b84dc98242273d8e1d1e3cf13400f"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000006.parquet": {
+        "size": 2204551,
+        "sha256": "8f5fe84f4fd452005f241ed16207725633285b004d44fc076bdfca55dd0c0c2f"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000007.parquet": {
+        "size": 2719961,
+        "sha256": "7ccb1e3cf435e1c03431938272f9dfa9f01bcde850d94b050f7fa4548823a25b"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000008.parquet": {
+        "size": 2354321,
+        "sha256": "de8e3c0823b713bc421133e6c479107c28eb05debefd0e394de1999b23f698b9"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000009.parquet": {
+        "size": 2309444,
+        "sha256": "c22f274ab78f612db3adb8002ca1dbd5852a195f8e69c99c20d751124eefc7a3"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000010.parquet": {
+        "size": 3430455,
+        "sha256": "eb7e84f2169198ac6ec2472769e0ebb7f89e4d774202dd6e1d36ebfeee64831f"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000011.parquet": {
+        "size": 3220673,
+        "sha256": "8d61dc1be3ff31ab1d8b56b613270ed053af0f1df597cbf5d8a870bdf29a8423"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000012.parquet": {
+        "size": 3533872,
+        "sha256": "34a416508813997a43b8f0f0d824da03c1aca582c17484b1f8f87bfb50dff757"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000013.parquet": {
+        "size": 2878614,
+        "sha256": "a1aeb7e6329cbba5b4b384686220f70e676747b5942d7b8ba3d358e44ac34694"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000014.parquet": {
+        "size": 3605905,
+        "sha256": "7c45d00c03a31b9ec6ff6eddb0fc5fc362ebd0f77ccdbaef867dea2e206c9133"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000015.parquet": {
+        "size": 3051033,
+        "sha256": "e3dfdfaa50880c475511c9da27422b9624662dda8ea3660bd9e6d46a8a88c10a"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000016.parquet": {
+        "size": 3316909,
+        "sha256": "5b2041313ac852bc2b26b8c60a471f140a46e139b58d590072e23540b92d9a5c"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000017.parquet": {
+        "size": 2382813,
+        "sha256": "7717853fab79cf7815da66ae65be92c64ff4d2d5d3f111cf0c84db9f4984d166"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000018.parquet": {
+        "size": 3275527,
+        "sha256": "57e5a001ce458e20b14edc2c1df5b1384a8a1d16eedc0f2921323f812cdd94ee"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000019.parquet": {
+        "size": 3360473,
+        "sha256": "a3a73d2438fbd0edeb06924e821856710b19b87eda7c461e757593bbeb8f196b"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000020.parquet": {
+        "size": 2777722,
+        "sha256": "86d063c655c0fb04fea67a647908e014461457b147100165eb72c31e3c9dfe87"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000021.parquet": {
+        "size": 2314735,
+        "sha256": "3ff760114c6e94751409ee5fe732f2ea8b5a177639d3ed458d2378687a684f0e"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000022.parquet": {
+        "size": 2720153,
+        "sha256": "9ae6c55e513c32567f6d98fae8d40f2ac1f7e7c1fd4163c6758e971468eef5a6"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000023.parquet": {
+        "size": 2070131,
+        "sha256": "e64af0c481eade2cc85df045fe98f971bcc917fb610a49f259b4b7e65e346973"
+      },
+      "data/RealWorld/teleop-pushing/data/chunk-000/episode_000024.parquet": {
+        "size": 2204218,
+        "sha256": "ad5caeb258c7cfcd703261f533a66b72a214fa5e563f441029f34c8530e34c71"
+      },
+      "data/RealWorld/teleop-pushing/meta/episodes.jsonl": {
+        "size": 2642,
+        "sha256": "4dbe0e02d8392113b383e2c01b580b75f1ba452b516e6b145848018e90c43f47"
+      },
+      "data/RealWorld/teleop-pushing/meta/episodes_stats.jsonl": {
+        "size": 1364216,
+        "sha256": "944376193003bf824228ebf93bafba9d387d91dfd4d6cc1b8974547cd62d8e50"
+      },
+      "data/RealWorld/teleop-pushing/meta/info.json": {
+        "size": 24539,
+        "sha256": "86542a3df27d52b7a51a3fe83b777212450781879128f84828064f552db8d5a2"
+      },
+      "data/RealWorld/teleop-pushing/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-pushing/meta/tasks.jsonl": {
+        "size": 84,
+        "sha256": "c248ca16c01954674ae0d5110fa54a3641b61a5c2c6d7323aefdd816a11982be"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 7687599,
+        "sha256": "ec6c4556776d001b9d9fa50a8ecd55b26bce39e4ee7dc7fdc83173b415e1c728"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 4474230,
+        "sha256": "cd046daa9bc21e655a2cc2c9087600fa0b29bc6d390487b3068051b432f76748"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 5064305,
+        "sha256": "a1366099a0213185892e77863c8f23216d9f7bc512649fc21888da9b7ddcb8a3"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 6019370,
+        "sha256": "f0f2015dd6dd90cc77895355ef6d9c42146145d197538d29ad17eb702bb9e499"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 5130510,
+        "sha256": "7b3ba0112cc7eac0e27a377bd3ed176410d452a99f62e58f2cda015cfd7b0624"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 5442810,
+        "sha256": "88dc5ea99cd7cea9e3f12a18b59e7a04fa84fdc8db45fec6d29e7a6431a53cd2"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 4846080,
+        "sha256": "755906956516aa4a3e75b474a56158e7e6e06780bf54ec105f1ed83d22fd6381"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 6686112,
+        "sha256": "5393b4cdeeb7fb9fb7663ff08feef21a14d81710b953b46df65e6c01c34fb0fc"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 5076705,
+        "sha256": "54af49d9cf8250170d1de50433e300dd07a536fb980559cd589930f0b0b99994"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 4941253,
+        "sha256": "24b85dbb9ce1c5da0fd8f0fc80e772433f5acb20455bb4fcfa282fbd090232bf"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 7636012,
+        "sha256": "4545ea2b4026eec4f322adcd3d3f55a356262dfe5283d7c66eb50155e26ee5c1"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 7705671,
+        "sha256": "904118a1b8f7bcf26b8bce7f3fcf03b58d68412f3cef534e0650e0b9c3d61bae"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 8556520,
+        "sha256": "9778b35a735fc5be67fbe0d88956bea17b44a7309c12df8d3b5fdbd33265cadb"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 7010846,
+        "sha256": "59dd13220625e9707d44916fa6515969cfc15ab9a5b429bbebae03ee13f15c7a"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 7576547,
+        "sha256": "11607dd2d564eb4026e05ce5b6016c03d326a4a981d095a2b283e20b3057a21c"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 7032795,
+        "sha256": "2a2306e3c3aae1c24fed0be56d7a99e8810d2ce96d04413d30535c4dbb8c1604"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 7829534,
+        "sha256": "869e64d6833135aced30410138559279711662400b749cedb6252a9347d90950"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 4910174,
+        "sha256": "f7028a835f7c4b0c7906ef616520257936d94b7e910a865365c2407e27f93437"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 6647868,
+        "sha256": "7709ecd5081125967c03257cefc083c6097e8343ae8baeb6e83d20436dfa790f"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 8459590,
+        "sha256": "c5334a367ceafab398d2417619498d36da8222852cda8160d8d8abef829e7ee9"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 7262991,
+        "sha256": "58b6db6b7da0090c31b0b39e1245328eeae9dbf8b50b94cda7f269187e89245c"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 5764954,
+        "sha256": "879b80cc16bec0980c658a73d86570c3d5bcf36cc25619488b2eb4b686ff9466"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 7136710,
+        "sha256": "3b45df045cb6040a590ea9dd6b88c48c9f9b0bc03402e468e399ee9a6abc95ef"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 4556266,
+        "sha256": "9d5d4c31b06af3b988373bd53505e992a58b4c6d9da0435c0ffe50b9473d4be3"
+      },
+      "data/RealWorld/teleop-pushing/videos/chunk-000/observation.images.ego_view/episode_000024.mp4": {
+        "size": 4751064,
+        "sha256": "3ca2c268b6a236a38bcf74f4cde3378fde00702e9d11a832751543a7e6cdc0d5"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000000.parquet": {
+        "size": 1177611,
+        "sha256": "cb1cae4eef0b0bf4300849eb441598043fe94c1da98da2280a4725f22a49715e"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000001.parquet": {
+        "size": 1132457,
+        "sha256": "f1b9f353e117d5de97272e3ce73dec1060ba523925607522fd5e79096335d797"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000002.parquet": {
+        "size": 1217696,
+        "sha256": "041b54306db2d7e7ac0792d6219b4ef68559d41a9aac48ee0762066eb0046a86"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000003.parquet": {
+        "size": 1155894,
+        "sha256": "4b887338c67ba8eb7d763611b7ad7e954b2d678791947c4364af80f71a1086a6"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000004.parquet": {
+        "size": 1256964,
+        "sha256": "e5719f572cbdf64f451eea2e2157ceb6ce5725f609dbd38bb09c04a4fe90e7a3"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000005.parquet": {
+        "size": 990189,
+        "sha256": "57f5f4e990e8e1a1310a94de8caff979fc1229d809f52f0e8f187d759f8d2225"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000006.parquet": {
+        "size": 1183482,
+        "sha256": "f4b53e015df8f3f6deec97d9044bf0dd4efb1570d7880f7451f0dec79981135e"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000007.parquet": {
+        "size": 1232470,
+        "sha256": "ada08cbec0f08598623559c1050704124dec05f0fa5580a1b83fffcbe964068f"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000008.parquet": {
+        "size": 1145122,
+        "sha256": "7ce041a827e48d989d0b8705a95f2ab8c947864985d03bc44d8e6d51262ff440"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000009.parquet": {
+        "size": 1338628,
+        "sha256": "1e44e6652d45c5bee19561953b4c007810c2b34c17515251fe2b004d9e231090"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000010.parquet": {
+        "size": 1249922,
+        "sha256": "9fbb4b8a6b9a44df8ed469a73ac116994e44e0f1fd1489ebc05009d138ff6e19"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000011.parquet": {
+        "size": 1251183,
+        "sha256": "97d393197c89ead0fd425fe08d37bfe41351059ebc20902cb8b331237c198439"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000012.parquet": {
+        "size": 1143984,
+        "sha256": "91cc08c37e301bc21b713fb80dd27d8e2ac20ed8c67e4aff882c1d42469d85b3"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000013.parquet": {
+        "size": 1467753,
+        "sha256": "3d46898962c41da65eb1774a97dcd61c006b6f9d595a8850da9d3fee051beb58"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000014.parquet": {
+        "size": 1302479,
+        "sha256": "136eb166c59d7778f0c8dc0bd81fd3c15b1743ff6aa847211427ff6b5176e89c"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000015.parquet": {
+        "size": 1434602,
+        "sha256": "d37381ed29fa59e7498b60693df497a6550b2f0b764c2ccbba28dd97490f7727"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000016.parquet": {
+        "size": 1297256,
+        "sha256": "81caf36c5ab178da2235614903736b2b42e8443194b9c49424037c2e611e2db0"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000017.parquet": {
+        "size": 1485474,
+        "sha256": "a5b35011085cc00ebf704307fc9dd0caad7f9e6c11f41d5e743d1671365cc038"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000018.parquet": {
+        "size": 1517715,
+        "sha256": "cec2195bd716967dd6e992940ea10a16b5eb27418b56f99c983b7c442c0b896a"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000019.parquet": {
+        "size": 2122090,
+        "sha256": "25406328614a377efdf291352e2d3ae5b755fdac5377fd40f36134392d5d506b"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000020.parquet": {
+        "size": 1187360,
+        "sha256": "08391b2848169f2e51043c481aef3517938c083269c8c6cac55d2e714842693e"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000021.parquet": {
+        "size": 1358695,
+        "sha256": "c92027935df3d014063b850c42c88624b108aed48136dd54a75ebb7cf810831d"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000022.parquet": {
+        "size": 1347960,
+        "sha256": "903cd70d5f5d80553581c4ed695e5a407d0c961fa6cc2899aa954e571a965120"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000023.parquet": {
+        "size": 1367663,
+        "sha256": "72f15e78dfc63ead6fbf7b0f8bcb5493b9622249e7d565a8ba6424e0e3566622"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000024.parquet": {
+        "size": 1199361,
+        "sha256": "68dd232855dc6b0ee2193495c5d9d5614bba32c183bbfa3b6a9b4cc7c0256977"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000025.parquet": {
+        "size": 1058865,
+        "sha256": "012dbb07c6ea6990e1f44f28bfa66c5d005a8789b54e1bb7059a996e55e4013d"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000026.parquet": {
+        "size": 1251353,
+        "sha256": "3f54035a08e8cc9cc2bade4c266bc942391ecba6b20a29ad48a23ba2da524678"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000027.parquet": {
+        "size": 1106087,
+        "sha256": "da5e46e802ee9fbbcfad72c643b8bf912fce7a60540b21d9c10a5e3b9c985c77"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000028.parquet": {
+        "size": 1120132,
+        "sha256": "986f5594348ca90b5fa3632ec0e8561f98b5d0438f8a49262f487f09753187ef"
+      },
+      "data/RealWorld/teleop-sitting/data/chunk-000/episode_000029.parquet": {
+        "size": 1247282,
+        "sha256": "5605300373918f557bd792e15afeeae3a7ab2317207f0c11b0dd205a50c8493e"
+      },
+      "data/RealWorld/teleop-sitting/meta/episodes.jsonl": {
+        "size": 3260,
+        "sha256": "978703b4ed09d5ac8896f260aae713fda9bf72ac80369787dd02f3398babfc15"
+      },
+      "data/RealWorld/teleop-sitting/meta/episodes_stats.jsonl": {
+        "size": 1593058,
+        "sha256": "86971f5b8a9c04900fc3ae860834db2cff9abfe2458be4251f6d8b7fa171c9e7"
+      },
+      "data/RealWorld/teleop-sitting/meta/info.json": {
+        "size": 24539,
+        "sha256": "789c995292f605747c40e5bbf69fb5009b1b7b43696e532293d1105fe7174a25"
+      },
+      "data/RealWorld/teleop-sitting/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-sitting/meta/tasks.jsonl": {
+        "size": 87,
+        "sha256": "10723b8ce9814574ea4e46b154456cd522c840b13f5c297513d40052b37f2d61"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 3816721,
+        "sha256": "a9dec06295af8656ce48a81b0c9af0cce0f4d93313b840971cd0a4cf7297fd91"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 3427556,
+        "sha256": "4f9725066f204c8cfc1f211eacb994ca505bc9e056b5ee8996df2fb84640b7a3"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 3867718,
+        "sha256": "6546b1ebb45504969dfeebaa2b2c9e5eb9549d81e5d47ee0aee82e92f73e476c"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 3385767,
+        "sha256": "37f7880b024704f3afeb7f79cfff65cbe75f740951c415f10b816cb18cfb9e6b"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 4423624,
+        "sha256": "159c28ceed305809075c55a3b5402bf6e516461894f183216f67d9d15df18ab8"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 3477696,
+        "sha256": "7039499b523ba4ace7158b8c4c9e62c4cbda0f431555eb0d8c13325761bd35f6"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 4169242,
+        "sha256": "460cbc6a120ec715b6212c6a94ec838ba502379979d34d33761a30fc32280669"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 4134956,
+        "sha256": "94cf95685b34f1f302896d040a5acb89162950a9b8e342c08e86af28f3b50b2c"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 3189571,
+        "sha256": "22d71ac361d6bf33b87c70953d4e9c82930d36aef03990c500da91e6808b7df8"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 4922328,
+        "sha256": "872b0d58f5ace68a55b54752079a06e78e34907a4c97ac4bbda1c4c68a31377c"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 4033285,
+        "sha256": "708d8855bd78b96ff4a12ebcd7ba4130451e85ce522b3394f8e08d946ed59a36"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 3976509,
+        "sha256": "61ae3988d4bac0ce6bc5f9c548e1d253e869dc7a7eccd25a5b1b566f02a36b0d"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 4246236,
+        "sha256": "34d815065522c19d1068a9f7565eba47e4106c7eca5beb06bd7cc7a7feb76a00"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 4900424,
+        "sha256": "eac473b811990436f082152729f46804c0df83b6264fc4033084ae54118e0e56"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 4676663,
+        "sha256": "6c50141eac7eaf7ab0a6fdf613cad6af4656ba205b544f0c657bff34e93c9956"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 4981712,
+        "sha256": "b6d8383461572f8e2d9461b3739fd2226a7d48736cdcd747eb40d58dfa1d73ce"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 4220953,
+        "sha256": "8a4b16a1b3418d9b97abb51065ed8c3a27ae5437ca3d8f25ff54abfc0e6690ba"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 5016736,
+        "sha256": "71e1663e6dcdbcb8038d5f016dc3f564a3493f1630168815e6f8a1106c9d42af"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 5429618,
+        "sha256": "0733e234e0060a75dea215ca2d31f01342822919fb8a9522c8b76c541f78c38c"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 6642131,
+        "sha256": "32f3bbf73379ada2989f1e6c711936c82d2d2ff391be4e32067ad98930251360"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 3485056,
+        "sha256": "e36bbd7b39d6d85650cb6c285e45619cca6866e5cbc09381a0c77dd365af72d0"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 4355785,
+        "sha256": "fa8cb85072c1b2876c2d98fecbdc97b8d4e7995d7008e6e5b3851695d490da97"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 3750235,
+        "sha256": "8d5adf6f8df0d495018151d9e46ce6840aa04eb752c21f23fe91b2989be61afe"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 4246661,
+        "sha256": "cdb7b1bbb38da524ffb740ac7744dc66f26aca99c1f36ebb6da9d30208ae097e"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000024.mp4": {
+        "size": 4246227,
+        "sha256": "8fc97410f966b3c221bf9b03b4fa7650d74d1bd1642c3d960e821e8839296283"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000025.mp4": {
+        "size": 3437281,
+        "sha256": "96c4ef6668a440fbcba7418e4fa408c58c2c908e029f9a16b2c7921fc4847934"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000026.mp4": {
+        "size": 4247681,
+        "sha256": "a669d91dbb96a06935f240dffc9e1c36ece663e889b68c264cf5c826f7a2fe15"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000027.mp4": {
+        "size": 3548045,
+        "sha256": "fcb2791a771f43cb986c57ea421d26de7995575e7b5926971f38aa1abfbda01d"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000028.mp4": {
+        "size": 3804361,
+        "sha256": "950fd50ba3e17d0d108bc01eab07c2286cb4d1269ad2c0b0c22d2e4024234222"
+      },
+      "data/RealWorld/teleop-sitting/videos/chunk-000/observation.images.ego_view/episode_000029.mp4": {
+        "size": 4199164,
+        "sha256": "81512b0d7b11fe6b4c0dbd52fb57653ae262b0cf80d5da5357fdfd02ea4bbbe3"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000000.parquet": {
+        "size": 2544296,
+        "sha256": "54614da92f8b473685f9ff1452331133771744463d8e16da3e3da92ac19cdf09"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000001.parquet": {
+        "size": 2142551,
+        "sha256": "2ed2533338fcfee64cfdd889e40952c72a52227b29bd50faa588d2db17ffbbe6"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000002.parquet": {
+        "size": 2252183,
+        "sha256": "bff08aa248c32fd4da55b13666aa32862af986ce8b1c889228efe882fb7a50d9"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000003.parquet": {
+        "size": 3419800,
+        "sha256": "87f956261c36847bed8db3b4336a095f9e683892d412b17f9c13eb3380aabc94"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000004.parquet": {
+        "size": 2188426,
+        "sha256": "eb576792d0357d7ea3a1b702ad400fef42aa375e5a2e4e739914bf1101f3117d"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000005.parquet": {
+        "size": 2660057,
+        "sha256": "cece1ae3f384c98bad4dcf2e180296b11aca6177d2473294b4ddffdff51633d3"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000006.parquet": {
+        "size": 2282480,
+        "sha256": "aa88e39b4a9040bbe32217403ec27784268e85991af892858860130c9d88d75e"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000007.parquet": {
+        "size": 1885523,
+        "sha256": "ed20a5170cd3675d00d4cc353053b487c2434b7ac77cefdfd5ed23b5c01c6d4f"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000008.parquet": {
+        "size": 2216141,
+        "sha256": "5d77f49088d56f0a91a7d413c972b53316d32870924ee62e0e04a41271f813e1"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000009.parquet": {
+        "size": 2077521,
+        "sha256": "c1ec6949b99088abe24cce6252c0fb03169ea9dd87f61e034a164cbec2563e73"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000010.parquet": {
+        "size": 2277421,
+        "sha256": "06750363277264ad5c597c0aa5b29a851289f6b0597c9c709c2db98d52125ebe"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000011.parquet": {
+        "size": 2209080,
+        "sha256": "e7138fc639fb38d36be853388c0ba288a45c86a65fb25336dd6cd20c7be545de"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000012.parquet": {
+        "size": 1985690,
+        "sha256": "e237508c3bfab03970a28f294f68bdc3e28a7cbaa441e7f912864f939a338055"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000013.parquet": {
+        "size": 2530368,
+        "sha256": "b98776cc6fab2aa689908bf014b67f84969ada9cc4025d5638ddad0a1cad8f6f"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000014.parquet": {
+        "size": 2151033,
+        "sha256": "77a6b30c9ff89a1b386ce0dfa3e81ca9f55d35dec9193dbc9d9ed29e32cdcba2"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000015.parquet": {
+        "size": 1836037,
+        "sha256": "10f708d38e021181466ec83d04ef90a91d8444ca0a1fe7900813beb2e2ddb434"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000016.parquet": {
+        "size": 2057566,
+        "sha256": "e7b5132caf1591f4eb4dd8b8372c74293df833e009b0a1edbbe2f4404890bbab"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000017.parquet": {
+        "size": 1765870,
+        "sha256": "6500ebee988c188f00030d556bd71f3c0cf1d166028d1d0d64f968c344d8ba0c"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000018.parquet": {
+        "size": 2268527,
+        "sha256": "58bad9aaf007c8f75143274574244565e142172124c67140d9097a2e07c41650"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000019.parquet": {
+        "size": 2568171,
+        "sha256": "0eec3f22e6ecfe1e5c06a311319ab8ce359ed9a83eb120dc4cb673bb0949896a"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000020.parquet": {
+        "size": 1810088,
+        "sha256": "33f943c8f4a7201591d003bd026414e0d4d9f2af9ded47bbd7b04d56857c0e0e"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000021.parquet": {
+        "size": 1981573,
+        "sha256": "726638ae0dc32ece44555dd89cd54778d1968df6677e2632f16eed10d530b5aa"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000022.parquet": {
+        "size": 1754299,
+        "sha256": "21972bac66df0140b56e6ae8efd8710c582d126e754e0ae8403c65bfe9ebfdf1"
+      },
+      "data/RealWorld/teleop-transportation/data/chunk-000/episode_000023.parquet": {
+        "size": 2231254,
+        "sha256": "21b21a19089b59e07e383ea9ae648fcd231071b487204bcccd4c79e846002902"
+      },
+      "data/RealWorld/teleop-transportation/meta/episodes.jsonl": {
+        "size": 2750,
+        "sha256": "a3094e4d0e9480fd818d677acef540f06d86ae5355b91a3ccea6e35fb95857a1"
+      },
+      "data/RealWorld/teleop-transportation/meta/episodes_stats.jsonl": {
+        "size": 1273013,
+        "sha256": "b5a502474f753ed228346d4cd0279d58b2175ff0e3961185580d06803ace847b"
+      },
+      "data/RealWorld/teleop-transportation/meta/info.json": {
+        "size": 24539,
+        "sha256": "2ee50a65e86a171f1b724a63e52fe62a9fdc24cfe858be33d03696fa18ffbd00"
+      },
+      "data/RealWorld/teleop-transportation/meta/modality.json": {
+        "size": 6481,
+        "sha256": "7565e9156c7ad833fb1993637e038148fd6327ac145487df6bd531404bba624b"
+      },
+      "data/RealWorld/teleop-transportation/meta/tasks.jsonl": {
+        "size": 93,
+        "sha256": "c17273d0a1c2354790a25d34fb77376f546867e32e1dbb7ffa4991f109160e2a"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000000.mp4": {
+        "size": 3399502,
+        "sha256": "0bf9f0f9fcd1b2e7f927c104bb754ef0479bfd46adc8e580c8f1a74d2b1e6096"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000001.mp4": {
+        "size": 3820590,
+        "sha256": "4a2dc0289590bdd9ce08109d6cf6cf86a205e2bd3580a56be2001dd93aa58919"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000002.mp4": {
+        "size": 3163565,
+        "sha256": "c8fbe6017ab97521a8c3fa6c82549a73fde8fde870aad1298aa82bcee590a649"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000003.mp4": {
+        "size": 6189963,
+        "sha256": "7a0420728b7f2af3f946a080be8975e47a8c8a82101d73804fc25ff7715f67ca"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000004.mp4": {
+        "size": 3406765,
+        "sha256": "e85189767b256e1b4de134e26d216b9ddeb877d21d153995fc06357b6256f7ee"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000005.mp4": {
+        "size": 4203152,
+        "sha256": "868ea1d7afea6886d9baa19c2229a26008afa265b48ce8702fb68d626b680c95"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000006.mp4": {
+        "size": 3459218,
+        "sha256": "8636879390e77250f5545e410588215208191c627838761c7cced85c6a7c70d2"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000007.mp4": {
+        "size": 2905228,
+        "sha256": "9b2fc0e126a5bf16fe14d68763517c3926cab0d7559ef3a730708550352a8e1a"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000008.mp4": {
+        "size": 3403286,
+        "sha256": "5a46eeb87493fd70397d9349489ce3511e28dbc80ddec7013fa625a8f0df8bde"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000009.mp4": {
+        "size": 3396907,
+        "sha256": "052dceb2bdfd39a7586e71651612b6a2727fe18996b3d54f857cd09686c9a779"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000010.mp4": {
+        "size": 3050705,
+        "sha256": "3a1c593239ba794e89df992374d8392bbeb5321825e0eff4386a3f3f1290326d"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000011.mp4": {
+        "size": 3081272,
+        "sha256": "f1008002ae11ddd70a48f6f1bce5f99dd866be918d7373a76202fe6d123658f0"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000012.mp4": {
+        "size": 3518565,
+        "sha256": "874b3040998eee0e7b4973d606adcad5bdf78bd73419dd079298920179d96ae7"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000013.mp4": {
+        "size": 4180174,
+        "sha256": "5a3742a7668a5fe4e9b6c7a802371fb0e911cd5ac4eb554cbfd070a3523dad5d"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000014.mp4": {
+        "size": 3676012,
+        "sha256": "e1acc9fb38e8386025cf9efb26620cb8ad08e45e05f2183a118e0a024ea00065"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000015.mp4": {
+        "size": 2717284,
+        "sha256": "55990022d29ce8fa4a51ae7761cc33b9837c2f69cefbcb0ad7ed50dcaeec50f1"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000016.mp4": {
+        "size": 3903989,
+        "sha256": "6013845979d14969b6cd7a79e6f8ee54ec7f16f4b9229e6d0f9395a5458288d3"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000017.mp4": {
+        "size": 3130421,
+        "sha256": "1623fac4ca34f71e4a97d54e71c956ab1e9bbfd3acb9d69433bbe9d8d6423416"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000018.mp4": {
+        "size": 4488149,
+        "sha256": "0bdeb547639724a90ebae9c1a824e1056e80d92d10f4e61ee309613cce2c2477"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000019.mp4": {
+        "size": 4229174,
+        "sha256": "b2bc8d7677291ef3be436bae53ee20f2fcf3c631697b7a9a4053f876a3790489"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000020.mp4": {
+        "size": 3036783,
+        "sha256": "bd11ab51f42b7f747ec99d64a1aa97d5a9da1b6ecb7e42854a1f2ca2dc3d29c7"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000021.mp4": {
+        "size": 3106348,
+        "sha256": "3bbe9e01fb23c580323dcf3d5870de8804b48063701d5df18acd7cddc6e0b516"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000022.mp4": {
+        "size": 2927913,
+        "sha256": "6e3091bca3b582f15df3b451eeb226ab758cfb2046dd31766acd7e40e522f186"
+      },
+      "data/RealWorld/teleop-transportation/videos/chunk-000/observation.images.ego_view/episode_000023.mp4": {
+        "size": 3670344,
+        "sha256": "570284870f19299403fc53a7883c8e145d6056ea3dabc482f2f0e042801a239e"
+      }
+    }
+  }
+}

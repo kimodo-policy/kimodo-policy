@@ -55,3 +55,10 @@ CUDA_VISIBLE_DEVICES="" PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 \
 ```
 
 The existing HTTP test double was updated for the session-aware reset/runtime-owned validation contract. Two stale training-test paths were updated to the current script layout and grouped-sampling configuration. A direct/importlib server import issue was fixed by resolving sibling modules after adding the deployment directory to `sys.path`.
+
+## Real-world model and dataset release validation (2026-11-08)
+
+- Eight checkpoint steps and task instructions match the released task catalog; `long` uses `teleop-long`.
+- All learned model tensors are finite and unchanged after replacing machine-specific path metadata with portable paths.
+- The 236 demonstrations contain 157,769 frames. Episode metadata, required action/state shapes, finite values, and decoded video frame counts agree.
+- Checkpoint and data file sizes and SHA-256 hashes are recorded in [released-assets.json](../manifests/released-assets.json). These structural and integrity checks do not assert that every demonstration is successful or free of recording artifacts.

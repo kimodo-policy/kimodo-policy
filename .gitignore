@@ -37,6 +37,9 @@
 /datasets/
 /.cache/
 /Simple_Single_Task/
+/HumanoidArena_Single_Task/
+/HumanoidArena_Multi_Task/
+/Real_World/
 /Pre_Train/
 /scripts/logs/
 /real-world/data/

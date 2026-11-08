@@ -58,7 +58,7 @@
 
 ## ⚙️ Installation & Environment Setup
 
-Use Ubuntu 22.04 or newer on x86_64, with Conda and a compatible NVIDIA GPU driver installed. SIMPLE also requires a CUDA 12.x toolkit with `nvcc` (12.8 recommended). The setup script installs all three environments and checks their imports:
+Use Ubuntu 22.04 or newer on x86_64, with Conda and a compatible NVIDIA GPU driver installed. **Visual simulation requires an RTX-capable GPU with RT Cores and working graphics drivers**; a GPU suitable for training is not necessarily suitable for Isaac rendering. See the [Isaac Sim hardware requirements](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/installation/requirements.html). Our SIMPLE release smoke test used an RTX 4090. SIMPLE also requires a CUDA 12.x toolkit with `nvcc` (12.8 recommended). The setup script installs all three environments and checks their imports:
 
 | Environment | Python | Purpose |
 | --- | --- | --- |
@@ -68,7 +68,7 @@ Use Ubuntu 22.04 or newer on x86_64, with Conda and a compatible NVIDIA GPU driv
 
 ### Quick Installation
 
-Clone the project and run the setup script. The `--system-deps` option installs Ubuntu system packages and may request your sudo password. Use `--accept-isaac-eula` after reviewing and accepting the [Isaac Sim license](https://docs.omniverse.nvidia.com/isaacsim/latest/common/NVIDIA_Omniverse_License_Agreement.html).
+Clone the project and run the setup script. The `--system-deps` option installs Ubuntu system packages and may request your sudo password. Use `--accept-isaac-eula` after reviewing and accepting the [Isaac Sim license](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/common/licenses-isaac-sim.html).
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/kimodo-policy/kimodo-policy.git
@@ -128,7 +128,12 @@ hf download YunhengWang/kimodo-policy \
   --local-dir .
 ```
 
-Keep the configuration files and motion statistics alongside the weights. These paths match the default training and evaluation configurations. The SEED variant additionally needs its matching motion backbone; use the checkpoint and configuration specified for that variant.
+Keep the configuration files and motion statistics alongside the weights. These paths match the default training and evaluation configurations. To train or evaluate the **SEED** variant, also download its matching motion backbone:
+
+```bash
+hf download YunhengWang/kimodo-policy \
+  --include 'checkpoints/Kimodo-G1-SEED-v1/**' --local-dir .
+```
 
 **Policy checkpoints and text embeddings:** download a task-specific policy from the checkpoint tables below. Released task text embeddings are included in this Git repository under [`data/cache/`](data/cache/README.md). For new language instructions, prepare the LLM2Vec weights as described in **Kimodo-Policy Pretraining** below.
 
@@ -222,7 +227,17 @@ hf download YunhengWang/kimodo-policy \
   --local-dir "$PROJECT_ROOT/.setup/arena-assets"
 ```
 
-The backup is downloaded under `.setup/arena-assets/assets/humanoidarena_assets/`. Extract any archives before placing the files in the simulator directory. For the official ZIP, replace the archive path below with your downloaded file:
+Our backup contains unpacked `objects/` and `robots/` directories. Install them after downloading:
+
+```bash
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+BACKUP_ROOT="$PROJECT_ROOT/.setup/arena-assets/assets/humanoidarena_assets"
+ARENA_ASSET_DIR="$PROJECT_ROOT/HumanoidArena/isaaclab_twist2_g1/assets"
+mkdir -p "$ARENA_ASSET_DIR"
+cp -a "$BACKUP_ROOT/objects" "$BACKUP_ROOT/robots" "$ARENA_ASSET_DIR/"
+```
+
+If you downloaded the **official ZIP instead**, use the following command with its local path:
 
 ```bash
 export PROJECT_ROOT="$(git rev-parse --show-toplevel)"
@@ -278,7 +293,7 @@ These are presence checks, not a full asset-integrity or rendering test. `check_
 
 ### 🚀 Kimodo-Policy Single-Task Training on HumanoidArena
 
-To help you quickly reproduce our HumanoidArena results, we provide downloadable checkpoints corresponding to the paper, along with evaluation results and visualizations. For each task, the table below includes both a model fine-tuned from 419h pretraining and a model trained from scratch. Click a checkpoint to download the weights, or a result to explore the evaluations and visualizations.
+To help you quickly reproduce our HumanoidArena results, we provide downloadable checkpoints corresponding to the paper, along with evaluation results and visualizations. For each task, the table below includes both a model fine-tuned from 419h pretraining and a model trained from scratch. Click a checkpoint to download the weights, or a result to explore the evaluations and visualizations. SR is reported as mean ± population standard deviation across seeds `0,1,2`, with 20 episodes per seed. “From scratch” refers to the trainable VLA policy modules; the frozen motion backbone is still pretrained.
 
 | Task | Pretrain | Kimodo-Policy checkpoint | Results&nbsp;(SR) |
 | --- | --- | --- | --- |
@@ -297,7 +312,7 @@ To help you quickly reproduce our HumanoidArena results, we provide downloadable
 | sit_sofa | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_sit_sofa](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) | [96.7 ± 2.4%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_sit_sofa_sonic) |
 | vision_navi | ✅ | [ft_419h_humanoidarena_single_gbs64_20w_HSI_vision_navi](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_vision_navi_sonic) | [76.7 ± 18.9%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HSI_vision_navi_sonic) |
 
-You can also train each task from scratch or fine-tune from a pretrained checkpoint available in our [Hugging Face model repository](https://huggingface.co/YunhengWang/kimodo-policy/tree/main). The default configuration uses **4 GPUs** (`KIMODO_GPUS=0,1,2,3`). Run the following commands from the repository root, replacing the dataset and checkpoint paths with your local paths and `doubledesk` with your target task.
+You can also train each task from scratch or fine-tune from one of our [pretraining checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train). The default configuration uses **4 GPUs** (`KIMODO_GPUS=0,1,2,3`). Run the following commands from the repository root, replacing the dataset and checkpoint paths with your local paths and `doubledesk` with your target task.
 
 **Train from scratch:**
 
@@ -335,17 +350,17 @@ To help you reproduce our multi-task HumanoidArena experiments, we provide downl
 
 - **419h:** The standard model fine-tuned from 419 hours of VLA policy pretraining, achieving the best overall success rate among these variants.
 
-`Pretrain` refers to VLA policy pretraining; all variants retain a pretrained, frozen motion backbone. HOI and HSI report mean success rates for human–object and human–scene interaction tasks, respectively. Click a checkpoint to download the weights, or an overall result to explore the evaluations and visualizations.
+`Pretrain` refers to VLA policy pretraining; all variants retain a pretrained, frozen motion backbone. HOI and HSI report mean success rates for human–object and human–scene interaction tasks, respectively. For `Overall Results`, we pool all seven tasks within each seed (140 episodes), then report the mean ± population standard deviation across the three seeds. These standard deviations are computed from the released per-seed evaluation summaries. Click a checkpoint to download the weights, or an overall result to explore the evaluations and visualizations.
 
 | Task | Pretrain | Kimodo-Policy checkpoint | HOI Avg. | HSI Avg. | Overall Results |
 | --- | --- | --- | --- | --- | --- |
-| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 51.7% | 79.6% | [67.6%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
-| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_SEED](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) | 52.8% | 72.9% | [64.3%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) |
-| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_large](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) | 45.6% | 85.8% | [68.6%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) |
-| multi-task | ✅ 105h | [ft_105h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 48.9% | 82.5% | [68.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
-| multi-task | ✅ 419h | [ft_419h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 56.1% | 84.2% | [72.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
+| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 51.7% | 79.6% | [67.6 ± 2.2%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
+| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_SEED](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) | 52.8% | 72.9% | [64.3 ± 2.1%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_SEED) |
+| multi-task | ❌ | [humanoidarena_sonicx7_gbs128_50w_large](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) | 45.6% | 85.8% | [68.6 ± 2.0%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse_large) |
+| multi-task | ✅ 105h | [ft_105h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 48.9% | 82.5% | [68.1 ± 0.7%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_105h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
+| multi-task | ✅ 419h | [ft_419h_humanoidarena_sonicx7_gbs128_50w](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) | 56.1% | 84.2% | [72.1 ± 0.6%](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/eval_results/HumanoidArena_Multi_Task/ft_419h_humanoidarena_sonicx7_gbs128_50w_controlnet4_detach_true_mse) |
 
-You can also train a single policy jointly on all seven HumanoidArena tasks from scratch or fine-tune from a pretrained checkpoint available in our [Hugging Face model repository](https://huggingface.co/YunhengWang/kimodo-policy/tree/main). The default configuration uses **4 GPUs** (`KIMODO_GPUS=0,1,2,3`). Run the following commands from the repository root, replacing the dataset and checkpoint paths with your local paths.
+You can also train a single policy jointly on all seven HumanoidArena tasks from scratch or fine-tune from one of our [pretraining checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train). The default configuration uses **4 GPUs** (`KIMODO_GPUS=0,1,2,3`). Run the following commands from the repository root, replacing the dataset and checkpoint paths with your local paths.
 
 **Train from scratch:**
 
@@ -374,14 +389,24 @@ We evaluate Kimodo-Policy on HumanoidArena with SONIC. The default evaluation se
 
 #### • SONIC evaluation
 
-Run the command below from the repository root to evaluate `doubledesk`. Replace the task name and checkpoint path with your own, and adjust `--gpus` if you use different GPU IDs. The example uses seeds `0,1,2`, disables RTC and persistent simulator reuse, and enables deterministic simulator startup.
+Run from the repository root. First download the released 419h-fine-tuned `doubledesk` policy (step 200,000); skip this download if you already have a matching local checkpoint:
+
+```bash
+conda activate kimodo-policy
+export POLICY_DIR="HumanoidArena_Single_Task/ft_419h_humanoidarena_single_gbs64_20w_controlnet4_detach_true_mse_HOI_double_desk_sonic/2026-09-06_00-52-42/checkpoint_200000"
+hf download YunhengWang/kimodo-policy \
+  --include "$POLICY_DIR/**" --local-dir .
+export CHECKPOINT="$PWD/$POLICY_DIR"
+```
+
+The command below evaluates this checkpoint. For another task, select its matching policy and replace both the task name and `CHECKPOINT`. Adjust `--gpus` for your machine. The example uses seeds `0,1,2`, disables RTC and persistent simulator reuse, and enables deterministic simulator startup.
 
 ```bash
 PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 bash evaluation/humanoidarena_eval_signal_task_sonic.sh \
   --project "$PROJECT_ROOT" \
   --task doubledesk \
-  --checkpoint /path/to/checkpoint_STEP \
+  --checkpoint "$CHECKPOINT" \
   --gpus 0,1,2 \
   --seeds 0,1,2 \
   --repeats 20 \
@@ -413,6 +438,7 @@ Train Kimodo-Policy directly on SIMPLE demonstrations or evaluate our released p
 Download demonstrations from the [official SIMPLE training dataset](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple). If the official data changes or a task is unavailable, use our [frozen training snapshots](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/Simple). The snapshots contain only the eight evaluated tasks and 794 demonstrations, including `G1WholebodyXMoveBendPickTeleop-v0`. The loader reads the original LeRobot format without replay or conversion.
 
 ```bash
+conda activate kimodo-policy
 # Download one frozen training task; task text embeddings are bundled in Git.
 export TASK=G1WholebodyCloseDoorTeleop-v0
 python utils/prepare_simple.py --training-task "$TASK"
@@ -430,6 +456,7 @@ The check validates metadata, parquet contents and video presence; it does not d
 Official resources are available from [SIMPLE assets](https://huggingface.co/datasets/USC-PSI-Lab/SIMPLE) and [evaluation episodes](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple-eval). Our [frozen backup](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/simple_assets) includes robots, grasp objects, articulated objects, containers, six rooms, materials and fixed evaluation episodes. The small task text embeddings are included in this Git repository.
 
 ```bash
+conda activate kimodo-policy
 python utils/prepare_simple.py --assets
 hf download YunhengWang/kimodo-policy \
   --include 'checkpoints/Kimodo-G1-RP-v1/**' \
@@ -459,6 +486,8 @@ To fine-tune your own policy, download a [pretraining checkpoint](https://huggin
 ```bash
 conda activate kimodo-policy
 export KIMODO_ENV="$CONDA_PREFIX"
+export TASK=G1WholebodyCloseDoorTeleop-v0
+export KIMODO_SIMPLE_ROOT="$PWD/datasets/Simple"
 KIMODO_GPUS=0,1,2,3 \
   bash scripts/Simple_Single_Task/ft_simple_single_gbs64_20w_controlnet4_detach_true_mse_continuous_hand.sh \
   "$TASK" /path/to/pretrain/checkpoint_1000000
@@ -471,6 +500,8 @@ You can also initialize the trainable policy modules from scratch; the frozen mo
 Download the checkpoint for your task using the [complete download example](evaluation/simple_eval.md#2-base-models-task-policy-and-text-embeddings), then run:
 
 ```bash
+source .setup/env.sh
+export TASK=G1WholebodyCloseDoorTeleop-v0  # Match the downloaded task checkpoint.
 # Match the execution horizon used in each released evaluation.
 case "$TASK" in
   G1WholebodyOpenFaucetTeleop-v0|G1WholebodyPushOfficeChairTeleop-v0|G1WholebodyXMoveBendPickTeleop-v0)
@@ -584,7 +615,24 @@ Clone this repository on both machines and follow the [real-world installation g
 
 Create `real-world/local.env` and `real-world/deploy/deploy_config.json` from their examples. Set each machine's interpreter paths, the robot/camera interfaces, and the workstation's SSH connection to the GPU server. Install the base models under `checkpoints/` and the workstation runtime under `real-world/external/` and `real-world/runtime/`, following the installation guide.
 
-The matching `workstation-runtime.tar.gz` and real-world task checkpoints are distributed separately from Git; public download links are not yet provided. Obtain the runtime archive before proceeding, and use a compatible task checkpoint or train your own below.
+The eight evaluated [real-world policy checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World) and their [training datasets](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld) are released separately from Git. The matching `workstation-runtime.tar.gz` is still required for robot-side collection and execution and does not yet have a public download link. Code, checkpoints, and training data are available; the workstation runtime distribution remains pending.
+
+#### • Released Checkpoints & Training Data
+
+The release contains **236 demonstrations** across the eight evaluated tasks. Each policy is fine-tuned from 419h pretraining; the selected checkpoint steps match the deployment task catalog. The `long` task uses the original `teleop-long` dataset.
+
+| Task | Checkpoint step | Demonstrations | Policy checkpoint | Training data |
+| --- | ---: | ---: | --- | --- |
+| `banana` | 20,000 | 33 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-banana/2026-10-15_15-49-05/checkpoint_20000) | [`teleop-banana`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-banana) |
+| `boxing` | 25,000 | 29 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-boxing/2026-10-20_01-00-06/checkpoint_25000) | [`teleop-boxing`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-boxing) |
+| `pushing` | 25,000 | 25 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pushing/2026-10-20_00-54-33/checkpoint_25000) | [`teleop-pushing`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-pushing) |
+| `transportation` | 30,000 | 24 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-transportation/2026-10-20_01-01-28/checkpoint_30000) | [`teleop-transportation`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-transportation) |
+| `sitting` | 20,000 | 30 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-sitting/2026-10-20_02-50-36/checkpoint_20000) | [`teleop-sitting`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-sitting) |
+| `football` | 30,000 | 38 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-football/2026-10-20_09-32-25/checkpoint_30000) | [`teleop-football`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-football) |
+| `pnp` | 25,000 | 28 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-pnp/2026-10-20_09-36-05/checkpoint_25000) | [`teleop-pnp`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-pnp) |
+| `long` | 30,000 | 29 | [Download](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World/ft_real_world_single_gbs64_5w_controlnet4_detach_true_mse_teleop-long/2026-10-20_09-36-21/checkpoint_30000) | [`teleop-long`](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld/teleop-long) |
+
+See the [download and verification guide](real-world/docs/released-assets.md) for commands, dataset placement, and SHA-256 checks. Task text embeddings and initial poses are bundled in this Git repository.
 
 For collection and deployment, start each terminal in `real-world/` and load its machine-specific configuration:
 
@@ -617,7 +665,7 @@ Keep `meta/`, `data/`, and `videos/` together. Follow the [transfer instructions
 
 ### • 3. Fine-Tune on Your Data
 
-Run the following from the **repository root on the GPU server**. Replace the checkpoint path with a compatible [pretrained Kimodo-Policy checkpoint](https://huggingface.co/YunhengWang/kimodo-policy/tree/main), and `teleop-banana` with your dataset directory name under `$REAL_WORLD_ROOT/data/`.
+Run the following from the **repository root on the GPU server**. Replace the checkpoint path with a compatible [pretrained Kimodo-Policy checkpoint](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Pre_Train), and `teleop-banana` with your dataset directory name under `$REAL_WORLD_ROOT/data/`.
 
 ```bash
 conda activate kimodo-policy

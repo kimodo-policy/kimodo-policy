@@ -26,10 +26,10 @@ The GMR baseline is `bb1bbe40774794fceb2a7c579a3464a28e68c844` from [GMR](https:
 | SONIC decoder, encoder, and planner | Included in the runtime archive | `manifests/runtime-assets.json` |
 | Eight task text embeddings | Included in `assets/text-cache/` | `manifests/text-cache.json`; copied without re-encoding |
 | Kimodo-G1-RP-v1 and DINOv3 | Obtain the base model assets and install under the model repository's `checkpoints/` | See directory structure below |
-| Real-world task checkpoints | Obtain from the maintainer or fine-tune your own | Each directory needs `config.json` and `training_state.pt`; numeric/latest discovery additionally requires eight rank RNG files |
+| Real-world task checkpoints | [Eight released policies](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World), or fine-tune your own | Each directory needs `config.json` and `training_state.pt`; numeric/latest discovery additionally requires eight rank RNG files |
 | Llama / LLM2Vec | Needed to generate missing training text caches | Meta-Llama-3-8B-Instruct, LLM2Vec-Meta-Llama-3-8B-Instruct-mntp, LLM2Vec-Meta-Llama-3-8B-Instruct-mntp-supervised |
 
-The main repository links to the [Kimodo-Policy model release](https://huggingface.co/YunhengWang/kimodo-policy). This does not establish public download paths for the eight real-world checkpoints. Maintainers must provide their actual locations and hashes.
+The [download guide](released-assets.md) provides exact checkpoint directories, commands for the eight training datasets, and checksum verification using [released-assets.json](../manifests/released-assets.json). The workstation runtime archive remains a separate requirement with public distribution pending.
 
 ```text
 checkpoints/

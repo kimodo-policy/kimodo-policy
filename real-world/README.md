@@ -8,7 +8,9 @@ This directory provides the real-world workflow for **Unitree G1 with two Dex3 h
 
 Prepare separate compatible Conda environments for teleoperation, collection/bridge, and the model server. See the [observed versions and asset requirements](docs/00-versions-assets.md). These are records of working installations, not a fully resolved cross-platform environment lock.
 
-**Code alone is insufficient.** Obtain the matching `workstation-runtime.tar.gz` (approximately 3.81 GB), the base models, and your task checkpoints. The runtime archive is distributed separately from Git and verified against [its manifest](manifests/workstation-runtime.json). A public download location has not yet been established in this package. Do not assume the archive or the eight real-world checkpoints are included in a clone.
+The eight evaluated [task checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World) and [training datasets](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld) are publicly available. Follow the [download and verification guide](docs/released-assets.md); the small task text caches and initial poses are bundled in Git.
+
+**Robot-side runtime distribution remains pending.** Collection and execution still require the matching `workstation-runtime.tar.gz` (approximately 3.81 GB), verified against [its manifest](manifests/workstation-runtime.json). Its public download location has not yet been established. Base models and runtime assets are separate from task checkpoints and are not included in a clone.
 
 Offline tests and archive integrity checks have passed. A clean Linux rebuild and a complete hardware acceptance run remain separate validation steps. The PICO headset APK version and the robot-side camera environment still need a verified version record.
 
