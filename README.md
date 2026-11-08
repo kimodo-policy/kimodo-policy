@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="asset/picture/kimodo-policy-title-dark.svg">
-    <img src="asset/picture/kimodo-policy-title.svg" alt="Kimodo-Policy: Towards Kinematic Action Models for Humanoid Loco-Manipulation" width="960">
+    <img src="asset/picture/kimodo-policy-title.svg" alt="Kimodo-Policy: Learning Kinematic Action Models for Humanoid Loco-Manipulation" width="960">
   </picture>
 </p>
 
@@ -731,7 +731,7 @@ If you find Kimodo-Policy useful in your research, please cite our work using th
 
 ```bibtex
 @misc{wang2026kimodopolicy,
-  title  = {{Kimodo-Policy}: Towards Kinematic Action Models for Humanoid Loco-Manipulation},
+  title  = {{Kimodo-Policy}: Learning Kinematic Action Models for Humanoid Loco-Manipulation},
   author = {Wang, Yunheng and Zhang, Jiaxi and Lu, Wei and Fang, Yuetong and
             Wang, Taowen and Feng, Yixiao and Zhang, Shuning and Xu, Junzhe and
             Wang, Yichi and Yuan, Zizhao and Huang, Kailun and Li, Lusong and
