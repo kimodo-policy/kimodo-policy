@@ -1,4 +1,4 @@
-\begin{thebibliography}{52}
+\begin{thebibliography}{56}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -207,11 +207,29 @@ Guy Tevet, Sigal Raab, Brian Gordon, Yonatan Shafir, Daniel Cohen-Or, and Amit~H
 \newblock In \emph{International Conference on Learning Representations (ICLR)}, 2023.
 \newblock URL \url{https://arxiv.org/abs/2209.14916}.
 
-\bibitem[Wang et~al.(2026)Wang, Xie, Yang, Wang, Yuan, Fang, Feng, Wang, Chen, Chen, et~al.]{humanoidarena}
+\bibitem[Wang et~al.(2026{\natexlab{a}})Wang, Xie, Yang, Wang, Yuan, Fang, Feng, Wang, Chen, Chen, et~al.]{humanoidarena}
 Taowen Wang, Zikang Xie, Bin Yang, Yunheng Wang, Zizhao Yuan, Yuetong Fang, Yixiao Feng, Yichi Wang, Xingyu Chen, Haodong Chen, et~al.
 \newblock {HumanoidArena}: Benchmarking egocentric hierarchical whole-body learning.
-\newblock \emph{arXiv preprint arXiv:2606.17833}, 2026.
+\newblock \emph{arXiv preprint arXiv:2606.17833}, 2026{\natexlab{a}}.
 \newblock URL \url{https://arxiv.org/abs/2606.17833}.
+
+\bibitem[Wang et~al.(2025{\natexlab{a}})Wang, Fang, Wang, Feng, Tan, Zhang, Liu, Ji, and Xu]{wang2025dreamnavtrajectorybasedimaginativeframework}
+Yunheng Wang, Yuetong Fang, Taowen Wang, Yixiao Feng, Yawen Tan, Shuning Zhang, Peiran Liu, Yiding Ji, and Renjing Xu.
+\newblock {DreamNav}: A trajectory-based imaginative framework for zero-shot vision-and-language navigation.
+\newblock \emph{arXiv preprint arXiv:2509.11197}, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2509.11197}.
+
+\bibitem[Wang et~al.(2025{\natexlab{b}})Wang, Feng, Fang, Zhang, Jing, Li, Jiang, and Xu]{hero}
+Yunheng Wang, Yixiao Feng, Yuetong Fang, Shuning Zhang, Tan Jing, Jian Li, Xiangrui Jiang, and Renjing Xu.
+\newblock {HERO}: Hierarchical traversable {3D} scene graphs for embodied navigation among movable obstacles.
+\newblock \emph{arXiv preprint arXiv:2512.15047}, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2512.15047}.
+
+\bibitem[Wang et~al.(2026{\natexlab{b}})Wang, Fang, Wang, Li, Liu, Xu, Yuan, Feng, Zhang, Lu, Zeng, and Xu]{wang2026limitsvisionandlanguagenavigation}
+Yunheng Wang, Yuetong Fang, Taowen Wang, Lusong Li, Kun Liu, Junzhe Xu, Zizhao Yuan, Yixiao Feng, Jiaxi Zhang, Wei Lu, Zecui Zeng, and Renjing Xu.
+\newblock What limits vision-and-language navigation?
+\newblock \emph{arXiv preprint arXiv:2605.13328}, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2605.13328}.
 
 \bibitem[Wei et~al.(2026{\natexlab{a}})Wei, Jing, Li, Zhao, Mao, Ni, He, Liu, Liu, Kang, et~al.]{psi0}
 Songlin Wei, Hongyi Jing, Boqian Li, Zhenyu Zhao, Jiageng Mao, Zhenhao Ni, Sicheng He, Jie Liu, Xiawei Liu, Kaidi Kang, et~al.
@@ -286,11 +304,17 @@ Junpeng Yue, Boyuan Li, Yuxuan Wang, Zepeng Wang, Yuhui Fu, Feiyang Xie, Yu~Zhan
 \newblock \emph{arXiv preprint arXiv:2610.11283}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2610.11283}.
 
-\bibitem[Zhang et~al.(2026)Zhang, Zhang, Bai, Wang, Li, Wang, Zhang, Tang, Zhou, Sun, et~al.]{wholebodywam_motionpriors}
+\bibitem[Zhang et~al.(2026{\natexlab{a}})Zhang, Zhang, Bai, Wang, Li, Wang, Zhang, Tang, Zhou, Sun, et~al.]{wholebodywam_motionpriors}
 Bowei Zhang, Qiyao Zhang, Shuanghao Bai, Xinhua Wang, Meng Li, Yilei Wang, Leiwang Zhang, Jian Tang, Lu~Zhou, Lei Sun, et~al.
 \newblock {WholeBodyWAM}: Learning whole-body world action models with scalable motion priors.
-\newblock \emph{arXiv preprint arXiv:2609.18197}, 2026.
+\newblock \emph{arXiv preprint arXiv:2609.18197}, 2026{\natexlab{a}}.
 \newblock URL \url{https://arxiv.org/abs/2609.18197}.
+
+\bibitem[Zhang et~al.(2026{\natexlab{b}})Zhang, Wang, Lu, Wang, Zhang, Feng, Xu, Sun, Xu, Fang, and Xu]{uniground}
+Jiaxi Zhang, Yunheng Wang, Wei Lu, Taowen Wang, Shuning Zhang, Yixiao Feng, Junzhe Xu, Shunwang Sun, Weisheng Xu, Yuetong Fang, and Renjing Xu.
+\newblock {UniGround}: Universal {3D} visual grounding via training-free scene parsing.
+\newblock \emph{arXiv preprint arXiv:2603.08131}, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2603.08131}.
 
 \bibitem[Zhang et~al.(2023)Zhang, Rao, and Agrawala]{zhang2023adding}
 Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.
