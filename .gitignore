@@ -84,3 +84,7 @@ checkpoints/
 
 # Local environment setup logs, paths, and Isaac Lab checkout
 /.setup/
+
+# Publish only the arXiv paper; keep conference drafts and backups local.
+/asset/paper/*
+!/asset/paper/arxiv/

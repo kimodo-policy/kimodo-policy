@@ -1,6 +1,0 @@
-\begin{figure}[!t]
-  \centering
-  \includegraphics[width=\textwidth]{image/method.png}
-  \caption{\textbf{Overview of Kimodo-Policy.} Colored blocks denote \inlinecolorblock{green!55!black}{green!15} frozen Kimodo denoisers, \inlinecolorblock{blue!55!black}{blue!10} trainable ControlNet branches with DINOv3~\cite{dinov3} features, and \inlinecolorblock{gray!65}{gray!15} trainable HandNet for bilateral hand control. Dashed boxes mark Dual-Path Fusion: motion-query cross-attention and spatial-to-temporal MLP mapping. Root predictions condition body generation; future body features guide HandNet. The Motion Projector maps root--body outputs to tracker references. Snowflakes/flames mark frozen/trainable modules.}
-  \label{fig:method_architecture}
-\end{figure}

@@ -1,4 +1,4 @@
-\begin{thebibliography}{49}
+\begin{thebibliography}{52}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,28 +17,17 @@ Hongzhe Bi, Lingxuan Wu, Tianwei Lin, Hengkai Tan, Zhizhong Su, Hang Su, and Jun
 \newblock \emph{arXiv preprint arXiv:2507.23523}, 2025.
 \newblock URL \url{https://arxiv.org/abs/2507.23523}.
 
-\bibitem[Bjorck et~al.(2025)Bjorck, Casta{\~n}eda, Cherniadev, Da, Ding, Fan, Fang, Fox, Hu, Huang, et~al.]{grootn1}
-Johan Bjorck, Fernando Casta{\~n}eda, Nikita Cherniadev, Xingye Da, Runyu Ding, Linxi~"Jim" Fan, Yu~Fang, Dieter Fox, Fengyuan Hu, Spencer Huang, et~al.
-\newblock {GR00T N1}: An open foundation model for generalist humanoid robots.
-\newblock \emph{arXiv preprint arXiv:2503.14734}, 2025.
-\newblock URL \url{https://arxiv.org/abs/2503.14734}.
-
-\bibitem[Black et~al.(2025{\natexlab{a}})Black, Brown, Darpinian, Dhabalia, Driess, Esmail, Equi, Finn, Fusai, Galliker, et~al.]{pi05}
-Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, Michael Equi, Chelsea Finn, Niccolo Fusai, Manuel~Y. Galliker, et~al.
-\newblock {$\pi_{0.5}$}: A vision-language-action model with open-world generalization.
-\newblock \emph{arXiv preprint arXiv:2504.16054}, 2025{\natexlab{a}}.
-\newblock URL \url{https://arxiv.org/abs/2504.16054}.
-
-\bibitem[Black et~al.(2025{\natexlab{b}})Black, Brown, Driess, Esmail, Equi, Finn, Fusai, Groom, Hausman, Ichter, Jakubczak, Jones, Ke, Levine, Li-Bell, Mothukuri, Nair, Pertsch, Shi, Tanner, Vuong, Walling, Wang, and Zhilinsky]{pi0}
-Kevin Black, Noah Brown, Danny Driess, Adnan Esmail, Michael Equi, Chelsea Finn, Niccolo Fusai, Lachy Groom, Karol Hausman, Brian Ichter, Szymon Jakubczak, Tim Jones, Liyiming Ke, Sergey Levine, Adrian Li-Bell, Mohith Mothukuri, Suraj Nair, Karl Pertsch, Lucy~Xiaoyang Shi, James Tanner, Quan Vuong, Anna Walling, Haohuan Wang, and Ury Zhilinsky.
+\bibitem[Black et~al.(2025{\natexlab{a}})Black, Brown, Driess, Esmail, Equi, Finn, Fusai, Groom, Hausman, Ichter, Jakubczak, Jones, Ke, Levine, Li-Bell, Mothukuri, Nair, Pertsch, Shi, Smith, Tanner, Vuong, Walling, Wang, and Zhilinsky]{pi0}
+Kevin Black, Noah Brown, Danny Driess, Adnan Esmail, Michael~Robert Equi, Chelsea Finn, Niccolo Fusai, Lachy Groom, Karol Hausman, Brian Ichter, Szymon Jakubczak, Tim Jones, Liyiming Ke, Sergey Levine, Adrian Li-Bell, Mohith Mothukuri, Suraj Nair, Karl Pertsch, Lucy~Xiaoyang Shi, Laura Smith, James Tanner, Quan Vuong, Anna Walling, Haohuan Wang, and Ury Zhilinsky.
 \newblock {${\pi}_0$}: A vision-language-action flow model for general robot control.
-\newblock In \emph{Robotics: Science and Systems}, 2025{\natexlab{b}}.
-\newblock URL \url{https://arxiv.org/abs/2410.24164}.
+\newblock In \emph{Robotics: Science and Systems}, 2025{\natexlab{a}}.
+\newblock \doi{10.15607/RSS.2025.XXI.010}.
+\newblock URL \url{https://www.roboticsproceedings.org/rss21/p010.html}.
 
-\bibitem[Black et~al.(2025{\natexlab{c}})Black, Galliker, and Levine]{rtc}
+\bibitem[Black et~al.(2025{\natexlab{b}})Black, Galliker, and Levine]{rtc}
 Kevin Black, Manuel~Y. Galliker, and Sergey Levine.
 \newblock Real-time execution of action chunking flow policies.
-\newblock \emph{arXiv preprint arXiv:2506.07339}, 2025{\natexlab{c}}.
+\newblock \emph{arXiv preprint arXiv:2506.07339}, 2025{\natexlab{b}}.
 \newblock URL \url{https://arxiv.org/abs/2506.07339}.
 
 \bibitem[Brohan et~al.(2023)Brohan, Brown, Carbajal, Chebotar, Chen, Choromanski, Ding, Driess, Dubey, Finn, et~al.]{rt2}
@@ -59,8 +48,8 @@ Chenyuan Chen, Ran Ding, Lechen Zhang, Zewen He, and Yoshihiko Nakamura.
 \newblock \emph{arXiv preprint arXiv:2610.31166}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2610.31166}.
 
-\bibitem[Chen et~al.(2023)Chen, Jiang, Liu, Huang, Fu, Chen, Yu, and Yu]{mld}
-Xin Chen, Biao Jiang, Wen Liu, Zilong Huang, Bin Fu, Tao Chen, Jingyi Yu, and Gang Yu.
+\bibitem[Chen et~al.(2023)Chen, Jiang, Liu, Huang, Fu, Chen, and Yu]{mld}
+Xin Chen, Biao Jiang, Wen Liu, Zilong Huang, Bin Fu, Tao Chen, and Gang Yu.
 \newblock Executing your commands via motion diffusion in latent space.
 \newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, pages 18000--18010, 2023.
 \newblock \doi{10.1109/CVPR52729.2023.01726}.
@@ -90,18 +79,6 @@ Pengxiang Ding, Jianfei Ma, Xinyang Tong, Binghong Zou, Xinxin Luo, Yiguo Fan, T
 \newblock \emph{arXiv preprint arXiv:2607.13960}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2607.13960}.
 
-\bibitem[Gu et~al.(2026)Gu, Hou, Li, Wang, Liu, Lv, Zhang, Bai, Li, He, et~al.]{haf}
-Langzhe Gu, Chengkai Hou, Meng Li, Xinhua Wang, Jiaming Liu, Xinyuan Lv, Bowei Zhang, Shuanghao Bai, Guangrun Li, Jingyang He, et~al.
-\newblock {HAF}: Adapting generalist vlas to humanoid whole-body loco-manipulation via hierarchical action flow and spectral latent rl.
-\newblock \emph{arXiv preprint arXiv:2608.16837}, 2026.
-\newblock URL \url{https://arxiv.org/abs/2608.16837}.
-
-\bibitem[Guan et~al.(2026)Guan, Qi, Lin, Chen, Liu, Zhang, Wang, Yu, Wang, and Yi]{guan2026limmtmotiontracking}
-Yu~Guan, Zekun Qi, Chenghuai Lin, Xuchuan Chen, Dairu Liu, Wenyao Zhang, Jilong Wang, Xinqiang Yu, He~Wang, and Li~Yi.
-\newblock {LIMMT}: Less is more for motion tracking.
-\newblock \emph{arXiv preprint arXiv:2606.06953}, 2026.
-\newblock URL \url{https://arxiv.org/abs/2606.06953}.
-
 \bibitem[Guo et~al.(2024)Guo, Mu, Javed, Wang, and Cheng]{momask}
 Chuan Guo, Yuxuan Mu, Muhammad~Gohar Javed, Sen Wang, and Li~Cheng.
 \newblock Momask: Generative masked modeling of 3d human motions.
@@ -127,6 +104,12 @@ Moo~Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, S
 \newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
 \newblock URL \url{https://arxiv.org/abs/2406.09246}.
 
+\bibitem[Li et~al.(2024)Li, Clegg, Mottaghi, Wu, Puig, and Liu]{chois}
+Jiaman Li, Alexander Clegg, Roozbeh Mottaghi, Jiajun Wu, Xavier Puig, and C.~Karen Liu.
+\newblock Controllable human-object interaction synthesis.
+\newblock In \emph{European Conference on Computer Vision}, 2024.
+\newblock URL \url{https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/5720_ECCV_2024_paper.php}.
+
 \bibitem[Li et~al.(2026{\natexlab{a}})Li, Zhang, Luo, Yang, Wang, Han, Yu, Gao, Xue, Zhu, Shen, and Xu]{li2026lingbotva}
 Lin Li, Qihang Zhang, Yiming Luo, Shuai Yang, Ruilin Wang, Fei Han, Mingrui Yu, Zelin Gao, Nan Xue, Xing Zhu, Yujun Shen, and Yinghao Xu.
 \newblock Causal world modeling for robot control.
@@ -139,10 +122,16 @@ Yanjun Li, Jiarui Ye, Weiyu Guo, Zixiao He, Kangjie Ye, Dihan Wang, Yishuo Cheng
 \newblock \emph{arXiv preprint arXiv:2610.23894}, 2026{\natexlab{b}}.
 \newblock URL \url{https://arxiv.org/abs/2610.23894}.
 
-\bibitem[Li et~al.(2026{\natexlab{c}})Li, Yao, Tan, Jing, Dong, and Chen]{wholebodywam_wbc}
+\bibitem[Li et~al.(2026{\natexlab{c}})Li, Zhang, Wei, Zhang, Yuan, Zhi, Li, Guo, Gao, Yang, and Zhang]{omega0}
+Zhe Li, Zhenzhe Zhang, Yangyang Wei, Wenjie Zhang, Xichen Yuan, Peiyuan Zhi, Gen Li, Xinying Guo, Fengjie Gao, Jianfei Yang, and Shanghang Zhang.
+\newblock {$\omega$-0}: A latent predictive world action model for concurrent humanoid loco-manipulation.
+\newblock \emph{arXiv preprint arXiv:2608.06375}, 2026{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2608.06375}.
+
+\bibitem[Li et~al.(2026{\natexlab{d}})Li, Yao, Tan, Jing, Dong, and Chen]{wholebodywam_wbc}
 Zhuo Li, Yiming Yao, Jim Tan, Mengjie Jing, Zhipeng Dong, and Fei Chen.
 \newblock {WholeBodyWAM}: Generalizing pre-trained world-action priors to humanoid loco-manipulation via {WBC}-grounded coordination.
-\newblock \emph{arXiv preprint arXiv:2609.16644}, 2026{\natexlab{c}}.
+\newblock \emph{arXiv preprint arXiv:2609.16644}, 2026{\natexlab{d}}.
 \newblock URL \url{https://arxiv.org/abs/2609.16644}.
 
 \bibitem[Lipman et~al.(2023)Lipman, Chen, Ben-Hamu, Nickel, and Le]{FM_objective}
@@ -164,12 +153,29 @@ Zhengyi Luo, Ye~Yuan, Tingwu Wang, Chenran Li, Fernando Casta{\~n}eda, Sirui Che
 \newblock \doi{10.1126/scirobotics.aed4592}.
 \newblock URL \url{https://doi.org/10.1126/scirobotics.aed4592}.
 
-\bibitem[Petrovich et~al.(2022)Petrovich, Black, and Varol]{temos}
+\bibitem[{NVIDIA} et~al.(2025){NVIDIA}, Bjorck, Casta{\~n}eda, Cherniadev, Da, Ding, Fan, Fang, Fox, Hu, Huang, et~al.]{grootn1}
+{NVIDIA}, Johan Bjorck, Fernando Casta{\~n}eda, Nikita Cherniadev, Xingye Da, Runyu Ding, Linxi~"Jim" Fan, Yu~Fang, Dieter Fox, Fengyuan Hu, Spencer Huang, et~al.
+\newblock {GR00T N1}: An open foundation model for generalist humanoid robots.
+\newblock \emph{arXiv preprint arXiv:2503.14734}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.14734}.
+
+\bibitem[Petrovich et~al.(2021)Petrovich, Black, and Varol]{actor}
 Mathis Petrovich, Michael~J. Black, and G{\"u}l Varol.
-\newblock Temos: Generating diverse human motions from textual descriptions.
-\newblock In \emph{European Conference on Computer Vision (ECCV)}, pages 480--497, 2022.
-\newblock \doi{10.1007/978-3-031-20047-2_28}.
-\newblock URL \url{https://doi.org/10.1007/978-3-031-20047-2_28}.
+\newblock Action-conditioned {3D} human motion synthesis with transformer {VAE}.
+\newblock In \emph{IEEE/CVF International Conference on Computer Vision}, 2021.
+\newblock URL \url{https://arxiv.org/abs/2104.05670}.
+
+\bibitem[{Physical Intelligence} et~al.(2025){Physical Intelligence}, Black, Brown, Darpinian, Dhabalia, Driess, Esmail, Equi, Finn, Fusai, Galliker, et~al.]{pi05}
+{Physical Intelligence}, Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, Michael Equi, Chelsea Finn, Niccolo Fusai, Manuel~Y. Galliker, et~al.
+\newblock {$\pi_{0.5}$}: A vision-language-action model with open-world generalization.
+\newblock \emph{arXiv preprint arXiv:2504.16054}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2504.16054}.
+
+\bibitem[Rayyan et~al.(2026)Rayyan, Li, Argus, Jiang, Yu, Jiang, and Cui]{fetchman}
+Omar Rayyan, Zhi Li, Max Argus, Yuxin Jiang, Chang Yu, Chenfanfu Jiang, and Yuchen Cui.
+\newblock {FetchMan}: Learning visual humanoid loco-manipulation policies from simulated experiences.
+\newblock \emph{arXiv preprint arXiv:2608.17027}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.17027}.
 
 \bibitem[Rempe et~al.(2026)Rempe, Petrovich, Yuan, Zhang, Peng, Jiang, Wang, Iqbal, Minor, de~Ruyter, et~al.]{kimodo}
 Davis Rempe, Mathis Petrovich, Ye~Yuan, Haotian Zhang, Xue~Bin Peng, Yifeng Jiang, Tingwu Wang, Umar Iqbal, David Minor, Michael de~Ruyter, et~al.
@@ -177,32 +183,26 @@ Davis Rempe, Mathis Petrovich, Ye~Yuan, Haotian Zhang, Xue~Bin Peng, Yifeng Jian
 \newblock \emph{arXiv preprint arXiv:2603.15546}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2603.15546}.
 
-\bibitem[Ronneberger et~al.(2015)Ronneberger, Fischer, and Brox]{ronneberger2015unetconvolutionalnetworksbiomedical}
-Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
-\newblock {U-Net}: Convolutional networks for biomedical image segmentation.
-\newblock \emph{arXiv preprint arXiv:1505.04597}, 2015.
-\newblock URL \url{https://arxiv.org/abs/1505.04597}.
-
-\bibitem[Saito et~al.(2026)Saito, Li, de~Ruyter, Guerrero, Lim, Hassani, Blanco~Ribera, Moon, Dadela, Di~Lucca, Wang, Li, Kautz, Yuen, and Iqbal]{saito2026somaunifyingparametrichuman}
-Jun Saito, Jiefeng Li, Michael de~Ruyter, Miguel Guerrero, Edy Lim, Ehsan Hassani, Roger Blanco~Ribera, Hyejin Moon, Magdalena Dadela, Marco Di~Lucca, Qiao Wang, Xueting Li, Jan Kautz, Simon Yuen, and Umar Iqbal.
-\newblock {SOMA}: Unifying parametric human body models.
-\newblock \emph{arXiv preprint arXiv:2603.16858}, 2026.
-\newblock URL \url{https://arxiv.org/abs/2603.16858}.
-
 \bibitem[Sim{\'e}oni et~al.(2025)Sim{\'e}oni, Vo, Seitzer, Baldassarre, Oquab, Jose, Khalidov, Szafraniec, Yi, Ramamonjisoa, et~al.]{dinov3}
 Oriane Sim{\'e}oni, Huy~V. Vo, Maximilian Seitzer, Federico Baldassarre, Maxime Oquab, Cijo Jose, Vasil Khalidov, Marc Szafraniec, Seungeun Yi, Micha{\"e}l Ramamonjisoa, et~al.
 \newblock {DINOv3}.
 \newblock \emph{arXiv preprint arXiv:2508.10104}, 2025.
 \newblock URL \url{https://arxiv.org/abs/2508.10104}.
 
-\bibitem[Song et~al.(2022)Song, Meng, and Ermon]{song2022denoisingdiffusionimplicitmodels}
+\bibitem[Song et~al.(2021)Song, Meng, and Ermon]{song2022denoisingdiffusionimplicitmodels}
 Jiaming Song, Chenlin Meng, and Stefano Ermon.
 \newblock Denoising diffusion implicit models.
-\newblock \emph{arXiv preprint arXiv:2010.02502}, 2022.
-\newblock URL \url{https://arxiv.org/abs/2010.02502}.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
+\newblock URL \url{https://openreview.net/forum?id=St1giarCHLP}.
+
+\bibitem[Tessler et~al.(2024)Tessler, Guo, Nabati, Chechik, and Peng]{maskedmimic}
+Chen Tessler, Yunrong Guo, Ofir Nabati, Gal Chechik, and Xue~Bin Peng.
+\newblock {MaskedMimic}: Unified physics-based character control through masked motion inpainting.
+\newblock \emph{ACM Transactions on Graphics}, 2024.
+\newblock URL \url{https://research.nvidia.com/labs/par/projects/maskedmimic/}.
 
 \bibitem[Tevet et~al.(2023)Tevet, Raab, Gordon, Shafir, Cohen-Or, and Bermano]{mdm}
-Guy Tevet, Sigal Raab, Brian Gordon, Yoni Shafir, Daniel Cohen-Or, and Amit~H. Bermano.
+Guy Tevet, Sigal Raab, Brian Gordon, Yonatan Shafir, Daniel Cohen-Or, and Amit~H. Bermano.
 \newblock Human motion diffusion model.
 \newblock In \emph{International Conference on Learning Representations (ICLR)}, 2023.
 \newblock URL \url{https://arxiv.org/abs/2209.14916}.
@@ -223,7 +223,8 @@ Songlin Wei, Hongyi Jing, Boqian Li, Zhenyu Zhao, Jiageng Mao, Zhenhao Ni, Siche
 Songlin Wei, Zhenhao Ni, Jie Liu, Zhenyu Zhao, Junjie Ye, Hongyi Jing, Junkai Xia, Xiawei Liu, Michael Leong, Liang Heng, et~al.
 \newblock {SIMPLE}: Simulation-based policy learning and evaluation for humanoid loco-manipulation.
 \newblock \emph{arXiv preprint arXiv:2606.08278}, 2026{\natexlab{b}}.
-\newblock URL \url{https://arxiv.org/abs/2606.08278}.
+\newblock URL \url{https://arxiv.org/abs/2606.08278v1}.
+\newblock Version 1.
 
 \bibitem[Xie et~al.(2024)Xie, Jampani, Zhong, Sun, and Jiang]{omnicontrol}
 Yiming Xie, Varun Jampani, Lei Zhong, Deqing Sun, and Huaizu Jiang.
@@ -231,10 +232,22 @@ Yiming Xie, Varun Jampani, Lei Zhong, Deqing Sun, and Huaizu Jiang.
 \newblock In \emph{International Conference on Learning Representations (ICLR)}, 2024.
 \newblock URL \url{https://arxiv.org/abs/2310.08580}.
 
-\bibitem[Yang et~al.(2026)Yang, Bao, Xin, Song, Tian, Zhao, Wang, and Li]{zerowbc}
+\bibitem[Xu et~al.(2024)Xu, Zhang, Li, Han, and Lu]{humanvla}
+Xinyu Xu, Yizheng Zhang, Yong-Lu Li, Lei Han, and Cewu Lu.
+\newblock {HumanVLA}: Towards vision-language directed object rearrangement by physical humanoid.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.19972}.
+
+\bibitem[Xue et~al.(2025)Xue, Huang, Niu, Liao, Kragerud, Gravdahl, Peng, Shi, Darrell, Sreenath, and Sastry]{leverb}
+Haoru Xue, Xiaoyu Huang, Dantong Niu, Qiayuan Liao, Thomas Kragerud, Jan~Tommy Gravdahl, Xue~Bin Peng, Guanya Shi, Trevor Darrell, Koushil Sreenath, and Shankar Sastry.
+\newblock {LeVERB}: Humanoid whole-body control with latent vision-language instruction.
+\newblock \emph{arXiv preprint arXiv:2506.13751}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.13751}.
+
+\bibitem[Yang et~al.(2026{\natexlab{a}})Yang, Bao, Xin, Song, Tian, Zhao, Wang, and Li]{zerowbc}
 Haoran Yang, Jiacheng Bao, Yucheng Xin, Haoming Song, Yuyang Tian, Bin Zhao, Dong Wang, and Xuelong Li.
 \newblock {ZeroWBC}: Learning natural whole-body humanoid interaction from human egocentric data.
-\newblock \emph{arXiv preprint arXiv:2603.09170}, 2026.
+\newblock \emph{arXiv preprint arXiv:2603.09170}, 2026{\natexlab{a}}.
 \newblock URL \url{https://arxiv.org/abs/2603.09170}.
 
 \bibitem[Yang et~al.(2025)Yang, Yu, Wu, Yan, Li, Cheng, Zou, Fang, Cheng, Qiu, et~al.]{egovla}
@@ -243,11 +256,23 @@ Ruihan Yang, Qinxi Yu, Yecheng Wu, Rui Yan, Borui Li, An-Chieh Cheng, Xueyan Zou
 \newblock \emph{arXiv preprint arXiv:2507.12440}, 2025.
 \newblock URL \url{https://arxiv.org/abs/2507.12440}.
 
+\bibitem[Yang et~al.(2026{\natexlab{b}})Yang, Rong, Zhu, Zhao, Hu, Lan, Mao, Li, Fu, and Chen]{hwam}
+Yan Yang, Jikun Rong, Minzhao Zhu, Zheyi Zhao, Qirui Hu, Zihan Lan, Weixin Mao, Yinhao Li, Zhen Fu, and Hua Chen.
+\newblock {HWAM}: Humanoid world action model with joint state--action generation.
+\newblock \emph{arXiv preprint arXiv:2610.12026}, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2610.12026}.
+
 \bibitem[Ye et~al.(2026)Ye, Ge, Zheng, Gao, Yu, Kurian, Indupuru, Tan, Zhu, Xiang, et~al.]{dreamzero}
 Seonghyeon Ye, Yunhao Ge, Kaiyuan Zheng, Shenyuan Gao, Sihyun Yu, George Kurian, Suneel Indupuru, You~Liang Tan, Chuning Zhu, Jiannan Xiang, et~al.
 \newblock World action models are zero-shot policies.
 \newblock \emph{arXiv preprint arXiv:2602.15922}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2602.15922}.
+
+\bibitem[Yu et~al.(2026)Yu, Zheng, Xie, Shi, Zhang, Bai, and Li]{oasis}
+Zehao Yu, Jiakun Zheng, Weiji Xie, Jiyuan Shi, Chenyun Zhang, Chenjia Bai, and Xuelong Li.
+\newblock {OASIS}: From simulation data collection to real-world humanoid loco-manipulation.
+\newblock \emph{arXiv preprint arXiv:2606.08548}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.08548}.
 
 \bibitem[Yuan et~al.(2026)Yuan, Dong, Liu, and Zhao]{yuan2026fastwam}
 Tianyuan Yuan, Zibin Dong, Yicheng Liu, and Hang Zhao.
@@ -255,11 +280,11 @@ Tianyuan Yuan, Zibin Dong, Yicheng Liu, and Hang Zhao.
 \newblock \emph{arXiv preprint arXiv:2603.16666}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2603.16666}.
 
-\bibitem[Ze et~al.(2025)Ze, Zhao, Wang, Kanazawa, Duan, Abbeel, Shi, Wu, and Liu]{ze2025twist2scalableportableholistic}
-Yanjie Ze, Siheng Zhao, Weizhuo Wang, Angjoo Kanazawa, Rocky Duan, Pieter Abbeel, Guanya Shi, Jiajun Wu, and C.~Karen Liu.
-\newblock {TWIST2}: Scalable, portable, and holistic humanoid data collection system.
-\newblock \emph{arXiv preprint arXiv:2511.02832}, 2025.
-\newblock URL \url{https://arxiv.org/abs/2511.02832}.
+\bibitem[Yue et~al.(2026)Yue, Li, Wang, Wang, Fu, Xie, Zhang, Zhang, Zhang, Li, Zheng, Fang, Wang, and Lu]{beingm07}
+Junpeng Yue, Boyuan Li, Yuxuan Wang, Zepeng Wang, Yuhui Fu, Feiyang Xie, Yu~Zhang, Jing Zhang, Xianqi Zhang, Weibo Li, Xiaofei Zheng, Yuming Fang, Jiangxing Wang, and Zongqing Lu.
+\newblock {Being-M0.7}: A latent world-action model for humanoid robots.
+\newblock \emph{arXiv preprint arXiv:2610.11283}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.11283}.
 
 \bibitem[Zhang et~al.(2026)Zhang, Zhang, Bai, Wang, Li, Wang, Zhang, Tang, Zhou, Sun, et~al.]{wholebodywam_motionpriors}
 Bowei Zhang, Qiyao Zhang, Shuanghao Bai, Xinhua Wang, Meng Li, Yilei Wang, Leiwang Zhang, Jian Tang, Lu~Zhou, Lei Sun, et~al.
@@ -267,17 +292,16 @@ Bowei Zhang, Qiyao Zhang, Shuanghao Bai, Xinhua Wang, Meng Li, Yilei Wang, Leiwa
 \newblock \emph{arXiv preprint arXiv:2609.18197}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2609.18197}.
 
-\bibitem[Zhang et~al.(2023{\natexlab{a}})Zhang, Zhang, Cun, Huang, Zhang, Zhao, Lu, and Shen]{t2mgpt}
-Jianrong Zhang, Yangsong Zhang, Xiaodong Cun, Shaoli Huang, Yong Zhang, Hongwei Zhao, Hongtao Lu, and Xi~Shen.
-\newblock T2m-gpt: Generating human motion from textual descriptions with discrete representations.
-\newblock In \emph{IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, pages 14730--14740, 2023{\natexlab{a}}.
-\newblock \doi{10.1109/CVPR52729.2023.01415}.
-\newblock URL \url{https://doi.org/10.1109/CVPR52729.2023.01415}.
-
-\bibitem[Zhang et~al.(2023{\natexlab{b}})Zhang, Rao, and Agrawala]{zhang2023adding}
+\bibitem[Zhang et~al.(2023)Zhang, Rao, and Agrawala]{zhang2023adding}
 Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.
 \newblock Adding conditional control to text-to-image diffusion models.
-\newblock In \emph{Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 3836--3847, 2023{\natexlab{b}}.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 3836--3847, 2023.
+
+\bibitem[Zhao et~al.(2025{\natexlab{a}})Zhao, Li, and Tang]{dartcontrol}
+Kaifeng Zhao, Gen Li, and Siyu Tang.
+\newblock {DartControl}: A diffusion-based autoregressive motion model for real-time text-driven motion control.
+\newblock In \emph{International Conference on Learning Representations}, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2410.05260}.
 
 \bibitem[Zhao et~al.(2023)Zhao, Kumar, Levine, and Finn]{ACT}
 Tony~Z. Zhao, Vikash Kumar, Sergey Levine, and Chelsea Finn.
@@ -285,10 +309,10 @@ Tony~Z. Zhao, Vikash Kumar, Sergey Levine, and Chelsea Finn.
 \newblock In \emph{Robotics: Science and Systems}, 2023.
 \newblock URL \url{https://roboticsconference.org/2023/program/papers/016/}.
 
-\bibitem[Zhao et~al.(2025)Zhao, Jing, Liu, Mao, Jha, Yang, Xue, Zakharov, Guizilini, and Wang]{humanoid_everyday}
+\bibitem[Zhao et~al.(2025{\natexlab{b}})Zhao, Jing, Liu, Mao, Jha, Yang, Xue, Zakharov, Guizilini, and Wang]{humanoid_everyday}
 Zhenyu Zhao, Hongyi Jing, Xiawei Liu, Jiageng Mao, Abha Jha, Hanwen Yang, Rong Xue, Sergey Zakharov, Vitor Guizilini, and Yue Wang.
 \newblock {Humanoid Everyday}: A comprehensive robotic dataset for open-world humanoid manipulation.
-\newblock \emph{arXiv preprint arXiv:2510.08807}, 2025.
+\newblock \emph{arXiv preprint arXiv:2510.08807}, 2025{\natexlab{b}}.
 \newblock URL \url{https://arxiv.org/abs/2510.08807}.
 
 \bibitem[Zheng et~al.(2026)Zheng, Ma, Fan, Wang, Yang, and Liang]{motionwam}
@@ -296,11 +320,5 @@ Jia Zheng, Teli Ma, Yudong Fan, Zifan Wang, Shuo Yang, and Junwei Liang.
 \newblock {MotionWAM}: Towards foundation world action models for real-time humanoid loco-manipulation.
 \newblock \emph{arXiv preprint arXiv:2606.09215}, 2026.
 \newblock URL \url{https://arxiv.org/abs/2606.09215}.
-
-\bibitem[Zhong et~al.(2025)Zhong, Sun, Wen, Li, Cheng, Dai, Zeng, Lu, Zhu, and Xu]{humanoidexo}
-Rui Zhong, Yizhe Sun, Junjie Wen, Jinming Li, Chuang Cheng, Wei Dai, Zhiwen Zeng, Huimin Lu, Yichen Zhu, and Yi~Xu.
-\newblock {HumanoidExo}: Scalable whole-body humanoid manipulation via wearable exoskeleton.
-\newblock \emph{arXiv preprint arXiv:2510.03022}, 2025.
-\newblock URL \url{https://arxiv.org/abs/2510.03022}.
 
 \end{thebibliography}

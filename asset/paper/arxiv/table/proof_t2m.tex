@@ -1,6 +1,5 @@
 \begin{table}[H]
-  \caption{
-    \textbf{\textit{Effect of the T2M backbone on Kimodo-Policy.}} We compare two same-size Kimodo-G1 backbones using the same adaptation protocol. Data scales include the training and test splits; results are mean $\pm$ standard deviation over three seeds.}
+  \caption{\textbf{Effect of Motion-Prior Selection at Matched Backbone Capacity.} Two 282M-parameter Kimodo-G1~\citep{kimodo} backbones are adapted using the same policy architecture and downstream protocol. Data durations refer to the full motion corpora of the released checkpoints, including their training and test splits. Task scores are reported as mean $\pm$ standard deviation over three seeds. The comparison varies the pretrained motion corpus, including both its size and content.}
   \label{tab:t2m_dependency}
   \centering
   \arrayrulecolor{hclblue}
@@ -44,7 +43,7 @@
   \rowcolor{hclbrown!8!white}
   \texttt{Kimodo-G1-RP-v1}
   & 282\,M
-  & 700\,h
+  & $\sim$560\,h
   & \underline{35.0$\pm$7.1\%}
   & \textbf{40.0$\pm$0.0\%}
   & \textbf{80.0$\pm$4.1\%}
