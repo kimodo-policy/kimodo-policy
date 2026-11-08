@@ -3,6 +3,8 @@
 set -Eeuo pipefail
 
 PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ORIGINAL_ARGS=("$@")
+RUNTIME_ARCHIVE=""
 STATE_DIR="$PROJECT_ROOT/.setup"
 TARGET=all
 DRY_RUN=0
@@ -21,17 +23,22 @@ Default: install kimodo-policy, unitree_sim_env, and SIMPLE/.venv.
 Requires Linux x86_64, Conda, and an NVIDIA GPU/driver. SIMPLE also needs
 a CUDA toolkit with nvcc (set CUDA_HOME if necessary).
 
-  --only all|training|arena|simple  Select environments (default: all).
+  --only all|training|arena|simple|workstation
+                                  Select environments (default: all).
                                   arena/simple also install kimodo-policy.
+                                  workstation is separate and never part of all.
+  --runtime-archive PATH          Use a local workstation runtime archive.
   --conda PATH                    Path to the conda executable.
   --system-deps                   Install Ubuntu system packages using apt.
   --accept-isaac-eula              Confirm acceptance of NVIDIA Isaac Sim EULA.
-  --download-resources            Download Arena SONIC + complete SIMPLE evaluation assets.
+  --download-resources            Download selected benchmark resources, or the
+                                  runtime bundle with --only workstation.
   --dry-run                       Print the plan; do not install or write files.
   --check                         Check existing installations; do not install.
   -h, --help                      Show this help.
 
-After installation: source .setup/env.sh
+After training/simulation installation: source .setup/env.sh
+After workstation installation: source real-world/env.sh
 Model checkpoints, Arena scene assets, and benchmark datasets are separate
 from environment installation. Task text embeddings are bundled in Git. See README.md.
 EOF
@@ -43,6 +50,7 @@ while (( $# )); do
   case "$1" in
     --only) need_value "$@"; TARGET="$2"; shift 2 ;;
     --conda) need_value "$@"; CONDA_BIN="$2"; shift 2 ;;
+    --runtime-archive) need_value "$@"; RUNTIME_ARCHIVE="$2"; shift 2 ;;
     --system-deps) SYSTEM_DEPS=1; shift ;;
     --accept-isaac-eula) ACCEPT_EULA=1; shift ;;
     --download-resources) DOWNLOAD_RESOURCES=1; shift ;;
@@ -52,11 +60,15 @@ while (( $# )); do
     *) die "Unknown option: $1 (see --help)" ;;
   esac
 done
-case "$TARGET" in all|training|arena|simple) ;; *) die "Invalid --only: $TARGET" ;; esac
+case "$TARGET" in all|training|arena|simple|workstation) ;; *) die "Invalid --only: $TARGET" ;; esac
 (( DRY_RUN + CHECK_ONLY <= 1 )) || die '--dry-run and --check are mutually exclusive'
 if (( CHECK_ONLY && (SYSTEM_DEPS || DOWNLOAD_RESOURCES) )); then
   die '--check cannot be combined with installation/download options'
 fi
+if [[ "$TARGET" == workstation ]]; then
+  exec bash "$PROJECT_ROOT/real-world/setup/workstation.sh" "${ORIGINAL_ARGS[@]}"
+fi
+[[ -z "$RUNTIME_ARCHIVE" ]] || die '--runtime-archive requires --only workstation'
 WANT_ARENA=0; WANT_SIMPLE=0
 [[ "$TARGET" == all || "$TARGET" == arena ]] && WANT_ARENA=1
 [[ "$TARGET" == all || "$TARGET" == simple ]] && WANT_SIMPLE=1

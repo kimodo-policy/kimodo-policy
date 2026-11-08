@@ -1,6 +1,6 @@
 # 1. Installation and Directory Layout
 
-The workstation requires the compatible teleoperation and collection Conda environments listed in chapter 0. Clone this release on both hosts. The model host needs the complete top-level model source; the workstation uses this real-world directory and the runtime archive.
+Clone this release on both hosts. The commands below prepare the workstation environments; use the root training setup on the model host. The model host needs the complete top-level model source; the workstation uses this real-world directory and the runtime archive.
 
 ## 1.1 Clone and configure both hosts
 
@@ -12,12 +12,12 @@ cp deploy/deploy_config.example.json deploy/deploy_config.json
 nano local.env
 ```
 
-Use a fresh clone when migrating from the old SONIC submodule layout. Do not overwrite existing machine configuration with these copy commands. `GIT_LFS_SKIP_SMUDGE=1` avoids downloading unrelated benchmark assets during clone; the real-world runtime is installed separately.
+Use a fresh clone when migrating from the old SONIC submodule layout. Do not overwrite existing machine configuration with these copy commands. `GIT_LFS_SKIP_SMUDGE=1` avoids downloading unrelated benchmark assets during clone; the real-world runtime is installed separately. On a workstation using automatic setup, remove the placeholder interpreter assignments from `local.env` so the generated paths take effect.
 
 Edit `local.env`:
 
 - Model host: set `KIMODO_PROJECT_ROOT` and `KIMODO_SERVER_PYTHON`.
-- Workstation: set `TELEOP_PYTHON`, `COLLECTION_PYTHON`, `ROBOT_INTERFACE`, `PICO_INTERFACE`, `CAMERA_HOST`, and `KIMODO_SERVER_SSH`.
+- Workstation: set `ROBOT_INTERFACE`, `PICO_INTERFACE`, `CAMERA_HOST`, and `KIMODO_SERVER_SSH`. Automatic setup supplies `TELEOP_PYTHON` and `COLLECTION_PYTHON`; override them only when using separately prepared environments.
 - Use absolute interpreter paths. Find one with `conda run -n YOUR_ENV python -c 'import sys; print(sys.executable)'`.
 - Remove or comment out unused role-specific placeholders. Do not write `conda activate ...` as an interpreter path.
 
@@ -30,40 +30,52 @@ cd "$HOME/kimodo-policy/real-world"  # Adjust if you cloned elsewhere
 source env.sh
 ```
 
-## 1.2 Workstation: install runtime assets
+## 1.2 Workstation: install environments and runtime
 
-On the Ubuntu 20.04 workstation, install build dependencies:
+Use a fresh checkout on Linux x86_64 with Conda and an NVIDIA GPU driver already available. The native bundle was exported from the Ubuntu 20.04 workstation documented in the [version record](00-versions-assets.md). Workstation installation is separate from the root README's training and simulation setup.
 
-```bash
-sudo apt-get update
-sudo apt-get install -y build-essential pkg-config libeigen3-dev libgtest-dev \
-  libzmq3-dev zlib1g-dev libyaml-cpp-dev libusb-1.0-0 libgl1 libglib2.0-0 \
-  libmpfr6 libmpc3 libgmp10 rsync git
-```
-
-Observed system package versions are recorded in `manifests/system-dependencies.json`. This apt command uses available distribution versions; it is not a bit-for-bit system rebuild.
-
-After obtaining the matching archive:
+From the repository root:
 
 ```bash
-python3 tools/install_runtime_bundle.py /path/to/workstation-runtime.tar.gz \
-  --manifest manifests/workstation-runtime.json
-bash setup/apply_collection_overlay.sh
-bash setup/install_python_sources.sh
-bash collection/bin/build-sonic
-bash collection/bin/check-local
+bash setup.sh --only workstation --system-deps --download-resources
+source real-world/env.sh
 ```
 
-The installer checks the archive and every extracted file, confines extraction to a staging directory, and refuses to overwrite existing SONIC/GMR/native directories. Apply the collection overlay only to a fresh extraction.
+This creates two local Conda prefixes, `real-world/.envs/kimodo-teleop` and `real-world/.envs/kimodo-collection`, using Python 3.10 and CPU PyTorch 2.6.0. SONIC C++ still uses the workstation GPU and bundled native runtime. Pinned pip dependencies are recorded in `environments/teleop.requirements.txt` and `environments/collection.requirements.txt`; LeRobot uses the original collection integration's fixed Git commit.
 
-The source installer binds SONIC, GMR, and the PICO SDK to their new paths. It does not solve Conda dependencies. Your environments must already include pip, setuptools, wheel, cmake, pybind11, and the recorded runtime dependencies; `--no-deps` does not remove that requirement.
+The command installs Ubuntu build libraries when `--system-deps` is selected, downloads the runtime, checks its archive and all extracted file hashes, applies the collection overlay, installs the editable sources, builds SONIC, and checks imports and dynamic libraries. It does not launch a camera, PICO service, model server, or robot controller. It does not replace the system CUDA installation, glibc, or NVIDIA driver.
+
+Logs and generated paths are saved under `real-world/.state/`. `env.sh` loads the generated workstation paths first, then applies any `local.env` overrides. Existing machine configuration is preserved. On reruns, source, asset and native-library hashes are verified before reuse; the PICO SDK extension is rebuilt locally and checked by import rather than compared with its original binary hash. An unknown or modified source/runtime directory is not overwritten. Use a fresh checkout when upgrading the bundled runtime or collection overlay.
+
+Preview or check an installation:
 
 ```bash
-"$TELEOP_PYTHON" tools/check_environment.py teleop
-"$COLLECTION_PYTHON" tools/check_environment.py collection
+bash setup.sh --only workstation --dry-run
+bash setup.sh --only workstation --check
 ```
 
-`build-sonic` builds `gear_sonic_deploy/target/release/g1_deploy_onnx_ref`; it does not control the robot. `check-local` checks imports, GMR joint mapping, and dynamic libraries without connecting to hardware.
+Use `--conda /path/to/bin/conda` if Conda is not detected. Configure robot/PICO interfaces, camera address and SSH settings in `real-world/local.env`. On the workstation, omit the placeholder interpreter assignments from `local.env.example` to retain the generated paths. The installer creates `deploy/deploy_config.json` from its example only if the file is absent.
+
+### Manual download or offline runtime installation
+
+Download the bundle and its published verification metadata from [Hugging Face](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/real_world_assets), or use:
+
+```bash
+hf download YunhengWang/kimodo-policy --repo-type dataset \
+  --include 'assets/real_world_assets/**' --local-dir .setup/workstation-download
+bash setup.sh --only workstation --system-deps \
+  --runtime-archive "$PWD/.setup/workstation-download/assets/real_world_assets/workstation-runtime.tar.gz"
+```
+
+The runtime is approximately 3.81 GB compressed. Reserve space for the extracted resources, both Conda environments, build products and generated TensorRT engines. The archive contains no Conda environments, task datasets, task policies or cached TensorRT engines. Python/Conda package installation still requires network access unless those packages are already cached.
+
+The [runtime manifest](../manifests/workstation-runtime.json) is bundled with this code release. The installer verifies it automatically; [download metadata](../manifests/workstation-download.json) records the release URL, size and archive hash. For manual inspection:
+
+```bash
+sha256sum .setup/workstation-download/assets/real_world_assets/workstation-runtime.tar.gz
+```
+
+Compare the result with `archive_sha256` in the manifest. Device pairing, network connectivity, task-pose calibration and on-site acceptance remain separate steps in [chapter 2](02-network-camera.md) and the [deployment guide](../deploy/start.md).
 
 ## 1.3 Model host: validate sources and assets
 
@@ -81,7 +93,7 @@ nano local.env  # Set KIMODO_SERVER_PYTHON to the printed path
 source env.sh
 ```
 
-The two additional packages match the real-world environment checker and are not installed by the root training requirements. Skip installation if your model environment already exists. This installer does not create the workstation teleoperation/collection environments. The model and training interfaces are already integrated; no source overlay is needed.
+The two additional packages match the real-world environment checker and are not installed by the root training requirements. Skip installation if your model environment already exists. The `--only training` mode does not create workstation environments. The model and training interfaces are already integrated; no source overlay is needed.
 
 ```bash
 "$KIMODO_SERVER_PYTHON" tools/check_environment.py server

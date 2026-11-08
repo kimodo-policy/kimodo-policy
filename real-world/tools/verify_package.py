@@ -15,6 +15,10 @@ for p in ROOT.rglob('*'):
     if not p.is_file() or '__pycache__' in p.parts:
         continue
     rel = str(p.relative_to(ROOT))
+    if p.relative_to(ROOT).parts[0] in {'external', 'runtime', 'downloads', '.envs', '.state', 'data', 'logs', 'outputs'}:
+        continue
+    if rel in {'local.env', 'deploy/deploy_config.json'}:
+        continue
     if p.suffix in (".pt", ".gz", ".zip", ".safetensors"):
         continue
     text = p.read_text()

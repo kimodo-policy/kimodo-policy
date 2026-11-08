@@ -611,11 +611,20 @@ Collect demonstrations with PICO teleoperation, fine-tune Kimodo-Policy on your 
 
 ### ⚙️ Environments & Runtime Assets
 
-Clone this repository on both machines and follow the [real-world installation guide](real-world/docs/01-install.md). On the GPU server, use the `kimodo-policy` environment; `bash setup.sh --only training` installs the shared training dependencies. The workstation requires separate teleoperation and collection/bridge environments and the matching SONIC runtime; the root setup script does not install these. See [environment versions and required assets](real-world/docs/00-versions-assets.md).
+Use separate environments on the GPU server and robot-side workstation. On the **GPU server**, `bash setup.sh --only training` installs the shared `kimodo-policy` training and inference dependencies. On the **workstation**, run the following from a fresh clone's repository root:
 
-Create `real-world/local.env` and `real-world/deploy/deploy_config.json` from their examples. Set each machine's interpreter paths, the robot/camera interfaces, and the workstation's SSH connection to the GPU server. Install the base models under `checkpoints/` and the workstation runtime under `real-world/external/` and `real-world/runtime/`, following the installation guide.
+```bash
+bash setup.sh --only workstation --system-deps --download-resources
+source real-world/env.sh
+```
 
-The eight evaluated [real-world policy checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World) and their [training datasets](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld) are released separately from Git. The matching `workstation-runtime.tar.gz` is still required for robot-side collection and execution and does not yet have a public download link. Code, checkpoints, and training data are available; the workstation runtime distribution remains pending.
+This explicit workstation mode creates Python 3.10 teleoperation and collection/bridge environments under `real-world/.envs/`, installs pinned dependencies, downloads and verifies the runtime bundle, applies the collection adapter, builds SONIC, and checks local imports and libraries. It is **not included in the default training/simulation setup** and does not start robot control. Conda and a working NVIDIA driver must already be installed; `--system-deps` may request sudo access.
+
+The [workstation runtime bundle](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/real_world_assets) contains SONIC/GMR sources, robot resources, reference motions, ONNX models, and native libraries. The installer checks its archive and per-file SHA-256 values against the [runtime manifest](real-world/manifests/workstation-runtime.json). See the [installation guide](real-world/docs/01-install.md) for offline installation, rerunning checks, supported versions, and download commands.
+
+After installation, configure `real-world/local.env` with the robot/PICO network interfaces, camera address, and the workstation's SSH connection to the GPU server. The generated workstation interpreter paths are loaded by `real-world/env.sh`; keep only the overrides you need in `local.env`. Set task checkpoint paths in `real-world/deploy/deploy_config.json`, and install the server's base models under `checkpoints/`. Follow [network, PICO, and camera setup](real-world/docs/02-network-camera.md) before connecting devices.
+
+The eight evaluated [real-world policy checkpoints](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World) and their [training datasets](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/RealWorld) are downloaded separately from the workstation runtime.
 
 #### 📦 Released Checkpoints & Training Data
 

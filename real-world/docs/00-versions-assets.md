@@ -14,7 +14,7 @@ These versions were read from working machines on 2026-11-07. They are not minim
 
 CPU PyTorch on the workstation does not mean CPU-only control: SONIC C++ still uses its local GPU runtime.
 
-`environments/*.observed.json` records Python packages. The matching `*.observed-constraints.txt` files are version references, not verified clean Conda solves, and do not include wheel hashes. The following instructions assume compatible Conda environments already exist.
+`environments/*.observed.json` records Python packages. The matching `*.observed-constraints.txt` files are version references, not verified clean Conda solves, and do not include wheel hashes. The workstation installer uses the separate `teleop.requirements.txt` and `collection.requirements.txt` installation pins, creates Python 3.10 environments, and verifies the core versions. Follow [automatic installation](01-install.md#12-workstation-install-environments-and-runtime).
 
 The GMR baseline is `bb1bbe40774794fceb2a7c579a3464a28e68c844` from [GMR](https://github.com/YanjieZe/GMR). The working SONIC tree had no Git metadata, so it is pinned by the archive and per-file SHA256 manifest rather than an inferred commit. The integrated model interfaces were compared with main commit `905265caaf34ef31cb7a904ae137544160d5eb42`.
 
@@ -22,14 +22,14 @@ The GMR baseline is `bb1bbe40774794fceb2a7c579a3464a28e68c844` from [GMR](https:
 
 | Asset | Installation / source | Verification |
 |---|---|---|
-| `workstation-runtime.tar.gz` | Obtain the archive matching this code release from the maintainer | `manifests/workstation-runtime.json`; includes SONIC/GMR, SDK, robot resources, reference motions, ONNX models, and native libraries |
+| `workstation-runtime.tar.gz` | [Hugging Face runtime release](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/real_world_assets); automatic download with `--only workstation --download-resources` | `manifests/workstation-runtime.json`; includes SONIC/GMR, SDK, robot resources, reference motions, ONNX models, and native libraries |
 | SONIC decoder, encoder, and planner | Included in the runtime archive | `manifests/runtime-assets.json` |
 | Eight task text embeddings | Included in `assets/text-cache/` | `manifests/text-cache.json`; copied without re-encoding |
 | Kimodo-G1-RP-v1 and DINOv3 | Obtain the base model assets and install under the model repository's `checkpoints/` | See directory structure below |
 | Real-world task checkpoints | [Eight released policies](https://huggingface.co/YunhengWang/kimodo-policy/tree/main/Real_World), or fine-tune your own | Each directory needs `config.json` and `training_state.pt`; numeric/latest discovery additionally requires eight rank RNG files |
 | Llama / LLM2Vec | Needed to generate missing training text caches | Meta-Llama-3-8B-Instruct, LLM2Vec-Meta-Llama-3-8B-Instruct-mntp, LLM2Vec-Meta-Llama-3-8B-Instruct-mntp-supervised |
 
-The [download guide](released-assets.md) provides exact checkpoint directories, commands for the eight training datasets, and checksum verification using [released-assets.json](../manifests/released-assets.json). The workstation runtime archive remains a separate requirement with public distribution pending.
+The [download guide](released-assets.md) provides exact checkpoint directories, commands for the eight training datasets, and checksum verification using [released-assets.json](../manifests/released-assets.json). The workstation runtime archive is distributed separately; its [download metadata](../manifests/workstation-download.json) records the size, hash, and release URL.
 
 ```text
 checkpoints/

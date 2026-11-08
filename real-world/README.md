@@ -8,7 +8,9 @@ PICO teleoperation → G1 recording → fine-tuning → remote policy deployment
 
 Prepare the [matching environments and assets](docs/00-versions-assets.md). The eight evaluated policies and datasets are released; [download commands](docs/released-assets.md) include checksum verification. Text embeddings and task poses are included in Git.
 
-**Remaining prerequisite:** obtain the matching 3.81 GB workstation runtime archive from the maintainer; its public distribution is still pending. The matched PICO APK and robot camera environment also need confirmation. See [validation scope](docs/verification.md); offline tests do not establish a clean-machine or hardware reproduction.
+From the repository root, run `bash setup.sh --only workstation --system-deps --download-resources` on the workstation. This explicit mode prepares the teleoperation and collection/bridge environments, downloads the [3.81 GB runtime bundle](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/assets/real_world_assets), verifies its hashes, and builds SONIC. The model server uses `bash setup.sh --only training`. Follow the [installation guide](docs/01-install.md); the default training/simulation setup does not install workstation environments.
+
+The matched PICO APK and robot camera environment still need a verified version record. See the [validation scope](docs/verification.md) for software checks and remaining on-site acceptance steps.
 
 ## Follow the commands in order
 

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Source this file in every terminal. local.env belongs to this machine only.
 export REAL_WORLD_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-if [[ -f "$REAL_WORLD_ROOT/local.env" ]]; then source "$REAL_WORLD_ROOT/local.env"; fi
+if [[ "${KIMODO_WORKSTATION_INSTALLING:-0}" != 1 ]]; then
+  if [[ -f "$REAL_WORLD_ROOT/.state/workstation.env" ]]; then source "$REAL_WORLD_ROOT/.state/workstation.env"; fi
+  if [[ -f "$REAL_WORLD_ROOT/local.env" ]]; then source "$REAL_WORLD_ROOT/local.env"; fi
+fi
 export COLLECTION_ROOT="${COLLECTION_ROOT:-$REAL_WORLD_ROOT/runtime}"
 export WBC_ROOT="${WBC_ROOT:-$REAL_WORLD_ROOT/external/GR00T-WholeBodyControl}"
 export GMR_ROOT="${GMR_ROOT:-$REAL_WORLD_ROOT/external/GMR}"

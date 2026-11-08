@@ -8,9 +8,9 @@ Use the [README](../README.md) for the operating sequence. This inventory separa
 | `collection/overlay/` | Reviewed Python/C++ source applied to the runtime bundle |
 | `collection/setup/` | Isolated native library/compiler environment |
 | `deploy/` | Task launcher, HTTP server, asynchronous bridge, RTC, hand filters, initial poses, diagnostics, tests |
-| `setup/` | Apply collection overlay and bind editable Python packages |
+| `setup/` | Explicit workstation installation, collection overlay, editable Python packages |
 | `tools/` | Asset installation/export, environment/task preflight, offline verification |
-| `environments/` | Observed versions for teleoperation, collection, and server |
+| `environments/` | Pinned workstation requirements and observed role versions |
 | `manifests/` | Released dataset/checkpoint checksums, runtime checksums, task catalog, dependency records |
 | `assets/text-cache/` | Eight released task embeddings |
 | `docs/` | Sequential operating guides and optional reference material |
@@ -128,10 +128,12 @@ real-world/
 ├── environments/
 │   ├── collection.observed-constraints.txt
 │   ├── collection.observed.json
+│   ├── collection.requirements.txt
 │   ├── server.observed-constraints.txt
 │   ├── server.observed.json
 │   ├── teleop.observed-constraints.txt
-│   └── teleop.observed.json
+│   ├── teleop.observed.json
+│   └── teleop.requirements.txt
 ├── manifests/
 │   ├── cppzmq.json
 │   ├── native-downloads.json
@@ -142,16 +144,20 @@ real-world/
 │   ├── system-dependencies.json
 │   ├── task-catalog.json
 │   ├── text-cache.json
+│   ├── workstation-download.json
 │   └── workstation-runtime.json
 ├── setup/
 │   ├── apply_collection_overlay.sh
-│   └── install_python_sources.sh
+│   ├── install_python_sources.sh
+│   └── workstation.sh
 ├── tools/
 │   ├── check_environment.py
 │   ├── export_workstation_bundle.py
 │   ├── install_runtime_bundle.py
 │   ├── preflight_server.py
+│   ├── prepare_workstation.py
 │   ├── test_release_installation.py
+│   ├── test_workstation_setup.py
 │   └── verify_package.py
 ├── .gitignore
 ├── PACKAGE_MANIFEST.json
@@ -165,6 +171,9 @@ real-world/
 
 ```text
 real-world/
+├── .envs/                              # Managed teleop and collection Conda prefixes
+├── .state/                             # Installer logs and generated paths
+├── downloads/                          # Downloaded, hash-verified runtime archive
 ├── local.env                           # This machine's configuration
 ├── deploy/deploy_config.json            # Selected task checkpoints and settings
 ├── deploy/logs/                         # Deployment and SONIC logs

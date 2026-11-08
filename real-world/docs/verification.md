@@ -1,6 +1,6 @@
 # Validation Record
 
-Date: 2026-11-07. All checks described here avoid physical robot control.
+Updated: 2026-11-08. All checks described here avoid physical robot control.
 
 ## Prior package validation
 
@@ -29,7 +29,7 @@ PYTHONDONTWRITEBYTECODE=1 python -m unittest test_preprocessing_equivalence -v
 
 ## Still requiring validation
 
-A clean Ubuntu environment installation, complete native build, real-checkpoint GPU inference, and on-site PICO/G1 recording/motion acceptance have not been performed as part of packaging. Observed Conda constraints do not contain wheel hashes and are not advertised as a solved environment lock.
+Real-checkpoint GPU inference and on-site PICO/G1 recording/motion acceptance have not been performed as part of packaging. The PICO headset APK and robot camera environment still need a verified version record. The workstation software installation and build were validated as described below; package pins are not a cross-platform lock with wheel hashes.
 
 The integrated release removes the old deployment subtree/submodule entry and uses one English deployment guide. The unified model code remains in the parent repository. Repository-level compatibility checks are reported alongside the integration change.
 
@@ -66,3 +66,15 @@ The existing HTTP test double was updated for the session-aware reset/runtime-ow
 ## Documentation follow-through review — 2026-11-08
 
 Reviewed against main `6a0245784d9f74a84f6d499a929baa13b1b1d479`, preserving the released eight-task assets and `teleop-long` mapping. All 39 Bash code blocks passed syntax checks; the eight release checkpoint/dataset/pose mappings matched. Package syntax, relative links, and hashes passed, and `setup.sh --only training --dry-run` selected only the model environment. This documentation-only revision did not rerun GPU or physical robot tests. The README now links to an exact source/generated-directory inventory and separates deployment-only, training-only, and full collection workflows.
+
+## Workstation installation validation (2026-11-08)
+
+- Validated on Linux x86_64, Ubuntu 20.04.4, with an RTX 4090 and an existing NVIDIA driver. Both Python 3.10 Conda environments were created in an isolated checkout; system build dependencies were installed with apt.
+- The five published Hugging Face release files passed remote size/hash checks. Anonymous HTTP access and a resumed public download passed full archive SHA-256 verification; the installer pins dataset revision `e5927e63d9cbe23df2f5054d504e5d0924cd06ab`.
+- The 3,814,025,719-byte archive matched SHA-256 `f3504e6c930fc10fdfdff0e6c143b8a5c83b73ebc03e028ab14fda3ac34a44b1`. All 8,545 files passed verification before applying the collection overlay.
+- Pinned teleoperation/collection requirements installed successfully. SONIC/GMR editable sources and the PICO Python SDK were built and installed; both environments passed `pip check` and the deployment-critical version checks.
+- The `g1_deploy_onnx_ref` C++ target compiled and linked. GMR constructed the G1 q29 mapping (`nq == 36`); the recorder/exporter imports passed. SONIC dynamic-library checks and the isolated PC Service loader check passed.
+- The completed installation passed `setup.sh --only workstation --check`; rerunning the complete installer reused the verified runtime and environments and passed the build/import/library checks again.
+- Eleven workstation setup tests cover verified downloads and resumption, corrupt archive rejection, unmanaged/modified directory protection, repeated preparation after rebuilding the PICO extension, mode routing, and protection against local interpreter-path overrides during installation.
+
+These checks validate the software installation, source build and local loading. No PICO, camera or robot service was started, and no GPU TensorRT inference or physical recording/motion acceptance is claimed.

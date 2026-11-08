@@ -1,0 +1,11 @@
+{
+  "version": "2026-11-08",
+  "repo_id": "YunhengWang/kimodo-policy",
+  "repo_type": "dataset",
+  "path": "assets/real_world_assets/workstation-runtime.tar.gz",
+  "url": "https://huggingface.co/datasets/YunhengWang/kimodo-policy/resolve/e5927e63d9cbe23df2f5054d504e5d0924cd06ab/assets/real_world_assets/workstation-runtime.tar.gz",
+  "archive_bytes": 3814025719,
+  "archive_sha256": "f3504e6c930fc10fdfdff0e6c143b8a5c83b73ebc03e028ab14fda3ac34a44b1",
+  "files": 8545,
+  "revision": "e5927e63d9cbe23df2f5054d504e5d0924cd06ab"
+}
