@@ -46,7 +46,7 @@
 
 - [x] [SIMPLE Training & Evaluation](#-simple-training--evaluation)
 
-[Real-World Data Collection, Training & Deployment](real-world/README.md)
+- [x] [Real-World Data Collection, Training & Deployment](real-world/README.md)
 
 - [ ] More Benchmarks (Coming Soon)
 
