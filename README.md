@@ -38,7 +38,7 @@
 
 **Kimodo-Policy turns pretrained text-to-motion generators into humanoid vision-language-action policies.** Given egocentric vision, language instructions, and motion history, it predicts coordinated **root → body → hand** actions for closed-loop loco-manipulation. Our core idea is to reuse a frozen motion backbone’s learned coordination and temporal structure, while visual ControlNet branches and a dedicated HandNet ground these priors in the current scene. We evaluate this approach on HumanoidArena, SIMPLE, and real-world humanoid tasks.
 
-![Kimodo-Policy overview](asset/picture/teaser.png)
+![Kimodo-Policy overview](asset/paper/arxiv/image/teaser.png)
 
 ## 🗺️ Open-Source Roadmap
 
