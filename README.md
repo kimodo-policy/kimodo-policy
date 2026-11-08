@@ -392,7 +392,7 @@ Train Kimodo-Policy directly on SIMPLE demonstrations or evaluate our released p
 
 #### • Training Data
 
-Download demonstrations from the [official SIMPLE training dataset](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple). If the official data changes or a task is unavailable, use our [frozen training snapshots](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/Simple). The snapshots contain 12 tasks and 1,187 demonstrations, including `G1WholebodyXMoveBendPickTeleop-v0`. The loader reads the original LeRobot format without replay or conversion.
+Download demonstrations from the [official SIMPLE training dataset](https://huggingface.co/datasets/USC-PSI-Lab/psi-data/tree/main/simple). If the official data changes or a task is unavailable, use our [frozen training snapshots](https://huggingface.co/datasets/YunhengWang/kimodo-policy/tree/main/data/Simple). The snapshots contain only the eight evaluated tasks and 794 demonstrations, including `G1WholebodyXMoveBendPickTeleop-v0`. The loader reads the original LeRobot format without replay or conversion.
 
 ```bash
 # Download one frozen training task; task text embeddings are bundled in Git.
@@ -419,7 +419,7 @@ hf download YunhengWang/kimodo-policy \
   --local-dir .
 ```
 
-The helper verifies checksums and installs resources under `SIMPLE/data/`. The frozen episodes cover 12 tasks × 3 levels × 10 episodes; the bundled [`data/cache/Simple/`](data/cache/Simple) embeddings cover 18 instructions and require no separate download. For these instructions, the full Llama/LLM2Vec weights are unnecessary. Environment directories and CUDA binaries are installed or compiled locally.
+The helper verifies checksums and installs resources under `SIMPLE/data/`. The frozen episodes cover 12 tasks × 3 levels × 10 episodes; the bundled [`data/cache/Simple/`](data/cache/Simple) embeddings cover the eight evaluated tasks and require no separate download. For these instructions, the full Llama/LLM2Vec weights are unnecessary. Environment directories and CUDA binaries are installed or compiled locally.
 
 ### 🚀 Kimodo-Policy Single-Task Training on SIMPLE
 
@@ -535,7 +535,7 @@ See the [fine-tuning and resume guide](real-world/docs/03-collection-training.md
 
 ### • 4. Deploy the Trained Policy
 
-Set `tasks.<task>.checkpoint` in `deploy/deploy_config.json` to your **absolute checkpoint directory**, and check that its dataset, instruction cache, and initial pose match the task. The supplied configurations cover `banana`, `boxing`, `pushing`, `transportation`, `sitting`, `football`, `pnp`, and `long` (`teleop-long-v2`). A new task also needs its own matching configuration and calibrated initial pose.
+Set `tasks.<task>.checkpoint` in `deploy/deploy_config.json` to your **absolute checkpoint directory**, and check that its dataset, instruction cache, and initial pose match the task. The supplied configurations cover `banana`, `boxing`, `pushing`, `transportation`, `sitting`, `football`, `pnp`, and `long` (`teleop-long`). A new task also needs its own matching configuration and calibrated initial pose.
 
 Follow the [terminal-by-terminal deployment guide](real-world/deploy/start.md). In each terminal, enter `real-world/`, source `env.sh`, and set the same task, for example `export TASK=banana`.
 

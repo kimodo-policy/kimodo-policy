@@ -5,10 +5,10 @@ and the frozen resources referenced by `utils/simple_release_manifest.json`.
 
 | Check | Result |
 | --- | --- |
-| Frozen training data | All 1,187 episodes across 12 tasks passed metadata, parquet, task-index, numeric-value and video-presence checks. |
+| Frozen training data | All 794 episodes across the eight released tasks passed metadata, parquet, task-index, numeric-value and video-presence checks. |
 | Current official Close Door training archive | All 99 episodes passed the same checks. |
-| Published resources | The 40 files added in dataset revision `34a14b8a209effddb0453e41388b6f6414313985` matched their remote sizes and hashes. The manifest pins that revision. |
-| Download and extraction | Network download of the pinned training/text-cache files passed; all 12 evaluation resource archives passed SHA-256 verification and full extraction. |
+| Published resources | The eight retained training archives and eight Git-bundled SIMPLE embeddings retain their validated hashes. The evaluation asset archives are unchanged. |
+| Download and extraction | Pinned training download and offline verification of bundled text embeddings passed; all 12 evaluation resource archives passed SHA-256 verification and full extraction. |
 | Scene references | All six HSSD rooms resolved their local USD and texture dependencies, including exporter-specific paths and filename case differences. |
 | Model dependencies | 20 local backbone, visual-encoder and Close Door checkpoint files matched the published model files by size and hash. |
 | Regression tests | The SIMPLE test selection passed (32 tests, one USD test skipped where USD was unavailable); the isolated USD/release-tool selection passed all four tests. |
@@ -26,7 +26,8 @@ repaired with EGL libraries and a separate CUDA 12.8 compiler without replacing
 the system CUDA installation. A fresh installation of the current lockfile
 requires glibc 2.34 or newer; use Ubuntu 22.04 or newer as documented.
 
-The release contains eight Teleop task policies. MP data, controllers and
-evaluation episodes are included, but MP task policies and an end-to-end MP
-evaluation were not validated or published by this audit. Adding an MP result
-requires a matching trained policy and a separate evaluation.
+The release contains eight Teleop task policies. MP controllers and evaluation
+episodes remain in the simulator resource bundle. MP training data, text caches
+and task policies are not part of this release. End-to-end MP evaluation was not
+validated by this audit; adding an MP result requires a matching trained policy
+and a separate evaluation.

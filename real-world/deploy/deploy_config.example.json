@@ -66,8 +66,8 @@
     },
     "long": {
       "checkpoint": 30000,
-      "initial_pose": "long_v2_initial_pose.json",
-      "dataset": "teleop-long-v2"
+      "initial_pose": "long_initial_pose.json",
+      "dataset": "teleop-long"
     }
   }
 }

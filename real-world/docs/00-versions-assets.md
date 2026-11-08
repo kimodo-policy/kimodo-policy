@@ -53,4 +53,4 @@ This creates the archive and a `.tar.gz.json` manifest. Update `manifests/workst
 
 The PICO headset APK version and robot-side camera Python/SDK versions have not been verified. Do not infer APK compatibility from the PC SDK version alone.
 
-See the [task catalog](../manifests/task-catalog.json) for dataset names, exact instructions, recorded checkpoint defaults, and embedding dimensions. All eight caches passed CPU loading and task resolution in the original model environment.
+See the [task catalog](../manifests/task-catalog.json) for dataset names, exact instructions, recorded checkpoint defaults, and embedding dimensions. The eight released caches use the evaluated task names, including `teleop-long` rather than `teleop-long-v2`. Check the selected checkpoint with `tools/preflight_server.py` before starting the model server.

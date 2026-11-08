@@ -59,7 +59,7 @@ and use their actual timestamp/checkpoint directory. `config.json` and
 policies were fine-tuned from the 419h pretraining checkpoint for 200,000 steps.
 There are no released MP task policies in this collection.
 
-The 18 text embeddings are bundled in Git under `data/cache/Simple/` and are
+The eight evaluated-task text embeddings are bundled in Git under `data/cache/Simple/` and are
 ready to use after cloning; no Hugging Face download is needed. Training and
 evaluation of these instructions do not need the full Llama/LLM2Vec weights.
 For new instructions, download the configured `Meta-Llama-3-8B-Instruct` and both
@@ -123,7 +123,8 @@ If the official data changes or the task is unavailable, use the
 python utils/prepare_simple.py --training-task "$TASK"
 ```
 
-There are 12 training snapshots (1,187 demonstrations), including
+There are eight training snapshots (794 demonstrations), restricted to the
+evaluated tasks and including
 `G1WholebodyXMoveBendPickTeleop-v0`, which is absent from the current official
 training directory. The loader reads the LeRobot `meta/`, `data/` and `videos/`
 layout directly; no simulation replay or conversion is needed.

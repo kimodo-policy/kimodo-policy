@@ -10,7 +10,7 @@ source env.sh
 export TASK=boxing
 ```
 
-Supported tasks: `banana`, `boxing`, `pushing`, `transportation`, `sitting`, `football`, `pnp`, and `long`. Use the same task on both hosts. `long` maps to `teleop-long-v2`. Task selection does not rewrite JSON. Configure interpreters/paths in `local.env` and checkpoint/inference settings in `deploy/deploy_config.json`.
+Supported tasks: `banana`, `boxing`, `pushing`, `transportation`, `sitting`, `football`, `pnp`, and `long`. Use the same task on both hosts. `long` maps to `teleop-long` and uses `long_initial_pose.json`. Task selection does not rewrite JSON. Configure interpreters/paths in `local.env` and checkpoint/inference settings in `deploy/deploy_config.json`.
 
 ## 4.1 Model host, terminal H: validate and start the server
 

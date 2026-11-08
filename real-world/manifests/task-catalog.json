@@ -85,14 +85,14 @@
   },
   {
     "task": "long",
-    "instruction": "Put the green apple from the plate into the drawer and close the drawer.",
+    "instruction": "Open the blue section at the front, take the green apple out of the tray and place it in the drawer, then close the drawer.",
     "embedding_shape": [
       1,
       4096
     ],
     "status": "PASS metadata/assets/text; GPU/model not loaded",
     "checkpoint_step": 30000,
-    "dataset": "teleop-long-v2",
-    "training_state_bytes": 1100902183
+    "dataset": "teleop-long",
+    "validation_date": "2026-11-08"
   }
 ]

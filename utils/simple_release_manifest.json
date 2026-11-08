@@ -60,13 +60,6 @@
     }
   },
   "training": {
-    "G1WholebodyBendPickMP-v0": {
-      "sha256": "e0b1e9d83f3c33890f6b88332eeee82df6005098d7f6fc87dd7139c56405a099",
-      "bytes": 39872227,
-      "files": 210,
-      "root": "simple/G1WholebodyBendPickMP-v0",
-      "path": "data/Simple/G1WholebodyBendPickMP-v0.tar.gz"
-    },
     "G1WholebodyCloseDoorTeleop-v0": {
       "sha256": "d94afce8434ff87ec64647da6d5a9dcbaf996fb717497c1c7296ba537dd71672",
       "bytes": 78252315,
@@ -109,13 +102,6 @@
       "root": "simple/G1WholebodyOpenTrashCanTeleop-v0",
       "path": "data/Simple/G1WholebodyOpenTrashCanTeleop-v0.tar.gz"
     },
-    "G1WholebodyPickAndPlaceAndHugContainerTeleop-v0": {
-      "sha256": "8ae6c94cf7deb4e392c2fd74ba58c12d5fc8229ec6acf4f243ea7037c742d613",
-      "bytes": 119769869,
-      "files": 197,
-      "root": "simple/G1WholebodyPickAndPlaceAndHugContainerTeleop-v0",
-      "path": "data/Simple/G1WholebodyPickAndPlaceAndHugContainerTeleop-v0.tar.gz"
-    },
     "G1WholebodyPushOfficeChairTeleop-v0": {
       "sha256": "a09b6b800c57da9c89431b29075072075878e9b15fff8d34ee0db4a40149763f",
       "bytes": 74445165,
@@ -123,49 +109,15 @@
       "root": "simple/G1WholebodyPushOfficeChairTeleop-v0",
       "path": "data/Simple/G1WholebodyPushOfficeChairTeleop-v0.tar.gz"
     },
-    "G1WholebodyTabletopGraspMP-v0": {
-      "sha256": "a51107811926d3ed638d69d2d2fd87d73afc43ebe05bba45275431e7df28b57e",
-      "bytes": 30574470,
-      "files": 210,
-      "root": "simple/G1WholebodyTabletopGraspMP-v0",
-      "path": "data/Simple/G1WholebodyTabletopGraspMP-v0.tar.gz"
-    },
     "G1WholebodyXMoveBendPickTeleop-v0": {
       "sha256": "d70d7b9d87273398d6c565c9631524f9a17436885475defa3d2084419c45aa98",
       "bytes": 55674965,
       "files": 209,
       "root": "simple/G1WholebodyXMoveBendPickTeleop-v0",
       "path": "data/Simple/G1WholebodyXMoveBendPickTeleop-v0.tar.gz"
-    },
-    "G1WholebodyXMovePickTeleop-v0": {
-      "sha256": "bca1d55bf0c5be38b64987515e74190da66a32e1159dcae60bb8c914093a61d7",
-      "bytes": 47621499,
-      "files": 207,
-      "root": "simple/G1WholebodyXMovePickTeleop-v0",
-      "path": "data/Simple/G1WholebodyXMovePickTeleop-v0.tar.gz"
     }
   },
   "text_cache": {
-    "data/cache/Simple/G1WholebodyBendHandoverTeleop-v0__5b3061f90127.pt": {
-      "sha256": "5888b091d3b7de154039c42bc303ef379c67b90c0285e1bfcc8b0495f189029e",
-      "bytes": 10426
-    },
-    "data/cache/Simple/G1WholebodyBendPickAndPlaceOnSofaMP-v0__4de813626165.pt": {
-      "sha256": "7bbeca1651cd12c619897cf88358d45ba7654118b8047b87e6b96c7f3801269f",
-      "bytes": 10532
-    },
-    "data/cache/Simple/G1WholebodyBendPickAndPlaceTeleop-v0__85310808247e.pt": {
-      "sha256": "4eb5dd03f411fe1a3e33238d5045055110316b37406d17d4a552a974bb59a99a",
-      "bytes": 10454
-    },
-    "data/cache/Simple/G1WholebodyBendPickMP-v0__748220ffc81e.pt": {
-      "sha256": "17ab1b34fb39e47c51b933f747869c3505a4b533848de8068ee174c44f04e239",
-      "bytes": 10306
-    },
-    "data/cache/Simple/G1WholebodyBendPickTeleop-v0__2755b747052f.pt": {
-      "sha256": "78bf695c645ed2949936e679b815e2dca786ba42e168a2a1f72076b9ca0ed630",
-      "bytes": 10334
-    },
     "data/cache/Simple/G1WholebodyCloseDoorTeleop-v0__8910f3c6933a.pt": {
       "sha256": "93f45205e740f0359b5a976dc45dab3a1502f9260080ad13b2efebeaa00fecd6",
       "bytes": 10341
@@ -190,33 +142,13 @@
       "sha256": "7035f7cd2d6aafb3340e5d2e6070053b0794716f1aee72983b3672b2cd20b5f6",
       "bytes": 10426
     },
-    "data/cache/Simple/G1WholebodyPickAndBendPlaceMP-v0__1e02d0034289.pt": {
-      "sha256": "fe1f90325fb2261e21e3c25a44b05b72c12888d3aa65ed4eb6c51e71e29056ac",
-      "bytes": 10426
-    },
-    "data/cache/Simple/G1WholebodyPickAndPlaceAndHugContainerTeleop-v0__2d7db39599f6.pt": {
-      "sha256": "0e9af28b6877f9e68e247047d1a2fce40ed1d5599519ef3d0ab5dc476c4eec2c",
-      "bytes": 10851
-    },
     "data/cache/Simple/G1WholebodyPushOfficeChairTeleop-v0__6ae8cb3a3e08.pt": {
       "sha256": "0b0e16461ea1e065ef4d7462afd5f5de3778a6a346b0ab83f6a211f23f2e196b",
       "bytes": 10447
     },
-    "data/cache/Simple/G1WholebodyTabletopGraspMP-v0__be88ad8d8af6.pt": {
-      "sha256": "55c3df7454c61b2766a1e3c80d659236864c570fa6f284b032ffa5a93b1428dc",
-      "bytes": 10341
-    },
-    "data/cache/Simple/G1WholebodyTabletopHandoverMP-v0__f973bf58e690.pt": {
-      "sha256": "8706126004459f0d71597c9d9d966417d0d280af2085db4f0f07144cab4b63fb",
-      "bytes": 10426
-    },
     "data/cache/Simple/G1WholebodyXMoveBendPickTeleop-v0__5a56a52d01e2.pt": {
       "sha256": "d14090c18408b88c9ef216e211436eca9456ea35d007f5881bc30333c0cda21f",
       "bytes": 10433
-    },
-    "data/cache/Simple/G1WholebodyXMovePickTeleop-v0__e3c19d410263.pt": {
-      "sha256": "4fec369be0e7f6ae729bf8e91a904e709a454319d9b12ff840cf7e059b70085a",
-      "bytes": 10341
     }
   },
   "upstream_asset_revision": "0e8f23cce8f2e96717aa60a0e26bed9d56223c2d",

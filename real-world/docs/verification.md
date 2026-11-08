@@ -7,7 +7,7 @@ Date: 2026-11-07. All checks described here avoid physical robot control.
 - Python AST, shell syntax, JSON, relative Markdown links, eight task-pose mappings, and package SHA256 checks passed.
 - 22 deployment tests passed, covering hand filtering, lifecycle/HOLD, result freshness, HTTP/image transport, and SONIC lookahead.
 - Six installation/path tests passed, including paths with spaces, extraction, overwrite refusal, traversal/hash rejection, and shared custom HTTP port handling.
-- The original model host passed CPU metadata/asset/text-cache preflight for all eight tasks; see `manifests/server-preflight-observed.json`.
+- The original model host passed CPU metadata/asset/text-cache preflight for the eight released tasks. Seven unchanged tasks were checked on 2026-11-07; `teleop-long`, its original pose and checkpoint 30000 were checked on 2026-11-08; see `manifests/server-preflight-observed.json`.
 - One preprocessing-equivalence test passed on that host without constructing the model or allocating a GPU.
 - The 3,814,025,719-byte runtime archive was fully extracted with the installer into a temporary macOS directory. All 8,545 files passed SHA256 verification. Temporary files were removed afterward. This validates extraction/integrity, not Linux dynamic loading or compilation.
 
