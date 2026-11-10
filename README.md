@@ -29,7 +29,7 @@
 </p>
 
 <p align="center">
-  <a href="asset/paper/arxiv/main_arxiv.pdf"><img src="https://img.shields.io/badge/%F0%9F%93%95_Paper-PDF-b31b1b" alt="Paper PDF"></a>
+  <a href="https://arxiv.org/abs/2611.11554"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?logo=arxiv" alt="arXiv paper"></a>
   <a href="https://kimodo-policy.github.io/"><img src="https://img.shields.io/badge/%F0%9F%9A%80_Project_Page-Kimodo--Policy-blue" alt="Project Page"></a>
   <a href="https://huggingface.co/datasets/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Dataset_%26_Results-Kimodo--Policy-yellow" alt="Hugging Face dataset and results"></a>
   <a href="https://huggingface.co/YunhengWang/kimodo-policy"><img src="https://img.shields.io/badge/%F0%9F%A4%97_Checkpoints-Kimodo--Policy-yellow" alt="Hugging Face checkpoints"></a>
@@ -736,7 +736,7 @@ We also thank the contributors and maintainers of the dependencies used througho
 
 ## 📚 Citation
 
-If you find Kimodo-Policy useful in your research, please cite our work using the BibTeX entry below. We will update this entry with the arXiv identifier once it is available.
+If you find Kimodo-Policy useful in your research, please cite our [paper](https://arxiv.org/abs/2611.11554) using the BibTeX entry below.
 
 ```bibtex
 @misc{wang2026kimodopolicy,
@@ -745,7 +745,11 @@ If you find Kimodo-Policy useful in your research, please cite our work using th
             Wang, Taowen and Feng, Yixiao and Zhang, Shuning and Xu, Junzhe and
             Wang, Yichi and Yuan, Zizhao and Huang, Kailun and Li, Lusong and
             Zhou, Mingqian and Zeng, Zecui and Xu, Renjing},
-  year   = {2026},
-  url    = {https://kimodo-policy.github.io/}
+  year          = {2026},
+  eprint        = {2611.11554},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  doi           = {10.48550/arXiv.2611.11554},
+  url           = {https://arxiv.org/abs/2611.11554}
 }
 ```
