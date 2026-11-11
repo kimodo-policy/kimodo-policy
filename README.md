@@ -40,12 +40,7 @@
 
 ![Kimodo-Policy overview](asset/paper/arxiv/image/teaser.png)
 
-<p align="center">
-  <a href="https://kimodo-policy.github.io/#introduction-video">
-    <img src="asset/readme/kimodo-policy-introduction-cover.jpeg" alt="Watch the Kimodo-Policy introduction video" width="960">
-  </a><br>
-  <a href="https://kimodo-policy.github.io/#introduction-video">▶ Watch the introduction video</a> · <a href="https://youtu.be/dXECtGHerd0">YouTube</a> · 1 min 36 sec
-</p>
+https://github.com/user-attachments/assets/a9fc9fdb-f9a3-4789-8965-fe7b59f9552d
 
 ## 🗺️ Open-Source Roadmap
 
