@@ -40,7 +40,7 @@
 
 ![Kimodo-Policy overview](asset/paper/arxiv/image/teaser.png)
 
-https://github.com/user-attachments/assets/a9fc9fdb-f9a3-4789-8965-fe7b59f9552d
+https://github.com/user-attachments/assets/4b961637-3bc1-436c-8601-765b48837541
 
 ## 🗺️ Open-Source Roadmap
 
